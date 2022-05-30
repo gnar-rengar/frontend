@@ -1,9 +1,9 @@
-import { AppProps } from "next/app";
-import React from "react";
-import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
-import { RecoilRoot } from "recoil";
+import { AppProps } from 'next/app';
+import React from 'react';
+import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import { RecoilRoot } from 'recoil';
 
-const App = ({ Component, pageProps }: AppProps) => {
+function App({ Component, pageProps }: AppProps) {
   const [queryClient] = React.useState(() => new QueryClient());
 
   return (
@@ -15,6 +15,6 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Hydrate>
     </QueryClientProvider>
   );
-};
+}
 
 export default App;
