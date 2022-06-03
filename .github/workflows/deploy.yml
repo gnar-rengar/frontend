@@ -36,5 +36,5 @@ jobs:
         run: aws deploy create-deployment
           --application-name duo-deploy
           --deployment-config-name CodeDeployDefault.AllAtOnce
-          --deployment-group-name front-deploy-group
+          --deployment-group-name deploy-group
           --s3-location bucket=duo-deploy-bucket,key=build/build.zip,bundleType=zip
