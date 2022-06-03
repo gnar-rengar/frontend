@@ -1,18 +1,18 @@
 name: Deploy
-on: 
+on:
   push:
     branches:
-      - main
+      - deploy
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Install Dependencies # 의존 파일 설치
+      - name: Install Dependencies
         run: npm install --frozen-lockfile
       - name: Build
         run: npm build
-      - name: zip create 
+      - name: zip create
         run: zip -qq -r ./build.zip
         shell: bash
       - name: Configure AWS credentials
@@ -21,14 +21,14 @@ jobs:
           aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-      - name: Upload to S3 
+      - name: Upload to S3
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
         run: |
           aws s3 cp --region ap-northeast-2 ./build.zip
           s3://duo-deploy-bucket/build/build.zip
-      - name: Deploy 
+      - name: Deploy
         run: aws deploy create-deployment
           --application-name duo-deploy
           --deployment-config-name CodeDeployDefault.AllAtOnce
