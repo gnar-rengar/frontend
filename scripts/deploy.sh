@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
+REPOSITORY="/app"
 APP="duo"
-PROCCESS=$(pgrep -f "npm start")
+PID=$(pgrep -f "npm start")
+
+cd $REPOSITORY
 
 # 프로세스가 실행 중이면 종료
-if [ -n ${PROCCESS} ]; then
+if [ -n "${PID}" ]; then
         echo "실행 중인 애플리케이션을 종료합니다."
         pm2 delete ${APP}
 fi

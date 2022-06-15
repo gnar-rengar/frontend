@@ -20,20 +20,14 @@ module.exports = {
   rules: {
     quotes: ['error', 'single', { avoidEscape: true }],
     semi: ['error', 'always'],
+    'linebreak-style': 0,
     'no-empty-function': 'off',
-    'linebrea-style': 0,
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',
     'react/display-name': 'off',
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
     'prettier/prettier': 'error',
-    'prettier/prettier': [
-      'error',
-      {
-        endOfLine: 'auto',
-      },
-    ],
     'no-console': 'error',
   },
   settings: {
