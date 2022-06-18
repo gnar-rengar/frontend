@@ -1,4 +1,5 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect } from 'react';
 
 interface User {
   id: string;
@@ -7,6 +8,13 @@ interface User {
 }
 
 function Home({ users }: { users: User[] }) {
+  useEffect(() => {
+    (async () => {
+      const { data } = await axios('/users');
+      // eslint-disable-next-line no-console
+      console.log(data);
+    })();
+  });
   return (
     <>
       {users.map((user) => (
