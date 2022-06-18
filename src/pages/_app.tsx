@@ -7,7 +7,8 @@ import { lightTheme } from '../theme';
 import GlobalStyle from '../theme/globalStyle';
 
 if (process.env.NODE_ENV === 'development') {
-  import('../mocks');
+  // eslint-disable-next-line global-require
+  require('../mocks');
 }
 
 function App({ Component, pageProps }: AppProps) {
