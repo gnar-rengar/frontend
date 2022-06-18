@@ -1,9 +1,20 @@
+import { MockedRequest } from 'msw';
+
 if (typeof window === 'undefined') {
-  const server = import('./server');
-  server.then((s) => s.server.listen());
+  const { server } = require('./server');
+  server.listen();
 } else {
-  const worker = import('./browser');
-  worker.then((w) => w.worker.start());
+  const { worker } = require('./browser');
+  worker.start({
+    onUnhandledRequest(request: MockedRequest, print: any) {
+      if (request.url.pathname.startsWith('/_next')) {
+        return;
+      }
+
+      print.warning();
+    },
+  });
 }
 
-export {};
+// eslint-disable-next-line prettier/prettier
+export { };

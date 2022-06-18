@@ -4,6 +4,7 @@ module.exports = {
     es2021: true,
     node: true,
     jest: true,
+    commonJs: true,
   },
   extends: ['airbnb', 'airbnb-typescript'],
   ignorePatterns: ['.eslintrc.js'],

@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 
 export const handlers = [
-  rest.get('https://backend.api/users', (req, res, ctx) => {
+  rest.get('/users', (req, res, ctx) => {
     const users = [
       {
         id: '1',

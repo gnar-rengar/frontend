@@ -6,8 +6,9 @@ import { RecoilRoot } from 'recoil';
 import { lightTheme } from '../theme';
 import GlobalStyle from '../theme/globalStyle';
 
-if (process.env.NODE_ENV === 'development') {
-  import('../mocks');
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+  // eslint-disable-next-line global-require
+  require('../mocks');
 }
 
 function App({ Component, pageProps }: AppProps) {
