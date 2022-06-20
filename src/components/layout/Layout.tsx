@@ -6,16 +6,22 @@ function Layout({ children }: { children: React.ReactNode }) {
   return (
     <LayoutContainer>
       <Header />
-      {children}
+      <Main>{children}</Main>
     </LayoutContainer>
   );
 }
 
 const LayoutContainer = styled.div`
-  ${(props) => `
-    background: ${props.theme.color.BACKGROUND};
-    color: ${props.theme.color.ON_BACKGROUND};
+  min-height: 100vh;
+  ${({ theme: { color } }) => `
+    background: ${color.BACKGROUND};
+    color: ${color.ON_BACKGROUND};
   `}
+`;
+
+const Main = styled.main`
+  padding: 16px;
+  height: 1000px;
 `;
 
 export default Layout;

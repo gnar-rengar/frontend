@@ -26,13 +26,15 @@ function Header() {
 export default Header;
 
 const HeaderContainer = styled.header`
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 16px;
   gap: 56px;
   height: 56px;
+  padding: 14px 16px;
   background: ${(props) => props.theme.color.SURFACE};
 `;
 
