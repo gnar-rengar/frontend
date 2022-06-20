@@ -3,7 +3,7 @@ export { default as Bell } from './Bell';
 export { default as BellRing } from './BellRing';
 export { default as BookMark } from './BookMark';
 export { default as Chat } from './Chat';
-export { default as ChevronRight } from './ChevronRight';
+export { default as ChevronRight } from './CheveronRight';
 export { default as ChevronLeft } from './ChevronLeft';
 export { default as ChevronDown } from './ChevronDown';
 export { default as CrossMark } from './CrossMark';

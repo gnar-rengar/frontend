@@ -6,6 +6,7 @@ module.exports = {
   testEnvironment: 'jsdom',
   transformIgnorePatterns: ['node_modules/(?!troublesome-dependency/.*)'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  snapshotSerializers: ['@emotion/jest/serializer'],
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.test.json',
