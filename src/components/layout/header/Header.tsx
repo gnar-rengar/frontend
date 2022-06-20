@@ -1,6 +1,6 @@
 import React from 'react';
-import { Chat, Profile, Search } from '../../icons';
 import Link from 'next/link';
+import { Chat, Profile, Search } from '../../icons';
 
 import { HeaderContainer, Nav } from './Header.style';
 
@@ -21,19 +21,6 @@ function Header() {
           </Link>
         ))}
       </Nav>
-      {/* <Nav role="navigation">
-        <Link href="/">
-          <a href="">
-            <Chat />
-          </a>
-        </Link>
-        <Link href="#">
-          <Profile />
-        </Link>
-        <Link href="#">
-          <Search />
-        </Link>
-      </Nav> */}
     </HeaderContainer>
   );
 }
