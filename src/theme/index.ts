@@ -9,31 +9,44 @@ export const responsiveView = {
 };
 
 const publicTheme = {
-  MOBILE: `(max-width: ${responsiveView.MOBILE})`,
-  TABLET: `(max-width: ${responsiveView.TABLET})`,
-  TABLET_SM: `(max-width: ${responsiveView.TABLET_SM})`,
-  PC: `(max-width: ${responsiveView.PC})`,
-  HDPC: `(max-width: ${responsiveView.HDPC})`,
-  MOBILE_SM: `(max-width: ${responsiveView.MOBILE_SM})`,
-  MOBILE_FOLD: `(max-width: ${responsiveView.MOBILE_FOLD})`,
+  mq: {
+    MOBILE: `(max-width: ${responsiveView.MOBILE})`,
+    TABLET: `(max-width: ${responsiveView.TABLET})`,
+    TABLET_SM: `(max-width: ${responsiveView.TABLET_SM})`,
+    PC: `(max-width: ${responsiveView.PC})`,
+    HDPC: `(max-width: ${responsiveView.HDPC})`,
+    MOBILE_SM: `(max-width: ${responsiveView.MOBILE_SM})`,
+    MOBILE_FOLD: `(max-width: ${responsiveView.MOBILE_FOLD})`,
+  },
 };
 
 export const lightTheme = {
   ...publicTheme,
-  PRIMARY: '#A4E697',
-  PRIMARY_VARIANT: '#11CB0E',
-  SECONDARY: '#E48DBF',
-  ERROR: '#D34851',
-  BACKGROUND: '#121212',
-  SURFACE: '#323232',
+  color: {
+    PRIMARY: '#A4E697',
+    PRIMARY_VARIANT: '#11CB0E',
+    SECONDARY: '#E48DBF',
+    ERROR: '#D34851',
+    BACKGROUND: '#121212',
+    SURFACE: '#323232',
+  },
 };
 
 export const darkTheme = {
   ...publicTheme,
-  PRIMARY: '#151515',
-  PRIMARY_VARIANT: '#151515',
-  SECONDARY: '#1C1C1C',
-  ERROR: '#181818',
-  BACKGROUND: '#FCFCFC',
-  SURFACE: '#FEFEFE',
+  color: {
+    PRIMARY: '#151515',
+    PRIMARY_VARIANT: '#151515',
+    SECONDARY: '#1C1C1C',
+    ERROR: '#181818',
+    BACKGROUND: '#121212',
+    SURFACE: '#323232',
+    ON_PRIMARY: '#151515',
+    ON_SECONDARY: '#1c1c1c',
+    ON_ERROR: '#181818',
+    ON_BACKGROUND: '#FCFCFC',
+    ON_SURfACE: '#FEFEFE',
+    SUB_ON_BACKGROUND: '#949494',
+    DISABLE: '#7f7f7f',
+  },
 };
