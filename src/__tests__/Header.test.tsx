@@ -1,14 +1,13 @@
 import React from 'react';
+import { ThemeProvider } from '@emotion/react';
+import { render } from '@testing-library/react';
 import Header from '../components/layout/header/Header';
 
-import { ThemeProvider } from '@emotion/react';
 import { darkTheme } from '../theme';
-
-import { render } from '@testing-library/react';
 
 describe('<Layout/>', () => {
   it('should render a logo', () => {
-    const { getByText, getByRole } = render(
+    const { getByText } = render(
       <ThemeProvider theme={darkTheme}>
         <Header />
       </ThemeProvider>
@@ -18,7 +17,7 @@ describe('<Layout/>', () => {
   });
 
   it('should render a navigation', () => {
-    const { getByText, getByRole } = render(
+    const { getByRole } = render(
       <ThemeProvider theme={darkTheme}>
         <Header />
       </ThemeProvider>

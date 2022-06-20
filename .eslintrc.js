@@ -32,6 +32,14 @@ module.exports = {
     'prettier/prettier': 'error',
     'no-console': 'error',
     'global-require': 'off',
+    'jsx-a11y/anchor-is-valid': [
+      'error',
+      {
+        components: ['Link'],
+        specialLink: ['hrefLeft', 'hrefRight'],
+        aspects: ['invalidHref', 'preferButton'],
+      },
+    ],
   },
   settings: {
     react: {
