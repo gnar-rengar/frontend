@@ -4,7 +4,6 @@ module.exports = {
     es2021: true,
     node: true,
     jest: true,
-    commonJs: true,
   },
   extends: ['airbnb', 'airbnb-typescript'],
   ignorePatterns: ['.eslintrc.js'],
@@ -32,6 +31,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'prettier/prettier': 'error',
     'no-console': 'error',
+    'global-require': 'off',
   },
   settings: {
     react: {
