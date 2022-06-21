@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from '../components/layout/Layout';
 import { ThemeProvider } from '@emotion/react';
 import { AppProps } from 'next/app';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { RecoilRoot } from 'recoil';
+import Layout from '../components/layout/Layout';
 import { darkTheme } from '../theme';
 import GlobalStyle from '../theme/globalStyle';
 
