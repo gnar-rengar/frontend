@@ -35,10 +35,10 @@ export const lightTheme = {
 export const darkTheme = {
   ...publicTheme,
   color: {
-    PRIMARY: '#151515',
-    PRIMARY_VARIANT: '#151515',
-    SECONDARY: '#1C1C1C',
-    ERROR: '#181818',
+    PRIMARY: '#A4E697',
+    PRIMARY_VARIANT: '#11CB0E',
+    SECONDARY: '#E48DBF',
+    ERROR: '#CF6679',
     BACKGROUND: '#121212',
     SURFACE: '#323232',
     ON_PRIMARY: '#151515',
