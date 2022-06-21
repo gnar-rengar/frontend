@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const StyledChip = styled.span`
@@ -8,9 +9,10 @@ export const StyledChip = styled.span`
   width: 65px;
   height: 30px;
 
-  background: ${(props) => props.theme.color.PRIMARY_VARIANT};
-  border: 1px solid ${(props) => props.theme.color.PRIMARY_VARIANT};
-  border-radius: 100px;
-
-  color: ${(props) => props.theme.color.ON_PRIMARY};
+  ${({ theme: { color } }) => css`
+    background: ${color.PRIMARY_VARIANT};
+    border: 1px solid ${color.PRIMARY_VARIANT};
+    border-radius: 100px;
+    color: ${color.ON_PRIMARY};
+  `}
 `;
