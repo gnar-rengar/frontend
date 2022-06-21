@@ -2,10 +2,17 @@ import React from 'react';
 import { StyledChip } from './Chip.style';
 import Typography from './Typography';
 
-function Chip() {
+interface ChipProps {
+  chosen?: boolean;
+  children?: string | number;
+}
+
+function Chip(props: ChipProps) {
+  const { chosen, children } = props;
+
   return (
-    <StyledChip>
-      <Typography variant="body4">chip</Typography>
+    <StyledChip chosen={chosen}>
+      <Typography variant="body4">{children}</Typography>
     </StyledChip>
   );
 }

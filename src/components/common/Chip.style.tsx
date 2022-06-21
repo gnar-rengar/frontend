@@ -1,18 +1,29 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const StyledChip = styled.span`
+export const StyledChip = styled.span<{ chosen: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5px 14px;
   width: 65px;
   height: 30px;
+  border-radius: 100px;
 
-  ${({ theme: { color } }) => css`
-    background: ${color.PRIMARY_VARIANT};
-    border: 1px solid ${color.PRIMARY_VARIANT};
-    border-radius: 100px;
-    color: ${color.ON_PRIMARY};
-  `}
+  ${({ theme, chosen }) => {
+    const { color } = theme;
+
+    if (chosen) {
+      return css`
+        background: ${color.PRIMARY_VARIANT};
+        border: 1px solid ${color.PRIMARY_VARIANT};
+        color: ${color.ON_PRIMARY};
+      `;
+    }
+    return css`
+      background: inherit;
+      border: 1px solid ${color.SUB_ON_BACKGROUND};
+      color: ${color.SUB_ON_BACKGROUND};
+    `;
+  }}
 `;
