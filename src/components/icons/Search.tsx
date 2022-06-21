@@ -1,0 +1,24 @@
+import React from 'react';
+
+function Search() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M14.6331 24.8224C20.432 24.8224 25.1331 20.1214 25.1331 14.3224C25.1331 8.52346 20.432 3.82245 14.6331 3.82245C8.83407 3.82245 4.13306 8.52346 4.13306 14.3224C4.13306 20.1214 8.83407 24.8224 14.6331 24.8224Z"
+        stroke="#FCFCFC"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M22.0581 21.7475L28.1331 27.8225"
+        stroke="#FCFCFC"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export default Search;
