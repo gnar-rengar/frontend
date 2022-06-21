@@ -17,6 +17,14 @@
     "jsx": "preserve"
     // "jsxImportSource": "@emotion/react"
   },
-  "include": ["next-env.d.ts", "*.config.js", "**/*.ts", "**/*.tsx", "**/mocks/", "**/__tests__/*"],
+  "include": [
+    "next-env.d.ts",
+    "*.config.js",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/mocks/",
+    "public/mockServiceWorker.js",
+    "**/__tests__/*"
+  ],
   "exclude": ["node_modules"]
 }
