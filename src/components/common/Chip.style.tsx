@@ -2,11 +2,10 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const StyledChip = styled.span<{ chosen: boolean }>`
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   padding: 5px 14px;
-  width: 65px;
   height: 30px;
   border-radius: 100px;
 
