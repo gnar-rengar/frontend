@@ -9,6 +9,7 @@ export interface TypographyProps {
   align?: 'center' | 'left' | 'right' | 'inherit';
   nowrap?: boolean;
   children: string | number;
+  margin?: string;
 }
 
 function Typography(props: TypographyProps) {

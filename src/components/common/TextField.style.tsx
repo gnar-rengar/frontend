@@ -7,6 +7,7 @@ export const Input = styled.input<{ error?: boolean }>`
   background: inherit;
   border-radius: 8px;
   outline: none;
+  font-size: 14px;
 
   ${(props) => {
     const {
