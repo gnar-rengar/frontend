@@ -6,9 +6,9 @@ function ChevronDown() {
       <path
         d="M26 12L16 22L6 12"
         stroke="#FCFCFC"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

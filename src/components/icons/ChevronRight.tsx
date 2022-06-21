@@ -6,9 +6,9 @@ function ChevronRight() {
       <path
         d="M10 26L20 16L10 6"
         stroke="#FCFCFC"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
