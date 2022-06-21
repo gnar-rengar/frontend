@@ -77,6 +77,9 @@ const publicTheme = {
   color: {
     DISABLE: '#7f7f7f',
   },
+  margin: {
+    base: '8px',
+  },
 };
 
 export const lightTheme = {

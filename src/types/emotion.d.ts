@@ -25,5 +25,8 @@ declare module '@emotion/react' {
         lineHeight: string;
       };
     };
+    margin: {
+      base: string;
+    };
   }
 }
