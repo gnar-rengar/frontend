@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react';
+import Chip from '../components/common/Chip';
 import TextField from '../components/common/TextField';
+import Typography from '../components/common/Typography';
 
 function Home() {
-  const [inputValue, setInputValue] = useState('');
+  const [, setInputValue] = useState('');
 
   const ref = useRef(null);
 
@@ -10,8 +12,10 @@ function Home() {
     setInputValue(e.target.value);
   };
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
       <TextField ref={ref} onChange={handleChange} name="" placeholder="닉네임" />
+      <Chip />
+      <Typography variant="h3">hello world</Typography>
     </div>
   );
 }

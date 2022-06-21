@@ -18,6 +18,62 @@ const publicTheme = {
     MOBILE_SM: `(max-width: ${responsiveView.MOBILE_SM})`,
     MOBILE_FOLD: `(max-width: ${responsiveView.MOBILE_FOLD})`,
   },
+  typography: {
+    h1: {
+      element: 'h1',
+      fontSize: '40px',
+      fontWeight: '700',
+      lineHeight: '52px',
+    },
+    h2: {
+      element: 'h2',
+      fontSize: '32px',
+      fontWeight: '700',
+      lineHeight: '42px',
+    },
+    h3: {
+      element: 'h3',
+      fontSize: '20px',
+      fontWeight: '700',
+      lineHeight: '30px',
+    },
+    h4: {
+      element: 'h4',
+      fontSize: '12px',
+      fontWeight: '700',
+      lineHeight: '18px',
+    },
+    body1: {
+      element: 'p',
+      fontSize: '16px',
+      fontWeight: '600',
+      lineHeight: '24px',
+    },
+    body2: {
+      element: 'p',
+      fontSize: '16px',
+      fontWeight: '400',
+      lineHeight: '24px',
+    },
+    body3: {
+      element: 'p',
+      fontSize: '14px',
+      fontWeight: '400',
+      lineHeight: '20px',
+    },
+    body4: {
+      element: 'p',
+      fontSize: '14px',
+      fontWeight: '600',
+      lineHeight: '20px',
+    },
+    caption: {
+      element: 'p',
+      fontSize: '12px',
+      fontWeight: '400',
+      lineHeight: '18px',
+    },
+  },
 };
 
 export const lightTheme = {

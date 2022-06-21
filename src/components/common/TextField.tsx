@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { Input, InputWrapper } from './TextField.style';
+import { Input } from './TextField.style';
 
 interface TextFieldProps {
   name?: string;
@@ -10,9 +10,7 @@ interface TextFieldProps {
 }
 
 const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => (
-  <InputWrapper>
-    <Input type="text" {...props} ref={ref} />
-  </InputWrapper>
+  <Input type="text" {...props} ref={ref} />
 ));
 
 export default TextField;

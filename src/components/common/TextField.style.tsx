@@ -1,8 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const InputWrapper = styled.div``;
-
 export const Input = styled.input<{ error?: boolean }>`
   height: 48px;
   width: 296px;
