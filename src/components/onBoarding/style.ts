@@ -22,32 +22,32 @@ export const OnBoardingEachContainer = styled.div`
     gap: 8px;
   }
 
-  .nickNameContainer {
+  .container {
     & > div > p {
-      color: ${(props) => props.theme.color.ERROR};
+      color: ${({ theme }) => theme.color.error};
+      margin-top: 8px;
     }
     .flexContainer {
       display: flex;
       align-items: center;
       gap: 4px;
-      margin-bottom: 8px;
     }
   }
 `;
 
 const ShareButton = styled.button`
-  background-color: ${(props) => props.theme.color.DISABLE};
+  background-color: ${({ theme }) => theme.color.disable};
   border-radius: 8px;
   display: flex;
   align-items: center;
-  color: ${(props) => props.theme.color.ON_PRIMARY};
+  color: ${({ theme }) => theme.color.onPrimary};
   border: none;
   justify-content: center;
   cursor: pointer;
 `;
 
 export const NickNameButton = styled(ShareButton)`
-  background-color: ${(props) => props.theme.color.SUB_ON_BACKGROUND};
+  background-color: ${({ theme }) => theme.color.onBackgroundSub};
   padding: 8px 16px;
   height: 48px;
 `;
@@ -77,3 +77,12 @@ export const SubmitButton = styled(ShareButton)`
   position: fixed;
   bottom: 20px;
 `;
+
+export const CustomCheckbox = styled.input`
+  display: none;
+`;
+
+export const CheckboxContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;

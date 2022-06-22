@@ -1,21 +1,28 @@
-import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { playStyle, position, voiceChannel } from '../../dictionary';
+import React, { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { communication, playStyle, position, voiceChannel } from '../../dictionary';
+import CheckBox from '../common/CheckBox';
 import Chip from '../common/Chip';
 import { Input } from '../common/TextField.style';
 import Typography from '../common/Typography';
 import {
   ChipContainer,
   NickNameButton,
+  CustomCheckbox,
   OnBoardingContainer,
   OnBoardingEachContainer,
   SubmitButton,
   VoiceButton,
   VoiceButtonContainer,
+  CheckboxContainer,
 } from './style';
 
-interface OnBoardingInput {
-  nickname: string;
+export interface OnBoardingInput {
+  nickName: string;
+  playStyle: string[];
+  position: string[];
+  communication: string[];
+  voiceChannel: string[];
 }
 
 function OnBoarding() {
@@ -25,12 +32,33 @@ function OnBoarding() {
     setError,
     formState: { errors },
   } = useForm<OnBoardingInput>();
+  const registerProps = register('communication');
+  const [checkedPlayStyle, setCheckedPlayStyle] = useState<string[]>([]);
+  const [checkedPosition, setCheckedPosition] = useState<string[]>([]);
+  const [checkedVoiceChannel, setCheckedVoiceChannel] = useState<string[]>([]);
+
+  const errorMessage = {
+    nickName: '소환사명을 입력해주세요.',
+    checkbox: '하나 이상 골라주셔야 잘 추천해드릴 수 있어요!!!',
+  };
 
   const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
     console.log(data);
   };
 
-  console.log(errors);
+  const onClickCheckbox = (
+    e: React.MouseEvent<HTMLLabelElement>,
+    state: string[],
+    setState: React.Dispatch<React.SetStateAction<string[]>>
+  ) => {
+    const target = e.target as HTMLElement;
+    const value = target.innerText;
+
+    if (state.includes(value)) {
+      setState((prev) => prev.filter((item) => item !== value));
+    } else setState((prev) => [...prev, value]);
+  };
+
   return (
     <OnBoardingContainer onSubmit={handleSubmit(onSubmitOnBoarding)}>
       <OnBoardingEachContainer>
@@ -43,11 +71,11 @@ function OnBoarding() {
             알리기!!!! 혹은 상대가 너를 찾을 수 없어요
           </Typography>
         </div>
-        <div className="nickNameContainer">
+        <div className="container">
           <div className="flexContainer">
             <Input
-              {...register('nickname', {
-                required: '소환사명을 입력해주세요.',
+              {...register('nickName', {
+                required: errorMessage.nickName,
               })}
               name="nickName"
               placeholder="정확한 소환사명을 입력해주세요"
@@ -56,7 +84,7 @@ function OnBoarding() {
               <Typography variant="body4">확인</Typography>
             </NickNameButton>
           </div>
-          <Typography variant="caption">{errors?.nickname?.message}</Typography>
+          <Typography variant="caption">{errors?.nickName?.message}</Typography>
         </div>
       </OnBoardingEachContainer>
       <OnBoardingEachContainer>
@@ -66,11 +94,32 @@ function OnBoarding() {
           </Typography>
           <Typography variant="caption">부가설명 내용입니다</Typography>
         </div>
-        <ChipContainer>
-          {playStyle.map((style) => (
-            <Chip key={style}>{style}</Chip>
-          ))}
-        </ChipContainer>
+        <div className="container">
+          <ChipContainer>
+            {playStyle.map((style) => (
+              <>
+                <Chip
+                  chosen={checkedPlayStyle.includes(style)}
+                  onClick={(e) => onClickCheckbox(e, checkedPlayStyle, setCheckedPlayStyle)}
+                  key={style}
+                  htmlfor={style}
+                >
+                  {style}
+                </Chip>
+                <CustomCheckbox
+                  {...register('playStyle', {
+                    required: errorMessage.checkbox,
+                  })}
+                  key={`${style} 온보딩`}
+                  type="checkbox"
+                  id={style}
+                  value={style}
+                />
+              </>
+            ))}
+          </ChipContainer>
+          <Typography variant="caption">{errors?.playStyle?.message}</Typography>
+        </div>
       </OnBoardingEachContainer>
       <OnBoardingEachContainer>
         <div className="titleContainer">
@@ -79,11 +128,32 @@ function OnBoarding() {
           </Typography>
           <Typography variant="caption">부가설명 내용입니다</Typography>
         </div>
-        <ChipContainer>
-          {position.map((pos) => (
-            <Chip key={pos}>{pos}</Chip>
-          ))}
-        </ChipContainer>
+        <div className="container">
+          <ChipContainer>
+            {position.map((pos) => (
+              <>
+                <Chip
+                  chosen={checkedPosition.includes(pos)}
+                  key={pos}
+                  htmlfor={pos}
+                  onClick={(e) => onClickCheckbox(e, checkedPosition, setCheckedPosition)}
+                >
+                  {pos}
+                </Chip>
+                <CustomCheckbox
+                  {...register('position', {
+                    required: errorMessage.checkbox,
+                  })}
+                  key={`${pos} 온보딩`}
+                  type="checkbox"
+                  id={pos}
+                  value={pos}
+                />
+              </>
+            ))}
+          </ChipContainer>
+          <Typography variant="caption">{errors?.position?.message}</Typography>
+        </div>
       </OnBoardingEachContainer>
       <OnBoardingEachContainer>
         <div className="titleContainer">
@@ -98,11 +168,32 @@ function OnBoarding() {
         </VoiceButtonContainer>
         <div className="titleContainer">
           <Typography variant="caption">어떤 채널을 주로 사용하시는지도 알려주세요.</Typography>
-          <ChipContainer>
-            {voiceChannel.map((channel) => (
-              <Chip key={channel}>{channel}</Chip>
-            ))}
-          </ChipContainer>
+          <div className="container">
+            <ChipContainer>
+              {voiceChannel.map((channel) => (
+                <>
+                  <Chip
+                    chosen={checkedVoiceChannel.includes(channel)}
+                    onClick={(e) => onClickCheckbox(e, checkedVoiceChannel, setCheckedVoiceChannel)}
+                    key={channel}
+                    htmlfor={channel}
+                  >
+                    {channel}
+                  </Chip>
+                  <CustomCheckbox
+                    value={channel}
+                    key={`${channel} 온보딩`}
+                    type="checkbox"
+                    id={channel}
+                    {...register('voiceChannel', {
+                      required: errorMessage.checkbox,
+                    })}
+                  />
+                </>
+              ))}
+            </ChipContainer>
+            <Typography variant="caption">{errors?.voiceChannel?.message}</Typography>
+          </div>
         </div>
       </OnBoardingEachContainer>
       <OnBoardingEachContainer>
@@ -112,6 +203,11 @@ function OnBoarding() {
           </Typography>
           <Typography variant="caption">부가설명 내용입니다</Typography>
         </div>
+        <CheckboxContainer>
+          {communication.map((item) => (
+            <CheckBox register={registerProps} label={item} />
+          ))}
+        </CheckboxContainer>
       </OnBoardingEachContainer>
       <SubmitButton type="submit">
         <Typography variant="body1">내 듀오 찾으러 가기</Typography>

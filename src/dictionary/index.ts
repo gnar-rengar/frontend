@@ -14,4 +14,11 @@ const position = ['탑', '정글', '미드', '원딜', '서폿'] as const;
 
 const voiceChannel = ['디스코드', '롤 인보이스', '토크온', '기타'] as const;
 
-export { playStyle, position, voiceChannel };
+const communication = [
+  '텐션 높게, 즐겁게 얘기하는 플레이가 좋아요.',
+  '필요한 소통만 하는게 좋아요.',
+  '조용히 오더만 들을게요',
+  '피드백은 언제나 환영해요',
+] as const;
+
+export { playStyle, position, voiceChannel, communication };
