@@ -3,28 +3,28 @@ import '@emotion/react';
 declare module '@emotion/react' {
   export interface Theme {
     mq: {
-      MOBILE: string;
-      TABLET: string;
-      TABLET_SM: string;
-      PC: string;
-      HDPC: string;
-      MOBILE_SM: string;
-      MOBILE_FOLD: string;
+      hdpc: string;
+      pc: string;
+      tablet: string;
+      tabletSM: string;
+      mobile: string;
+      mobileSM: string;
+      mobileFold: string;
     };
     color: {
-      PRIMARY: string;
-      PRIMARY_VARIANT: string;
-      SECONDARY: string;
-      ERROR: string;
-      BACKGROUND: string;
-      SURFACE: string;
-      ON_PRIMARY: string;
-      ON_SECONDARY: string;
-      ON_ERROR: string;
-      ON_BACKGROUND: string;
-      ON_SURfACE: string;
-      SUB_ON_BACKGROUND: string;
-      DISABLE: string;
+      primary: string;
+      primaryVariant: string;
+      secondary: string;
+      error: string;
+      background: string;
+      surface: string;
+      onPrimary: string;
+      onSecondary: string;
+      onError: string;
+      onBackground: string;
+      onSurface: string;
+      onBackgroundSub: string;
+      disable: string;
     };
     typography: {
       [key in 'h1' | 'h2' | 'h3' | 'h4' | 'body1' | 'body2' | 'body3' | 'body4' | 'caption']: {

@@ -1,4 +1,3 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const StyledTypography = styled.div<{
@@ -12,7 +11,7 @@ export const StyledTypography = styled.div<{
     const { typography } = props.theme;
     const variant = typography[props.variant];
 
-    return css`
+    return `
       font-size: ${variant.fontSize};
       font-weight: ${variant.fontWeight};
       line-height: ${variant.lineHeight};

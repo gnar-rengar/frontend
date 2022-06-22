@@ -17,11 +17,11 @@ export const Input = styled.input`
   height: 0;
 
   &: checked + span {
-    border: 1px solid ${({ theme }) => theme.color.PRIMARY_VARIANT};
+    border: 1px solid ${({ theme }) => theme.color.primaryVariant};
   }
 
   &: checked + span::before {
-    background: ${({ theme }) => theme.color.PRIMARY_VARIANT};
+    background: ${({ theme }) => theme.color.primaryVariant};
   }
 `;
 
@@ -29,7 +29,7 @@ export const Mark = styled.span`
   position: relative;
   width: 13.75px;
   height: 13.75px;
-  border: 1px solid ${({ theme }) => theme.color.ON_BACKGROUND};
+  border: 1px solid ${({ theme }) => theme.color.onBackground};
 
   &::before {
     content: '';
