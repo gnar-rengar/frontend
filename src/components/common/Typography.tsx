@@ -2,9 +2,11 @@ import { useTheme } from '@emotion/react';
 import React from 'react';
 import { StyledTypography } from './Typography.style';
 
-interface TypographyProps {
+import type { TypographyVariant } from '../../types/typography.type';
+
+export interface TypographyProps {
+  variant?: TypographyVariant;
   align?: 'center' | 'left' | 'right' | 'inherit';
-  variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'body1' | 'body2' | 'body3' | 'body4' | 'caption';
   nowrap?: boolean;
   children: string | number;
 }

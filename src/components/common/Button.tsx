@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyledButton } from './Button.style';
 import Typography from './Typography';
+import { StyledButton } from './Button.style';
+
+import type { ColorVariant } from '../../types/color.type';
 
 export interface ButtonProps {
-  color?: 'primary' | 'onBackground';
+  color?: ColorVariant;
   variant?: 'contained' | 'outlined';
   disabled?: boolean;
   children: string | number;

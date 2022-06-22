@@ -91,8 +91,8 @@ export const lightTheme = {
 export const darkTheme = {
   ...publicTheme,
   color: {
-    primary: '#A4E697',
-    primaryVariant: '#11CB0E',
+    primary: '#76E4CB',
+    primaryVariant: '#00bd95',
     secondary: '#E48DBF',
     error: '#CF6679',
     background: '#121212',

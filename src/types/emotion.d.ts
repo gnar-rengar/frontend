@@ -1,5 +1,8 @@
 import '@emotion/react';
 
+import type { TypographyVariant } from './typography.type';
+import type { ColorVariant } from './color.type';
+
 declare module '@emotion/react' {
   export interface Theme {
     mq: {
@@ -12,22 +15,10 @@ declare module '@emotion/react' {
       mobileFold: string;
     };
     color: {
-      primary: string;
-      primaryVariant: string;
-      secondary: string;
-      error: string;
-      background: string;
-      surface: string;
-      onPrimary: string;
-      onSecondary: string;
-      onError: string;
-      onBackground: string;
-      onSurface: string;
-      onBackgroundSub: string;
-      disable: string;
+      [key in ColorVariant]: string;
     };
     typography: {
-      [key in 'h1' | 'h2' | 'h3' | 'h4' | 'body1' | 'body2' | 'body3' | 'body4' | 'caption']: {
+      [key in TypographyVariant]: {
         element: string;
         fontSize: string;
         fontWeight: string;
