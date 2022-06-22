@@ -10,5 +10,19 @@ export const StyledButton = styled.button<StyledButtonProps>`
   border-radius: 16px;
   cursor: pointer;
 
-  border: 1.5px solid ${({ color, theme }) => theme.color[color]};
+  ${({ theme, color, variant, disabled }) => {
+    if (disabled) {
+      return `
+      border: 1.5px solid ${theme.color.disable};
+      background: ${theme.color.disable};
+      color: ${theme.color.onPrimary}; 
+      cursor: default;
+      `;
+    }
+    return `
+    border: 1.5px solid ${theme.color[color]};
+    background: ${variant === 'contained' ? theme.color[color] : 'inherit'};
+    color: ${variant === 'contained' ? theme.color.onPrimary : theme.color[color]};
+    `;
+  }}
 `;
