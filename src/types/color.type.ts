@@ -3,7 +3,7 @@ export type ColorVariant =
   | 'primaryVariant'
   | 'secondary'
   | 'error'
-  | 'bacgkround'
+  | 'background'
   | 'surface'
   | 'onPrimary'
   | 'onError'
