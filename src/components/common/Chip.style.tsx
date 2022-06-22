@@ -1,4 +1,3 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const StyledChip = styled.span<{ chosen: boolean }>`
@@ -13,16 +12,16 @@ export const StyledChip = styled.span<{ chosen: boolean }>`
     const { color } = theme;
 
     if (chosen) {
-      return css`
-        background: ${color.PRIMARY_VARIANT};
-        border: 1px solid ${color.PRIMARY_VARIANT};
-        color: ${color.ON_PRIMARY};
+      return `
+        background: ${color.primaryVariant};
+        border: 1px solid ${color.primaryVariant};
+        color: ${color.onPrimary};
       `;
     }
-    return css`
+    return `
       background: inherit;
-      border: 1px solid ${color.SUB_ON_BACKGROUND};
-      color: ${color.SUB_ON_BACKGROUND};
+      border: 1px solid ${color.onBackgroundSub};
+      color: ${color.onBackgroundSub};
     `;
   }}
 `;

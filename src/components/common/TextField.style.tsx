@@ -1,4 +1,3 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const Input = styled.input<{ error?: boolean }>`
@@ -10,21 +9,24 @@ export const Input = styled.input<{ error?: boolean }>`
   outline: none;
 
   ${(props) => {
-    const { color } = props.theme;
+    const {
+      theme: { color },
+      error,
+    } = props;
 
-    if (props.error) {
-      return css`
-        border: 1px solid ${color.ERROR};
-        color: ${color.ERROR};
+    if (error) {
+      return `
+        border: 1px solid ${color.error};
+        color: ${color.error};
       `;
     }
-    return css`
-      border: 1px solid ${color.SUB_ON_BACKGROUND};
-      color: ${color.SUB_ON_BACKGROUND};
+    return `
+      border: 1px solid ${color.onBackgroundSub};
+      color: ${color.onBackgroundSub};
 
       &: focus {
-        border: 1px solid ${color.PRIMARY};
-        color: ${color.ON_BACKGROUND} ;
+        border: 1px solid ${color.primary};
+        color: ${color.onBackground} ;
       `;
   }}
 `;

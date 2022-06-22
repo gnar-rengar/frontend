@@ -8,7 +8,7 @@ export const HeaderContainer = styled.header`
   align-items: center;
   height: 56px;
   padding: 14px 16px;
-  background: ${(props) => props.theme.color.SURFACE};
+  background: ${(props) => props.theme.color.surface};
 `;
 
 export const Nav = styled.nav`

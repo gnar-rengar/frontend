@@ -1,18 +1,17 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const StyledTypography = styled.div<{
-  variant: 'h1' | 'h2' | 'h3' | 'h4' | 'body1' | 'body2' | 'body3' | 'body4' | 'caption';
-  align?: string;
-  nowrap?: boolean;
-}>`
+import type { TypographyProps } from './Typography';
+
+type StyledTypographyProps = Pick<TypographyProps, 'variant' | 'align' | 'nowrap'>;
+
+export const StyledTypography = styled.div<StyledTypographyProps>`
   align: ${(props) => props.align};
   nowrap: ${(props) => props.nowrap};
   ${(props) => {
     const { typography } = props.theme;
     const variant = typography[props.variant];
 
-    return css`
+    return `
       font-size: ${variant.fontSize};
       font-weight: ${variant.fontWeight};
       line-height: ${variant.lineHeight};

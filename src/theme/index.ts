@@ -10,13 +10,13 @@ export const responsiveView = {
 
 const publicTheme = {
   mq: {
-    MOBILE: `(max-width: ${responsiveView.MOBILE})`,
-    TABLET: `(max-width: ${responsiveView.TABLET})`,
-    TABLET_SM: `(max-width: ${responsiveView.TABLET_SM})`,
-    PC: `(max-width: ${responsiveView.PC})`,
-    HDPC: `(max-width: ${responsiveView.HDPC})`,
-    MOBILE_SM: `(max-width: ${responsiveView.MOBILE_SM})`,
-    MOBILE_FOLD: `(max-width: ${responsiveView.MOBILE_FOLD})`,
+    hdpc: `(max-width: ${responsiveView.HDPC})`,
+    pc: `(max-width: ${responsiveView.PC})`,
+    tablet: `(max-width: ${responsiveView.TABLET})`,
+    tabletSM: `(max-width: ${responsiveView.TABLET_SM})`,
+    mobile: `(max-width: ${responsiveView.MOBILE})`,
+    mobileSM: `(max-width: ${responsiveView.MOBILE_SM})`,
+    mobileFold: `(max-width: ${responsiveView.MOBILE_FOLD})`,
   },
   typography: {
     h1: {
@@ -79,30 +79,30 @@ const publicTheme = {
 export const lightTheme = {
   ...publicTheme,
   color: {
-    PRIMARY: '#A4E697',
-    PRIMARY_VARIANT: '#11CB0E',
-    SECONDARY: '#E48DBF',
-    ERROR: '#D34851',
-    BACKGROUND: '#121212',
-    SURFACE: '#323232',
+    primary: '#A4E697',
+    primaryVariant: '#11CB0E',
+    secondary: '#E48DBF',
+    error: '#D34851',
+    background: '#121212',
+    surface: '#323232',
   },
 };
 
 export const darkTheme = {
   ...publicTheme,
   color: {
-    PRIMARY: '#A4E697',
-    PRIMARY_VARIANT: '#11CB0E',
-    SECONDARY: '#E48DBF',
-    ERROR: '#CF6679',
-    BACKGROUND: '#121212',
-    SURFACE: '#323232',
-    ON_PRIMARY: '#151515',
-    ON_SECONDARY: '#1c1c1c',
-    ON_ERROR: '#181818',
-    ON_BACKGROUND: '#FCFCFC',
-    ON_SURfACE: '#FEFEFE',
-    SUB_ON_BACKGROUND: '#949494',
-    DISABLE: '#7f7f7f',
+    primary: '#76E4CB',
+    primaryVariant: '#00bd95',
+    secondary: '#E48DBF',
+    error: '#CF6679',
+    background: '#121212',
+    surface: '#323232',
+    onPrimary: '#151515',
+    onSecondary: '#1c1c1c',
+    onError: '#181818',
+    onBackground: '#FCFCFC',
+    onSurface: '#FEFEFE',
+    onBackgroundSub: '#949494',
+    disable: '#7f7f7f',
   },
 };

@@ -1,5 +1,6 @@
-import React from 'react';
-import { Input, Label } from './CheckBox.style';
+import React, { useState } from 'react';
+import { Input, Label, Mark } from './CheckBox.style';
+import Typography from './Typography';
 
 interface CheckBoxProps {
   label: string;
@@ -11,12 +12,19 @@ interface CheckBoxProps {
 function CheckBox(props: CheckBoxProps) {
   const { id, name, label, checked = false } = props;
 
+  const [isChecked, setIsChecked] = useState(checked || false);
+
   return (
     <Label htmlFor={id}>
-      <span>
-        <Input type="checkbox" id={id || label} name={name || label} checked={checked} />
-      </span>
-      <span>{label}</span>
+      <Input
+        type="checkbox"
+        id={id || label}
+        name={name || label}
+        onChange={() => setIsChecked((p) => !p)}
+        checked={isChecked}
+      />
+      <Mark />
+      <Typography variant="body3">{label}</Typography>
     </Label>
   );
 }
