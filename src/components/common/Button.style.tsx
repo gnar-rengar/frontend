@@ -9,7 +9,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
   height: 48px;
   border-radius: 16px;
   cursor: pointer;
-
   ${({ theme, color, variant, disabled }) => {
     if (disabled) {
       return `
