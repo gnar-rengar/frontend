@@ -97,7 +97,7 @@ function OnBoarding() {
         <div className="container">
           <ChipContainer>
             {playStyle.map((style) => (
-              <>
+              <React.Fragment key={style}>
                 <Chip
                   chosen={checkedPlayStyle.includes(style)}
                   onClick={(e) => onClickCheckbox(e, checkedPlayStyle, setCheckedPlayStyle)}
@@ -115,7 +115,7 @@ function OnBoarding() {
                   id={style}
                   value={style}
                 />
-              </>
+              </React.Fragment>
             ))}
           </ChipContainer>
           <Typography variant="caption">{errors?.playStyle?.message}</Typography>
@@ -131,7 +131,7 @@ function OnBoarding() {
         <div className="container">
           <ChipContainer>
             {position.map((pos) => (
-              <>
+              <React.Fragment key={pos}>
                 <Chip
                   chosen={checkedPosition.includes(pos)}
                   key={pos}
@@ -149,7 +149,7 @@ function OnBoarding() {
                   id={pos}
                   value={pos}
                 />
-              </>
+              </React.Fragment>
             ))}
           </ChipContainer>
           <Typography variant="caption">{errors?.position?.message}</Typography>
@@ -171,7 +171,7 @@ function OnBoarding() {
           <div className="container">
             <ChipContainer>
               {voiceChannel.map((channel) => (
-                <>
+                <React.Fragment key={channel}>
                   <Chip
                     chosen={checkedVoiceChannel.includes(channel)}
                     onClick={(e) => onClickCheckbox(e, checkedVoiceChannel, setCheckedVoiceChannel)}
@@ -189,7 +189,7 @@ function OnBoarding() {
                       required: errorMessage.checkbox,
                     })}
                   />
-                </>
+                </React.Fragment>
               ))}
             </ChipContainer>
             <Typography variant="caption">{errors?.voiceChannel?.message}</Typography>
@@ -205,7 +205,7 @@ function OnBoarding() {
         </div>
         <CheckboxContainer>
           {communication.map((item) => (
-            <CheckBox register={registerProps} label={item} />
+            <CheckBox register={registerProps} label={item} key={item} />
           ))}
         </CheckboxContainer>
       </OnBoardingEachContainer>
