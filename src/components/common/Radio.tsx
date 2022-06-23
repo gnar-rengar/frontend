@@ -1,6 +1,7 @@
 import React from 'react';
-import { Input, InputWrapper, Label, Mark } from './Radio.style';
 import Typography from './Typography';
+
+import { Input, InputWrapper, Label, Mark } from './Radio.style';
 
 interface RadioProps {
   label: string;
