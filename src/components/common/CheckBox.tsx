@@ -6,7 +6,7 @@ import Typography from './Typography';
 interface CheckBoxProps {
   label: string;
   id?: string;
-  register?: UseFormRegisterReturn<any>;
+  register?: UseFormRegisterReturn<string>;
 }
 
 function CheckBox(props: CheckBoxProps) {

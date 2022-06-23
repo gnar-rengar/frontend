@@ -4,7 +4,7 @@ import Typography from './Typography';
 
 interface ChipProps {
   chosen?: boolean;
-  children?: string | number;
+  children: React.ReactNode;
   htmlfor: string;
   onClick?: (e: React.MouseEvent<HTMLLabelElement>) => void;
 }
