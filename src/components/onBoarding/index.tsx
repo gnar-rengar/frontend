@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { communication, playStyle, position, voiceChannel } from '../../dictionary';
+import {
+  communication,
+  onBoardingErrorMessage,
+  playStyle,
+  position,
+  voiceChannel,
+} from '../../constant';
 import CheckBox from '../common/CheckBox';
 import Chip from '../common/Chip';
 import { Input } from '../common/TextField.style';
@@ -37,11 +43,6 @@ function OnBoarding() {
   const [checkedPosition, setCheckedPosition] = useState<string[]>([]);
   const [checkedVoiceChannel, setCheckedVoiceChannel] = useState<string[]>([]);
 
-  const errorMessage = {
-    nickName: '소환사명을 입력해주세요.',
-    checkbox: '하나 이상 골라주셔야 잘 추천해드릴 수 있어요!!!',
-  };
-
   const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
     console.log(data);
   };
@@ -75,7 +76,7 @@ function OnBoarding() {
           <div className="flexContainer">
             <Input
               {...register('nickName', {
-                required: errorMessage.nickName,
+                required: onBoardingErrorMessage.nickName,
               })}
               name="nickName"
               placeholder="정확한 소환사명을 입력해주세요"
@@ -108,7 +109,7 @@ function OnBoarding() {
                 </Chip>
                 <CustomCheckbox
                   {...register('playStyle', {
-                    required: errorMessage.checkbox,
+                    required: onBoardingErrorMessage.checkbox,
                   })}
                   key={`${style} 온보딩`}
                   type="checkbox"
@@ -118,7 +119,7 @@ function OnBoarding() {
               </React.Fragment>
             ))}
           </ChipContainer>
-          <Typography variant="caption">{(errors?.playStyle as any).message}</Typography>
+          <Typography variant="caption">{(errors?.playStyle as any)?.message}</Typography>
         </div>
       </OnBoardingEachContainer>
       <OnBoardingEachContainer>
@@ -142,7 +143,7 @@ function OnBoarding() {
                 </Chip>
                 <CustomCheckbox
                   {...register('position', {
-                    required: errorMessage.checkbox,
+                    required: onBoardingErrorMessage.checkbox,
                   })}
                   key={`${pos} 온보딩`}
                   type="checkbox"
@@ -152,7 +153,7 @@ function OnBoarding() {
               </React.Fragment>
             ))}
           </ChipContainer>
-          <Typography variant="caption">{(errors?.position as any).message}</Typography>
+          <Typography variant="caption">{(errors?.position as any)?.message}</Typography>
         </div>
       </OnBoardingEachContainer>
       <OnBoardingEachContainer>
@@ -186,13 +187,13 @@ function OnBoarding() {
                     type="checkbox"
                     id={channel}
                     {...register('voiceChannel', {
-                      required: errorMessage.checkbox,
+                      required: onBoardingErrorMessage.checkbox,
                     })}
                   />
                 </React.Fragment>
               ))}
             </ChipContainer>
-            <Typography variant="caption">{(errors?.voiceChannel as any).message}</Typography>
+            <Typography variant="caption">{(errors?.voiceChannel as any)?.message}</Typography>
           </div>
         </div>
       </OnBoardingEachContainer>

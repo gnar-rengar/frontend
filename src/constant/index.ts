@@ -21,4 +21,9 @@ const communication = [
   '피드백은 언제나 환영해요',
 ] as const;
 
-export { playStyle, position, voiceChannel, communication };
+const onBoardingErrorMessage = {
+  nickName: '소환사명을 입력해주세요.',
+  checkbox: '하나 이상 골라주셔야 잘 추천해드릴 수 있어요!!!',
+};
+
+export { playStyle, position, voiceChannel, communication, onBoardingErrorMessage };
