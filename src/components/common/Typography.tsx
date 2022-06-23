@@ -29,4 +29,5 @@ Typography.defaultProps = {
   variant: 'body1',
   nowrap: false,
 };
+
 export default Typography;

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Input, InputWrapper, Label, Mark } from './CheckBox.style';
 import Typography from './Typography';
+
+import { Input, InputWrapper, Label, Mark } from './CheckBox.style';
 
 interface CheckBoxProps {
   label: string;
