@@ -74,11 +74,15 @@ const publicTheme = {
       lineHeight: '18px',
     },
   },
+  color: {
+    DISABLE: '#7f7f7f',
+  },
 };
 
 export const lightTheme = {
   ...publicTheme,
   color: {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     primary: '#A4E697',
     primaryVariant: '#11CB0E',
@@ -90,11 +94,19 @@ export const lightTheme = {
     ...publicTheme.color,
     PRIMARY: '#76E4CB',
     PRIMARY_VARIANT: '#00BD95',
+=======
+    ...publicTheme.color,
+    PRIMARY: '#A4E697',
+    PRIMARY_VARIANT: '#11CB0E',
+>>>>>>> a4b9eb4 (충돌 수정하기)
     SECONDARY: '#E48DBF',
     ERROR: '#D34851',
     BACKGROUND: '#121212',
     SURFACE: '#323232',
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> a4b9eb4 (충돌 수정하기)
   },
 };
 
