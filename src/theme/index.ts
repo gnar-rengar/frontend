@@ -74,9 +74,6 @@ const publicTheme = {
       lineHeight: '18px',
     },
   },
-  color: {
-    DISABLE: '#7f7f7f',
-  },
   margin: {
     base: '8px',
   },
@@ -86,13 +83,19 @@ export const lightTheme = {
   ...publicTheme,
   color: {
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     primary: '#A4E697',
     primaryVariant: '#11CB0E',
+=======
+    primary: '#76E4CB',
+    primaryVariant: '#00BD95',
+>>>>>>> ca6b53a (디자인시스템 checkbox 컴포넌트 props 수정)
     secondary: '#E48DBF',
     error: '#D34851',
     background: '#121212',
     surface: '#323232',
+<<<<<<< HEAD
 =======
     ...publicTheme.color,
     PRIMARY: '#76E4CB',
@@ -110,6 +113,8 @@ export const lightTheme = {
 >>>>>>> Stashed changes
 =======
 >>>>>>> a4b9eb4 (충돌 수정하기)
+=======
+>>>>>>> ca6b53a (디자인시스템 checkbox 컴포넌트 props 수정)
   },
 };
 
