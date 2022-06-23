@@ -118,7 +118,7 @@ function OnBoarding() {
               </React.Fragment>
             ))}
           </ChipContainer>
-          <Typography variant="caption">{errors?.playStyle?.message}</Typography>
+          <Typography variant="caption">{(errors?.playStyle as any).message}</Typography>
         </div>
       </OnBoardingEachContainer>
       <OnBoardingEachContainer>
@@ -152,7 +152,7 @@ function OnBoarding() {
               </React.Fragment>
             ))}
           </ChipContainer>
-          <Typography variant="caption">{errors?.position?.message}</Typography>
+          <Typography variant="caption">{(errors?.position as any).message}</Typography>
         </div>
       </OnBoardingEachContainer>
       <OnBoardingEachContainer>
@@ -192,7 +192,7 @@ function OnBoarding() {
                 </React.Fragment>
               ))}
             </ChipContainer>
-            <Typography variant="caption">{errors?.voiceChannel?.message}</Typography>
+            <Typography variant="caption">{(errors?.voiceChannel as any).message}</Typography>
           </div>
         </div>
       </OnBoardingEachContainer>

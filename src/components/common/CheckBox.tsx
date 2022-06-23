@@ -1,12 +1,12 @@
 import React from 'react';
-import { UseFormRegister } from 'react-hook-form';
+import { UseFormRegisterReturn } from 'react-hook-form';
 import { Input, Label, Mark } from './CheckBox.style';
 import Typography from './Typography';
 
 interface CheckBoxProps {
   label: string;
   id?: string;
-  register?: UseFormRegister<any>;
+  register?: UseFormRegisterReturn<any>;
 }
 
 function CheckBox(props: CheckBoxProps) {
