@@ -35,7 +35,6 @@ function OnBoarding() {
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors },
   } = useForm<OnBoardingInput>();
   const registerProps = register('communication');
@@ -45,6 +44,7 @@ function OnBoarding() {
   const [useVoice, setVoice] = useState('');
 
   const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
+    // eslint-disable-next-line no-console
     console.log(data);
   };
 
