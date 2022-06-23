@@ -1,22 +1,22 @@
 import React from 'react';
-import { Input, InputWrapper, Label, Mark } from './CheckBox.style';
+import { Input, InputWrapper, Label, Mark } from './Radio.style';
 import Typography from './Typography';
 
-interface CheckBoxProps {
+interface RadioProps {
   label: string;
   id?: string;
   name?: string;
   checked?: boolean;
 }
 
-function CheckBox(props: CheckBoxProps) {
+function Radio(props: RadioProps) {
   const { id, name, label, checked = false } = props;
 
   return (
     <Label htmlFor={id}>
       <InputWrapper>
         <Input
-          type="checkbox"
+          type="radio"
           id={id || label}
           name={name || label}
           value={label}
@@ -29,4 +29,4 @@ function CheckBox(props: CheckBoxProps) {
   );
 }
 
-export default CheckBox;
+export default Radio;
