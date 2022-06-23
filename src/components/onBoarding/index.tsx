@@ -7,6 +7,8 @@ import {
   position,
   voiceChannel,
 } from '../../constant';
+import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
+import { OnBoardingInput } from '../../types/onBoarding.type';
 import CheckBox from '../common/CheckBox';
 import Chip from '../common/Chip';
 import { Input } from '../common/TextField.style';
@@ -23,14 +25,6 @@ import {
   CheckboxContainer,
 } from './style';
 
-export interface OnBoardingInput {
-  nickName: string;
-  playStyle: string[];
-  position: string[];
-  communication: string[];
-  voiceChannel: string[];
-}
-
 function OnBoarding() {
   const {
     register,
@@ -42,10 +36,10 @@ function OnBoarding() {
   const [checkedPosition, setCheckedPosition] = useState<string[]>([]);
   const [checkedVoice, setCheckedVoice] = useState<string[]>([]);
   const [useVoice, setVoice] = useState('');
+  const submitMutation = useOnBoardingMutation();
 
   const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+    submitMutation.mutate(data);
   };
 
   const onClickCheckbox = (
@@ -235,7 +229,7 @@ function OnBoarding() {
           ))}
         </CheckboxContainer>
       </OnBoardingEachContainer>
-      <SubmitButton type="submit">
+      <SubmitButton type="submit" data-testid="submit">
         <Typography variant="body1">내 듀오 찾으러 가기</Typography>
       </SubmitButton>
     </OnBoardingContainer>
