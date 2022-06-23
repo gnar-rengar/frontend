@@ -65,8 +65,19 @@ export const VoiceButtonContainer = styled.div`
   gap: 16px;
 `;
 
-export const VoiceButton = styled(ShareButton)`
+export const VoiceButton = styled(ShareButton)<{ active: boolean }>`
   padding: 8px 16px;
+
+  ${({ active, theme }) => {
+    if (active) {
+      return `
+        background-color: ${theme.color.primary};
+      `;
+    }
+    return `
+      background-color: ${theme.color.disable};
+    `;
+  }}
 `;
 
 export const SubmitButton = styled(ShareButton)`

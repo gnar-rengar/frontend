@@ -41,7 +41,8 @@ function OnBoarding() {
   const registerProps = register('communication');
   const [checkedPlayStyle, setCheckedPlayStyle] = useState<string[]>([]);
   const [checkedPosition, setCheckedPosition] = useState<string[]>([]);
-  const [checkedVoiceChannel, setCheckedVoiceChannel] = useState<string[]>([]);
+  const [checkedVoice, setCheckedVoice] = useState<string[]>([]);
+  const [useVoice, setVoice] = useState('');
 
   const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
     console.log(data);
@@ -58,6 +59,16 @@ function OnBoarding() {
     if (state.includes(value)) {
       setState((prev) => prev.filter((item) => item !== value));
     } else setState((prev) => [...prev, value]);
+  };
+
+  const voiceButtonIsState = (innerText: string) => {
+    if (useVoice === innerText) return true;
+    return false;
+  };
+
+  const onClickVoiceButton = (e: React.MouseEvent<HTMLButtonElement>, innerText: string) => {
+    e.preventDefault();
+    setVoice(innerText);
   };
 
   return (
@@ -164,35 +175,49 @@ function OnBoarding() {
           <Typography variant="caption">부가설명 내용입니다</Typography>
         </div>
         <VoiceButtonContainer>
-          <VoiceButton>사용해요</VoiceButton>
-          <VoiceButton>사용하지 않아요</VoiceButton>
+          <VoiceButton
+            onClick={(e) => {
+              onClickVoiceButton(e, '사용해요');
+            }}
+            active={voiceButtonIsState('사용해요')}
+          >
+            사용해요
+          </VoiceButton>
+          <VoiceButton
+            onClick={(e) => onClickVoiceButton(e, '사용하지 않아요')}
+            active={voiceButtonIsState('사용하지 않아요')}
+          >
+            사용하지 않아요
+          </VoiceButton>
         </VoiceButtonContainer>
         <div className="titleContainer">
           <Typography variant="caption">어떤 채널을 주로 사용하시는지도 알려주세요.</Typography>
           <div className="container">
-            <ChipContainer>
-              {voiceChannel.map((channel) => (
-                <React.Fragment key={channel}>
-                  <Chip
-                    chosen={checkedVoiceChannel.includes(channel)}
-                    onClick={(e) => onClickCheckbox(e, checkedVoiceChannel, setCheckedVoiceChannel)}
-                    key={channel}
-                    htmlfor={channel}
-                  >
-                    {channel}
-                  </Chip>
-                  <CustomCheckbox
-                    value={channel}
-                    key={`${channel} 온보딩`}
-                    type="checkbox"
-                    id={channel}
-                    {...register('voiceChannel', {
-                      required: onBoardingErrorMessage.checkbox,
-                    })}
-                  />
-                </React.Fragment>
-              ))}
-            </ChipContainer>
+            {useVoice === '사용해요' && (
+              <ChipContainer>
+                {voiceChannel.map((channel) => (
+                  <React.Fragment key={channel}>
+                    <Chip
+                      chosen={checkedVoice.includes(channel)}
+                      onClick={(e) => onClickCheckbox(e, checkedVoice, setCheckedVoice)}
+                      key={channel}
+                      htmlfor={channel}
+                    >
+                      {channel}
+                    </Chip>
+                    <CustomCheckbox
+                      value={channel}
+                      key={`${channel} 온보딩`}
+                      type="checkbox"
+                      id={channel}
+                      {...register('voiceChannel', {
+                        required: onBoardingErrorMessage.checkbox,
+                      })}
+                    />
+                  </React.Fragment>
+                ))}
+              </ChipContainer>
+            )}
             <Typography variant="caption">{(errors?.voiceChannel as any)?.message}</Typography>
           </div>
         </div>
