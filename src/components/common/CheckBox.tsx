@@ -1,28 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 import { Input, Label, Mark } from './CheckBox.style';
 import Typography from './Typography';
 
 interface CheckBoxProps {
   label: string;
   id?: string;
-  name?: string;
-  checked?: boolean;
+  register?: UseFormRegisterReturn<string>;
 }
 
 function CheckBox(props: CheckBoxProps) {
-  const { id, name, label, checked = false } = props;
-
-  const [isChecked, setIsChecked] = useState(checked || false);
+  const { id, label, register } = props;
 
   return (
     <Label htmlFor={id}>
-      <Input
-        type="checkbox"
-        id={id || label}
-        name={name || label}
-        onChange={() => setIsChecked((p) => !p)}
-        checked={isChecked}
-      />
+      <Input type="checkbox" id={id || label} value={label} {...register} />
       <Mark />
       <Typography variant="body3">{label}</Typography>
     </Label>

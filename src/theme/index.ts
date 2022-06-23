@@ -79,29 +79,18 @@ const publicTheme = {
 export const lightTheme = {
   ...publicTheme,
   color: {
-<<<<<<< Updated upstream
     primary: '#A4E697',
     primaryVariant: '#11CB0E',
     secondary: '#E48DBF',
     error: '#D34851',
     background: '#121212',
     surface: '#323232',
-=======
-    ...publicTheme.color,
-    PRIMARY: '#76E4CB',
-    PRIMARY_VARIANT: '#00BD95',
-    SECONDARY: '#E48DBF',
-    ERROR: '#D34851',
-    BACKGROUND: '#121212',
-    SURFACE: '#323232',
->>>>>>> Stashed changes
   },
 };
 
 export const darkTheme = {
   ...publicTheme,
   color: {
-<<<<<<< Updated upstream
     primary: '#76E4CB',
     primaryVariant: '#00bd95',
     secondary: '#E48DBF',
@@ -115,20 +104,5 @@ export const darkTheme = {
     onSurface: '#FEFEFE',
     onBackgroundSub: '#949494',
     disable: '#7f7f7f',
-=======
-    ...publicTheme.color,
-    PRIMARY: '#76E4CB',
-    PRIMARY_VARIANT: '#00BD95',
-    SECONDARY: '#E48DBF',
-    ERROR: '#CF6679',
-    BACKGROUND: '#121212',
-    SURFACE: '#323232',
-    ON_PRIMARY: '#151515',
-    ON_SECONDARY: '#1c1c1c',
-    ON_ERROR: '#181818',
-    ON_BACKGROUND: '#FCFCFC',
-    ON_SURfACE: '#FEFEFE',
-    SUB_ON_BACKGROUND: '#949494',
->>>>>>> Stashed changes
   },
 };

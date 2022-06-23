@@ -8,7 +8,8 @@ export interface TypographyProps {
   variant?: TypographyVariant;
   align?: 'center' | 'left' | 'right' | 'inherit';
   nowrap?: boolean;
-  children: string | number;
+  children: React.ReactNode;
+  margin?: string;
 }
 
 function Typography(props: TypographyProps) {

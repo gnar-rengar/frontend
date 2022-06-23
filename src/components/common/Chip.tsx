@@ -4,14 +4,16 @@ import Typography from './Typography';
 
 interface ChipProps {
   chosen?: boolean;
-  children?: string | number;
+  children: React.ReactNode;
+  htmlfor: string;
+  onClick?: (e: React.MouseEvent<HTMLLabelElement>) => void;
 }
 
 function Chip(props: ChipProps) {
-  const { chosen, children } = props;
+  const { chosen, children, htmlfor, onClick } = props;
 
   return (
-    <StyledChip chosen={chosen}>
+    <StyledChip onClick={onClick} chosen={chosen} htmlFor={htmlfor}>
       <Typography variant="body4">{children}</Typography>
     </StyledChip>
   );
