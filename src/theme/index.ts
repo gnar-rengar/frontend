@@ -1,22 +1,22 @@
 export const responsiveView = {
-  hdpc: '1200px',
-  pc: '980px',
-  tablet: '768px',
-  tabletSM: '650px',
-  mobile: '480px',
-  mobileSM: '400px',
-  mobileFold: '320px',
+  HDPC: '1200px',
+  PC: '980px',
+  TABLET: '768px',
+  TABLET_SM: '650px',
+  MOBILE: '480px',
+  MOBILE_SM: '400px',
+  MOBILE_FOLD: '320px',
 };
 
 const publicTheme = {
   mq: {
-    mobile: `(max-width: ${responsiveView.mobile})`,
-    tablet: `(max-width: ${responsiveView.tablet})`,
-    tabletSM: `(max-width: ${responsiveView.tabletSM})`,
-    PC: `(max-width: ${responsiveView.pc})`,
-    HDPC: `(max-width: ${responsiveView.hdpc})`,
-    mobile_SM: `(max-width: ${responsiveView.mobileSM})`,
-    mobile_FOLD: `(max-width: ${responsiveView.mobileFold})`,
+    hdpc: `(max-width: ${responsiveView.HDPC})`,
+    pc: `(max-width: ${responsiveView.PC})`,
+    tablet: `(max-width: ${responsiveView.TABLET})`,
+    tabletSM: `(max-width: ${responsiveView.TABLET_SM})`,
+    mobile: `(max-width: ${responsiveView.MOBILE})`,
+    mobileSM: `(max-width: ${responsiveView.MOBILE_SM})`,
+    mobileFold: `(max-width: ${responsiveView.MOBILE_FOLD})`,
   },
   typography: {
     h1: {
