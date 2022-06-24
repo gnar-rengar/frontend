@@ -2,7 +2,16 @@ import React from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import Typography from '../typography/Typography';
 
-import { Input, InputWrapper, Label, Mark } from './CheckBox.style';
+import {
+  Input,
+  InputWrapper,
+  Label,
+  Mark,
+  Input,
+  InputWrapper,
+  Label,
+  Mark,
+} from './CheckBox.style';
 
 interface CheckBoxProps {
   label: string;
