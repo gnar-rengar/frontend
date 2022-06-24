@@ -14,8 +14,8 @@ export const StyledChip = styled.label<{ chosen: boolean }>`
 
     if (chosen) {
       return `
-        background: ${color.primaryVariant};
-        border: 1px solid ${color.primaryVariant};
+        background: ${color.primary};
+        border: 1px solid ${color.primary};
         color: ${color.onPrimary};
       `;
     }
