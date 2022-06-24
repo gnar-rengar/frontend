@@ -49,10 +49,5 @@ export const Mark = styled.span`
     height: 11px;
     border-radius: 50%;
     transform: translate(-50%, -50%);
-<<<<<<< HEAD:src/components/common/radio/Radio.style.tsx
-=======
-    width: 9px;
-    height: 9px;
->>>>>>> ed3b207 (UDFM-17 - 추가된 공통 아이콘 업데이트 (#24)):src/components/common/CheckBox.style.tsx
   }
 `;
