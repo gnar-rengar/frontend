@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { Asking, Button, CheckBox } from '../common';
+import Asking from '../common/Asking';
+import Button from '../common/Button';
+import CheckBox from '../common/CheckBox';
 
 import { SubmitButtonWrapper } from './style';
-import { ButtonContainer } from '../common/asking/Asking.style';
+import { ButtonContainer } from '../common/Asking.style';
 
 import { awfulReasons, joyfulReasons } from '../../constant';
 

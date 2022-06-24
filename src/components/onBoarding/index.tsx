@@ -11,6 +11,7 @@ import {
   voiceChannel,
 } from '../../constant';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { OnBoardingInput } from '../../types/onBoarding.type';
 import { Asking, Chip, Radio, TextField, Typography } from '../common';
@@ -26,6 +27,9 @@ import { Input } from '../common/TextField.style';
 import Typography from '../common/Typography';
 >>>>>>> ffb96d8 (checkbox -> radio 버튼으로 변경)
 >>>>>>> cd2f4e1 (checkbox -> radio 버튼으로 변경)
+=======
+import { CheckBox, Chip, Typography, TextField } from '../common';
+>>>>>>> ea32a1f (UDFM-12 - 프론트엔드 리뷰 작성 페이지 (#25))
 import {
   CheckboxContainer,
   ChipContainer,
