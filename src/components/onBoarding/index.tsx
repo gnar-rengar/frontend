@@ -9,20 +9,20 @@ import {
 } from '../../constant';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { OnBoardingInput } from '../../types/onBoarding.type';
-import CheckBox from '../common/CheckBox';
 import Chip from '../common/Chip';
+import Radio from '../common/Radio';
 import { Input } from '../common/TextField.style';
 import Typography from '../common/Typography';
 import {
+  CheckboxContainer,
   ChipContainer,
-  NickNameButton,
   CustomCheckbox,
+  NickNameButton,
   OnBoardingContainer,
   OnBoardingEachContainer,
   SubmitButton,
   VoiceButton,
   VoiceButtonContainer,
-  CheckboxContainer,
 } from './style';
 
 function OnBoarding() {
@@ -229,7 +229,7 @@ function OnBoarding() {
         </div>
         <CheckboxContainer>
           {communication.map((item) => (
-            <CheckBox register={registerProps} label={item} key={item} />
+            <Radio register={registerProps} label={item} key={item} />
           ))}
         </CheckboxContainer>
       </OnBoardingEachContainer>
