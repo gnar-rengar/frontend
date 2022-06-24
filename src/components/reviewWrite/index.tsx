@@ -3,10 +3,12 @@ import { useForm } from 'react-hook-form';
 
 import Asking from '../common/Asking';
 import Button from '../common/Button';
-
-import { ButtonContainer } from '../common/Asking.style';
-import { awfulReasons, joyfulReasons } from '../../constant';
 import CheckBox from '../common/CheckBox';
+
+import { SubmitButtonWrapper } from './style';
+import { ButtonContainer } from '../common/Asking.style';
+
+import { awfulReasons, joyfulReasons } from '../../constant';
 
 function ReviewWrite() {
   const [isJoyful, setIsJoyful] = useState(true);
@@ -82,11 +84,11 @@ function ReviewWrite() {
           </Button>
         </ButtonContainer>
       </Asking>
-      <div style={{ position: 'fixed', bottom: '20px', width: '100%', textAlign: 'center' }}>
+      <SubmitButtonWrapper>
         <Button type="submit" size="lg" color="primaryVariant">
           매너 평가하기
         </Button>
-      </div>
+      </SubmitButtonWrapper>
     </form>
   );
 }
