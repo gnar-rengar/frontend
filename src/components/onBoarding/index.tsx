@@ -12,6 +12,7 @@ import {
 } from '../../constant';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { OnBoardingInput } from '../../types/onBoarding.type';
 import { Asking, Chip, Radio, TextField, Typography } from '../common';
@@ -21,15 +22,23 @@ import { CheckBox, Chip, Typography, TextField } from '../common';
 =======
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { OnBoardingInput } from '../../types/onBoarding.type';
+=======
+import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
+import { OnBoardingInput } from '../../types/onBoarding.type';
+import Asking from '../common/Asking';
+>>>>>>> 85794c1 (asking 컴포넌트를 이용한 리팩토링)
 import Chip from '../common/Chip';
 import Radio from '../common/Radio';
 import { Input } from '../common/TextField.style';
 import Typography from '../common/Typography';
+<<<<<<< HEAD
 >>>>>>> ffb96d8 (checkbox -> radio 버튼으로 변경)
 >>>>>>> cd2f4e1 (checkbox -> radio 버튼으로 변경)
 =======
 import { CheckBox, Chip, Typography, TextField } from '../common';
 >>>>>>> ea32a1f (UDFM-12 - 프론트엔드 리뷰 작성 페이지 (#25))
+=======
+>>>>>>> 85794c1 (asking 컴포넌트를 이용한 리팩토링)
 import {
   CheckboxContainer,
   ChipContainer,
@@ -129,6 +138,7 @@ function OnBoarding() {
         >
           <div className="container">
             <div className="flexContainer">
+<<<<<<< HEAD
               <TextField
                 {...register('nickName')}
                 name="nickName"
@@ -144,6 +154,23 @@ function OnBoarding() {
           <Typography color="error" data-testid="nickNameError" variant="caption">
             {errors?.nickName?.message || errors?.nickNameCheck?.message}
           </Typography>
+=======
+              <Input
+                {...register('nickName', {
+                  required: onBoardingErrorMessage.nickName,
+                })}
+                name="nickName"
+                placeholder="정확한 소환사명을 입력해주세요"
+              />
+              <NickNameButton>
+                <Typography variant="body4">확인</Typography>
+              </NickNameButton>
+            </div>
+            <Typography color="error" data-testid="nickNameError" variant="caption">
+              {errors?.nickName?.message}
+            </Typography>
+          </div>
+>>>>>>> 85794c1 (asking 컴포넌트를 이용한 리팩토링)
         </Asking>
       </OnBoardingEachContainer>
       <OnBoardingEachContainer>
@@ -164,7 +191,13 @@ function OnBoarding() {
                     {style}
                   </Chip>
                   <CustomCheckbox
+<<<<<<< HEAD
                     {...register('playStyle')}
+=======
+                    {...register('playStyle', {
+                      required: onBoardingErrorMessage.checkbox,
+                    })}
+>>>>>>> 85794c1 (asking 컴포넌트를 이용한 리팩토링)
                     key={`${style} 온보딩`}
                     type="checkbox"
                     id={style}
@@ -194,7 +227,13 @@ function OnBoarding() {
                     {pos}
                   </Chip>
                   <CustomCheckbox
+<<<<<<< HEAD
                     {...register('position')}
+=======
+                    {...register('position', {
+                      required: onBoardingErrorMessage.checkbox,
+                    })}
+>>>>>>> 85794c1 (asking 컴포넌트를 이용한 리팩토링)
                     key={`${pos} 온보딩`}
                     type="checkbox"
                     id={pos}
@@ -217,15 +256,25 @@ function OnBoarding() {
                 data-testid="useVoice"
                 onClick={(e) => onClickVoiceButton(e, '사용해요')}
                 active={voiceButtonIsState('사용해요')}
+<<<<<<< HEAD
                 {...register('useVoice')}
+=======
+                {...register('useVoice', {
+                  required: onBoardingErrorMessage.checkbox,
+                })}
+>>>>>>> 85794c1 (asking 컴포넌트를 이용한 리팩토링)
               >
                 사용해요
               </VoiceButton>
               <VoiceButton
+<<<<<<< HEAD
                 onClick={(e) => {
                   onClickVoiceButton(e, '사용하지 않아요');
                   setValue('voiceChannel', []);
                 }}
+=======
+                onClick={(e) => onClickVoiceButton(e, '사용하지 않아요')}
+>>>>>>> 85794c1 (asking 컴포넌트를 이용한 리팩토링)
                 active={voiceButtonIsState('사용하지 않아요')}
               >
                 사용하지 않아요
@@ -270,6 +319,9 @@ function OnBoarding() {
       </OnBoardingEachContainer>
       <OnBoardingEachContainer>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 85794c1 (asking 컴포넌트를 이용한 리팩토링)
         <Asking title="어떤 소통을 선호하시나요?" caption="부가설명 내용입니다">
           <CheckboxContainer>
             {communication.map((item) => (
@@ -277,6 +329,7 @@ function OnBoarding() {
             ))}
           </CheckboxContainer>
         </Asking>
+<<<<<<< HEAD
 =======
         <div className="titleContainer">
           <Typography variant="h3" align="left">
@@ -290,6 +343,8 @@ function OnBoarding() {
           ))}
         </CheckboxContainer>
 >>>>>>> cd2f4e1 (checkbox -> radio 버튼으로 변경)
+=======
+>>>>>>> 85794c1 (asking 컴포넌트를 이용한 리팩토링)
       </OnBoardingEachContainer>
       <SubmitButton active={isValid} type="submit" data-testid="submit">
         <Typography variant="body1">내 듀오 찾으러 가기</Typography>
