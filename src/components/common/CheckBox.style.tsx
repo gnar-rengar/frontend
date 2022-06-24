@@ -7,7 +7,6 @@ export const Label = styled.label`
   gap: 8px;
   width: fit-content;
   cursor: pointer;
-  font-size: 22px;
   user-select: none;
 `;
 
