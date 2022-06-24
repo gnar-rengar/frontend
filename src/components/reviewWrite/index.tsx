@@ -15,20 +15,18 @@ function ReviewWrite() {
       <Asking title="고수달님은 어떠셨나요?" caption="진짜 플레이 했을 때만 평가해라">
         <ButtonContainer>
           <Button
-            onClick={() => setIsJoyful((p) => !p)}
             type="button"
-            size="sm"
-            value
             color={isJoyful ? 'primary' : 'disable'}
+            size="sm"
+            onClick={() => setIsJoyful((p) => !p)}
           >
             즐겁게 플레이 했어요
           </Button>
           <Button
-            onClick={() => setIsJoyful((p) => !p)}
             type="button"
-            size="sm"
             color={isJoyful ? 'disable' : 'primary'}
-            value={false}
+            size="sm"
+            onClick={() => setIsJoyful((p) => !p)}
           >
             별로에요
           </Button>
@@ -59,18 +57,18 @@ function ReviewWrite() {
       >
         <ButtonContainer>
           <Button
-            onClick={() => setIsWillingToHide((p) => !p)}
             type="button"
-            size="sm"
             color={isWillingToHide ? 'primary' : 'disable'}
+            size="sm"
+            onClick={() => setIsWillingToHide((p) => !p)}
           >
             숨겨주세요
           </Button>
           <Button
             type="button"
-            onClick={() => setIsWillingToHide((p) => !p)}
-            size="sm"
             color={isWillingToHide ? 'disable' : 'primary'}
+            size="sm"
+            onClick={() => setIsWillingToHide((p) => !p)}
           >
             괜찮아요
           </Button>

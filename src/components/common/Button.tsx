@@ -9,7 +9,7 @@ export interface ButtonProps {
   color?: ColorVariant;
   variant?: 'contained' | 'outlined';
   size?: 'sm' | 'lg';
-  value?: string | number | boolean;
+  value?: string | number;
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   children: string | number;
@@ -21,10 +21,10 @@ const typoVariant = {
 } as const;
 
 function Button(props: ButtonProps) {
-  const { children, size, ...other } = props;
+  const { children, size, onClick, value, ...other } = props;
 
   return (
-    <StyledButton {...{ ...other, size }}>
+    <StyledButton onClick={onClick} value={value} {...{ ...other, size }}>
       <Typography variant={typoVariant[size]} align="center">
         {children}
       </Typography>
