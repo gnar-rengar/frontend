@@ -6,7 +6,7 @@ export const OnBoardingContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 56px;
+  gap: 40px;
   padding-bottom: calc(48px * 2);
 `;
 
@@ -16,22 +16,16 @@ export const OnBoardingEachContainer = styled.div`
   flex-direction: column;
   gap: 16px;
 
-  .titleContainer {
+  .container {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
 
-  .container {
-    & > div > p {
-      color: ${({ theme }) => theme.color.error};
-      margin-top: 8px;
-    }
-    .flexContainer {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
+  .flexContainer {
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 `;
 
