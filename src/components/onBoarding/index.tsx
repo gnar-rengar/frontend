@@ -10,9 +10,22 @@ import {
   position,
   voiceChannel,
 } from '../../constant';
+<<<<<<< HEAD
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { OnBoardingInput } from '../../types/onBoarding.type';
 import { Asking, Chip, Radio, TextField, Typography } from '../common';
+=======
+<<<<<<< HEAD
+import { CheckBox, Chip, Typography, TextField } from '../common';
+=======
+import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
+import { OnBoardingInput } from '../../types/onBoarding.type';
+import Chip from '../common/Chip';
+import Radio from '../common/Radio';
+import { Input } from '../common/TextField.style';
+import Typography from '../common/Typography';
+>>>>>>> ffb96d8 (checkbox -> radio 버튼으로 변경)
+>>>>>>> cd2f4e1 (checkbox -> radio 버튼으로 변경)
 import {
   CheckboxContainer,
   ChipContainer,
@@ -252,6 +265,7 @@ function OnBoarding() {
         </Asking>
       </OnBoardingEachContainer>
       <OnBoardingEachContainer>
+<<<<<<< HEAD
         <Asking title="어떤 소통을 선호하시나요?" caption="부가설명 내용입니다">
           <CheckboxContainer>
             {communication.map((item) => (
@@ -259,6 +273,19 @@ function OnBoarding() {
             ))}
           </CheckboxContainer>
         </Asking>
+=======
+        <div className="titleContainer">
+          <Typography variant="h3" align="left">
+            어떤 소통을 선호하시나요?
+          </Typography>
+          <Typography variant="caption">부가설명 내용입니다</Typography>
+        </div>
+        <CheckboxContainer>
+          {communication.map((item) => (
+            <Radio register={registerProps} label={item} key={item} />
+          ))}
+        </CheckboxContainer>
+>>>>>>> cd2f4e1 (checkbox -> radio 버튼으로 변경)
       </OnBoardingEachContainer>
       <SubmitButton active={isValid} type="submit" data-testid="submit">
         <Typography variant="body1">내 듀오 찾으러 가기</Typography>
