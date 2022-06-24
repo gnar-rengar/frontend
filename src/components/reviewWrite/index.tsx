@@ -1,34 +1,42 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
 import Asking from '../common/Asking';
 import Button from '../common/Button';
-
-import { ButtonContainer } from '../common/Asking.style';
-import { awfulReasons, joyfulReasons } from '../../constant';
 import CheckBox from '../common/CheckBox';
+
+import { SubmitButtonWrapper } from './style';
+import { ButtonContainer } from '../common/Asking.style';
+
+import { awfulReasons, joyfulReasons } from '../../constant';
 
 function ReviewWrite() {
   const [isJoyful, setIsJoyful] = useState(true);
   const [isWillingToHide, setIsWillingToHide] = useState(true);
 
+  const { handleSubmit } = useForm();
+
+  const onSubmit: React.FormEventHandler<HTMLFormElement> = () => {
+    // TODO 유효성 검증, API POST
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Asking title="고수달님은 어떠셨나요?" caption="진짜 플레이 했을 때만 평가해라">
         <ButtonContainer>
           <Button
-            onClick={() => setIsJoyful((p) => !p)}
             type="button"
-            size="sm"
-            value
             color={isJoyful ? 'primary' : 'disable'}
+            size="sm"
+            onClick={() => setIsJoyful((p) => !p)}
           >
             즐겁게 플레이 했어요
           </Button>
           <Button
-            onClick={() => setIsJoyful((p) => !p)}
             type="button"
-            size="sm"
             color={isJoyful ? 'disable' : 'primary'}
-            value={false}
+            size="sm"
+            onClick={() => setIsJoyful((p) => !p)}
           >
             별로에요
           </Button>
@@ -40,7 +48,7 @@ function ReviewWrite() {
           caption="내가 표시한 평가는 상대에게 보여지지만 누가 했는지는 안보여요"
         >
           {joyfulReasons.map((reason) => (
-            <CheckBox label={reason} />
+            <CheckBox key={reason} label={reason} />
           ))}
         </Asking>
       ) : (
@@ -49,7 +57,7 @@ function ReviewWrite() {
           caption="내가 표시한 평가는 상대에게 보여지지만 누가 했는지는 안보여요"
         >
           {awfulReasons.map((reason) => (
-            <CheckBox label={reason} />
+            <CheckBox key={reason} label={reason} />
           ))}
         </Asking>
       )}
@@ -59,28 +67,28 @@ function ReviewWrite() {
       >
         <ButtonContainer>
           <Button
-            onClick={() => setIsWillingToHide((p) => !p)}
             type="button"
-            size="sm"
             color={isWillingToHide ? 'primary' : 'disable'}
+            size="sm"
+            onClick={() => setIsWillingToHide((p) => !p)}
           >
             숨겨주세요
           </Button>
           <Button
             type="button"
-            onClick={() => setIsWillingToHide((p) => !p)}
-            size="sm"
             color={isWillingToHide ? 'disable' : 'primary'}
+            size="sm"
+            onClick={() => setIsWillingToHide((p) => !p)}
           >
             괜찮아요
           </Button>
         </ButtonContainer>
       </Asking>
-      <div style={{ textAlign: 'center' }}>
+      <SubmitButtonWrapper>
         <Button type="submit" size="lg" color="primaryVariant">
           매너 평가하기
         </Button>
-      </div>
+      </SubmitButtonWrapper>
     </form>
   );
 }
