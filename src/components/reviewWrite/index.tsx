@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
 import Asking from '../common/Asking';
 import Button from '../common/Button';
 
@@ -10,8 +12,14 @@ function ReviewWrite() {
   const [isJoyful, setIsJoyful] = useState(true);
   const [isWillingToHide, setIsWillingToHide] = useState(true);
 
+  const { handleSubmit } = useForm();
+
+  const onSubmit: React.FormEventHandler<HTMLFormElement> = () => {
+    // TODO 유효성 검증, API POST
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Asking title="고수달님은 어떠셨나요?" caption="진짜 플레이 했을 때만 평가해라">
         <ButtonContainer>
           <Button
@@ -38,7 +46,7 @@ function ReviewWrite() {
           caption="내가 표시한 평가는 상대에게 보여지지만 누가 했는지는 안보여요"
         >
           {joyfulReasons.map((reason) => (
-            <CheckBox label={reason} />
+            <CheckBox key={reason} label={reason} />
           ))}
         </Asking>
       ) : (
@@ -47,7 +55,7 @@ function ReviewWrite() {
           caption="내가 표시한 평가는 상대에게 보여지지만 누가 했는지는 안보여요"
         >
           {awfulReasons.map((reason) => (
-            <CheckBox label={reason} />
+            <CheckBox key={reason} label={reason} />
           ))}
         </Asking>
       )}
@@ -74,7 +82,7 @@ function ReviewWrite() {
           </Button>
         </ButtonContainer>
       </Asking>
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ position: 'fixed', bottom: '20px', width: '100%', textAlign: 'center' }}>
         <Button type="submit" size="lg" color="primaryVariant">
           매너 평가하기
         </Button>

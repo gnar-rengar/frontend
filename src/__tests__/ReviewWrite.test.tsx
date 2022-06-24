@@ -1,29 +1,20 @@
 import React from 'react';
 import { ThemeProvider } from '@emotion/react';
-import { render } from '@testing-library/react';
-import Header from '../components/layout/header/Header';
+import { render, fireEvent } from '@testing-library/react';
+import ReviewWrite from '../components/reviewWrite';
 
 import { darkTheme } from '../theme';
 
-describe('<Layout/>', () => {
-  it('should render a logo', () => {
-    const { getByText } = render(
-      <ThemeProvider theme={darkTheme}>
-        <Header />
-      </ThemeProvider>
-    );
-    const logo = getByText('LOGO');
-    expect(logo).toBeInTheDocument();
-  });
-
-  it('should render a navigation', () => {
+describe('<ReviewWrite/>', () => {
+  it("should render different question depending on user's answer", () => {
     const { getByRole } = render(
       <ThemeProvider theme={darkTheme}>
-        <Header />
+        <ReviewWrite />
       </ThemeProvider>
     );
-    const nav = getByRole('navigation');
-    const links = nav.querySelectorAll('a');
-    expect(links[0]).toHaveAttribute('href');
+
+    const negativeBtn = getByRole('button', { name: /별로에요/i });
+    fireEvent.click(negativeBtn);
+    expect(getByRole('heading', { name: /어떤 점이 별로였는지 알려주세요/i })).toBeInTheDocument();
   });
 });
