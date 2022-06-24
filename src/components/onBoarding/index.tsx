@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import {
   communication,
@@ -29,14 +29,56 @@ function OnBoarding() {
   const {
     register,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
-  } = useForm<OnBoardingInput>();
+  } = useForm<OnBoardingInput>({
+    defaultValues: {
+      nickName: '',
+      playStyle: [],
+      position: [],
+      communication: '',
+      useVoice: false,
+      voiceChannel: [],
+    },
+  });
+  const watchAllFields = watch();
   const registerProps = register('communication');
   const [checkedPlayStyle, setCheckedPlayStyle] = useState<string[]>([]);
   const [checkedPosition, setCheckedPosition] = useState<string[]>([]);
   const [checkedVoice, setCheckedVoice] = useState<string[]>([]);
-  const [useVoice, setVoice] = useState('');
+  const [useVoice, setUseVoice] = useState('');
+  const [submitState, setSubmitState] = useState(false);
   const submitMutation = useOnBoardingMutation();
+
+  useEffect(() => {
+    const values = Object.entries(watchAllFields);
+    let state = false;
+
+    for (let i = 0; i < values.length; i += 1) {
+      const value = values[i][1];
+      const fieldType = typeof value;
+      if (fieldType === 'string' && values[i][1] === '') {
+        state = false;
+        break;
+      } else if (Array.isArray(value) && value.length === 0 && values[i][0] !== 'voiceChannel') {
+        state = false;
+        break;
+      } else {
+        state = true;
+      }
+    }
+
+    if (values[4][1] && (values[5][1] as Array<string>).length === 0) {
+      state = false;
+    }
+
+    if (state) {
+      setSubmitState(true);
+    } else {
+      setSubmitState(false);
+    }
+  }, [watchAllFields]);
 
   const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
     submitMutation.mutate(data);
@@ -62,7 +104,7 @@ function OnBoarding() {
 
   const onClickVoiceButton = (e: React.MouseEvent<HTMLButtonElement>, innerText: string) => {
     e.preventDefault();
-    setVoice(innerText);
+    setUseVoice(innerText);
   };
 
   return (
@@ -173,13 +215,18 @@ function OnBoarding() {
             data-testid="useVoice"
             onClick={(e) => {
               onClickVoiceButton(e, '사용해요');
+              setValue('useVoice', true);
             }}
             active={voiceButtonIsState('사용해요')}
+            {...register('useVoice')}
           >
             사용해요
           </VoiceButton>
           <VoiceButton
-            onClick={(e) => onClickVoiceButton(e, '사용하지 않아요')}
+            onClick={(e) => {
+              onClickVoiceButton(e, '사용하지 않아요');
+              setValue('useVoice', false);
+            }}
             active={voiceButtonIsState('사용하지 않아요')}
           >
             사용하지 않아요
@@ -233,7 +280,7 @@ function OnBoarding() {
           ))}
         </CheckboxContainer>
       </OnBoardingEachContainer>
-      <SubmitButton type="submit" data-testid="submit">
+      <SubmitButton active={submitState} type="submit" data-testid="submit">
         <Typography variant="body1">내 듀오 찾으러 가기</Typography>
       </SubmitButton>
     </OnBoardingContainer>

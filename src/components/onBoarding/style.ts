@@ -80,13 +80,24 @@ export const VoiceButton = styled(ShareButton)<{ active: boolean }>`
   }}
 `;
 
-export const SubmitButton = styled(ShareButton)`
+export const SubmitButton = styled(ShareButton)<{ active: boolean }>`
+  position: fixed;
+  bottom: 20px;
   max-width: 343px;
   width: 100%;
   height: 48px;
   padding-top: 5px;
-  position: fixed;
-  bottom: 20px;
+
+  ${({ active, theme }) => {
+    if (active) {
+      return `
+        background-color: ${theme.color.primary};
+      `;
+    }
+    return `
+      background-color: ${theme.color.disable};
+    `;
+  }}
 `;
 
 export const CustomCheckbox = styled.input`
