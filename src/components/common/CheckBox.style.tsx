@@ -25,11 +25,11 @@ export const Input = styled.input`
   height: 0;
 
   &: checked + span {
-    border: 1px solid ${({ theme }) => theme.color.primaryVariant};
+    border: 1px solid ${({ theme }) => theme.color.primary};
   }
 
   &: checked + span::before {
-    background: ${({ theme }) => theme.color.primaryVariant};
+    background: ${({ theme }) => theme.color.primary};
   }
 `;
 
