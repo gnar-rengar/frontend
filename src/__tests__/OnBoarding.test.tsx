@@ -1,23 +1,26 @@
-import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
 import { ThemeProvider } from '@emotion/react';
+import { render, screen } from '@testing-library/react';
+import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import OnBoarding from '../components/onBoarding';
 import { darkTheme } from '../theme';
 
 describe('<OnBoarding />', () => {
-  it('입력값 검증 에러 테스트', () => {
+  beforeEach(() => {
     const queryClient = new QueryClient();
-    const { getByTestId, findByText } = render(
+
+    render(
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={darkTheme}>
           <OnBoarding />
         </ThemeProvider>
       </QueryClientProvider>
     );
-    fireEvent.click(getByTestId('submit'));
-
-    findByText('소환사명을 입력해주세요');
-    findByText('하나 이상 골라주셔야 잘 추천해드릴 수 있어요!!!');
+  });
+  it('입력값 검증 에러 테스트', () => {
+    const nickNameErrorEl = screen.getByTestId('nickNameError');
+    expect(nickNameErrorEl).toBeInTheDocument();
+    // fireEvent.submit(screen.getByRole('button', { name: /내 듀오 찾으러 가기/i}));
+    // expect()
   });
 });
