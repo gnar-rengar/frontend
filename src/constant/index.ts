@@ -25,5 +25,27 @@ const onBoardingErrorMessage = {
   nickName: '소환사명을 입력해주세요.',
   checkbox: '하나 이상 골라주셔야 잘 추천해드릴 수 있어요!!!',
 };
+const joyfulReasons = [
+  '텐션이 나랑 잘 맞았어요.',
+  '좋은 피드백을 해주셨어요.',
+  '팀워크가 잘 맞아요.',
+  '분위기를 잘 띄워주셨어요.',
+  '긍정적인 플레이어에요.',
+];
 
-export { playStyle, position, voiceChannel, communication, onBoardingErrorMessage };
+const awfulReasons = [
+  '최악이에요. 그냥 걔 싫어요!',
+  '협곡의 악의 축을 만났네요.',
+  '욕설, 비방을 했어요.',
+  '분노 조절을 못해요.',
+];
+
+export {
+  playStyle,
+  position,
+  voiceChannel,
+  communication,
+  onBoardingErrorMessage,
+  joyfulReasons,
+  awfulReasons,
+};
