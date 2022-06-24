@@ -170,6 +170,7 @@ function OnBoarding() {
         </div>
         <VoiceButtonContainer>
           <VoiceButton
+            data-testid="useVoice"
             onClick={(e) => {
               onClickVoiceButton(e, '사용해요');
             }}
@@ -184,10 +185,12 @@ function OnBoarding() {
             사용하지 않아요
           </VoiceButton>
         </VoiceButtonContainer>
-        <div className="titleContainer">
-          <Typography variant="caption">어떤 채널을 주로 사용하시는지도 알려주세요.</Typography>
-          <div className="container">
-            {useVoice === '사용해요' && (
+        {useVoice === '사용해요' && (
+          <div className="titleContainer">
+            <Typography data-testid="useVoiceTitle" variant="caption">
+              어떤 채널을 주로 사용하시는지도 알려주세요.
+            </Typography>
+            <div className="container">
               <ChipContainer>
                 {voiceChannel.map((channel) => (
                   <React.Fragment key={channel}>
@@ -211,10 +214,11 @@ function OnBoarding() {
                   </React.Fragment>
                 ))}
               </ChipContainer>
-            )}
-            <Typography variant="caption">{(errors?.voiceChannel as any)?.message}</Typography>
+
+              <Typography variant="caption">{(errors?.voiceChannel as any)?.message}</Typography>
+            </div>
           </div>
-        </div>
+        )}
       </OnBoardingEachContainer>
       <OnBoardingEachContainer>
         <div className="titleContainer">
