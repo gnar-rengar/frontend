@@ -20,7 +20,7 @@ function Typography(props: TypographyProps) {
   const elementType = theme.typography[variant].element;
 
   return (
-    <StyledTypography {...{ other, variant }}>
+    <StyledTypography {...{ ...other, variant }}>
       {React.createElement(elementType, {}, children)}
     </StyledTypography>
   );
@@ -30,4 +30,5 @@ Typography.defaultProps = {
   variant: 'body1',
   nowrap: false,
 };
+
 export default Typography;
