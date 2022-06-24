@@ -1,7 +1,8 @@
 import React from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import { Input, Label, Mark } from './CheckBox.style';
 import Typography from './Typography';
+
+import { Input, InputWrapper, Label, Mark } from './CheckBox.style';
 
 interface CheckBoxProps {
   label: string;
@@ -14,8 +15,10 @@ function CheckBox(props: CheckBoxProps) {
 
   return (
     <Label htmlFor={id}>
-      <Input type="checkbox" id={id || label} value={label} {...register} />
-      <Mark />
+      <InputWrapper>
+        <Input type="checkbox" id={id || label} value={label} {...register} />
+        <Mark />
+      </InputWrapper>
       <Typography variant="body3">{label}</Typography>
     </Label>
   );

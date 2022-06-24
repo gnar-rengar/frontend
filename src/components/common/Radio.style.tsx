@@ -35,17 +35,19 @@ export const Input = styled.input`
 
 export const Mark = styled.span`
   position: relative;
-  width: 13.75px;
-  height: 13.75px;
+  width: 16px;
+  height: 16px;
   border: 1px solid ${({ theme }) => theme.color.onBackground};
+  border-radius: 50%;
 
   &::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
     transform: translate(-50%, -50%);
-    width: 9px;
-    height: 9px;
   }
 `;
