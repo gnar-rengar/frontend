@@ -37,8 +37,24 @@ function MyPage() {
         ))}
       </Asking>
       <Divider />
+      <div style={{ padding: '16px 0' }}>
+        <Button variant="text" color="onBackgroundSub" size="lg">
+          로그인
+        </Button>
+      </div>
+      <Divider />
+      <div style={{ padding: '16px 0' }}>
+        <Button variant="text" color="onBackgroundSub" size="lg">
+          회원탈퇴
+        </Button>
+      </div>
+      <Divider />
+      <div style={{ padding: '16px 0' }}>
+        <Button variant="text" color="onBackgroundSub" size="lg">
+          123
+        </Button>
+      </div>
     </div>
   );
 }
-
 export default MyPage;
