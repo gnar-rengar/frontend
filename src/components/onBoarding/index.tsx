@@ -8,7 +8,6 @@ import {
   voiceChannel,
 } from '../../constant';
 import { CheckBox, Chip, Typography, TextField } from '../common';
-// import { Input } from '../common/textfield/TextField.style';
 import {
   ChipContainer,
   NickNameButton,
