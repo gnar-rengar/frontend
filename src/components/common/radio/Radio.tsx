@@ -1,10 +1,6 @@
 import React from 'react';
-<<<<<<< HEAD:src/components/common/Radio.tsx
 import { UseFormRegisterReturn } from 'react-hook-form';
-import Typography from './Typography';
-=======
 import Typography from '../typography/Typography';
->>>>>>> 40f8fee (UDFM-24 - 프론트엔드 마이 페이지 (#27)):src/components/common/radio/Radio.tsx
 
 import { Input, InputWrapper, Label, Mark } from './Radio.style';
 
