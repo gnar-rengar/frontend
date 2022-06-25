@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
+import BasicContainer from '../basic-container/BasicContainer';
 
-export const AskingContainer = styled.div`
+export const AskingContainer = styled(BasicContainer)`
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  padding: 16px 0;
 `;
 
 export const TitleContainer = styled.div`
