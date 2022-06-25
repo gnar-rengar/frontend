@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '..';
+import Typography from '../typography/Typography';
 import { StyledButton } from './Button.style';
 
 import type { ColorVariant } from '../../../types/color.type';

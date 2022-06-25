@@ -1,7 +1,7 @@
 import React from 'react';
 import { Hr } from './Divider.style';
 
-import { ColorVariant } from '../../types/color.type';
+import type { ColorVariant } from '../../../types/color.type';
 
 export interface DividerProps {
   size?: string;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyledChip } from './Chip.style';
-import { Typography } from '..';
+import Typography from '../typography/Typography';
 
 interface ChipProps {
   chosen?: boolean;

@@ -1,5 +1,5 @@
 import React from 'react';
-import Typography from '../common/Typography';
+import { Typography } from '../common';
 import People from '../icons/People';
 
 interface FeedBackProps {
