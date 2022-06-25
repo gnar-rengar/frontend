@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import * as yup from 'yup';
 import {
   communication,
   onBoardingErrorMessage,
@@ -26,63 +28,45 @@ import {
   VoiceButtonContainer,
 } from './style';
 
+const validationSchema = yup.object().shape({
+  nickName: yup.string().required(onBoardingErrorMessage.nickName),
+  playStyle: yup.array(yup.string()).min(1, onBoardingErrorMessage.checkbox),
+  position: yup.array(yup.string()).min(1, onBoardingErrorMessage.checkbox),
+  communication: yup.string().required(onBoardingErrorMessage.checkbox),
+  useVoice: yup.boolean().typeError(onBoardingErrorMessage.checkbox),
+  voiceChannel: yup.array(yup.string()).when('useVoice', {
+    is: true,
+    then: (schema) => schema.min(1, onBoardingErrorMessage.checkbox),
+  }),
+});
+
 function OnBoarding() {
   const {
     register,
     handleSubmit,
-    watch,
     setValue,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<OnBoardingInput>({
     defaultValues: {
       nickName: '',
       playStyle: [],
       position: [],
       communication: '',
-      useVoice: false,
       voiceChannel: [],
     },
+    resolver: yupResolver(validationSchema),
+    mode: 'onChange',
   });
-  const watchAllFields = watch();
   const registerProps = register('communication');
   const [checkedPlayStyle, setCheckedPlayStyle] = useState<string[]>([]);
   const [checkedPosition, setCheckedPosition] = useState<string[]>([]);
   const [checkedVoice, setCheckedVoice] = useState<string[]>([]);
   const [useVoice, setUseVoice] = useState('');
-  const [submitState, setSubmitState] = useState(false);
   const submitMutation = useOnBoardingMutation();
 
-  useEffect(() => {
-    const values = Object.entries(watchAllFields);
-    let state = false;
-
-    for (let i = 0; i < values.length; i += 1) {
-      const value = values[i][1];
-      const fieldType = typeof value;
-      if (fieldType === 'string' && values[i][1] === '') {
-        state = false;
-        break;
-      } else if (Array.isArray(value) && value.length === 0 && values[i][0] !== 'voiceChannel') {
-        state = false;
-        break;
-      } else {
-        state = true;
-      }
-    }
-
-    if (values[4][1] && (values[5][1] as Array<string>).length === 0) {
-      state = false;
-    }
-
-    if (state) {
-      setSubmitState(true);
-    } else {
-      setSubmitState(false);
-    }
-  }, [watchAllFields]);
-
   const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
-    submitMutation.mutate(data);
+    console.log(data);
+    // submitMutation.mutate(data);
   };
 
   const onClickCheckbox = (
@@ -224,42 +208,44 @@ function OnBoarding() {
                 사용하지 않아요
               </VoiceButton>
             </VoiceButtonContainer>
-            <Typography color="error" variant="caption">
-              {(errors?.useVoice as any)?.message}
-            </Typography>
           </div>
           {useVoice === '사용해요' && (
-            <div className="container">
-              <Typography data-testid="useVoiceTitle" variant="caption">
-                어떤 채널을 주로 사용하시는지도 알려주세요.
-              </Typography>
-              <ChipContainer>
-                {voiceChannel.map((channel) => (
-                  <React.Fragment key={channel}>
-                    <Chip
-                      chosen={checkedVoice.includes(channel)}
-                      onClick={(e) => onClickCheckbox(e, checkedVoice, setCheckedVoice)}
-                      key={channel}
-                      htmlfor={channel}
-                    >
-                      {channel}
-                    </Chip>
-                    <CustomCheckbox
-                      value={channel}
-                      key={`${channel} 온보딩`}
-                      type="checkbox"
-                      id={channel}
-                      {...register('voiceChannel', {
-                        required: onBoardingErrorMessage.checkbox,
-                      })}
-                    />
-                  </React.Fragment>
-                ))}
-              </ChipContainer>
+            <>
               <Typography color="error" variant="caption">
-                {(errors?.voiceChannel as any)?.message}
+                {(errors?.useVoice as any)?.message}
               </Typography>
-            </div>
+              <div className="container">
+                <Typography data-testid="useVoiceTitle" variant="caption">
+                  어떤 채널을 주로 사용하시는지도 알려주세요.
+                </Typography>
+                <ChipContainer>
+                  {voiceChannel.map((channel) => (
+                    <React.Fragment key={channel}>
+                      <Chip
+                        chosen={checkedVoice.includes(channel)}
+                        onClick={(e) => onClickCheckbox(e, checkedVoice, setCheckedVoice)}
+                        key={channel}
+                        htmlfor={channel}
+                      >
+                        {channel}
+                      </Chip>
+                      <CustomCheckbox
+                        value={channel}
+                        key={`${channel} 온보딩`}
+                        type="checkbox"
+                        id={channel}
+                        {...register('voiceChannel', {
+                          required: onBoardingErrorMessage.checkbox,
+                        })}
+                      />
+                    </React.Fragment>
+                  ))}
+                </ChipContainer>
+                <Typography color="error" variant="caption">
+                  {(errors?.voiceChannel as any)?.message}
+                </Typography>
+              </div>
+            </>
           )}
         </Asking>
       </OnBoardingEachContainer>
@@ -272,7 +258,7 @@ function OnBoarding() {
           </CheckboxContainer>
         </Asking>
       </OnBoardingEachContainer>
-      <SubmitButton active={submitState} type="submit" data-testid="submit">
+      <SubmitButton active={isValid} type="submit" data-testid="submit">
         <Typography variant="body1">내 듀오 찾으러 가기</Typography>
       </SubmitButton>
     </OnBoardingContainer>
