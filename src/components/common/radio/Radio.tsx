@@ -1,6 +1,18 @@
 import React from 'react';
+<<<<<<< HEAD
 import { UseFormRegisterReturn } from 'react-hook-form';
+=======
+<<<<<<< HEAD
+>>>>>>> ca8b69a (UDFM-24 - 프론트엔드 마이 페이지 (#27))
 import Typography from '../typography/Typography';
+=======
+<<<<<<< HEAD:src/components/common/Radio.tsx
+import { UseFormRegisterReturn } from 'react-hook-form';
+import Typography from './Typography';
+=======
+import Typography from '../typography/Typography';
+>>>>>>> 40f8fee (UDFM-24 - 프론트엔드 마이 페이지 (#27)):src/components/common/radio/Radio.tsx
+>>>>>>> 73b1f2a (UDFM-24 - 프론트엔드 마이 페이지 (#27))
 
 import { Input, InputWrapper, Label, Mark } from './Radio.style';
 
@@ -9,11 +21,26 @@ interface RadioProps {
   id?: string;
   name?: string;
   checked?: boolean;
+<<<<<<< HEAD
   register?: UseFormRegisterReturn<string>;
 }
 
 function Radio(props: RadioProps) {
   const { id, name, label, checked = false, register } = props;
+=======
+<<<<<<< HEAD
+}
+
+function Radio(props: RadioProps) {
+  const { id, name, label, checked = false } = props;
+=======
+  register?: UseFormRegisterReturn<string>;
+}
+
+function Radio(props: RadioProps) {
+  const { id, name, label, checked = false, register } = props;
+>>>>>>> 73b1f2a (UDFM-24 - 프론트엔드 마이 페이지 (#27))
+>>>>>>> ca8b69a (UDFM-24 - 프론트엔드 마이 페이지 (#27))
 
   return (
     <Label htmlFor={id}>
@@ -24,7 +51,14 @@ function Radio(props: RadioProps) {
           name={name || label}
           value={label}
           defaultChecked={checked}
+<<<<<<< HEAD
           {...register}
+=======
+<<<<<<< HEAD
+=======
+          {...register}
+>>>>>>> 73b1f2a (UDFM-24 - 프론트엔드 마이 페이지 (#27))
+>>>>>>> ca8b69a (UDFM-24 - 프론트엔드 마이 페이지 (#27))
         />
         <Mark />
       </InputWrapper>

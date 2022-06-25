@@ -2,8 +2,18 @@ import { useTheme } from '@emotion/react';
 import React from 'react';
 import { StyledTypography } from './Typography.style';
 
+<<<<<<< HEAD:src/components/common/typography/Typography.tsx
 import type { TypographyVariant } from '../../../types/typography.type';
 import type { ColorVariant } from '../../../types/color.type';
+=======
+<<<<<<< HEAD:src/components/common/Typography.tsx
+import type { TypographyVariant } from '../../types/typography.type';
+import { ColorVariant } from '../../types/color.type';
+=======
+import type { TypographyVariant } from '../../../types/typography.type';
+import type { ColorVariant } from '../../../types/color.type';
+>>>>>>> 40f8fee (UDFM-24 - 프론트엔드 마이 페이지 (#27)):src/components/common/typography/Typography.tsx
+>>>>>>> 73b1f2a (UDFM-24 - 프론트엔드 마이 페이지 (#27)):src/components/common/Typography.tsx
 
 export interface TypographyProps {
   variant?: TypographyVariant;
