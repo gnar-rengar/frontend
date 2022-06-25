@@ -65,7 +65,8 @@ function OnBoarding() {
   const submitMutation = useOnBoardingMutation();
 
   const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
-    submitMutation.mutate(data);
+    console.log(data);
+    // submitMutation.mutate(data);
   };
 
   const onClickCheckbox = (
@@ -195,7 +196,10 @@ function OnBoarding() {
                 사용해요
               </VoiceButton>
               <VoiceButton
-                onClick={(e) => onClickVoiceButton(e, '사용하지 않아요')}
+                onClick={(e) => {
+                  onClickVoiceButton(e, '사용하지 않아요');
+                  setValue('voiceChannel', []);
+                }}
                 active={voiceButtonIsState('사용하지 않아요')}
               >
                 사용하지 않아요
