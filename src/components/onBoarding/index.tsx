@@ -65,8 +65,7 @@ function OnBoarding() {
   const submitMutation = useOnBoardingMutation();
 
   const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
-    console.log(data);
-    // submitMutation.mutate(data);
+    submitMutation.mutate(data);
   };
 
   const onClickCheckbox = (
