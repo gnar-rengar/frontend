@@ -2,14 +2,15 @@ import styled from '@emotion/styled';
 
 import type { TypographyProps } from './Typography';
 
-type StyledTypographyProps = Pick<TypographyProps, 'variant' | 'align' | 'nowrap' | 'margin'>;
+type StyledTypographyProps = Omit<TypographyProps, 'children'>;
 
 export const StyledTypography = styled.div<StyledTypographyProps>`
   ${(props) => {
-    const { typography } = props.theme;
+    const { typography, color } = props.theme;
     const variant = typography[props.variant];
 
     return `
+      color: ${color[props.color]};
       align: ${props.align};
       white-space: ${props.nowrap && 'nowrap'};
       font-size: ${variant.fontSize};
