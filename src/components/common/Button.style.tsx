@@ -29,10 +29,27 @@ export const StyledButton = styled.button<StyledButtonProps>`
         cursor: default;
       `;
     }
+
+    if (variant === 'outlined') {
+      return `
+        border: 1.5px solid ${theme.color[color]};
+        background: intherit;
+        color: ${theme.color[color]};
+      `;
+    }
+
+    if (variant === 'text') {
+      return `
+        border: none;
+        bacgkround: none;
+        color: ${theme.color[color]};
+      `;
+    }
+
     return `
-      border: 1.5px solid ${theme.color[color]};
-      background: ${variant === 'contained' ? theme.color[color] : 'inherit'};
-      color: ${variant === 'contained' ? theme.color.onPrimary : theme.color[color]};
-    `;
+    border: 1.5px solid ${theme.color[color]};
+    background: ${theme.color[color]};
+    color: ${theme.color.onPrimary};
+  `;
   }}
 `;
