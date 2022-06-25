@@ -107,8 +107,10 @@ function OnBoarding() {
                 name="nickName"
                 placeholder="정확한 소환사명을 입력해주세요"
               />
-              <NickNameButton>
-                <Typography variant="body4">확인</Typography>
+              <NickNameButton type="button">
+                <Typography nowrap variant="body4">
+                  확인
+                </Typography>
               </NickNameButton>
             </div>
             <Typography color="error" data-testid="nickNameError" variant="caption">
