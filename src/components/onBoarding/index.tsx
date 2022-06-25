@@ -181,7 +181,6 @@ function OnBoarding() {
         </Asking>
       </OnBoardingEachContainer>
       <OnBoardingEachContainer>
-<<<<<<< HEAD
         <Asking title="음성 채팅을 사용하시나요?" caption="부가설명 내용입니다">
           <div className="container">
             <VoiceButtonContainer>
@@ -209,37 +208,6 @@ function OnBoarding() {
               <Typography data-testid="useVoiceTitle" variant="caption">
                 어떤 채널을 주로 사용하시는지도 알려주세요.
               </Typography>
-=======
-        <div className="titleContainer">
-          <Typography variant="h3" align="left">
-            음성 채팅을 사용하시나요?
-          </Typography>
-          <Typography variant="caption">부가설명 내용입니다</Typography>
-        </div>
-        <VoiceButtonContainer>
-          <VoiceButton
-            data-testid="useVoice"
-            onClick={(e) => {
-              onClickVoiceButton(e, '사용해요');
-            }}
-            active={voiceButtonIsState('사용해요')}
-          >
-            사용해요
-          </VoiceButton>
-          <VoiceButton
-            onClick={(e) => onClickVoiceButton(e, '사용하지 않아요')}
-            active={voiceButtonIsState('사용하지 않아요')}
-          >
-            사용하지 않아요
-          </VoiceButton>
-        </VoiceButtonContainer>
-        {useVoice === '사용해요' && (
-          <div className="titleContainer">
-            <Typography data-testid="useVoiceTitle" variant="caption">
-              어떤 채널을 주로 사용하시는지도 알려주세요.
-            </Typography>
-            <div className="container">
->>>>>>> 7f7c7b2 (테스트 코드 작성)
               <ChipContainer>
                 {voiceChannel.map((channel) => (
                   <React.Fragment key={channel}>
@@ -261,20 +229,12 @@ function OnBoarding() {
                   </React.Fragment>
                 ))}
               </ChipContainer>
-<<<<<<< HEAD
               <Typography color="error" variant="caption">
                 {(errors?.voiceChannel as any)?.message}
               </Typography>
             </div>
           )}
         </Asking>
-=======
-
-              <Typography variant="caption">{(errors?.voiceChannel as any)?.message}</Typography>
-            </div>
-          </div>
-        )}
->>>>>>> 7f7c7b2 (테스트 코드 작성)
       </OnBoardingEachContainer>
       <OnBoardingEachContainer>
         <Asking title="어떤 소통을 선호하시나요?" caption="부가설명 내용입니다">
