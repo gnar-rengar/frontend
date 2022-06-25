@@ -1,6 +1,6 @@
 import React from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import Typography from './Typography';
+import Typography from '../typography/Typography';
 
 import {
   Input,

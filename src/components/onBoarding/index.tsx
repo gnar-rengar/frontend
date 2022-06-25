@@ -1,5 +1,4 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import axios from 'axios';
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -10,6 +9,7 @@ import {
   position,
   voiceChannel,
 } from '../../constant';
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -39,6 +39,11 @@ import { CheckBox, Chip, Typography, TextField } from '../common';
 >>>>>>> ea32a1f (UDFM-12 - 프론트엔드 리뷰 작성 페이지 (#25))
 =======
 >>>>>>> 85794c1 (asking 컴포넌트를 이용한 리팩토링)
+=======
+import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
+import { OnBoardingInput } from '../../types/onBoarding.type';
+import { Chip, Radio, TextField, Typography, Asking } from '../common';
+>>>>>>> ac1c17a (충돌 수정 및 import 수정)
 import {
   CheckboxContainer,
   ChipContainer,
@@ -139,6 +144,9 @@ function OnBoarding() {
           <div className="container">
             <div className="flexContainer">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ac1c17a (충돌 수정 및 import 수정)
               <TextField
                 {...register('nickName')}
                 name="nickName"
@@ -148,6 +156,7 @@ function OnBoarding() {
                 <Typography nowrap variant="body4">
                   확인
                 </Typography>
+<<<<<<< HEAD
               </NickNameButton>
             </div>
           </div>
@@ -164,6 +173,8 @@ function OnBoarding() {
               />
               <NickNameButton>
                 <Typography variant="body4">확인</Typography>
+=======
+>>>>>>> ac1c17a (충돌 수정 및 import 수정)
               </NickNameButton>
             </div>
             <Typography color="error" data-testid="nickNameError" variant="caption">
@@ -191,13 +202,15 @@ function OnBoarding() {
                     {style}
                   </Chip>
                   <CustomCheckbox
-<<<<<<< HEAD
                     {...register('playStyle')}
+<<<<<<< HEAD
 =======
                     {...register('playStyle', {
                       required: onBoardingErrorMessage.checkbox,
                     })}
 >>>>>>> 85794c1 (asking 컴포넌트를 이용한 리팩토링)
+=======
+>>>>>>> ac1c17a (충돌 수정 및 import 수정)
                     key={`${style} 온보딩`}
                     type="checkbox"
                     id={style}
@@ -227,13 +240,15 @@ function OnBoarding() {
                     {pos}
                   </Chip>
                   <CustomCheckbox
-<<<<<<< HEAD
                     {...register('position')}
+<<<<<<< HEAD
 =======
                     {...register('position', {
                       required: onBoardingErrorMessage.checkbox,
                     })}
 >>>>>>> 85794c1 (asking 컴포넌트를 이용한 리팩토링)
+=======
+>>>>>>> ac1c17a (충돌 수정 및 import 수정)
                     key={`${pos} 온보딩`}
                     type="checkbox"
                     id={pos}
@@ -256,25 +271,29 @@ function OnBoarding() {
                 data-testid="useVoice"
                 onClick={(e) => onClickVoiceButton(e, '사용해요')}
                 active={voiceButtonIsState('사용해요')}
-<<<<<<< HEAD
                 {...register('useVoice')}
+<<<<<<< HEAD
 =======
                 {...register('useVoice', {
                   required: onBoardingErrorMessage.checkbox,
                 })}
 >>>>>>> 85794c1 (asking 컴포넌트를 이용한 리팩토링)
+=======
+>>>>>>> ac1c17a (충돌 수정 및 import 수정)
               >
                 사용해요
               </VoiceButton>
               <VoiceButton
-<<<<<<< HEAD
                 onClick={(e) => {
                   onClickVoiceButton(e, '사용하지 않아요');
                   setValue('voiceChannel', []);
                 }}
+<<<<<<< HEAD
 =======
                 onClick={(e) => onClickVoiceButton(e, '사용하지 않아요')}
 >>>>>>> 85794c1 (asking 컴포넌트를 이용한 리팩토링)
+=======
+>>>>>>> ac1c17a (충돌 수정 및 import 수정)
                 active={voiceButtonIsState('사용하지 않아요')}
               >
                 사용하지 않아요
