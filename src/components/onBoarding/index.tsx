@@ -103,9 +103,7 @@ function OnBoarding() {
           <div className="container">
             <div className="flexContainer">
               <Input
-                {...register('nickName', {
-                  required: onBoardingErrorMessage.nickName,
-                })}
+                {...register('nickName')}
                 name="nickName"
                 placeholder="정확한 소환사명을 입력해주세요"
               />
@@ -137,9 +135,7 @@ function OnBoarding() {
                     {style}
                   </Chip>
                   <CustomCheckbox
-                    {...register('playStyle', {
-                      required: onBoardingErrorMessage.checkbox,
-                    })}
+                    {...register('playStyle')}
                     key={`${style} 온보딩`}
                     type="checkbox"
                     id={style}
@@ -169,9 +165,7 @@ function OnBoarding() {
                     {pos}
                   </Chip>
                   <CustomCheckbox
-                    {...register('position', {
-                      required: onBoardingErrorMessage.checkbox,
-                    })}
+                    {...register('position')}
                     key={`${pos} 온보딩`}
                     type="checkbox"
                     id={pos}
@@ -194,9 +188,7 @@ function OnBoarding() {
                 data-testid="useVoice"
                 onClick={(e) => onClickVoiceButton(e, '사용해요')}
                 active={voiceButtonIsState('사용해요')}
-                {...register('useVoice', {
-                  required: onBoardingErrorMessage.checkbox,
-                })}
+                {...register('useVoice')}
               >
                 사용해요
               </VoiceButton>
@@ -207,44 +199,40 @@ function OnBoarding() {
                 사용하지 않아요
               </VoiceButton>
             </VoiceButtonContainer>
+            <Typography color="error" variant="caption">
+              {(errors?.useVoice as any)?.message}
+            </Typography>
           </div>
           {useVoice === '사용해요' && (
-            <>
-              <Typography color="error" variant="caption">
-                {(errors?.useVoice as any)?.message}
+            <div className="container">
+              <Typography data-testid="useVoiceTitle" variant="caption">
+                어떤 채널을 주로 사용하시는지도 알려주세요.
               </Typography>
-              <div className="container">
-                <Typography data-testid="useVoiceTitle" variant="caption">
-                  어떤 채널을 주로 사용하시는지도 알려주세요.
-                </Typography>
-                <ChipContainer>
-                  {voiceChannel.map((channel) => (
-                    <React.Fragment key={channel}>
-                      <Chip
-                        chosen={checkedVoice.includes(channel)}
-                        onClick={(e) => onClickCheckbox(e, checkedVoice, setCheckedVoice)}
-                        key={channel}
-                        htmlfor={channel}
-                      >
-                        {channel}
-                      </Chip>
-                      <CustomCheckbox
-                        value={channel}
-                        key={`${channel} 온보딩`}
-                        type="checkbox"
-                        id={channel}
-                        {...register('voiceChannel', {
-                          required: onBoardingErrorMessage.checkbox,
-                        })}
-                      />
-                    </React.Fragment>
-                  ))}
-                </ChipContainer>
-                <Typography color="error" variant="caption">
-                  {(errors?.voiceChannel as any)?.message}
-                </Typography>
-              </div>
-            </>
+              <ChipContainer>
+                {voiceChannel.map((channel) => (
+                  <React.Fragment key={channel}>
+                    <Chip
+                      chosen={checkedVoice.includes(channel)}
+                      onClick={(e) => onClickCheckbox(e, checkedVoice, setCheckedVoice)}
+                      key={channel}
+                      htmlfor={channel}
+                    >
+                      {channel}
+                    </Chip>
+                    <CustomCheckbox
+                      value={channel}
+                      key={`${channel} 온보딩`}
+                      type="checkbox"
+                      id={channel}
+                      {...register('voiceChannel')}
+                    />
+                  </React.Fragment>
+                ))}
+              </ChipContainer>
+              <Typography color="error" variant="caption">
+                {(errors?.voiceChannel as any)?.message}
+              </Typography>
+            </div>
           )}
         </Asking>
       </OnBoardingEachContainer>
