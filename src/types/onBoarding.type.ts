@@ -1,5 +1,6 @@
 export interface OnBoardingInput {
   nickName: string;
+  nickNameCheck: boolean;
   playStyle: string[];
   position: string[];
 <<<<<<< HEAD

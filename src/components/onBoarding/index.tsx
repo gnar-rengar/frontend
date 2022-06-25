@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import axios from 'axios';
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -34,6 +35,7 @@ import {
 
 const validationSchema = yup.object().shape({
   nickName: yup.string().required(onBoardingErrorMessage.nickName),
+  nickNameCheck: yup.boolean().oneOf([true], onBoardingErrorMessage.nickNameCheck),
   playStyle: yup.array(yup.string()).min(1, onBoardingErrorMessage.checkbox),
   position: yup.array(yup.string()).min(1, onBoardingErrorMessage.checkbox),
   communication: yup.string().required(onBoardingErrorMessage.checkbox),
@@ -50,9 +52,12 @@ function OnBoarding() {
     handleSubmit,
     setValue,
     formState: { errors, isValid },
+    getValues,
+    clearErrors,
   } = useForm<OnBoardingInput>({
     defaultValues: {
       nickName: '',
+      nickNameCheck: false,
       playStyle: [],
       position: [],
       communication: '',
@@ -70,7 +75,15 @@ function OnBoarding() {
 
   const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
     console.log(data);
-    // submitMutation.mutate(data);
+    submitMutation.mutate(data);
+  };
+
+  const onClickNickNameCheck = async () => {
+    const nickName = getValues('nickName');
+    // const { data } = await axios.get(`/user/checkNick?lolNickName=${nickName}`);
+    // console.log(data);
+    setValue('nickNameCheck', true);
+    clearErrors('nickNameCheck');
   };
 
   const onClickCheckbox = (
@@ -97,7 +110,7 @@ function OnBoarding() {
     setUseVoice(innerText);
     setValue('useVoice', value);
   };
-
+  console.log(errors);
   return (
     <OnBoardingContainer onSubmit={handleSubmit(onSubmitOnBoarding)}>
       <OnBoardingEachContainer>
@@ -113,7 +126,7 @@ function OnBoarding() {
                 name="nickName"
                 placeholder="정확한 소환사명을 입력해주세요"
               />
-              <NickNameButton type="button">
+              <NickNameButton onClick={onClickNickNameCheck} type="button">
                 <Typography nowrap variant="body4">
                   확인
                 </Typography>
@@ -130,7 +143,7 @@ function OnBoarding() {
               </NickNameButton>
             </div>
             <Typography color="error" data-testid="nickNameError" variant="caption">
-              {errors?.nickName?.message}
+              {errors?.nickName?.message || errors?.nickNameCheck?.message}
             </Typography>
           </div>
         </Asking>
