@@ -1,8 +1,8 @@
 import React from 'react';
-import Typography from './Typography';
+import { Typography } from '..';
 import { StyledButton } from './Button.style';
 
-import type { ColorVariant } from '../../types/color.type';
+import type { ColorVariant } from '../../../types/color.type';
 
 export interface ButtonProps {
   type?: 'button' | 'submit' | 'reset';

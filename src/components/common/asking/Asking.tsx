@@ -1,6 +1,6 @@
 import React from 'react';
 import { AskingContainer, TitleContainer } from './Asking.style';
-import Typography from './Typography';
+import {Typography} from '..';
 
 interface AskingProps {
   title: string;

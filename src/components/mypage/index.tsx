@@ -1,9 +1,8 @@
 import React from 'react';
-import Asking from '../common/Asking';
-import Button from '../common/Button';
-import Card from '../common/Card';
-import Divider from '../common/Divider';
 import FeedBack from './FeedBack';
+import { Asking, BasicContainer, Button, Card, Divider } from '../common';
+
+import { ProfileCardContainer } from './style';
 
 const goodFeedback = [{ 어쩌고1: 15 }, { 어쩌고2: 2 }, { 어쩌고3: 8 }];
 
@@ -12,12 +11,12 @@ const badFeedback = [{ 저쩌고1: 8 }, { 저쩌고2: 9 }, { 저쩌고3: 8 }];
 function MyPage() {
   return (
     <div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '16px 0' }}>
+      <ProfileCardContainer>
         <Card />
         <Button size="lg" variant="outlined" color="onBackground">
           내 플레이 정보 수정하기
         </Button>
-      </div>
+      </ProfileCardContainer>
       <Divider />
       <Asking
         title="받은 긍정 플레이 리뷰"
@@ -37,23 +36,23 @@ function MyPage() {
         ))}
       </Asking>
       <Divider />
-      <div style={{ padding: '16px 0' }}>
+      <BasicContainer>
         <Button variant="text" color="onBackgroundSub" size="lg">
           로그인
         </Button>
-      </div>
+      </BasicContainer>
       <Divider />
-      <div style={{ padding: '16px 0' }}>
+      <BasicContainer>
         <Button variant="text" color="onBackgroundSub" size="lg">
           회원탈퇴
         </Button>
-      </div>
+      </BasicContainer>
       <Divider />
-      <div style={{ padding: '16px 0' }}>
+      <BasicContainer>
         <Button variant="text" color="onBackgroundSub" size="lg">
           123
         </Button>
-      </div>
+      </BasicContainer>
     </div>
   );
 }

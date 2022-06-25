@@ -1,5 +1,5 @@
 import React from 'react';
-import Typography from './Typography';
+import { Typography } from '..';
 
 import { Input, InputWrapper, Label, Mark } from './Radio.style';
 

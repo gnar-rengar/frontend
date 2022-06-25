@@ -7,10 +7,8 @@ import {
   position,
   voiceChannel,
 } from '../../constant';
-import CheckBox from '../common/CheckBox';
-import Chip from '../common/Chip';
-import { Input } from '../common/TextField.style';
-import Typography from '../common/Typography';
+import { CheckBox, Chip, Typography, TextField } from '../common';
+// import { Input } from '../common/textfield/TextField.style';
 import {
   ChipContainer,
   NickNameButton,
@@ -85,7 +83,7 @@ function OnBoarding() {
         </div>
         <div className="container">
           <div className="flexContainer">
-            <Input
+            <TextField
               {...register('nickName', {
                 required: onBoardingErrorMessage.nickName,
               })}

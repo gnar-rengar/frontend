@@ -2,8 +2,8 @@ import { useTheme } from '@emotion/react';
 import React from 'react';
 import { StyledTypography } from './Typography.style';
 
-import type { TypographyVariant } from '../../types/typography.type';
-import type { ColorVariant } from '../../types/color.type';
+import type { TypographyVariant } from '../../../types/typography.type';
+import type { ColorVariant } from '../../../types/color.type';
 
 export interface TypographyProps {
   variant?: TypographyVariant;
