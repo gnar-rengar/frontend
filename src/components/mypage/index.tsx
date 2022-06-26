@@ -4,11 +4,22 @@ import { Asking, BasicContainer, Button, Card, Divider } from '../common';
 
 import { ProfileCardContainer } from './style';
 
-const goodFeedback = [{ 어쩌고1: 15 }, { 어쩌고2: 2 }, { 어쩌고3: 8 }];
+interface MyPageDTO {
+  success: boolean;
+  profileUrl: string;
+  nickcName: string;
+  profileOpen: true;
+  goodFeedback: {
+    description: string;
+    count: number;
+  }[];
+  badFeedback: {
+    description: string;
+    count: number;
+  }[];
+}
 
-const badFeedback = [{ 저쩌고1: 8 }, { 저쩌고2: 9 }, { 저쩌고3: 8 }];
-
-function MyPage() {
+function MyPage({ data }: { data: MyPageDTO }) {
   return (
     <div>
       <ProfileCardContainer>
@@ -23,8 +34,8 @@ function MyPage() {
         caption="같이 플레이한 유져중에 어쩌고 저쩌고. 긍정 플레이 ㅇ리뷰가 많으면 상위 노출 시스템????"
       >
         <div>
-          {goodFeedback.map((feedback) => (
-            <FeedBack feedback={feedback} />
+          {data?.goodFeedback.map((feedback) => (
+            <FeedBack key={feedback.description} feedback={feedback} />
           ))}
         </div>
       </Asking>
@@ -34,8 +45,8 @@ function MyPage() {
         caption="같이 플레이한 유져중에 어쩌고 저쩌고. 부정 플레이 리뷰가 너무 많으면 해명타임이 주어져야할짖도 몰라요. 모두가 사연이 있다고 하지만 자꾸 사건이 내 주변에서 일어나면 당신이 범인일지도 모릅니다."
       >
         <div>
-          {badFeedback.map((feedback) => (
-            <FeedBack feedback={feedback} />
+          {data?.badFeedback.map((feedback) => (
+            <FeedBack key={feedback.description} feedback={feedback} />
           ))}
         </div>
       </Asking>

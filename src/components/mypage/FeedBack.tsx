@@ -4,14 +4,15 @@ import People from '../icons/People';
 
 interface FeedBackProps {
   feedback: {
-    [key in string]: number;
+    description: string;
+    count: number;
   };
 }
 
 function FeedBack(props: FeedBackProps) {
-  const { feedback } = props;
-
-  const [description, count] = Object.entries(feedback)[0];
+  const {
+    feedback: { description, count },
+  } = props;
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
