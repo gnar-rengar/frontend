@@ -8,19 +8,22 @@ import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { default as MyPageComponent } from '../components/mypage';
 
 const fetchMyPage = async () => {
-  const { data } = await axios.get('/users/mypage');
+  const { data } = await axios.get('https://api.duo-duo/users/mypage');
   return data;
 };
 
 function MyPage() {
   const { data } = useQuery('mypage', fetchMyPage);
-  return <MyPageComponent data={data} />;
+
+  if (!data) return <div>loading...</div>;
+
+  if (data) return <MyPageComponent data={data} />;
 }
 
 export default MyPage;
+
 export const getServerSideProps: GetServerSideProps = async () => {
   const queryClient = new QueryClient();
-
   await queryClient.prefetchQuery('mypage', fetchMyPage);
 
   return {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography } from '../common';
 import People from '../icons/People';
+import { StyledFeedback } from './style';
 
 interface FeedBackProps {
   feedback: {
@@ -15,7 +16,7 @@ function FeedBack(props: FeedBackProps) {
   } = props;
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+    <StyledFeedback>
       <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
         <People />
         <Typography variant="body3" color="onBackgroundSub">
@@ -27,7 +28,7 @@ function FeedBack(props: FeedBackProps) {
           {description}
         </Typography>
       </div>
-    </div>
+    </StyledFeedback>
   );
 }
 

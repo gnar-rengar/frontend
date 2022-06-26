@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 
 export const userHandlers = [
-  rest.get('/users/mypage', (req, res, ctx) => {
+  rest.get('https://api.duo-duo/users/mypage', (req, res, ctx) => {
     const goodFeedback = [
       { description: '멘탈이 좋아요', count: 32 },
       { description: '말을 예쁘게 해요', count: 24 },
@@ -18,8 +18,8 @@ export const userHandlers = [
     return res(
       ctx.json({
         success: true,
-        profileUrl: 'profile_image.url',
-        nickcName: 'nickname',
+        profileUrl: 'http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/502.png',
+        nickcName: '썩은김치',
         profileOpen: true,
         goodFeedback,
         badFeedback,
