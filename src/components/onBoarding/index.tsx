@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import axios from 'axios';
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -11,7 +12,7 @@ import {
 } from '../../constant';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { OnBoardingInput } from '../../types/onBoarding.type';
-import { Chip, Radio, TextField, Typography, Asking } from '../common';
+import { Asking, Chip, Radio, TextField, Typography } from '../common';
 import {
   CheckboxContainer,
   ChipContainer,
@@ -71,8 +72,8 @@ function OnBoarding() {
 
   const onClickNickNameCheck = async () => {
     const nickName = getValues('nickName');
-    // const { data } = await axios.get(`/user/checkNick?lolNickName=${nickName}`);
-    // console.log(data);
+    const { data } = await axios.get(`/user/checkNick?lolNickName=${nickName}`);
+    console.log(data);
     setValue('nickNameCheck', true);
     clearErrors('nickNameCheck');
   };
@@ -122,10 +123,10 @@ function OnBoarding() {
                 </Typography>
               </NickNameButton>
             </div>
-            <Typography color="error" data-testid="nickNameError" variant="caption">
-              {errors?.nickName?.message || errors?.nickNameCheck?.message}
-            </Typography>
           </div>
+          <Typography color="error" data-testid="nickNameError" variant="caption">
+            {errors?.nickName?.message || errors?.nickNameCheck?.message}
+          </Typography>
         </Asking>
       </OnBoardingEachContainer>
       <OnBoardingEachContainer>
