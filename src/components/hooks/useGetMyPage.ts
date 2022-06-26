@@ -17,13 +17,13 @@ interface MyPageDTO {
 }
 
 const fetchMyPage = async () => {
-  const { data } = await axios.get('/users/mypage');
+  const { data } = await axios.get('https://api.duo-duo/users/mypage');
   return data;
 };
 
 const useGetMyPage = () => {
-  const { data } = useQuery<MyPageDTO>('mypage', fetchMyPage);
-  return data;
+  const query = useQuery<MyPageDTO>('mypage', fetchMyPage);
+  return query;
 };
 
 export default useGetMyPage;

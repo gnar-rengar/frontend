@@ -3,23 +3,13 @@ import FeedBack from './FeedBack';
 import { Asking, BasicContainer, Button, Card, Divider } from '../common';
 
 import { ProfileCardContainer } from './style';
+import useGetMyPage from '../hooks/useGetMyPage';
 
-interface MyPageDTO {
-  success: boolean;
-  profileUrl: string;
-  nickcName: string;
-  profileOpen: true;
-  goodFeedback: {
-    description: string;
-    count: number;
-  }[];
-  badFeedback: {
-    description: string;
-    count: number;
-  }[];
-}
+function MyPage() {
+  const { isLoading, data } = useGetMyPage();
 
-function MyPage({ data }: { data: MyPageDTO }) {
+  if (isLoading) return <div>isLoading</div>;
+
   const { profileUrl, nickcName, goodFeedback, badFeedback } = data;
 
   return (
