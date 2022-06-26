@@ -12,7 +12,9 @@ function Card({ profileImg, nickName }: { profileImg: string; nickName: string }
         alt="profile icon"
         style={{ borderRadius: '50%' }}
       />
-      <Typography variant="body3">{nickName}</Typography>
+      <Typography variant="body3" data-testid="nickname">
+        {nickName}
+      </Typography>
     </StyledCard>
   );
 }
