@@ -24,6 +24,7 @@ module.exports = {
     'import/prefer-default-export': 0,
     'linebreak-style': 0,
     'no-empty-function': 'off',
+    'implicit-arrow-linebreak': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',
     '@typescript-eslint/comma-dangle': 'off',

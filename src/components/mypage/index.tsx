@@ -6,11 +6,9 @@ import { ProfileCardContainer } from './style';
 import useGetMyPage from '../hooks/useGetMyPage';
 
 function MyPage() {
-  const { isLoading, data } = useGetMyPage();
-
-  if (isLoading) return <div>isLoading</div>;
-
-  const { profileUrl, nickcName, goodFeedback, badFeedback } = data;
+  const {
+    data: { profileUrl, nickcName, goodFeedback, badFeedback },
+  } = useGetMyPage();
 
   return (
     <div>
