@@ -9,11 +9,12 @@ import { ButtonContainer } from '../common/asking/Asking.style';
 import { awfulReasons, joyfulReasons } from '../../constant';
 
 function ReviewWrite() {
+  const { register, handleSubmit, formState } = useForm();
+
+  const { isValid, errors } = formState;
+
   const [isJoyful, setIsJoyful] = useState(true);
   const [isWillingToHide, setIsWillingToHide] = useState(true);
-
-  const { handleSubmit } = useForm();
-
   const onSubmit: React.FormEventHandler<HTMLFormElement> = () => {
     // TODO 유효성 검증, API POST
   };
