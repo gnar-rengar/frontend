@@ -28,7 +28,23 @@ export const userHandlers = [
     );
   }),
 
-  rest.patch('https://api.duo-duo/users/writeReview', (req, res, ctx) => {
-    console.log(req.url.searchParams.get('userId'));
+  rest.patch('https://api.duo-duo/user/writeReview/:userId', (req, res, ctx) => {
+    const userIds = ['1', '2', '3'];
+
+    if (userIds.includes(req.params.userId as string)) {
+      return res(
+        ctx.json({
+          success: true,
+          message: '매너 평가가 완료 됐습니다.',
+        })
+      );
+    }
+
+    return res(
+      ctx.json({
+        success: false,
+        message: '매너 평가에 실패 했습니다.',
+      })
+    );
   }),
 ];

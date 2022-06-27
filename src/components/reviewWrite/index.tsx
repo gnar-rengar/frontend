@@ -11,24 +11,34 @@ import { Form, SubmitButtonWrapper } from './style';
 import { ButtonContainer } from '../common/asking/Asking.style';
 
 import type { ReviewWriteDTO } from '../../types/dto/reviewWrite.type';
+import usePatchReviewWrite from '../../hooks/usePatchReviewWrite';
 
 const reviewWriteSchema = yup.object().shape({
   isJoyful: yup.boolean(),
   goodFeedback: yup.array(yup.string()).when('isJoyful', {
-    is: 'joyful',
+    is: true,
     then: (schema) => schema.min(1, reviewWriteErrorMessage.feedback),
   }),
   badFeedback: yup.array(yup.string()).when('isJoyful', {
-    is: 'awful',
+    is: false,
     then: (schema) => schema.min(1, reviewWriteErrorMessage.feedback),
   }),
   ban: yup.boolean().required(),
 });
 
+const userId = '1';
+
 function ReviewWrite() {
   const [isJoyful, setIsJoyful] = useState(true);
   const [isWillinToBan, setIsWillingToBan] = useState(true);
-  const { register, handleSubmit, formState, setValue, getValues } = useForm<ReviewWriteDTO>({
+
+  const {
+    register,
+    handleSubmit,
+    formState: { isValid, errors },
+    setValue,
+    getValues,
+  } = useForm<ReviewWriteDTO>({
     defaultValues: {
       isJoyful: true,
       goodFeedback: [],
@@ -39,10 +49,6 @@ function ReviewWrite() {
     mode: 'onChange',
   });
 
-  const { isValid, errors } = formState;
-
-  const onSubmit: SubmitHandler<ReviewWriteDTO> = (data) => {};
-
   useEffect(() => {
     if (isJoyful) {
       setValue('badFeedback', []);
@@ -50,6 +56,12 @@ function ReviewWrite() {
       setValue('goodFeedback', []);
     }
   }, [isJoyful]);
+
+  const { mutate } = usePatchReviewWrite();
+
+  const onSubmit: SubmitHandler<ReviewWriteDTO> = (payload) => {
+    mutate({ userId, payload });
+  };
 
   const handleClickIsJoyfulButton = () => {
     setIsJoyful((p) => !p);
@@ -60,7 +72,6 @@ function ReviewWrite() {
     setIsWillingToBan((p) => !p);
     setValue('ban', !getValues('ban'));
   };
-
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Asking title="고수달님은 어떠셨나요?" caption="진짜 플레이 했을 때만 평가해라">
