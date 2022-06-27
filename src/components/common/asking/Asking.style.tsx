@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
-import BasicContainer from '../basic-container/BasicContainer';
 
-export const AskingContainer = styled(BasicContainer)`
+export const AskingContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 16px 0;
   width: 100%;
 `;
 
