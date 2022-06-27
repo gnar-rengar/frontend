@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react';
 
-// eslint-disable-next-line import/no-named-default
-import { default as MyPageComponent } from '../components/myPage';
+import MyPageComponent from '../components/myPage';
 
 function MyPage() {
   return (
