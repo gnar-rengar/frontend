@@ -10,7 +10,7 @@ import {
   voiceChannel,
 } from '../../constant';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
-import { OnBoardingInput } from '../../types/onBoarding.type';
+import { OnBoardingInput } from '../../types/dto/onBoarding.type';
 import { Chip, Radio, TextField, Typography, Asking } from '../common';
 import {
   CheckboxContainer,
