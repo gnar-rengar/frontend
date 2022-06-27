@@ -13,4 +13,5 @@ module.exports = {
       isolatedModules: true,
     },
   },
+  resolver: '<rootDir>/.jest/resolver.js',
 };

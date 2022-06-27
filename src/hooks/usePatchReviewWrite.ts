@@ -22,8 +22,6 @@ const usePatchReviewWrite = () => {
   return useMutation(patchReviewWrite, {
     onSuccess: () => {
       // ? 제출 후에는 어떻게?
-      // eslint-disable-next-line
-      alert('매너 평가가 완료 되었습니다.');
       router.replace('/');
     },
     onError: () => {
