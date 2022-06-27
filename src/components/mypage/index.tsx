@@ -7,13 +7,13 @@ import useGetMyPage from '../../hooks/useGetMyPage';
 
 function MyPage() {
   const {
-    data: { profileUrl, nickcName, goodFeedback, badFeedback },
+    data: { profileUrl, nickname, goodFeedback, badFeedback },
   } = useGetMyPage();
 
   return (
     <div>
       <ProfileCardContainer>
-        <Card profileImg={profileUrl} nickName={nickcName} />
+        <Card profileImg={profileUrl} nickName={nickname} />
         <Button size="lg" variant="outlined" color="onBackground">
           내 플레이 정보 수정하기
         </Button>

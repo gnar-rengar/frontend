@@ -1,7 +1,7 @@
 export interface MyPageDTO {
   success: boolean;
   profileUrl: string;
-  nickcName: string;
+  nickname: string;
   profileOpen: true;
   goodFeedback: {
     description: string;
