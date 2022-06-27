@@ -6,6 +6,7 @@ export const Hr = styled.hr<DividerProps>`
     const lineColor = theme.color[color];
 
     return `
+      margin: 0;
       width: ${width};
       color: ${lineColor};
       background-color: ${lineColor};

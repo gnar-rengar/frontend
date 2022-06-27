@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
-import { OnBoardingInput } from '../types/onBoarding.type';
+import { OnBoardingInput } from '../types/dto/onBoarding.type';
 
 const onBoardingPatchAPI = async (params: OnBoardingInput) => {
   const { data } = await axios.patch('/auth/onboarding', params);
