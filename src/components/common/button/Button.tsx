@@ -21,10 +21,10 @@ const typoVariant = {
 } as const;
 
 function Button(props: ButtonProps) {
-  const { children, size, onClick, value, ...other } = props;
+  const { type, children, size, onClick, value, ...other } = props;
 
   return (
-    <StyledButton onClick={onClick} value={value} {...{ ...other, size }}>
+    <StyledButton onClick={onClick} value={value} type={type} {...{ ...other, size }}>
       <Typography variant={typoVariant[size]} align="center">
         {children}
       </Typography>

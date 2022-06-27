@@ -15,6 +15,7 @@ export const userHandlers = [
       { description: '너무 나쁜말을 많이 써요', count: 4 },
       { description: '실력이 형편 없어요', count: 1 },
     ];
+
     return res(
       ctx.json({
         success: true,
@@ -25,5 +26,9 @@ export const userHandlers = [
         badFeedback,
       })
     );
+  }),
+
+  rest.patch('https://api.duo-duo/users/writeReview', (req, res, ctx) => {
+    console.log(req.url.searchParams.get('userId'));
   }),
 ];

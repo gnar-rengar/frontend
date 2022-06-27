@@ -4,7 +4,7 @@ import axios from 'axios';
 import type { MyPageDTO } from '../types/dto/myPage.type';
 
 const fetchMyPage = async () => {
-  const { data } = await axios.get('https://api.duo-duo/users/mypage');
+  const { data } = await axios.get('/users/mypage');
   return data;
 };
 

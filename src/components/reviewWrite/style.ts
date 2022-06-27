@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+export const Form = styled.form`
+  padding-bottom: calc(48px * 2);
+`;
+
 export const SubmitButtonWrapper = styled.div`
   position: fixed;
   left: 0;

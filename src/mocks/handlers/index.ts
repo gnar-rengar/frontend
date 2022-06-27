@@ -2,7 +2,7 @@ import { rest } from 'msw';
 import { userHandlers } from './user';
 
 export const handlers = [
-  rest.patch('/auth/onboarding', (req, res, ctx) => {
+  rest.patch('https://api.duo-duo/auth/onboarding', (req, res, ctx) => {
     try {
       return res(
         ctx.json({
