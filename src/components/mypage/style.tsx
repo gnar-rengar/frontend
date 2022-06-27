@@ -6,3 +6,9 @@ export const ProfileCardContainer = styled.div`
   padding: 16px 0;
   gap: 16px;
 `;
+
+export const StyledFeedback = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;

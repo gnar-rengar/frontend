@@ -8,7 +8,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
   cursor: pointer;
   ${({ variant, size }) => {
     if (variant === 'text') return '';
-
     if (size === 'lg') {
       return `
       width: 345px;
@@ -21,7 +20,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
       border-radius: 8px;
     `;
   }}
-
   ${({ theme, color, variant, disabled }) => {
     if (disabled) {
       return `
@@ -31,7 +29,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
         cursor: default;
       `;
     }
-
     if (variant === 'outlined') {
       return `
         border: 1.5px solid ${theme.color[color]};
@@ -39,7 +36,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
         color: ${theme.color[color]};
       `;
     }
-
     if (variant === 'text') {
       return `
         border: none;
@@ -47,7 +43,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
         color: ${theme.color[color]};
       `;
     }
-
     return `
       border: 1.5px solid ${theme.color[color]};
       background: ${theme.color[color]};
