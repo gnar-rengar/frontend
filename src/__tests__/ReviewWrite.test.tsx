@@ -1,7 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from '@emotion/react';
-import { useRouter } from 'next/router';
-import { render, fireEvent, screen, waitFor } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import ReviewWrite from '../components/reviewWrite';
