@@ -22,6 +22,7 @@ module.exports = {
     semi: ['error', 'always'],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/prefer-default-export': 0,
+    'import/extensions': 'off',
     'linebreak-style': 0,
     'no-empty-function': 'off',
     '@typescript-eslint/no-empty-function': 'off',

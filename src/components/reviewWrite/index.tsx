@@ -115,7 +115,9 @@ function ReviewWrite() {
           ))}
         </Asking>
       )}
-      <Typography variant="caption">{(errors?.goodFeedback as any)?.message}</Typography>
+      <Typography variant="caption" color="error">
+        {(errors?.goodFeedback as any)?.message}
+      </Typography>
       <Asking
         title="내 프로필을 고수달님에게서 숨기고 다시 만나지 않으실래요?"
         caption="로그인 안한 상태에선 보일 수 있음"
@@ -140,7 +142,7 @@ function ReviewWrite() {
         </ButtonContainer>
       </Asking>
       <SubmitButtonWrapper>
-        <Button type="submit" size="lg" color="primaryVariant" disabled={!isValid}>
+        <Button type="submit" size="lg" color={isValid ? 'primaryVariant' : 'disable'}>
           매너 평가하기
         </Button>
       </SubmitButtonWrapper>

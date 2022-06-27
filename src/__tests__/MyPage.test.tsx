@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from '@emotion/react';
 import { render } from '@testing-library/react';
-import MyPage from '../components/mypage';
+import MyPageComponent from '../components/mypage';
 
 import { darkTheme } from '../theme';
 
@@ -22,7 +22,7 @@ describe('<MyPage />', () => {
       >
         <ThemeProvider theme={darkTheme}>
           <Suspense fallback="loading...">
-            <MyPage />
+            <MyPageComponent />
           </Suspense>
         </ThemeProvider>
       </QueryClientProvider>

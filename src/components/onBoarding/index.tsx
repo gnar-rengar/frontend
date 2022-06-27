@@ -99,8 +99,6 @@ function OnBoarding() {
     setValue('useVoice', value);
   };
 
-  console.log(isValid);
-
   return (
     <OnBoardingContainer onSubmit={handleSubmit(onSubmitOnBoarding)}>
       <OnBoardingEachContainer>
