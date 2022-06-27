@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '../typography/Typography';
 import { StyledCard } from './Card.style';
 
-function Card({ profileImg, nickName }: { profileImg: string; nickName: string }) {
+function Card({ profileImg, nickname }: { profileImg: string; nickname: string }) {
   return (
     <StyledCard>
       <img
@@ -13,7 +13,7 @@ function Card({ profileImg, nickName }: { profileImg: string; nickName: string }
         style={{ borderRadius: '50%' }}
       />
       <Typography variant="body3" data-testid="nickname">
-        {nickName}
+        {nickname}
       </Typography>
     </StyledCard>
   );

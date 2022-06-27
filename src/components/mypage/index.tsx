@@ -13,7 +13,7 @@ function MyPage() {
   return (
     <div>
       <ProfileCardContainer>
-        <Card profileImg={profileUrl} nickName={nickname} />
+        <Card profileImg={profileUrl} nickname={nickname} />
         <Button size="lg" variant="outlined" color="onBackground">
           내 플레이 정보 수정하기
         </Button>

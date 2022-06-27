@@ -19,7 +19,7 @@ export const userHandlers = [
       ctx.json({
         success: true,
         profileUrl: 'http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/502.png',
-        nickcName: '썩은김치',
+        nickname: '썩은김치',
         profileOpen: true,
         goodFeedback,
         badFeedback,
