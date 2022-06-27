@@ -2,7 +2,8 @@ import { useTheme } from '@emotion/react';
 import React from 'react';
 import { StyledTypography } from './Typography.style';
 
-import type { TypographyVariant } from '../../types/typography.type';
+import type { TypographyVariant } from '../../../types/typography.type';
+import type { ColorVariant } from '../../../types/color.type';
 
 export interface TypographyProps {
   variant?: TypographyVariant;
@@ -10,6 +11,7 @@ export interface TypographyProps {
   nowrap?: boolean;
   children: React.ReactNode;
   margin?: string;
+  color?: ColorVariant;
 }
 
 function Typography(props: TypographyProps) {

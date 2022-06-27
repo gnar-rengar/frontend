@@ -1,13 +1,13 @@
 import React from 'react';
-import Typography from './Typography';
+import Typography from '../typography/Typography';
 import { StyledButton } from './Button.style';
 
-import type { ColorVariant } from '../../types/color.type';
+import type { ColorVariant } from '../../../types/color.type';
 
 export interface ButtonProps {
   type?: 'button' | 'submit' | 'reset';
   color?: ColorVariant;
-  variant?: 'contained' | 'outlined';
+  variant?: 'contained' | 'outlined' | 'text';
   size?: 'sm' | 'lg';
   value?: string | number;
   disabled?: boolean;
