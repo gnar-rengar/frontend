@@ -1,20 +1,7 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
-interface MyPageDTO {
-  success: boolean;
-  profileUrl: string;
-  nickcName: string;
-  profileOpen: true;
-  goodFeedback: {
-    description: string;
-    count: number;
-  }[];
-  badFeedback: {
-    description: string;
-    count: number;
-  }[];
-}
+import type { MyPageDTO } from '../types/dto/myPage.type';
 
 const fetchMyPage = async () => {
   const { data } = await axios.get('https://api.duo-duo/users/mypage');

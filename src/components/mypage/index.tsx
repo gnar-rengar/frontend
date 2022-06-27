@@ -3,7 +3,7 @@ import FeedBack from './FeedBack';
 import { Asking, BasicContainer, Button, Card, Divider } from '../common';
 
 import { ProfileCardContainer } from './style';
-import useGetMyPage from '../hooks/useGetMyPage';
+import useGetMyPage from '../../hooks/useGetMyPage';
 
 function MyPage() {
   const {
