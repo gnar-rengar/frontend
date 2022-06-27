@@ -6,7 +6,7 @@ export const OnBoardingContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 56px;
+  gap: 40px;
   padding-bottom: calc(48px * 2);
 `;
 
@@ -16,22 +16,15 @@ export const OnBoardingEachContainer = styled.div`
   flex-direction: column;
   gap: 16px;
 
-  .titleContainer {
+  .container {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
-
-  .container {
-    & > div > p {
-      color: ${({ theme }) => theme.color.error};
-      margin-top: 8px;
-    }
-    .flexContainer {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
+  .flexContainer {
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 `;
 
@@ -67,7 +60,6 @@ export const VoiceButtonContainer = styled.div`
 
 export const VoiceButton = styled(ShareButton)<{ active: boolean }>`
   padding: 8px 16px;
-
   ${({ active, theme }) => {
     if (active) {
       return `
@@ -80,13 +72,23 @@ export const VoiceButton = styled(ShareButton)<{ active: boolean }>`
   }}
 `;
 
-export const SubmitButton = styled(ShareButton)`
+export const SubmitButton = styled(ShareButton)<{ active: boolean }>`
+  position: fixed;
+  bottom: 20px;
   max-width: 343px;
   width: 100%;
   height: 48px;
   padding-top: 5px;
-  position: fixed;
-  bottom: 20px;
+  ${({ active, theme }) => {
+    if (active) {
+      return `
+        background-color: ${theme.color.primary};
+      `;
+    }
+    return `
+      background-color: ${theme.color.disable};
+    `;
+  }}
 `;
 
 export const CustomCheckbox = styled.input`
