@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { AppProps } from 'next/app';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
@@ -12,11 +12,20 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
 }
 
 function App({ Component, pageProps }: AppProps) {
-  const [queryClient] = React.useState(() => new QueryClient());
+  const queryClient = useRef(
+    new QueryClient({
+      defaultOptions: {
+        queries: {
+          suspense: true,
+        },
+      },
+    })
+  );
+
   return (
     <>
       <GlobalStyle />
-      <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient.current}>
         <Hydrate state={pageProps.dehydratedState}>
           <RecoilRoot>
             <ThemeProvider theme={darkTheme}>

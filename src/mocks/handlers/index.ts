@@ -1,4 +1,5 @@
 import { rest } from 'msw';
+import { userHandlers } from './user';
 
 export const handlers = [
   rest.patch('/auth/onboarding', (req, res, ctx) => {
@@ -30,4 +31,6 @@ export const handlers = [
       })
     );
   }),
+
+  ...userHandlers,
 ];
