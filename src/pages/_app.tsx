@@ -3,9 +3,13 @@ import { ThemeProvider } from '@emotion/react';
 import { AppProps } from 'next/app';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { RecoilRoot } from 'recoil';
+import axios from 'axios';
+
 import Layout from '../components/layout/Layout';
 import { darkTheme } from '../theme';
 import GlobalStyle from '../theme/globalStyle';
+
+axios.defaults.baseURL = 'https://api.duo-duo';
 
 if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
   require('../mocks');
