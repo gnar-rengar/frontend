@@ -9,5 +9,5 @@ export const LayoutContainer = styled.div`
 `;
 
 export const Main = styled.main`
-  padding: 16px;
+  padding: 0 16px;
 `;
