@@ -26,6 +26,7 @@ const onBoardingErrorMessage = {
   nickNameCheck: '확인 버튼을 통해 소환사명을 확인해주세요',
   checkbox: '하나 이상 골라주셔야 잘 추천해드릴 수 있어요!!!',
 };
+
 const joyfulReasons = [
   '텐션이 나랑 잘 맞았어요.',
   '좋은 피드백을 해주셨어요.',
@@ -41,6 +42,10 @@ const awfulReasons = [
   '분노 조절을 못해요.',
 ];
 
+const reviewWriteErrorMessage = {
+  feedback: '하나 이상 골라주세요',
+};
+
 export {
   playStyle,
   position,
@@ -49,4 +54,5 @@ export {
   onBoardingErrorMessage,
   joyfulReasons,
   awfulReasons,
+  reviewWriteErrorMessage,
 };

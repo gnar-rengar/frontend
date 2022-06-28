@@ -5,7 +5,7 @@ import { Asking, BasicContainer, Button, Card, Divider } from '../common';
 import { ProfileCardContainer } from './style';
 import useGetMyPage from '../../hooks/useGetMyPage';
 
-function MyPage() {
+function MyPageComponent() {
   const {
     data: { profileUrl, nickname, goodFeedback, badFeedback },
   } = useGetMyPage();
@@ -61,4 +61,4 @@ function MyPage() {
     </div>
   );
 }
-export default MyPage;
+export default MyPageComponent;
