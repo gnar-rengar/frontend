@@ -1,6 +1,6 @@
 module.exports = {
   excludeFile: (str) => /\*.{spec,test}.js/.test(str),
   outDir: '.next',
-  reactStrictMode: true,
+  reactStrictMode: false,
   concurrentFeatures: true,
 };
