@@ -4,6 +4,9 @@ import Tier from './Tier';
 import Voice from '../../icons/Voice';
 
 import { Bottom, Img, Profile, StyledCard, Top } from './style';
+import PlayStyle from './PlayStyle';
+import MostChamp from './MostChamp';
+import Position from './Position';
 
 const tiers = [
   {
@@ -26,7 +29,7 @@ const tiers = [
   },
 ];
 const playStyles = ['공격적', '무지성', '3렙에 안오면 던짐', '남탓 안함', '텐션 높음', '말 많음'];
-const positions = ['top', 'jungle', 'mid'];
+const positions = ['top', 'jg', 'mid'];
 const mostChamps = ['Yasuo', 'Wukong', 'Yone'];
 
 function Card({ profileImg, nickname }: { profileImg: string; nickname: string }) {
@@ -39,13 +42,12 @@ function Card({ profileImg, nickname }: { profileImg: string; nickname: string }
           <Typography variant="body1" data-testid="nickname">
             {nickname}
           </Typography>
-          <Voice />
         </Profile>
       </Top>
       <Bottom>
         <PlayStyle playStyles={playStyles}>1</PlayStyle>
         <Position positions={positions}>1</Position>
-        <MostChamps mostChamps={mostChamps}>1</MostChamps>
+        <MostChamp mostChamps={mostChamps}>1</MostChamp>
       </Bottom>
     </StyledCard>
   );

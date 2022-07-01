@@ -1,13 +1,17 @@
 import styled from '@emotion/styled';
 
-export const StyledChip = styled.span<{ chosen: boolean }>`
+export const StyledChip = styled.span<{ chosen: boolean; size: 'sm' | 'lg' }>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 5px 14px;
-  height: 30px;
+  height: fit-content;
   border-radius: 100px;
   cursor: pointer;
+
+  ${({ size }) => {
+    if (size === 'sm') return 'padding: 4px 8px;';
+    return 'padding: 5px 14px;';
+  }}
 
   ${({ theme, chosen }) => {
     const { color } = theme;

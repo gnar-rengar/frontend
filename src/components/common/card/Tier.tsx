@@ -1,19 +1,21 @@
 import React from 'react';
-import Typography from '../typography/Typography';
-
 import { TierLi, Ul } from './style';
 
 interface TierProps {
   tiers: any;
 }
 
+// TODO 카드 넘어가면 ellipsis 처리하기. css로 가능한지 확인 필요
 function Tier(props: TierProps) {
   const { tiers } = props;
+
   return (
     <Ul>
       {tiers.map((tier) => (
         <TierLi>
-          <Typography variant="body3" nowrap>{`${tier.season}${tier.tier}`}</Typography>
+          <p style={{ fontWeight: '700', fontSize: '9px', lineHeight: '12px' }}>
+            {`${tier.season}${tier.tier}`}
+          </p>
         </TierLi>
       ))}
     </Ul>

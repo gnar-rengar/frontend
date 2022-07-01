@@ -1,5 +1,6 @@
 import React from 'react';
 import Chip from '../chip/Chip';
+
 import { Ul } from './style';
 
 function PlayStyle(props) {
@@ -8,7 +9,7 @@ function PlayStyle(props) {
   return (
     <Ul>
       {playStyles.map((playStyle) => (
-        <Chip>{playStyle}</Chip>
+        <Chip size="sm">{playStyle}</Chip>
       ))}
     </Ul>
   );

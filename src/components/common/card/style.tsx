@@ -16,7 +16,6 @@ export const Top = styled.div`
   flex-direction: column;
   gap: 8px;
 `;
-
 export const Profile = styled.div`
   display: flex;
   align-items: center;
@@ -26,11 +25,23 @@ export const Profile = styled.div`
 export const Ul = styled.ul`
   display: flex;
   gap: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const TierLi = styled.li`
   padding: 2px 4px;
-  border: 0.5px solid ${({ theme }) => theme.color.onSurface};
+  border-radius: 4px;
+
+  ${({ theme: { color } }) => `
+    border: 0.5px solid ${color.onBackgroundSub};
+    color: ${color.onBackgroundSub};
+
+    &:first-child {
+      border: 0.5px solid ${color.onSurface};
+      color: ${color.onSurface};
+  `}
 `;
 
 export const Img = styled.img`
