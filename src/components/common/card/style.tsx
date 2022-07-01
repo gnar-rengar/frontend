@@ -39,7 +39,7 @@ export const TierLi = styled.li`
     border: 0.5px solid ${color.onBackgroundSub};
     color: ${color.onBackgroundSub};
 
-    &:first-child {
+    &:first-of-type {
       border: 0.5px solid ${color.onSurface};
       color: ${color.onSurface};
     }
