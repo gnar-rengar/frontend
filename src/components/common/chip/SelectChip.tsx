@@ -17,7 +17,7 @@ function SelectChip(props: SelectChipProps) {
 
   return (
     <Label htmlFor={htmlFor}>
-      <Input type="checkbox" value={value} checked={checked} onChange={() => {}} />
+      <Input type="checkbox" value={value} defaultChecked={checked} />
       <Chip onClick={() => setChecked((p) => !p)} chosen={checked} {...other} />
     </Label>
   );

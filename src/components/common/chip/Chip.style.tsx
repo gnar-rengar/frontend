@@ -4,9 +4,7 @@ export const StyledChip = styled.span<{ chosen: boolean; size: 'sm' | 'lg' }>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  height: fit-content;
   border-radius: 100px;
-  cursor: pointer;
 
   ${({ size }) => {
     if (size === 'sm') return 'padding: 4px 8px;';
