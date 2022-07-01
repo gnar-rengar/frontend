@@ -3,13 +3,19 @@ import Chip from '../chip/Chip';
 
 import { Ul } from './style';
 
-function PlayStyle(props) {
+interface PlayStyleProps {
+  playStyles: string[];
+}
+
+function PlayStyle(props: PlayStyleProps) {
   const { playStyles } = props;
 
   return (
     <Ul>
       {playStyles.map((playStyle) => (
-        <Chip size="sm">{playStyle}</Chip>
+        <Chip key={playStyle} size="sm">
+          {playStyle}
+        </Chip>
       ))}
     </Ul>
   );

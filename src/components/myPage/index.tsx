@@ -1,11 +1,11 @@
 import React from 'react';
 import FeedBack from './FeedBack';
-import { Asking, BasicContainer, Button, Card, Divider } from '../common';
+import { Asking, BasicContainer, Button, Card, Divider, Typography } from '../common';
 
-import { ProfileCardContainer } from './style';
+import { AreaButton, ProfileCardContainer } from './style';
 import useGetMyPage from '../../hooks/useGetMyPage';
 
-function MyPageComponent() {
+function MyPage() {
   const {
     data: { profileUrl, nickname, goodFeedback, badFeedback },
   } = useGetMyPage();
@@ -42,23 +42,18 @@ function MyPageComponent() {
       </Asking>
       <Divider />
       <BasicContainer>
-        <Button variant="text" color="onBackgroundSub" size="lg">
-          로그인
-        </Button>
+        <AreaButton type="button">
+          <Typography variant="body1">로그인</Typography>
+        </AreaButton>
       </BasicContainer>
       <Divider />
       <BasicContainer>
-        <Button variant="text" color="onBackgroundSub" size="lg">
-          회원탈퇴
-        </Button>
+        <AreaButton type="button">
+          <Typography variant="body1">회원 탈퇴</Typography>
+        </AreaButton>
       </BasicContainer>
       <Divider />
-      <BasicContainer>
-        <Button variant="text" color="onBackgroundSub" size="lg">
-          123
-        </Button>
-      </BasicContainer>
     </div>
   );
 }
-export default MyPageComponent;
+export default MyPage;

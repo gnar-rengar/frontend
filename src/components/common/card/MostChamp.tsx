@@ -1,15 +1,17 @@
 import React from 'react';
-import Chip from '../chip/Chip';
-
 import { Img, Ul } from './style';
 
-function MostChamp(props) {
+interface MostChampProps {
+  mostChamps: string[];
+}
+
+function MostChamp(props: MostChampProps) {
   const { mostChamps } = props;
 
   return (
     <Ul>
-      {mostChamps.map((position) => (
-        <Img src="http://via.placeholder.com/24x24" alt="most-champion" />
+      {mostChamps.map((mostChamp) => (
+        <Img key={mostChamp} src="http://via.placeholder.com/24x24" alt="most-champion" />
       ))}
     </Ul>
   );

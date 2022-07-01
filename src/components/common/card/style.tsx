@@ -16,7 +16,8 @@ export const Top = styled.div`
   flex-direction: column;
   gap: 8px;
 `;
-export const Profile = styled.div`
+
+export const StyledProfile = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
@@ -41,7 +42,14 @@ export const TierLi = styled.li`
     &:first-child {
       border: 0.5px solid ${color.onSurface};
       color: ${color.onSurface};
-  `}
+    }
+  `};
+
+  p {
+    font-weight: 700;
+    font-size: 9px;
+    line-height: 12px;
+  }
 `;
 
 export const Img = styled.img`
