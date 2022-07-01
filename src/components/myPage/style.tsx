@@ -12,3 +12,12 @@ export const StyledFeedback = styled.div`
   align-items: center;
   gap: 8px;
 `;
+
+export const AreaButton = styled.button`
+  width: 100%;
+  background: inherit;
+  border: none;
+  color: ${({ theme: { color } }) => color.onBackgroundSub};
+  text-align: left;
+  cursor: pointer;
+`;

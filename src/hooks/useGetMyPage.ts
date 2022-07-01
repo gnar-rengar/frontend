@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import axios from 'axios';
+import { axios } from '../axios';
 
 import type { MyPageDTO } from '../types/dto/myPage.type';
 
