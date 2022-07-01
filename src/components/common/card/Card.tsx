@@ -1,20 +1,52 @@
 import React from 'react';
 import Typography from '../typography/Typography';
-import { StyledCard } from './Card.style';
+import Tier from './Tier';
+import Voice from '../../icons/Voice';
+
+import { Bottom, Img, Profile, StyledCard, Top } from './style';
+
+const tiers = [
+  {
+    season: ' S2021',
+    tier: 'Gold',
+    rank: '4',
+    leaguePoints: 0,
+  },
+  {
+    season: ' S2020',
+    tier: 'Gold',
+    rank: '3',
+    leaguePoints: 44,
+  },
+  {
+    season: ' S21',
+    tier: 'Gold',
+    rank: '2',
+    leaguePoints: 21,
+  },
+];
+const playStyles = ['공격적', '무지성', '3렙에 안오면 던짐', '남탓 안함', '텐션 높음', '말 많음'];
+const positions = ['top', 'jungle', 'mid'];
+const mostChamps = ['Yasuo', 'Wukong', 'Yone'];
 
 function Card({ profileImg, nickname }: { profileImg: string; nickname: string }) {
   return (
     <StyledCard>
-      <img
-        src={profileImg}
-        width="50px"
-        height="50px"
-        alt="profile icon"
-        style={{ borderRadius: '50%' }}
-      />
-      <Typography variant="body3" data-testid="nickname">
-        {nickname}
-      </Typography>
+      <Top>
+        <Tier tiers={tiers} />
+        <Profile>
+          <Img src={profileImg} alt="profile icon" />
+          <Typography variant="body1" data-testid="nickname">
+            {nickname}
+          </Typography>
+          <Voice />
+        </Profile>
+      </Top>
+      <Bottom>
+        <PlayStyle playStyles={playStyles}>1</PlayStyle>
+        <Position positions={positions}>1</Position>
+        <MostChamps mostChamps={mostChamps}>1</MostChamps>
+      </Bottom>
     </StyledCard>
   );
 }

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const StyledChip = styled.label<{ chosen: boolean }>`
+export const StyledChip = styled.span<{ chosen: boolean }>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -25,4 +25,11 @@ export const StyledChip = styled.label<{ chosen: boolean }>`
       color: ${color.onBackgroundSub};
     `;
   }}
+`;
+
+export const Input = styled.input`
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 `;
