@@ -63,8 +63,7 @@ function OnBoarding() {
   const submitMutation = useOnBoardingMutation();
 
   const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
-    // submitMutation.mutate(data);
-    console.log(data);
+    submitMutation.mutate(data);
   };
 
   const onClickNickNameCheck = async () => {

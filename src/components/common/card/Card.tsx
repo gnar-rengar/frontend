@@ -8,6 +8,8 @@ import Tier from './Tier';
 
 import { Bottom, StyledCard, Top } from './style';
 
+import type { MyPageDTO } from '../../../types/dto/myPage.type';
+
 const tiers = [
   {
     season: ' S2021',
@@ -32,12 +34,20 @@ const playStyles = ['공격적', '무지성', '3렙에 안오면 던짐', '남�
 const positions = ['top', 'jg', 'mid'];
 const mostChamps = ['Yasuo', 'Wukong', 'Yone'];
 
-function Card({ profileImg, nickname }: { profileImg: string; nickname: string }) {
+interface CardProps {
+  userInfo: Partial<MyPageDTO>;
+}
+
+function Card(props: CardProps) {
+  const {
+    userInfo: { profileUrl, nickname },
+  } = props;
+
   return (
     <StyledCard>
       <Top>
         <Tier tiers={tiers} />
-        <Profile profileImg={profileImg} nickname={nickname} />
+        <Profile profileUrl={profileUrl} nickname={nickname} />
       </Top>
       <Bottom>
         <PlayStyle playStyles={playStyles} />

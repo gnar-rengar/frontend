@@ -1,17 +1,18 @@
 import React from 'react';
-import { StyledChip } from './Chip.style';
 import Typography from '../typography/Typography';
+
+import { StyledChip } from './Chip.style';
 
 export interface ChipProps {
   chosen?: boolean;
+  size?: 'sm' | 'lg';
   children: React.ReactNode;
-  size: 'sm' | 'lg';
   onClick?: (e: React.MouseEvent<HTMLLabelElement>) => void;
 }
 
 const typoVariant = {
   sm: 'caption',
-  lg: 'body3',
+  lg: 'body4',
 } as const;
 
 function Chip(props: ChipProps) {
@@ -25,5 +26,10 @@ function Chip(props: ChipProps) {
     </StyledChip>
   );
 }
+
+Chip.defaultProps = {
+  chosen: false,
+  size: 'lg',
+};
 
 export default Chip;

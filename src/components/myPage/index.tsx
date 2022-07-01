@@ -3,17 +3,36 @@ import FeedBack from './FeedBack';
 import { Asking, BasicContainer, Button, Card, Divider, Typography } from '../common';
 
 import { AreaButton, ProfileCardContainer } from './style';
-import useGetMyPage from '../../hooks/useGetMyPage';
+// import useGetMyPage from '../../hooks/useGetMyPage';
+
+const myInfo = {
+  profileUrl: 'http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/502.png',
+  nickname: '썩은김치',
+  goodFeedback: [
+    { description: '멘탈이 좋아요', count: 32 },
+    { description: '말을 예쁘게 해요', count: 24 },
+    { description: '좋은 피드백을 해줘요', count: 14 },
+    { description: '유쾌해서 재밌어요', count: 3 },
+  ],
+  badFeedback: [
+    { description: '게임 도중에 삐졌어요', count: 21 },
+    { description: '이유없이 보이스를 나갔어요', count: 12 },
+    { description: '너무 나쁜말을 많이 써요', count: 4 },
+    { description: '실력이 형편 없어요', count: 1 },
+  ],
+};
 
 function MyPage() {
-  const {
-    data: { profileUrl, nickname, goodFeedback, badFeedback },
-  } = useGetMyPage();
+  // const {
+  //   data: { profileUrl, nickname, goodFeedback, badFeedback },
+  // } = useGetMyPage();
+
+  const { goodFeedback, badFeedback } = myInfo;
 
   return (
     <div>
       <ProfileCardContainer>
-        <Card profileImg={profileUrl} nickname={nickname} />
+        <Card userInfo={myInfo} />
         <Button size="lg" variant="outlined" color="onBackground">
           내 플레이 정보 수정하기
         </Button>
@@ -52,7 +71,6 @@ function MyPage() {
           <Typography variant="body1">회원 탈퇴</Typography>
         </AreaButton>
       </BasicContainer>
-      <Divider />
     </div>
   );
 }
