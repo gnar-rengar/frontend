@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
 
-import type { ReviewWriteDTO } from '../types/dto/reviewWrite.type';
+import type { ReviewWriteDTO } from '../types/api.type';
 
 interface Variables {
   userId: string;

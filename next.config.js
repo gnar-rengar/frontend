@@ -3,4 +3,8 @@ module.exports = {
   outDir: '.next',
   reactStrictMode: false,
   concurrentFeatures: true,
+  images: {
+    domains: ['ddragon.leagueoflegends.com', 'via.placeholder.com'],
+    allowFutureImage: true,
+  },
 };

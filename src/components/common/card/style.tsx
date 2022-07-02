@@ -58,6 +58,14 @@ export const Img = styled.img`
   border-radius: 50%;
 `;
 
+export const ImgWrapper = styled.span``;
+
+export const CircleImgWrapper = styled(ImgWrapper)`
+  & > span {
+    border-radius: 50%;
+  }
+`;
+
 export const Bottom = styled.div`
   display: flex;
   flex-direction: column;

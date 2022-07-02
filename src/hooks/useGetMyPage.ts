@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import { axios } from '../axios';
 
-import type { MyPageDTO } from '../types/dto/myPage.type';
+import type { MyPageDTO } from '../types/api.type';
 
 const fetchMyPage = async () => {
   const { data } = await axios.get('https://api.duo-duo/users/mypage');
