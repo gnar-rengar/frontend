@@ -4,7 +4,10 @@ import { LoginDTO } from '../types/dto/login.type';
 
 const useLogin = async () => {
   const router = useRouter();
-  const { code, state, sns } = router.query;
+  const state = 'STATE_STRING';
+  const { code, sns } = router.query;
+
+  console.log(code, state);
 
   if (code) {
     try {
