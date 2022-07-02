@@ -11,7 +11,8 @@ import {
 } from '../../constant';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { OnBoardingInput } from '../../types/dto/onBoarding.type';
-import { Chip, Radio, TextField, Typography, Asking } from '../common';
+import { Radio, TextField, Typography, Asking } from '../common';
+import SelectChip from '../common/chip/SelectChip';
 import {
   CheckboxContainer,
   ChipContainer,
@@ -56,10 +57,8 @@ function OnBoarding() {
     resolver: yupResolver(validationSchema),
     mode: 'onChange',
   });
+
   const registerProps = register('communication');
-  const [checkedPlayStyle, setCheckedPlayStyle] = useState<string[]>([]);
-  const [checkedPosition, setCheckedPosition] = useState<string[]>([]);
-  const [checkedVoice, setCheckedVoice] = useState<string[]>([]);
   const [useVoice, setUseVoice] = useState('');
   const submitMutation = useOnBoardingMutation();
 
@@ -73,20 +72,6 @@ function OnBoarding() {
     setValue('nickNameCheck', true);
     clearErrors('nickNameCheck');
   };
-
-  const onClickCheckbox = (
-    e: React.MouseEvent<HTMLLabelElement>,
-    state: string[],
-    setState: React.Dispatch<React.SetStateAction<string[]>>
-  ) => {
-    const target = e.target as HTMLElement;
-    const value = target.innerText;
-
-    if (state.includes(value)) {
-      setState((prev) => prev.filter((item) => item !== value));
-    } else setState((prev) => [...prev, value]);
-  };
-
   const voiceButtonIsState = (innerText: string) => {
     if (useVoice === innerText) return true;
     return false;
@@ -134,14 +119,9 @@ function OnBoarding() {
             <ChipContainer>
               {playStyle.map((style) => (
                 <React.Fragment key={style}>
-                  <Chip
-                    chosen={checkedPlayStyle.includes(style)}
-                    onClick={(e) => onClickCheckbox(e, checkedPlayStyle, setCheckedPlayStyle)}
-                    key={style}
-                    htmlfor={style}
-                  >
+                  <SelectChip value={style} key={style} htmlFor={style}>
                     {style}
-                  </Chip>
+                  </SelectChip>
                   <CustomCheckbox
                     {...register('playStyle')}
                     key={`${style} 온보딩`}
@@ -164,14 +144,9 @@ function OnBoarding() {
             <ChipContainer>
               {position.map((pos) => (
                 <React.Fragment key={pos}>
-                  <Chip
-                    chosen={checkedPosition.includes(pos)}
-                    key={pos}
-                    htmlfor={pos}
-                    onClick={(e) => onClickCheckbox(e, checkedPosition, setCheckedPosition)}
-                  >
+                  <SelectChip value={pos} key={pos} htmlFor={pos}>
                     {pos}
-                  </Chip>
+                  </SelectChip>
                   <CustomCheckbox
                     {...register('position')}
                     key={`${pos} 온보딩`}
@@ -222,14 +197,9 @@ function OnBoarding() {
               <ChipContainer>
                 {voiceChannel.map((channel) => (
                   <React.Fragment key={channel}>
-                    <Chip
-                      chosen={checkedVoice.includes(channel)}
-                      onClick={(e) => onClickCheckbox(e, checkedVoice, setCheckedVoice)}
-                      key={channel}
-                      htmlfor={channel}
-                    >
+                    <SelectChip value={channel} key={channel} htmlFor={channel}>
                       {channel}
-                    </Chip>
+                    </SelectChip>
                     <CustomCheckbox
                       value={channel}
                       key={`${channel} 온보딩`}
