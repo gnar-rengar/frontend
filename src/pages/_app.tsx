@@ -5,6 +5,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { RecoilRoot } from 'recoil';
 import axios from 'axios';
 
+import dayjs from 'dayjs';
 import Layout from '../components/layout/Layout';
 import { darkTheme } from '../theme';
 import GlobalStyle from '../theme/globalStyle';
@@ -18,6 +19,7 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
 }
 
 function App({ Component, pageProps }: AppProps) {
+  dayjs.locale('ko');
   const queryClient = useRef(
     new QueryClient({
       defaultOptions: {
