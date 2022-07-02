@@ -9,8 +9,8 @@ import Layout from '../components/layout/Layout';
 import { darkTheme } from '../theme';
 import GlobalStyle from '../theme/globalStyle';
 
-axios.defaults.baseURL = 'https://api.duo-duo';
-// axios.defaults.baseURL = 'http://rengasis.shop';
+// axios.defaults.baseURL = 'https://api.duo-duo';
+axios.defaults.baseURL = 'http://rengasis.shop';
 axios.defaults.withCredentials = true;
 
 if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {

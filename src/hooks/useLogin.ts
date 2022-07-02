@@ -6,9 +6,6 @@ const useLogin = async () => {
   const router = useRouter();
   const state = 'STATE_STRING';
   const { code, sns } = router.query;
-
-  console.log(code, state);
-
   if (code) {
     try {
       const { data } = await axios.get<LoginDTO>(
