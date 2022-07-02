@@ -1,9 +1,8 @@
 import React from 'react';
-// import Image from 'next/image';
 import Image from 'next/future/image';
 import Typography from '../typography/Typography';
 
-import { CircleImgWrapper, StyledProfile } from './style';
+import { StyledProfile } from './style';
 
 interface ProfileProps {
   profileUrl: string;
@@ -16,7 +15,7 @@ function Profile(props: ProfileProps) {
 
   return (
     <StyledProfile>
-      <Image src={profileUrl} alt="profile icon" width="24" height="24" priority optim />
+      <Image src={profileUrl} alt="profile icon" width="24px" height="24px" priority />
       <Typography variant="body1" data-testid="nickname">
         {nickname}
       </Typography>

@@ -5,6 +5,10 @@ module.exports = {
   concurrentFeatures: true,
   images: {
     domains: ['ddragon.leagueoflegends.com', 'via.placeholder.com'],
-    allowFutureImage: true,
+  },
+  experimental: {
+    images: {
+      allowFutureImage: true,
+    },
   },
 };

@@ -8,40 +8,19 @@ import Tier from './Tier';
 
 import { Bottom, StyledCard, Top } from './style';
 
-import type { MyPageDTO } from '../../../types/dto/myPage.type';
-
-const tiers = [
-  {
-    season: ' S2021',
-    tier: 'Gold',
-    rank: 4,
-    leaguePoints: 0,
-  },
-  {
-    season: ' S2020',
-    tier: 'Gold',
-    rank: 3,
-    leaguePoints: 44,
-  },
-  {
-    season: ' S21',
-    tier: 'Gold',
-    rank: 2,
-    leaguePoints: 21,
-  },
-];
-const playStyles = ['공격적', '무지성', '3렙에 안오면 던짐', '남탓 안함', '텐션 높음', '말 많음'];
-const positions = ['top', 'jg', 'mid'];
-const mostChamps = ['Yasuo', 'Wukong', 'Yone'];
+import type { MyPageDTO } from '../../../types/api.type';
 
 interface CardProps {
-  userInfo: Partial<MyPageDTO>;
+  nickname: string;
+  profileUrl: string;
+  tiers: { season: string; tier: string; rank: number; leaguePoints: number }[];
+  playStyles: string[];
+  positions: string[];
+  mostChamps: { name: string; url: string }[];
 }
 
 function Card(props: CardProps) {
-  const {
-    userInfo: { profileUrl, nickname },
-  } = props;
+  const { nickname, profileUrl, tiers, playStyles, positions, mostChamps } = props;
 
   return (
     <StyledCard>

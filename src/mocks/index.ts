@@ -14,7 +14,6 @@ if (typeof window === 'undefined') {
     //   print.warning();
     // },
     warnOnUncaptured: false,
-    onunhandledRequest: 'bypass',
     quiet: true,
   });
 }

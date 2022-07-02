@@ -21,6 +21,12 @@ export const StyledProfile = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+
+  img {
+    width: 24px;
+    height: 24p;
+    border-radius: 50%;
+  }
 `;
 
 export const Ul = styled.ul`
@@ -58,14 +64,13 @@ export const Img = styled.img`
   border-radius: 50%;
 `;
 
-export const ImgWrapper = styled.span``;
-
-export const CircleImgWrapper = styled(ImgWrapper)`
-  & > span {
+export const ImgWrapper = styled.span`
+  width: 24px;
+  height: 24px;
+  img {
     border-radius: 50%;
   }
 `;
-
 export const Bottom = styled.div`
   display: flex;
   flex-direction: column;

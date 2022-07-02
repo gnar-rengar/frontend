@@ -1,9 +1,8 @@
-import Image from 'next/image';
 import React from 'react';
-import { CircleImgWrapper, Ul } from './style';
+import { ImgWrapper, Ul } from './style';
 
 interface MostChampProps {
-  mostChamps: string[];
+  mostChamps: { name: string; url: string }[];
 }
 
 function MostChamp(props: MostChampProps) {
@@ -12,16 +11,15 @@ function MostChamp(props: MostChampProps) {
   return (
     <Ul>
       {mostChamps.map((mostChamp) => (
-        <CircleImgWrapper>
-          <Image
-            key={mostChamp}
-            src="http://via.placeholder.com/24x24"
+        <ImgWrapper>
+          <img
+            key={mostChamp.name}
+            src={mostChamp.url}
             alt="most-champion"
             width="24"
             height="24"
-            loading="eager"
           />
-        </CircleImgWrapper>
+        </ImgWrapper>
       ))}
     </Ul>
   );
