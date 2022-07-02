@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from '@emotion/react';
 import { render } from '@testing-library/react';
-import MyPageComponent from '../components/mypage';
+import MyPageComponent from '../components/myPage';
 
 import { darkTheme } from '../theme';
 
