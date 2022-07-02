@@ -1,5 +1,4 @@
 import { ThemeProvider } from '@emotion/react';
-import dayjs from 'dayjs';
 import { AppProps } from 'next/app';
 import React, { useRef } from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
@@ -13,7 +12,6 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
 }
 
 function App({ Component, pageProps }: AppProps) {
-  dayjs.locale('ko');
   const queryClient = useRef(
     new QueryClient({
       defaultOptions: {

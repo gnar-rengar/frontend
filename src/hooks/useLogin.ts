@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { LoginDTO } from '../types/dto/login.type';
 
 const useLogin = async () => {
+  dayjs.locale('ko');
   const router = useRouter();
   const state = 'STATE_STRING';
   const { code, sns } = router.query;

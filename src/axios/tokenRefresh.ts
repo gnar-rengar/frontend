@@ -4,6 +4,7 @@ import Cookie from 'js-cookie';
 import { axios } from '.';
 
 const refresh = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
+  dayjs.locale('ko');
   const refreshToken = Cookie.get('refreshToken');
   const expireAt = localStorage.getItem('expiresAt');
   let token = localStorage.getItem('accessToken');
