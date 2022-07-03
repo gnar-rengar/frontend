@@ -1,19 +1,19 @@
-import axios from 'axios';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/router';
-import { LoginDTO } from '../types/dto/login.type';
+import { axios } from '../axios';
+import { LoginDTO } from '../types/api.type';
 
 const useLogin = async () => {
-  dayjs.locale('ko');
   const router = useRouter();
   const state = 'STATE_STRING';
   const { code, sns } = router.query;
+
   if (code) {
     try {
       const { data } = await axios.get<LoginDTO>(
         `/auth/${sns}/callback?code=${code}&state=${state}`
       );
-      const expireAt = dayjs(dayjs()).add(30, 'minute');
+      const expireAt = dayjs(dayjs()).locale('ko').add(30, 'minute');
       localStorage.setItem('accessToken', data.token);
       localStorage.setItem('expireAt', expireAt.format('MM-DD-HH-m'));
       router.replace('/');

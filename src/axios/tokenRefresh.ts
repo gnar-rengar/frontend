@@ -4,12 +4,11 @@ import Cookie from 'js-cookie';
 import { axios } from '.';
 
 const refresh = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
-  dayjs.locale('ko');
   const refreshToken = Cookie.get('refreshToken');
   const expireAt = localStorage.getItem('expiresAt');
   let token = localStorage.getItem('accessToken');
 
-  if (dayjs(expireAt).diff(dayjs()) < 0 && refreshToken) {
+  if (dayjs(expireAt).locale('ko').diff(dayjs()) < 0 && refreshToken) {
     const body = {
       refreshToken,
     };
