@@ -82,7 +82,7 @@ export const SubmitButton = styled(ShareButton)<{ active: boolean }>`
   ${({ active, theme }) => {
     if (active) {
       return `
-        background-color: ${theme.color.primary};
+        background-color: ${theme.color.primaryVariant};
       `;
     }
     return `

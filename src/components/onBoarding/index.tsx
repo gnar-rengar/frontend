@@ -1,14 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import {
-  communication,
-  onBoardingErrorMessage,
-  playStyle,
-  position,
-  voiceChannel,
-} from '../../constant';
+import { communication, onBoardingErrorMessage, position, voiceChannel } from '../../constant';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { Radio, TextField, Typography, Asking } from '../common';
 import SelectChip from '../common/chip/SelectChip';
@@ -29,13 +24,15 @@ import type { OnBoardingInput } from '../../types/api.type';
 const validationSchema = yup.object().shape({
   nickName: yup.string().required(onBoardingErrorMessage.nickName),
   nickNameCheck: yup.boolean().oneOf([true], onBoardingErrorMessage.nickNameCheck),
-  playStyle: yup.array(yup.string()).min(1, onBoardingErrorMessage.checkbox),
   position: yup.array(yup.string()).min(1, onBoardingErrorMessage.checkbox),
-  communication: yup.string().required(onBoardingErrorMessage.checkbox),
   useVoice: yup.boolean().typeError(onBoardingErrorMessage.checkbox),
   voiceChannel: yup.array(yup.string()).when('useVoice', {
     is: true,
     then: (schema) => schema.min(1, onBoardingErrorMessage.checkbox),
+  }),
+  communication: yup.string().when('useVoice', {
+    is: true,
+    then: (schema) => schema.required(onBoardingErrorMessage.checkbox),
   }),
 });
 
@@ -50,18 +47,25 @@ function OnBoarding() {
     defaultValues: {
       nickName: '',
       nickNameCheck: false,
-      playStyle: [],
       position: [],
-      communication: '',
       voiceChannel: [],
+      useVoice: null,
+      communication: '',
     },
     resolver: yupResolver(validationSchema),
     mode: 'onChange',
   });
-
+  const router = useRouter();
   const registerProps = register('communication');
   const [useVoice, setUseVoice] = useState('');
   const submitMutation = useOnBoardingMutation();
+
+  useEffect(() => {
+    const errorsArr = Object.keys(errors);
+    if (errorsArr.length > 0) {
+      router.push(`#${errorsArr[0]}`);
+    }
+  }, [errors]);
 
   const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
     submitMutation.mutate(data);
@@ -70,7 +74,7 @@ function OnBoarding() {
   const onClickNickNameCheck = async () => {
     // const nickName = getValues('nickName');
     // const { data } = await axios.get(`https://api.duo-duo/user/checkNick?lolNickName=${nickName}`);
-    setValue('nickNameCheck', true);
+    setValue('nickNameCheck', true, { shouldValidate: true });
     clearErrors('nickNameCheck');
   };
   const voiceButtonIsState = (innerText: string) => {
@@ -82,12 +86,12 @@ function OnBoarding() {
     e.preventDefault();
     const value = innerText === '사용해요';
     setUseVoice(innerText);
-    setValue('useVoice', value);
+    setValue('useVoice', value, { shouldValidate: true });
   };
 
   return (
-    <OnBoardingContainer onSubmit={handleSubmit(onSubmitOnBoarding)}>
-      <OnBoardingEachContainer>
+    <OnBoardingContainer onSubmit={handleSubmit(onSubmitOnBoarding)} id="nickName">
+      <OnBoardingEachContainer id="nickNameCheck">
         <Asking
           title="소환사명을 알려주세요"
           caption="정확한 소환사명을 알려줘야지 남의 계정으로 하면 서비스 사용에 제재를 받을 수 있다고 알리기!!! 혹은 상대가 너를 찾을 수 없어요"
@@ -111,35 +115,7 @@ function OnBoarding() {
           </div>
         </Asking>
       </OnBoardingEachContainer>
-      <OnBoardingEachContainer>
-        <Asking
-          title="소환사님의 플레이스타일은? 우리가 좋은 듀오 구해드릴게~"
-          caption="부가설명 내용입니다"
-        >
-          <div className="container">
-            <ChipContainer>
-              {playStyle.map((style) => (
-                <React.Fragment key={style}>
-                  <SelectChip value={style} key={style} htmlFor={style}>
-                    {style}
-                  </SelectChip>
-                  <CustomCheckbox
-                    {...register('playStyle')}
-                    key={`${style} 온보딩`}
-                    type="checkbox"
-                    id={style}
-                    value={style}
-                  />
-                </React.Fragment>
-              ))}
-            </ChipContainer>
-            <Typography color="error" variant="caption" paragraph>
-              {(errors?.playStyle as any)?.message}
-            </Typography>
-          </div>
-        </Asking>
-      </OnBoardingEachContainer>
-      <OnBoardingEachContainer>
+      <OnBoardingEachContainer id="position">
         <Asking title="선호하는 포지션을 알려주세요" caption="부가설명 내용입니다">
           <div className="container">
             <ChipContainer>
@@ -164,15 +140,14 @@ function OnBoarding() {
           </div>
         </Asking>
       </OnBoardingEachContainer>
-      <OnBoardingEachContainer>
+      <OnBoardingEachContainer id="useVoice">
         <Asking title="음성 채팅을 사용하시나요?" caption="부가설명 내용입니다">
-          <div className="container">
+          <div className="container" id="vocieChannel">
             <VoiceButtonContainer>
               <VoiceButton
                 data-testid="useVoice"
                 onClick={(e) => onClickVoiceButton(e, '사용해요')}
                 active={voiceButtonIsState('사용해요')}
-                {...register('useVoice')}
               >
                 사용해요
               </VoiceButton>
@@ -214,17 +189,16 @@ function OnBoarding() {
               <Typography color="error" variant="caption" paragraph>
                 {(errors?.voiceChannel as any)?.message}
               </Typography>
+              <Typography data-testid="useVoiceTitle" variant="caption">
+                어떤 소통을 선호하시는지도 알려주세요.
+              </Typography>
+              <CheckboxContainer>
+                {communication.map((item) => (
+                  <Radio register={registerProps} label={item} key={item} />
+                ))}
+              </CheckboxContainer>
             </div>
           )}
-        </Asking>
-      </OnBoardingEachContainer>
-      <OnBoardingEachContainer>
-        <Asking title="어떤 소통을 선호하시나요?" caption="부가설명 내용입니다">
-          <CheckboxContainer>
-            {communication.map((item) => (
-              <Radio register={registerProps} label={item} key={item} />
-            ))}
-          </CheckboxContainer>
         </Asking>
       </OnBoardingEachContainer>
       <SubmitButton active={isValid} type="submit" data-testid="submit">
