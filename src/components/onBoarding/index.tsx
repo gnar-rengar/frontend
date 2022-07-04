@@ -104,7 +104,7 @@ function OnBoarding() {
                 placeholder="정확한 소환사명을 입력해주세요"
               />
               <NickNameButton onClick={onClickNickNameCheck} type="button">
-                <Typography nowrap variant="body4">
+                <Typography space="nowrap" variant="body4">
                   확인
                 </Typography>
               </NickNameButton>

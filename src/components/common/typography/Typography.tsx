@@ -12,6 +12,7 @@ export interface TypographyProps {
   nowrap?: boolean;
   paragraph?: boolean;
   component?: 'div' | 'span';
+  space?: string;
   children: React.ReactNode;
 }
 
@@ -31,7 +32,6 @@ function Typography(props: TypographyProps) {
 
 Typography.defaultProps = {
   variant: 'body1',
-  nowrap: false,
 };
 
 export default Typography;

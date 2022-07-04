@@ -20,7 +20,7 @@ function Chip(props: ChipProps) {
 
   return (
     <StyledChip onClick={onClick} chosen={chosen} size={size}>
-      <Typography variant={typoVariant[size]} nowrap>
+      <Typography variant={typoVariant[size]} space="nowrap">
         {children}
       </Typography>
     </StyledChip>
