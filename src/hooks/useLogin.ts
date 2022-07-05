@@ -5,7 +5,7 @@ import { LoginDTO } from '../types/api.type';
 
 const useLogin = async () => {
   const router = useRouter();
-  const state = 'STATE_STRING';
+  const state = process.env.NEXT_PUBLIC_STATE_CSRF;
   const { code, sns } = router.query;
 
   if (code) {
