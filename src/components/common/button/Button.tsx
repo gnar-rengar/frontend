@@ -12,7 +12,7 @@ export interface ButtonProps {
   value?: string | number;
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  children: string | number;
+  children: React.ReactNode;
 }
 
 const typoVariant = {
