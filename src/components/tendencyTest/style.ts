@@ -1,15 +1,18 @@
 import styled from '@emotion/styled';
 
 export const TestContainer = styled.div`
+  width: 100%;
   position: absolute;
   left: 50%;
-  top: 20%;
-  transform: translate(-50%, -20%);
+  top: 30%;
+  transform: translate(-50%, -30%);
+`;
+
+export const TestStartContainer = styled(TestContainer)`
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  width: 100%;
   align-items: center;
+  gap: 40px;
 `;
 
 export const ButtonContainer = styled.div`

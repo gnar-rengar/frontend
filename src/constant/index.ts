@@ -60,6 +60,17 @@ const tendencyAnswer = [
   ['도망가! 얘네 스킬 다 있어 백핑을 찍는다.', '2:2야 이거 쌉가능1 가고 있음 핑을 찍는다.'],
 ];
 
+const tendencyImage = {
+  start: '/expression/cupcake.png',
+  answer: [
+    '/expression/cemetery.png',
+    '/expression/zed.png',
+    '/expression/conflict.png',
+    '/expression/cookie.png',
+  ],
+  end: '/expression/penguin',
+};
+
 export {
   playStyle,
   position,
@@ -71,4 +82,5 @@ export {
   reviewWriteErrorMessage,
   tendencyQuestion,
   tendencyAnswer,
+  tendencyImage,
 };
