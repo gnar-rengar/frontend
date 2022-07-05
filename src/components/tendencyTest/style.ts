@@ -39,3 +39,14 @@ export const TendencyProgressBar = styled.div<{ width: string }>`
     background-color: ${(props) => props.theme.color.primary};
   }
 `;
+
+export const EndContainer = styled(TestContainer)`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const PlayStyleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
