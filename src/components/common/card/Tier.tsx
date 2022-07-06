@@ -10,8 +10,6 @@ interface TierProps {
   }[];
 }
 
-// TODO 카드 넘어가면 ellipsis 처리하기. css로 가능한지 확인 필요
-
 function Tier(props: TierProps) {
   const { tiers } = props;
 

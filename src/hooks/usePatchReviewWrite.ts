@@ -1,8 +1,8 @@
-import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
+import { axios } from '../axios';
 
-import type { ReviewWriteDTO } from '../types/dto/reviewWrite.type';
+import type { ReviewWriteDTO } from '../types/api.type';
 
 interface Variables {
   userId: string;
@@ -12,7 +12,7 @@ interface Variables {
 const patchReviewWrite = async (variables: Variables) => {
   const { userId, payload } = variables;
 
-  const { data } = await axios.patch(`https://api.duo-duo/user/writeReview/${userId}`, payload);
+  const { data } = await axios.patch(`/user/writeReview/${userId}`, payload);
   return data;
 };
 

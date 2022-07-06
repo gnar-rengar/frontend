@@ -1,7 +1,8 @@
 import React from 'react';
 import { Typography } from '../common';
 import People from '../icons/People';
-import { StyledFeedback } from './style';
+
+import { PeopleCount, StyledFeedback } from './style';
 
 interface FeedBackProps {
   feedback: {
@@ -17,17 +18,15 @@ function FeedBack(props: FeedBackProps) {
 
   return (
     <StyledFeedback>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+      <PeopleCount>
         <People />
         <Typography variant="body3" color="onBackgroundSub">
           {`${count}명`}
         </Typography>
-      </div>
-      <div>
-        <Typography variant="body3" color="onSurface">
-          {description}
-        </Typography>
-      </div>
+      </PeopleCount>
+      <Typography variant="body3" color="onSurface">
+        {description}
+      </Typography>
     </StyledFeedback>
   );
 }

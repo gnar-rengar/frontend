@@ -8,6 +8,7 @@ interface AskingProps {
   children: React.ReactNode;
 }
 
+// TODO 컴포넌트명 변경
 function Asking(props: AskingProps) {
   const { title, caption, children } = props;
 
