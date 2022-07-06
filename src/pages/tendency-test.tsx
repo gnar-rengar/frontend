@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+import Layout from '../components/layout/Layout';
 import TendencyTest from '../components/tendencyTest';
 
 function TendencyTestPage() {
@@ -6,3 +7,7 @@ function TendencyTestPage() {
 }
 
 export default TendencyTestPage;
+
+TendencyTestPage.getLayout = function getLayout(page: ReactElement) {
+  return <Layout noneHeader>{page}</Layout>;
+};
