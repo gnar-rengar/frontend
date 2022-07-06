@@ -1,6 +1,13 @@
 import styled from '@emotion/styled';
+import { ColorVariant } from '../../../types/theme.type';
 
-export const StyledChip = styled.span<{ chosen: boolean; size: 'sm' | 'lg' }>`
+interface StyledChipProps {
+  chosen?: boolean;
+  size?: 'sm' | 'lg';
+  colorProp?: ColorVariant;
+}
+
+export const StyledChip = styled.span<StyledChipProps>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -11,20 +18,18 @@ export const StyledChip = styled.span<{ chosen: boolean; size: 'sm' | 'lg' }>`
     return 'padding: 5px 14px;';
   }}
 
-  ${({ theme, chosen }) => {
-    const { color } = theme;
-
+  ${({ theme, chosen, colorProp }) => {
     if (chosen) {
       return `
-        background: ${color.primary};
-        border: 1px solid ${color.primary};
-        color: ${color.onPrimary};
+        background: ${theme.color[colorProp]};
+        border: 1px solid ${theme.color[colorProp]};
+        color: ${theme.color.onPrimary};
       `;
     }
     return `
       background: inherit;
-      border: 1px solid ${color.onBackgroundSub};
-      color: ${color.onBackgroundSub};
+      border: 1px solid ${theme.color.onBackgroundSub};
+      color: ${theme.color.onBackgroundSub};
     `;
   }}
 `;

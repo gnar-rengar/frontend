@@ -15,6 +15,12 @@ export const StyledButton = styled.button<StyledButtonProps>`
       border-radius: 16px;
       `;
     }
+    if (size === 'md') {
+      return `
+        height: 32px;
+        border-radius: 16px;
+      `;
+    }
     return `
       width: fit-content;
       height: 36px;
