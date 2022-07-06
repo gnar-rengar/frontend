@@ -1,21 +1,23 @@
 import styled from '@emotion/styled';
 
-export const StyledChip = styled.label<{ chosen: boolean }>`
+export const StyledChip = styled.span<{ chosen: boolean; size: 'sm' | 'lg' }>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 5px 14px;
-  height: 30px;
   border-radius: 100px;
-  cursor: pointer;
+
+  ${({ size }) => {
+    if (size === 'sm') return 'padding: 4px 8px;';
+    return 'padding: 5px 14px;';
+  }}
 
   ${({ theme, chosen }) => {
     const { color } = theme;
 
     if (chosen) {
       return `
-        background: ${color.primaryVariant};
-        border: 1px solid ${color.primaryVariant};
+        background: ${color.primary};
+        border: 1px solid ${color.primary};
         color: ${color.onPrimary};
       `;
     }
@@ -25,4 +27,11 @@ export const StyledChip = styled.label<{ chosen: boolean }>`
       color: ${color.onBackgroundSub};
     `;
   }}
+`;
+
+export const Input = styled.input`
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 `;

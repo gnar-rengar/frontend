@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { AppProps } from 'next/app';
+import React, { useRef } from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { RecoilRoot } from 'recoil';
 import Layout from '../components/layout/Layout';

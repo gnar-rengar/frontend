@@ -2,7 +2,7 @@ import React from 'react';
 
 function Voice() {
   return (
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="16" height="16" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M21 8.32455C21 5.56312 18.7614 3.32455 16 3.32455C13.2386 3.32455 11 5.56312 11 8.32455V16.3245C11 19.086 13.2386 21.3245 16 21.3245C18.7614 21.3245 21 19.086 21 16.3245V8.32455Z"
         stroke="#FCFCFC"

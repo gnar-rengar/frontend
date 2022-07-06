@@ -1,20 +1,20 @@
 import React from 'react';
-import Typography from '../typography/Typography';
-import { StyledCard } from './Card.style';
+import { MyPageDTO } from '../../../types/api.type';
 
-function Card({ profileImg, nickname }: { profileImg: string; nickname: string }) {
+import ImageArea from './ImageArea';
+import InfoArea from './InfoArea';
+
+import { StyledCard } from './style';
+
+export type CardProps = Omit<MyPageDTO, 'goodFeedback' | 'badFeedback'>;
+
+function Card(props: CardProps) {
+  const { profileUrl, ...other } = props;
+
   return (
     <StyledCard>
-      <img
-        src={profileImg}
-        width="50px"
-        height="50px"
-        alt="profile icon"
-        style={{ borderRadius: '50%' }}
-      />
-      <Typography variant="body3" data-testid="nickname">
-        {nickname}
-      </Typography>
+      <ImageArea profileUrl={profileUrl} />
+      <InfoArea {...other} />
     </StyledCard>
   );
 }

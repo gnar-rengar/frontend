@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '../typography/Typography';
 import { StyledButton } from './Button.style';
 
-import type { ColorVariant } from '../../../types/color.type';
+import type { ColorVariant } from '../../../types/theme.type';
 
 export interface ButtonProps {
   type?: 'button' | 'submit' | 'reset';
@@ -12,7 +12,7 @@ export interface ButtonProps {
   value?: string | number;
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  children: string | number;
+  children: React.ReactNode;
 }
 
 const typoVariant = {
@@ -21,10 +21,10 @@ const typoVariant = {
 } as const;
 
 function Button(props: ButtonProps) {
-  const { children, size, onClick, value, ...other } = props;
+  const { type, size, value, onClick, children, ...other } = props;
 
   return (
-    <StyledButton onClick={onClick} value={value} {...{ ...other, size }}>
+    <StyledButton type={type} value={value} onClick={onClick} {...{ ...other, size }}>
       <Typography variant={typoVariant[size]} align="center">
         {children}
       </Typography>
