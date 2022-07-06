@@ -30,11 +30,15 @@ function InfoArea(props: InfoAreaProps) {
             <Typography variant="body1" data-testid="nickname">
               {nickname}
             </Typography>
+<<<<<<< HEAD
             {voice ? (
               <Image src="/icons/voice.svg" width={sm} height={sm} alt="voice on" />
             ) : (
               <Image src="/icons/voice-off.svg" width={sm} height={sm} alt="voice off" />
             )}
+=======
+            {voice ? <Image src="/icons/voice.svg" /> : <Image src="/icons/voice-off.svg" />}
+>>>>>>> 2f4d53e (svg 파일 public 폴더로 이동)
           </NameVoice>
           <Position positions={positions} />
         </NameVoiceAndPosition>
