@@ -68,7 +68,7 @@ const tendencyImage = {
     '/expression/conflict.png',
     '/expression/cookie.png',
   ],
-  end: '/expression/penguin',
+  end: '/expression/penguin.png',
 };
 
 export {

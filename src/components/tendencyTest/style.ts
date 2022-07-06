@@ -6,12 +6,12 @@ export const TestContainer = styled.div`
   left: 50%;
   top: 30%;
   transform: translate(-50%, -30%);
-`;
-
-export const TestStartContainer = styled(TestContainer)`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const TestStartContainer = styled(TestContainer)`
   gap: 40px;
 `;
 
@@ -41,12 +41,17 @@ export const TendencyProgressBar = styled.div<{ width: string }>`
 `;
 
 export const EndContainer = styled(TestContainer)`
-  display: flex;
-  flex-direction: column;
+  gap: 24px;
 `;
 
 export const PlayStyleContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+`;
+
+export const ChipContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;

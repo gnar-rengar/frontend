@@ -1,37 +1,62 @@
 import Image from 'next/future/image';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { tendencyImage } from '../../constant';
-import { Button, Typography } from '../common';
-import { ButtonContainer, TestContainer } from './style';
+import { Button, Chip, Typography } from '../common';
+import { ButtonContainer, ChipContainer, EndContainer, PlayStyleContainer } from './style';
 
 interface EndProps {
   testAnswer: string[];
 }
 
 function End({ testAnswer }: EndProps) {
+  const router = useRouter();
+
   return (
     <>
-      <TestContainer>
-        <Typography variant="h2" align="center">
-          나는 어떤
-          <br />
-          플레이 스타일일까?
+      <EndContainer>
+        <PlayStyleContainer>
+          <Typography variant="h3" align="center">
+            소환사님은
+          </Typography>
+          <ChipContainer>
+            <Chip size="sm" chosen colorProp="secondary">
+              #네글자요
+            </Chip>
+            <Chip size="sm" chosen colorProp="secondary">
+              #네글자요
+            </Chip>
+          </ChipContainer>
+          <ChipContainer>
+            <Chip size="sm" chosen colorProp="secondary">
+              #네글자요
+            </Chip>
+            <Chip size="sm" chosen colorProp="secondary">
+              #네글자요
+            </Chip>
+          </ChipContainer>
+        </PlayStyleContainer>
+        <Typography variant="h3" align="center">
+          이런 플레이 스타일이군요!
         </Typography>
-        <Typography align="center" variant="body2">
-          내 플레이 스타일을 확인하고
+        <Image src={tendencyImage.end} width={240} height={240} />
+        <Typography variant="h3" align="center">
+          소환사님과 딱 맞는
           <br />
-          맞춤 듀오를 찾아보아요!
+          찰떡궁합 듀오가 기다리오 있어요
         </Typography>
-        <Image src={tendencyImage.start} width={240} height={240} />
-      </TestContainer>
+      </EndContainer>
       <ButtonContainer>
+        <Button size="md" variant="text" color="primaryVariant">
+          플레이스타일 수정하기
+        </Button>
         <Button
-          onClick={() => setTestNumber(0)}
+          onClick={() => router.push('/on-boarding')}
           size="lg"
           variant="contained"
           color="primaryVariant"
         >
-          내 플레이 스타일 알아보기
+          지금 바로 듀오 찾으러가기
         </Button>
       </ButtonContainer>
     </>
