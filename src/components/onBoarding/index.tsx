@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import { axios } from '../../axios';
 import { communication, onBoardingErrorMessage, position, voiceChannel } from '../../constant';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { Radio, TextField, Typography, Asking } from '../common';
@@ -22,7 +23,7 @@ import {
   VoiceButtonContainer,
 } from './style';
 
-import type { OnBoardingInput } from '../../types/api.type';
+import type { NicknameCheckDTO, OnBoardingInput } from '../../types/api.type';
 
 const validationSchema = yup.object().shape({
   nickName: yup.string().required(onBoardingErrorMessage.nickName),
@@ -64,9 +65,11 @@ function OnBoarding() {
   });
   const router = useRouter();
   const nickNameButtonActive = watch('nickNameCheck');
-  // const nickNameInputActive = watch('nickName');
+  const nickNameInputActive = watch('nickName');
   const registerProps = register('communication');
   const [useVoice, setUseVoice] = useState('');
+  const [summonerIcon, setSummonerIcon] = useState('/icons/onBoarding.png');
+  const [nickNameCheck, setNicknameCheck] = useState(false);
   const submitMutation = useOnBoardingMutation();
 
   useEffect(() => {
@@ -82,10 +85,11 @@ function OnBoarding() {
 
   const onClickNickNameCheck = async () => {
     try {
-      // const { data } = await axios.get(
-      //   `https://api.duo-duo/user/checkNick?lolNickName=${nickNameInputActive}`
-      // );
-      // console.log(data);
+      const { data } = await axios.get<NicknameCheckDTO>(
+        `/user/checkNick?lolNickName=${nickNameInputActive}`
+      );
+      setNicknameCheck(data.success);
+      setSummonerIcon(data.profileUrl);
       setValue('nickNameCheck', true, { shouldValidate: true });
       clearErrors('nickNameCheck');
     } catch (error) {
@@ -114,7 +118,7 @@ function OnBoarding() {
         >
           <div className="container">
             <IconAndNickname>
-              <IconImageContainer>
+              <IconImageContainer imageUrl={summonerIcon}>
                 {/* <Image src="/icons/onBoarding.png" width={48} height={48} /> */}
               </IconImageContainer>
               <NicknameContainer>
@@ -122,7 +126,7 @@ function OnBoarding() {
                 <NickNameButton
                   onClick={onClickNickNameCheck}
                   type="button"
-                  active={nickNameButtonActive}
+                  active={nickNameButtonActive && nickNameCheck}
                 >
                   <Typography space="nowrap" variant="body4" paragraph>
                     확인

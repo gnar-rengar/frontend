@@ -35,12 +35,12 @@ export const IconAndNickname = styled.div`
   gap: 12px;
 `;
 
-export const IconImageContainer = styled.div`
+export const IconImageContainer = styled.div<{ imageUrl: string }>`
   width: 48px;
   height: 48px;
   border-radius: 100px;
   border: 1px solid #35383d;
-  background-image: url('/icons/onBoarding.png');
+  background-image: url(${(props) => props.imageUrl});
   background-size: cover;
   background-position: center;
 `;

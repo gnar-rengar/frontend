@@ -2,6 +2,18 @@ import { rest } from 'msw';
 import { RecentRecord } from '../../types/api.type';
 
 export const userHandlers = [
+  rest.get(`${process.env.NEXT_PUBLIC_BASE_URL}/user/checkNick`, (req, res, ctx) => {
+    req.url.searchParams.get('lolNickName');
+
+    return res(
+      ctx.json({
+        success: true,
+        profileUrl: 'http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/588.png',
+        message: '계정이 확인되었습니다.',
+      })
+    );
+  }),
+
   rest.get(`${process.env.NEXT_PUBLIC_BASE_URL}/user/mypage`, (req, res, ctx) => {
     const data = {
       nickname: '썩은김치',

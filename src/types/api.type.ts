@@ -90,3 +90,9 @@ export interface RecentRecord {
   assists: number;
   kda: number;
 }
+
+export interface NicknameCheckDTO {
+  success: boolean;
+  profileUrl: string;
+  message: string;
+}
