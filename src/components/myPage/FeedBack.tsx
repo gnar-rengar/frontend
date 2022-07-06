@@ -31,7 +31,7 @@ function FeedBack(props: FeedBackProps) {
           {`${count}명`}
         </Typography>
       </PeopleCount>
-      <Typography variant="body3" color="onSurface">
+      <Typography variant="body3" color="onSurface" paragraph>
         {description}
       </Typography>
     </StyledFeedback>
