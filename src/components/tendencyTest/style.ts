@@ -16,18 +16,20 @@ export const TestStartContainer = styled(TestContainer)`
 `;
 
 export const ButtonContainer = styled.div`
-  position: absolute;
-  bottom: 5%;
   display: flex;
   flex-direction: column;
   gap: 10px;
+`;
+
+export const StartEndButtonContainer = styled(ButtonContainer)`
+  position: absolute;
+  bottom: 5%;
 `;
 
 export const TendencyProgressBar = styled.div<{ width: string }>`
   width: 100%;
   position: relative;
   height: 2px;
-  margin-top: 16px;
   background-color: ${(props) => props.theme.color.onBackgroundSub};
 
   div {
@@ -54,4 +56,20 @@ export const ChipContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+`;
+
+export const QuestionContainer = styled.div`
+  height: 100vh;
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const QuestionAndExpression = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
 `;

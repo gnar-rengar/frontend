@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { tendencyImage } from '../../constant';
 import { Button, Chip, Typography } from '../common';
-import { ButtonContainer, ChipContainer, EndContainer, PlayStyleContainer } from './style';
+import { ChipContainer, EndContainer, PlayStyleContainer, StartEndButtonContainer } from './style';
 
 interface EndProps {
   testAnswer: string[];
@@ -46,7 +46,7 @@ function End({ testAnswer }: EndProps) {
           찰떡궁합 듀오가 기다리오 있어요
         </Typography>
       </EndContainer>
-      <ButtonContainer>
+      <StartEndButtonContainer>
         <Button size="md" variant="text" color="primaryVariant">
           플레이스타일 수정하기
         </Button>
@@ -58,7 +58,7 @@ function End({ testAnswer }: EndProps) {
         >
           지금 바로 듀오 찾으러가기
         </Button>
-      </ButtonContainer>
+      </StartEndButtonContainer>
     </>
   );
 }

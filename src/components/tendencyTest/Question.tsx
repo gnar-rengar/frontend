@@ -1,8 +1,13 @@
-import React from 'react';
 import Image from 'next/future/image';
+import React from 'react';
 import { tendencyAnswer, tendencyImage, tendencyQuestion } from '../../constant';
 import { Button, Typography } from '../common';
-import { ButtonContainer, TendencyProgressBar, TestContainer } from './style';
+import {
+  ButtonContainer,
+  QuestionAndExpression,
+  QuestionContainer,
+  TendencyProgressBar,
+} from './style';
 
 interface QuestionProps {
   testNumber: number;
@@ -21,16 +26,16 @@ function Question(props: QuestionProps) {
   };
 
   return (
-    <>
+    <QuestionContainer>
       <TendencyProgressBar width={progressValue}>
         <div />
       </TendencyProgressBar>
-      <TestContainer>
+      <QuestionAndExpression>
         <Typography align="center" space="pre-line" variant="h3">
           {tendencyQuestion[testNumber]}
         </Typography>
         <Image src={tendencyImage.answer[testNumber]} width={240} height={240} />
-      </TestContainer>
+      </QuestionAndExpression>
       <ButtonContainer>
         <Button
           onClick={() => onClickAnswer('top')}
@@ -49,7 +54,7 @@ function Question(props: QuestionProps) {
           {tendencyAnswer[testNumber][1]}
         </Button>
       </ButtonContainer>
-    </>
+    </QuestionContainer>
   );
 }
 
