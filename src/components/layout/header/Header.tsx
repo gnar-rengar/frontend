@@ -3,7 +3,6 @@ import { useTheme } from '@emotion/react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import Image from 'next/future/image';
 import { Button } from '../../common';
 
 import { HeaderContainer, Nav } from './Header.style';
