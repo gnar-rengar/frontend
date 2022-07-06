@@ -14,21 +14,8 @@ function ImageArea(props: ImageAreaProps) {
     <ImageContainer>
       <Image src={profileUrl} width="120px" height="120px" />
       <Vignette />
-      {/* <Filter /> */}
     </ImageContainer>
   );
 }
 
 export default ImageArea;
-
-// TEMPORARY
-// const Filter = styled.div`
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   width: 80px;
-//   height: 100%;
-//   background: ${({ theme: { color } }) => color.surface};
-//   filter: blur(33px);
-//   transform: translateX(50%);
-// `;

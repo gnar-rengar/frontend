@@ -1,3 +1,5 @@
+import { MockedRequest } from 'msw';
+
 if (typeof window === 'undefined') {
   const { server } = require('./server');
   server.listen({
@@ -6,13 +8,13 @@ if (typeof window === 'undefined') {
 } else {
   const { worker } = require('./browser');
   worker.start({
-    // onUnhandledRequest(request: MockedRequest, print: any) {
-    //   if (request.url.pathname.startsWith('/_next')) {
-    //     return;
-    //   }
+    onUnhandledRequest(request: MockedRequest, print: any) {
+      if (request.url.pathname.startsWith('/_next')) {
+        return;
+      }
 
-    //   print.warning();
-    // },
+      print.warning();
+    },
     warnOnUncaptured: false,
     quiet: true,
   });

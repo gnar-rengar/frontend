@@ -15,18 +15,6 @@ export const Top = styled.div`
   gap: 8px;
 `;
 
-export const StyledProfile = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  img {
-    width: 24px;
-    height: 24p;
-    border-radius: 50%;
-  }
-`;
-
 export const ImageContainer = styled.div`
   position: relative;
   width: 120px;
@@ -93,12 +81,9 @@ export const NameVoice = styled.div`
   gap: 4px;
 `;
 
-export const ImgWrapper = styled.span`
-  width: 24px;
-  height: 24px;
-  img {
-    border-radius: 50%;
-  }
+export const PositionContainer = styled.div`
+  display: flex;
+  gap: 8px;
 `;
 
 export const Bottom = styled.div`
