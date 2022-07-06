@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import Image from 'next/future/image';
+import { useTheme } from '@emotion/react';
 import { HeaderContainer, Nav } from './Header.style';
 
 // const links = [
@@ -11,6 +12,12 @@ import { HeaderContainer, Nav } from './Header.style';
 // ];
 
 function Header() {
+  const { icon } = useTheme();
+
+  const {
+    size: { lg },
+  } = icon;
+
   return (
     <HeaderContainer>
       <Link href="/">
@@ -21,12 +28,12 @@ function Header() {
       <Nav role="navigation">
         <Link href="/chat">
           <a>
-            <Image src="/icons/chat.svg" width="24px" height="24px" alt="chat" />
+            <Image src="/icons/chat.svg" width={lg} height={lg} alt="chat" />
           </a>
         </Link>
         <Link href="/my-page">
           <a>
-            <Image src="/icons/profile.svg" width="24px" height="24px" alt="profile" />
+            <Image src="/icons/profile.svg" width={lg} height={lg} alt="profile" />
           </a>
         </Link>
       </Nav>

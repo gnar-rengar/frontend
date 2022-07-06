@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Image from 'next/future/image';
+import { useTheme } from '@emotion/react';
 import PlayStyle from './PlayStyle';
 import Position from './Position';
 import Typography from '../typography/Typography';
@@ -14,6 +15,12 @@ type InfoAreaProps = Omit<CardProps, 'profileUrl'>;
 function InfoArea(props: InfoAreaProps) {
   const { tier, nickname, positions, playStyles, voice } = props;
 
+  const {
+    icon: {
+      size: { sm },
+    },
+  } = useTheme();
+
   return (
     <StyledInfoArea>
       <Top>
@@ -23,7 +30,11 @@ function InfoArea(props: InfoAreaProps) {
             <Typography variant="body1" data-testid="nickname">
               {nickname}
             </Typography>
-            {voice ? <Image src="/icons/voice.svg" /> : <Image src="/icons/voice-off.svg" />}
+            {voice ? (
+              <Image src="/icons/voice.svg" width={sm} height={sm} alt="voice on" />
+            ) : (
+              <Image src="/icons/voice-off.svg" width={sm} height={sm} alt="voice off" />
+            )}
           </NameVoice>
           <Position positions={positions} />
         </NameVoiceAndPosition>
