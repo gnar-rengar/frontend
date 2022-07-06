@@ -10,7 +10,6 @@ import {
   voiceChannel,
 } from '../../constant';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
-import { OnBoardingInput } from '../../types/dto/onBoarding.type';
 import { Radio, TextField, Typography, Asking } from '../common';
 import SelectChip from '../common/chip/SelectChip';
 import {
@@ -24,6 +23,8 @@ import {
   VoiceButton,
   VoiceButtonContainer,
 } from './style';
+
+import type { OnBoardingInput } from '../../types/api.type';
 
 const validationSchema = yup.object().shape({
   nickName: yup.string().required(onBoardingErrorMessage.nickName),

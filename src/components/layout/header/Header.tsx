@@ -1,15 +1,11 @@
-import React from 'react';
-import Link from 'next/link';
-
-import Image from 'next/future/image';
+import React, { useMemo } from 'react';
 import { useTheme } from '@emotion/react';
-import { HeaderContainer, Nav } from './Header.style';
+import Link from 'next/link';
+import Image from 'next/image';
 
-// const links = [
-//   { href: '/search', icon: <Search /> },
-//   { href: '/chat', icon: <Chat /> },
-//   { href: '/profile', icon: <Profile /> },
-// ];
+import { Button } from '../../common';
+
+import { HeaderContainer, Nav } from './Header.style';
 
 function Header() {
   const { icon } = useTheme();
@@ -18,24 +14,49 @@ function Header() {
     size: { lg },
   } = icon;
 
+  const links = useMemo(
+    () => [
+      {
+        href: '/custom',
+        component: (
+          <Button variant="text" size="sm" color="onBackground">
+            맞춤추천
+          </Button>
+        ),
+      },
+      {
+        href: '/recent',
+        component: (
+          <Button variant="text" size="sm" color="onBackground">
+            최신 소환사
+          </Button>
+        ),
+      },
+      {
+        href: '/chat',
+        component: <Image src="/icons/chat.svg" width={lg} height={lg} alt="chat" />,
+      },
+      {
+        href: '/profile',
+        component: <Image src="/icons/profile.svg" width={lg} height={lg} alt="profile" />,
+      },
+    ],
+    [lg]
+  );
+
   return (
     <HeaderContainer>
       <Link href="/">
-        <a>
-          <Image src="/icons/main-logo.svg" height="30px" alt="logo" />
+        <a data-testid="home">
+          <Image src="/icons/main-logo.svg" width="30px" height="30px" alt="logo" />
         </a>
       </Link>
       <Nav role="navigation">
-        <Link href="/chat">
-          <a>
-            <Image src="/icons/chat.svg" width={lg} height={lg} alt="chat" />
-          </a>
-        </Link>
-        <Link href="/my-page">
-          <a>
-            <Image src="/icons/profile.svg" width={lg} height={lg} alt="profile" />
-          </a>
-        </Link>
+        {links.map((link) => (
+          <Link href={link.href} key={link.href}>
+            <a>{link.component}</a>
+          </Link>
+        ))}
       </Nav>
     </HeaderContainer>
   );

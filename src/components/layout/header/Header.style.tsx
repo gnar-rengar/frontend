@@ -14,5 +14,6 @@ export const HeaderContainer = styled.header`
 
 export const Nav = styled.nav`
   display: flex;
-  gap: 24px;
+  align-items: center;
+  gap: 18px;
 `;
