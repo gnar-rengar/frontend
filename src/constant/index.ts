@@ -22,7 +22,7 @@ const communication = [
 ] as const;
 
 const onBoardingErrorMessage = {
-  nickName: '소환사명을 입력해주세요.',
+  nickName: '정확한 소환사명을 입력해주세요.',
   nickNameCheck: '확인 버튼을 통해 소환사명을 확인해주세요',
   checkbox: '하나 이상 골라주셔야 잘 추천해드릴 수 있어요!!!',
 };

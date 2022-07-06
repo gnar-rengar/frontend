@@ -28,7 +28,30 @@ export const OnBoardingEachContainer = styled.div`
   }
 `;
 
-const ShareButton = styled.button`
+export const IconAndNickname = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+export const IconImageContainer = styled.div`
+  width: 48px;
+  height: 48px;
+  border-radius: 100px;
+  border: 1px solid #35383d;
+  background-image: url('/icons/onBoarding.png');
+  background-size: cover;
+  background-position: center;
+`;
+
+export const NicknameContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`;
+
+const ShareButton = styled.button<{ active?: boolean }>`
   background-color: ${({ theme }) => theme.color.disable};
   border-radius: 8px;
   display: flex;
@@ -43,6 +66,7 @@ export const NickNameButton = styled(ShareButton)`
   background-color: ${({ theme }) => theme.color.onBackgroundSub};
   padding: 8px 16px;
   height: 48px;
+  background-color: ${({ active, theme }) => active && theme.color.primary};
 `;
 
 export const ChipContainer = styled.div`

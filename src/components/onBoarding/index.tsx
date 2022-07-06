@@ -11,7 +11,10 @@ import {
   CheckboxContainer,
   ChipContainer,
   CustomCheckbox,
+  IconAndNickname,
+  IconImageContainer,
   NickNameButton,
+  NicknameContainer,
   OnBoardingContainer,
   OnBoardingEachContainer,
   SubmitButton,
@@ -24,7 +27,10 @@ import type { OnBoardingInput } from '../../types/api.type';
 const validationSchema = yup.object().shape({
   nickName: yup.string().required(onBoardingErrorMessage.nickName),
   nickNameCheck: yup.boolean().oneOf([true], onBoardingErrorMessage.nickNameCheck),
-  position: yup.array(yup.string()).min(1, onBoardingErrorMessage.checkbox),
+  position: yup
+    .array(yup.string())
+    .min(1, onBoardingErrorMessage.checkbox)
+    .max(2, onBoardingErrorMessage.checkbox),
   useVoice: yup.boolean().typeError(onBoardingErrorMessage.checkbox),
   voiceChannel: yup.array(yup.string()).when('useVoice', {
     is: true,
@@ -43,6 +49,7 @@ function OnBoarding() {
     setValue,
     formState: { errors, isValid },
     clearErrors,
+    watch,
   } = useForm<OnBoardingInput>({
     defaultValues: {
       nickName: '',
@@ -56,6 +63,8 @@ function OnBoarding() {
     mode: 'onChange',
   });
   const router = useRouter();
+  const nickNameButtonActive = watch('nickNameCheck');
+  // const nickNameInputActive = watch('nickName');
   const registerProps = register('communication');
   const [useVoice, setUseVoice] = useState('');
   const submitMutation = useOnBoardingMutation();
@@ -72,10 +81,16 @@ function OnBoarding() {
   };
 
   const onClickNickNameCheck = async () => {
-    // const nickName = getValues('nickName');
-    // const { data } = await axios.get(`https://api.duo-duo/user/checkNick?lolNickName=${nickName}`);
-    setValue('nickNameCheck', true, { shouldValidate: true });
-    clearErrors('nickNameCheck');
+    try {
+      // const { data } = await axios.get(
+      //   `https://api.duo-duo/user/checkNick?lolNickName=${nickNameInputActive}`
+      // );
+      // console.log(data);
+      setValue('nickNameCheck', true, { shouldValidate: true });
+      clearErrors('nickNameCheck');
+    } catch (error) {
+      // console.error(error);
+    }
   };
   const voiceButtonIsState = (innerText: string) => {
     if (useVoice === innerText) return true;
@@ -94,21 +109,27 @@ function OnBoarding() {
       <OnBoardingEachContainer id="nickNameCheck">
         <Asking
           title="소환사명을 알려주세요"
-          caption="정확한 소환사명을 알려줘야지 남의 계정으로 하면 서비스 사용에 제재를 받을 수 있다고 알리기!!! 혹은 상대가 너를 찾을 수 없어요"
+          caption={'본인 계정의 소환사명을 입력해주세요.\n타인 계정 도용 시 제재를 받을 수 있어요.'}
+          space="pre-line"
         >
           <div className="container">
-            <div className="flexContainer">
-              <TextField
-                {...register('nickName')}
-                name="nickName"
-                placeholder="정확한 소환사명을 입력해주세요"
-              />
-              <NickNameButton onClick={onClickNickNameCheck} type="button">
-                <Typography space="nowrap" variant="body4">
-                  확인
-                </Typography>
-              </NickNameButton>
-            </div>
+            <IconAndNickname>
+              <IconImageContainer>
+                {/* <Image src="/icons/onBoarding.png" width={48} height={48} /> */}
+              </IconImageContainer>
+              <NicknameContainer>
+                <TextField {...register('nickName')} name="nickName" placeholder="소환사명 입력" />
+                <NickNameButton
+                  onClick={onClickNickNameCheck}
+                  type="button"
+                  active={nickNameButtonActive}
+                >
+                  <Typography space="nowrap" variant="body4" paragraph>
+                    확인
+                  </Typography>
+                </NickNameButton>
+              </NicknameContainer>
+            </IconAndNickname>
             <Typography color="error" data-testid="nickNameError" variant="caption" paragraph>
               {errors?.nickName?.message || errors?.nickNameCheck?.message}
             </Typography>
@@ -116,7 +137,7 @@ function OnBoarding() {
         </Asking>
       </OnBoardingEachContainer>
       <OnBoardingEachContainer id="position">
-        <Asking title="선호하는 포지션을 알려주세요" caption="부가설명 내용입니다">
+        <Asking title="어느 포지션을 선호하세요?" caption="최대 두 포지션을 선택할 수 있어요">
           <div className="container">
             <ChipContainer>
               {position.map((pos) => (
@@ -141,7 +162,7 @@ function OnBoarding() {
         </Asking>
       </OnBoardingEachContainer>
       <OnBoardingEachContainer id="useVoice">
-        <Asking title="음성 채팅을 사용하시나요?" caption="부가설명 내용입니다">
+        <Asking title="음성 채팅을 사용하시나요?">
           <div className="container" id="vocieChannel">
             <VoiceButtonContainer>
               <VoiceButton

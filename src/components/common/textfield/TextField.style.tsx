@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const Input = styled.input<{ error?: boolean }>`
   height: 48px;
-  width: 296px;
+  width: 230px;
   padding: 14px 16px;
   background: inherit;
   border-radius: 8px;

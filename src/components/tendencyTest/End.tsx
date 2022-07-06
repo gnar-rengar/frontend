@@ -9,6 +9,7 @@ interface EndProps {
   testAnswer: string[];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function End({ testAnswer }: EndProps) {
   const router = useRouter();
 
