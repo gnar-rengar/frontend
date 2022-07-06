@@ -48,7 +48,7 @@ function Header() {
     <HeaderContainer>
       <Link href="/">
         <a data-testid="home">
-          <Image src="/icons/main-logo.svg" width="30px" height="30px" alt="logo" />
+          <Image src="/icons/main-logo.svg" width="76px" height="30px" alt="logo" />
         </a>
       </Link>
       <Nav role="navigation">
