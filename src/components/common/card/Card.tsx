@@ -1,38 +1,20 @@
 import React from 'react';
+import { MyPageDTO } from '../../../types/api.type';
 
-import MostChamp from './MostChamp';
-import PlayStyle from './PlayStyle';
-import Position from './Position';
-import Profile from './Profile';
-import Tier from './Tier';
+import ImageArea from './ImageArea';
+import InfoArea from './InfoArea';
 
-import { Bottom, StyledCard, Top } from './style';
+import { StyledCard } from './style';
 
-import type { MyPageDTO } from '../../../types/api.type';
-
-interface CardProps {
-  nickname: string;
-  profileUrl: string;
-  tiers: { season: string; tier: string; rank: number; leaguePoints: number }[];
-  playStyles: string[];
-  positions: string[];
-  mostChamps: { name: string; url: string }[];
-}
+export type CardProps = Omit<MyPageDTO, 'goodFeedback' | 'badFeedback'>;
 
 function Card(props: CardProps) {
-  const { nickname, profileUrl, tiers, playStyles, positions, mostChamps } = props;
+  const { profileUrl, ...other } = props;
 
   return (
     <StyledCard>
-      <Top>
-        <Tier tiers={tiers} />
-        <Profile profileUrl={profileUrl} nickname={nickname} />
-      </Top>
-      <Bottom>
-        <PlayStyle playStyles={playStyles} />
-        <Position positions={positions} />
-        <MostChamp mostChamps={mostChamps} />
-      </Bottom>
+      <ImageArea profileUrl={profileUrl} />
+      <InfoArea {...other} />
     </StyledCard>
   );
 }

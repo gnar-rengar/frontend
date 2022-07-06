@@ -1,5 +1,4 @@
 import React from 'react';
-import { Ul } from './style';
 
 interface PositionProps {
   positions: string[];
@@ -9,11 +8,11 @@ function Position(props: PositionProps) {
   const { positions } = props;
 
   return (
-    <Ul>
+    <div style={{ display: 'flex', gap: '8px' }}>
       {positions.map((position) => (
         <img key={position} src="http://via.placeholder.com/24x24" alt="position" />
       ))}
-    </Ul>
+    </div>
   );
 }
 

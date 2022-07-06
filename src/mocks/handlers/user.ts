@@ -4,8 +4,7 @@ export const userHandlers = [
   rest.get(`${process.env.NEXT_PUBLIC_BASE_URL}/user/mypage`, (req, res, ctx) => {
     const data = {
       nickname: '썩은김치',
-      profileOpen: true,
-      profileUrl: 'https://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/502.png',
+      profileUrl: 'http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/588.png',
       goodFeedback: [
         { description: '멘탈이 좋아요', count: 32 },
         { description: '말을 예쁘게 해요', count: 24 },
@@ -18,47 +17,19 @@ export const userHandlers = [
         { description: '너무 나쁜말을 많이 써요', count: 4 },
         { description: '실력이 형편 없어요', count: 1 },
       ],
-      tiers: [
-        {
-          season: ' S2021',
-          tier: 'Gold',
-          rank: 4,
-          leaguePoints: 0,
-        },
-        {
-          season: ' S2020',
-          tier: 'Gold',
-          rank: 3,
-          leaguePoints: 44,
-        },
-        {
-          season: ' S21',
-          tier: 'Gold',
-          rank: 2,
-          leaguePoints: 21,
-        },
-      ],
-      playStyles: ['공격적', '무지성', '3렙에 안오면 던짐', '남탓 안함', '텐션 높음', '말 많음'],
-      positions: ['top', 'jg', 'mid'],
-      mostChamps: [
-        {
-          name: 'yasuo',
-          url: 'https://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/Yasuo.png',
-        },
-        {
-          name: 'wukong',
-          url: 'https://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/MonkeyKing.png',
-        },
-        {
-          name: 'yone',
-          url: 'https://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/Yone.png',
-        },
-      ],
+      tier: {
+        tier: 'Gold',
+        rank: 4,
+      },
+      playStyles: ['공격적', '무지성', '안전추구'],
+      positions: ['top', 'jg'],
+      voice: true,
     };
 
     return res(
       ctx.json({
         success: true,
+        message: '마이 페이지 정보를 가져오는데 성공했습니다.',
         data,
       })
     );
