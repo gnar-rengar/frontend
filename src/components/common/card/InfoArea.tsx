@@ -1,11 +1,9 @@
 import React from 'react';
 
+import Image from 'next/future/image';
 import PlayStyle from './PlayStyle';
 import Position from './Position';
 import Typography from '../typography/Typography';
-
-import VoiceOff from '../../icons/VoiceOff';
-import Voice from '../../icons/Voice';
 
 import { Bottom, NameVoiceAndPosition, NameVoice, StyledInfoArea, Tier, Top } from './style';
 
@@ -25,7 +23,7 @@ function InfoArea(props: InfoAreaProps) {
             <Typography variant="body1" data-testid="nickname">
               {nickname}
             </Typography>
-            {voice ? <Voice /> : <VoiceOff />}
+            {voice ? <Image src="/icons/voice.svg" /> : <Image src="/icons/voice-off.svg" />}
           </NameVoice>
           <Position positions={positions} />
         </NameVoiceAndPosition>

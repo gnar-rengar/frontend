@@ -13,4 +13,4 @@ if [ -n "${PID}" ]; then
 fi
 
 echo "최신 애플리케이션을 실행합니다."
-pm2 start "npm run dev" --watch --name "${APP}"
+pm2 start "sudo npm run dev" --watch --name "${APP}"
