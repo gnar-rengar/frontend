@@ -2,7 +2,9 @@ import { MockedRequest } from 'msw';
 
 if (typeof window === 'undefined') {
   const { server } = require('./server');
-  server.listen();
+  server.listen({
+    warnOnUncaptured: false,
+  });
 } else {
   const { worker } = require('./browser');
   worker.start({
@@ -13,8 +15,10 @@ if (typeof window === 'undefined') {
 
       print.warning();
     },
+    warnOnUncaptured: false,
+    quiet: true,
   });
 }
 
 // eslint-disable-next-line prettier/prettier
-export { };
+export {};

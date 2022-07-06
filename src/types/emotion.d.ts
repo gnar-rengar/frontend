@@ -1,6 +1,6 @@
 import '@emotion/react';
 
-import type { ColorVariant, TypographyVariant } from '../../../types/theme.type';
+import type { ColorVariant, TypographyVariant } from './theme.type';
 
 declare module '@emotion/react' {
   export interface Theme {

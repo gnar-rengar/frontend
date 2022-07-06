@@ -13,7 +13,14 @@ export const StyledFeedback = styled.div`
   gap: 8px;
 `;
 
+export const PeopleCount = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`;
+
 export const AreaButton = styled.button`
+  padding: 16px 0;
   width: 100%;
   background: inherit;
   border: none;

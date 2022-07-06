@@ -28,7 +28,16 @@ beforeEach(() => {
   );
 });
 
-jest.mock('next/router');
+jest.mock('next/router', () => ({
+  useRouter() {
+    return {
+      route: '/',
+      pathName: '',
+      query: '',
+      asPath: '',
+    };
+  },
+}));
 
 describe('<ReviewWrite/>', () => {
   it("should render different question depending on user's answer", () => {

@@ -1,18 +1,3 @@
-export interface MyPageDTO {
-  success: boolean;
-  profileUrl: string;
-  nickname: string;
-  profileOpen: true;
-  goodFeedback: {
-    description: string;
-    count: number;
-  }[];
-  badFeedback: {
-    description: string;
-    count: number;
-  }[];
-}
-
 export interface OnBoardingInput {
   nickName: string;
   nickNameCheck: boolean;
@@ -38,4 +23,37 @@ export interface LoginDTO {
   userId: string;
   rtokenExpireTime: string;
   tokenExpireTime: string;
+}
+
+export interface UserProfileDTO {
+  nickname: string;
+  profileOpen: boolean;
+  profileUrl: string;
+  goodFeedback: Feedback[];
+  tier: Tier;
+  playStyles: string[];
+  positions: string[];
+  voice: boolean;
+  voiceChannel: string[];
+}
+
+export interface MyPageDTO {
+  nickname: string;
+  profileUrl: string;
+  voice: boolean;
+  tier: Tier;
+  positions: string[];
+  playStyles: string[];
+  goodFeedback: Feedback[];
+  badFeedback: Feedback[];
+}
+
+interface Feedback {
+  description: string;
+  count: number;
+}
+
+interface Tier {
+  tier: string;
+  rank: number;
 }

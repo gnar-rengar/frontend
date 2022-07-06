@@ -10,12 +10,14 @@ interface PlayStyleProps {
 function PlayStyle(props: PlayStyleProps) {
   const { playStyles } = props;
 
+  const threePlaystyles = playStyles.slice(0, 3);
+
   return (
     <Ul>
-      {playStyles.map((playStyle) => (
-        <Chip key={playStyle} size="sm">
-          {playStyle}
-        </Chip>
+      {threePlaystyles.map((playStyle) => (
+        <li key={playStyle}>
+          <Chip size="sm">{playStyle}</Chip>
+        </li>
       ))}
     </Ul>
   );
