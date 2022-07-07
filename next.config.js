@@ -6,9 +6,4 @@ module.exports = {
   images: {
     domains: ['ddragon.leagueoflegends.com', 'via.placeholder.com'],
   },
-  experimental: {
-    images: {
-      allowFutureImage: true,
-    },
-  },
 };
