@@ -37,6 +37,7 @@ export const userHandlers = [
 
   rest.patch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/writeReview/:userId`, (req, res, ctx) => {
     const userIds = ['1', '2', '3'];
+
     if (userIds.includes(req.params.userId as string)) {
       return res(
         ctx.json({
@@ -50,6 +51,47 @@ export const userHandlers = [
       ctx.json({
         success: false,
         message: '매너 평가에 실패 했습니다.',
+      })
+    );
+  }),
+
+  rest.get(`${process.env.NEXT_PUBLIC_BASE_URL}/user/userInfo/:userId`, (req, res, ctx) => {
+    const userIds = ['1', '2', '3'];
+
+    const data = {
+      nickname: '썩은김치',
+      profileUrl: 'http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/588.png',
+      goodFeedback: [
+        { description: '멘탈이 좋아요', count: 32 },
+        { description: '말을 예쁘게 해요', count: 24 },
+        { description: '좋은 피드백을 해줘요', count: 14 },
+        { description: '유쾌해서 재밌어요', count: 3 },
+      ],
+      tier: {
+        tier: 'Gold',
+        rank: 4,
+      },
+      playStyles: ['공격적', '무지성', '안전추구'],
+      positions: ['top', 'jg'],
+      voice: true,
+      voiceChannel: ['롤 인보이스', '디스코드'],
+      mostChamps: ['Yone', 'MonkeyKing', 'Yasuo'],
+    };
+
+    if (userIds.includes(req.params.userId as string)) {
+      return res(
+        ctx.json({
+          success: true,
+          message: '유저 정보를 불러오는데 성공했습니다.',
+          data,
+        })
+      );
+    }
+
+    return res(
+      ctx.json({
+        success: false,
+        message: '유저 정보를 불러오는데 실패했습니다.',
       })
     );
   }),

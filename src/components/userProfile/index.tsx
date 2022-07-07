@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React from 'react';
+import useGetUserProfile from '../../hooks/useGetUserProfile';
 import { Typography } from '../common';
 import MatchCard from './MatchCard';
 
@@ -9,6 +10,9 @@ const playStyles = ['교전지향', '합류를 잘하는', '에이징 커브', '
 
 function UserProfile() {
   const { userId } = useRouter().query;
+
+  const { data } = useGetUserProfile(userId as string);
+
   return (
     <div>
       <div style={{ position: 'relative', left: '-16px', width: '375px', height: '375px' }}>
