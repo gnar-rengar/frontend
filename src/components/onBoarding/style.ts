@@ -32,17 +32,17 @@ export const IconAndNickname = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 `;
 
-export const IconImageContainer = styled.div<{ imageUrl: string }>`
-  width: 48px;
+export const IconImageContainer = styled.div`
+  width: 50px;
   height: 48px;
   border-radius: 100px;
   border: 1px solid #35383d;
-  background-image: url(${(props) => props.imageUrl});
   background-size: cover;
   background-position: center;
+  overflow: hidden;
 `;
 
 export const NicknameContainer = styled.div`
@@ -103,16 +103,6 @@ export const SubmitButton = styled(ShareButton)<{ active: boolean }>`
   width: 100%;
   height: 48px;
   padding-top: 5px;
-  ${({ active, theme }) => {
-    if (active) {
-      return `
-        background-color: ${theme.color.primaryVariant};
-      `;
-    }
-    return `
-      background-color: ${theme.color.disable};
-    `;
-  }}
 `;
 
 export const CustomCheckbox = styled.input`

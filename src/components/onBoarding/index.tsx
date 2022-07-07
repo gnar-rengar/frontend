@@ -3,10 +3,12 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import Image from 'next/image';
 import { axios } from '../../axios';
 import { communication, onBoardingErrorMessage, position, voiceChannel } from '../../constant';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
-import { Radio, TextField, Typography, Asking } from '../common';
+import { NicknameCheckDTO, OnBoardingInput } from '../../types/api.type';
+import { Asking, Radio, TextField, Typography } from '../common';
 import SelectChip from '../common/chip/SelectChip';
 import {
   CheckboxContainer,
@@ -22,8 +24,6 @@ import {
   VoiceButton,
   VoiceButtonContainer,
 } from './style';
-
-import type { NicknameCheckDTO, OnBoardingInput } from '../../types/api.type';
 
 const validationSchema = yup.object().shape({
   nickName: yup.string().required(onBoardingErrorMessage.nickName),
@@ -118,11 +118,16 @@ function OnBoarding() {
         >
           <div className="container">
             <IconAndNickname>
-              <IconImageContainer imageUrl={summonerIcon}>
-                {/* <Image src="/icons/onBoarding.png" width={48} height={48} /> */}
+              <IconImageContainer>
+                <Image src={summonerIcon} width={48} height={48} />
               </IconImageContainer>
               <NicknameContainer>
-                <TextField {...register('nickName')} name="nickName" placeholder="소환사명 입력" />
+                <TextField
+                  active={nickNameInputActive && nickNameCheck}
+                  {...register('nickName')}
+                  name="nickName"
+                  placeholder="소환사명 입력"
+                />
                 <NickNameButton
                   onClick={onClickNickNameCheck}
                   type="button"
@@ -146,7 +151,7 @@ function OnBoarding() {
             <ChipContainer>
               {position.map((pos) => (
                 <React.Fragment key={pos}>
-                  <SelectChip value={pos} key={pos} htmlFor={pos}>
+                  <SelectChip colorProp="primary" value={pos} key={pos} htmlFor={pos}>
                     {pos}
                   </SelectChip>
                   <CustomCheckbox

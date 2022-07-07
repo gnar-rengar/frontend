@@ -1,6 +1,11 @@
 import styled from '@emotion/styled';
 
-export const Input = styled.input<{ error?: boolean }>`
+interface InputProps {
+  error?: boolean;
+  active?: boolean;
+}
+
+export const Input = styled.input<InputProps>`
   height: 48px;
   width: 230px;
   padding: 14px 16px;
@@ -13,6 +18,7 @@ export const Input = styled.input<{ error?: boolean }>`
     const {
       theme: { color },
       error,
+      active,
     } = props;
 
     if (error) {
@@ -21,13 +27,19 @@ export const Input = styled.input<{ error?: boolean }>`
         color: ${color.error};
       `;
     }
+    if (active) {
+      return `
+        border: 1px solid ${color.primary};
+        color: ${color.onBackground};
+      `;
+    }
     return `
       border: 1px solid ${color.onBackgroundSub};
       color: ${color.onBackgroundSub};
 
       &: focus {
         border: 1px solid ${color.primary};
-        color: ${color.onBackground} ;
+        color: ${color.onBackground};
       `;
   }}
 `;

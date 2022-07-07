@@ -24,7 +24,7 @@ const communication = [
 const onBoardingErrorMessage = {
   nickName: '정확한 소환사명을 입력해주세요.',
   nickNameCheck: '확인 버튼을 통해 소환사명을 확인해주세요',
-  checkbox: '하나 이상 골라주셔야 잘 추천해드릴 수 있어요!!!',
+  checkbox: '하나 이상 최대 두 포지션을 선택해주셔야 듀오 매칭이 가능해요',
 };
 
 const joyfulReasons = [
