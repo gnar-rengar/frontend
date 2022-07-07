@@ -171,7 +171,7 @@ function OnBoarding() {
         </Asking>
       </OnBoardingEachContainer>
       <OnBoardingEachContainer id="useVoice">
-        <Asking title="음성 채팅을 사용하시나요?">
+        <Asking title="음성 채팅을 사용하시나요?" paragraph>
           <div className="container" id="vocieChannel">
             <VoiceButtonContainer>
               <VoiceButton

@@ -20,7 +20,7 @@ function Asking(props: AskingProps) {
         <Typography variant="h3" align="left" paragraph={paragraph}>
           {title}
         </Typography>
-        <Typography space={space} variant="caption" paragraph>
+        <Typography space={space} variant="caption" paragraph={paragraph}>
           {caption}
         </Typography>
       </TitleContainer>

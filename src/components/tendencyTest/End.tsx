@@ -1,4 +1,4 @@
-import Image from 'next/future/image';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { tendencyImage } from '../../constant';
@@ -49,7 +49,7 @@ function End({ testAnswer }: EndProps) {
       </EndContainer>
       <StartEndButtonContainer>
         <Button size="md" variant="text" color="primaryVariant">
-          플레이스타일 수정하기
+          테스트 다시 하기
         </Button>
         <Button
           onClick={() => router.push('/on-boarding')}
