@@ -4,6 +4,20 @@ import type { ColorVariant, TypographyVariant } from './theme.type';
 
 declare module '@emotion/react' {
   export interface Theme {
+    color: {
+      [key in ColorVariant]: string;
+    };
+    icon: {
+      size: {
+        sm: string;
+        md: string;
+        lg: string;
+        xl: string;
+      };
+    };
+    margin: {
+      base: string;
+    };
     mq: {
       hdpc: string;
       pc: string;
@@ -13,9 +27,6 @@ declare module '@emotion/react' {
       mobileSM: string;
       mobileFold: string;
     };
-    color: {
-      [key in ColorVariant]: string;
-    };
     typography: {
       [key in TypographyVariant]: {
         element: string;
@@ -23,9 +34,6 @@ declare module '@emotion/react' {
         fontWeight: string;
         lineHeight: string;
       };
-    };
-    margin: {
-      base: string;
     };
   }
 }

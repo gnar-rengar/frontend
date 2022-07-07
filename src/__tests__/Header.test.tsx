@@ -6,13 +6,14 @@ import Header from '../components/layout/header/Header';
 import { darkTheme } from '../theme';
 
 describe('<Layout/>', () => {
-  it('should render a logo', () => {
-    const { getByText } = render(
+  it('should render logo ', () => {
+    const { getByAltText } = render(
       <ThemeProvider theme={darkTheme}>
         <Header />
       </ThemeProvider>
     );
-    const logo = getByText('LOGO');
+
+    const logo = getByAltText('logo');
     expect(logo).toBeInTheDocument();
   });
 

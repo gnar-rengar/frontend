@@ -1,6 +1,7 @@
+import { useTheme } from '@emotion/react';
+import Image from 'next/future/image';
 import React from 'react';
 import { Typography } from '../common';
-import People from '../icons/People';
 
 import { PeopleCount, StyledFeedback } from './style';
 
@@ -16,10 +17,16 @@ function FeedBack(props: FeedBackProps) {
     feedback: { description, count },
   } = props;
 
+  const {
+    icon: {
+      size: { lg },
+    },
+  } = useTheme();
+
   return (
     <StyledFeedback>
       <PeopleCount>
-        <People />
+        <Image src="/icons/people.svg" width={lg} height={lg} alt="people icon" />
         <Typography variant="body3" color="onBackgroundSub">
           {`${count}명`}
         </Typography>
