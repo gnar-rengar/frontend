@@ -7,7 +7,7 @@ import { StyledChip } from './Chip.style';
 export interface ChipProps {
   chosen?: boolean;
   size?: 'sm' | 'lg';
-  colorProp?: ColorVariant;
+  color?: ColorVariant;
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLLabelElement>) => void;
 }
@@ -18,10 +18,10 @@ const typoVariant = {
 } as const;
 
 function Chip(props: ChipProps) {
-  const { chosen, size, children, colorProp, onClick } = props;
+  const { chosen, size, children, color, onClick } = props;
 
   return (
-    <StyledChip onClick={onClick} chosen={chosen} colorProp={colorProp} size={size}>
+    <StyledChip onClick={onClick} chosen={chosen} color={color} size={size}>
       <Typography variant={typoVariant[size]} space="nowrap">
         {children}
       </Typography>

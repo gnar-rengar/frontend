@@ -21,18 +21,18 @@ function End({ testAnswer }: EndProps) {
             소환사님은
           </Typography>
           <ChipContainer>
-            <Chip size="sm" chosen colorProp="secondary">
+            <Chip size="sm" chosen color="secondary">
               #네글자요
             </Chip>
-            <Chip size="sm" chosen colorProp="secondary">
+            <Chip size="sm" chosen color="secondary">
               #네글자요
             </Chip>
           </ChipContainer>
           <ChipContainer>
-            <Chip size="sm" chosen colorProp="secondary">
+            <Chip size="sm" chosen color="secondary">
               #네글자요
             </Chip>
-            <Chip size="sm" chosen colorProp="secondary">
+            <Chip size="sm" chosen color="secondary">
               #네글자요
             </Chip>
           </ChipContainer>

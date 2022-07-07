@@ -9,7 +9,6 @@ export interface TypographyProps {
   align?: 'center' | 'left' | 'right' | 'inherit';
   color?: ColorVariant;
   margin?: string;
-  nowrap?: boolean;
   paragraph?: boolean;
   component?: 'div' | 'span';
   space?: string;
