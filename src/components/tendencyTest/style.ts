@@ -32,7 +32,8 @@ export const TendencyProgressBar = styled.div<{ width: string }>`
   height: 2px;
   background-color: ${(props) => props.theme.color.onBackgroundSub};
 
-  div {
+  &::before {
+    content: '';
     position: absolute;
     top: 0px;
     left: 0px;
