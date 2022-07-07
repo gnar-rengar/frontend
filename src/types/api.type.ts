@@ -5,6 +5,7 @@ export interface OnBoardingInput {
   communication: string;
   useVoice: boolean;
   voiceChannel?: string[];
+  playStyle: string[];
 }
 
 export interface ReviewWriteDTO {

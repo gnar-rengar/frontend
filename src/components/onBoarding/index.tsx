@@ -5,25 +5,34 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import Image from 'next/image';
 import { axios } from '../../axios';
-import { communication, onBoardingErrorMessage, position, voiceChannel } from '../../constant';
+import {
+  communication,
+  onBoardingErrorMessage,
+  position,
+  voiceChannel,
+  playStyle,
+} from '../../constant';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { NicknameCheckDTO, OnBoardingInput } from '../../types/api.type';
 import { Asking, Radio, TextField, Typography } from '../common';
-import SelectChip from '../common/chip/SelectChip';
 import {
   CheckboxContainer,
   ChipContainer,
-  CustomCheckbox,
+  CustomInputBox,
   IconAndNickname,
   IconImageContainer,
   NickNameButton,
   NicknameContainer,
   OnBoardingContainer,
   OnBoardingEachContainer,
+  PlayStyleContainer,
+  PlayStyleRadio,
   SubmitButton,
   VoiceButton,
   VoiceButtonContainer,
 } from './style';
+import CheckBoxChip from '../common/chip/CheckBoxChip';
+import RadioChip from '../common/chip/RadioChip';
 
 const validationSchema = yup.object().shape({
   nickName: yup.string().required(onBoardingErrorMessage.nickName),
@@ -41,6 +50,7 @@ const validationSchema = yup.object().shape({
     is: true,
     then: (schema) => schema.required(onBoardingErrorMessage.checkbox),
   }),
+  playStyle: yup.array(yup.string()).min(4, onBoardingErrorMessage.checkbox),
 });
 
 function OnBoarding() {
@@ -59,6 +69,7 @@ function OnBoarding() {
       voiceChannel: [],
       useVoice: null,
       communication: '',
+      playStyle: [],
     },
     resolver: yupResolver(validationSchema),
     mode: 'onChange',
@@ -66,6 +77,7 @@ function OnBoarding() {
   const router = useRouter();
   const nickNameButtonActive = watch('nickNameCheck');
   const nickNameInputActive = watch('nickName');
+  const test = watch('playStyle');
   const registerProps = register('communication');
   const [useVoice, setUseVoice] = useState('');
   const [summonerIcon, setSummonerIcon] = useState('/icons/onBoarding.png');
@@ -151,10 +163,10 @@ function OnBoarding() {
             <ChipContainer>
               {position.map((pos) => (
                 <React.Fragment key={pos}>
-                  <SelectChip colorProp="primary" value={pos} key={pos} htmlFor={pos}>
+                  <CheckBoxChip colorProp="primary" value={pos} key={pos} htmlFor={pos}>
                     {pos}
-                  </SelectChip>
-                  <CustomCheckbox
+                  </CheckBoxChip>
+                  <CustomInputBox
                     {...register('position')}
                     key={`${pos} 온보딩`}
                     type="checkbox"
@@ -203,10 +215,15 @@ function OnBoarding() {
               <ChipContainer>
                 {voiceChannel.map((channel) => (
                   <React.Fragment key={channel}>
-                    <SelectChip value={channel} key={channel} htmlFor={channel}>
+                    <CheckBoxChip
+                      colorProp="primary"
+                      value={channel}
+                      key={channel}
+                      htmlFor={channel}
+                    >
                       {channel}
-                    </SelectChip>
-                    <CustomCheckbox
+                    </CheckBoxChip>
+                    <CustomInputBox
                       value={channel}
                       key={`${channel} 온보딩`}
                       type="checkbox"
@@ -229,6 +246,54 @@ function OnBoarding() {
               </CheckboxContainer>
             </div>
           )}
+        </Asking>
+      </OnBoardingEachContainer>
+      <OnBoardingEachContainer id="playStyle">
+        <Asking
+          title="플레이스타일을 알려주세요"
+          caption="답변을 토대로 플레이 스타일이 자동 설정되어 있어요"
+        >
+          <PlayStyleContainer>
+            {playStyle.map((style) => (
+              <PlayStyleRadio key={style[0] + style[1]}>
+                <RadioChip
+                  name={style[0] + style[1]}
+                  width="fix"
+                  colorProp="primary"
+                  value={style[0]}
+                  htmlFor={style[0]}
+                >
+                  {style[0]}
+                </RadioChip>
+                <CustomInputBox
+                  value={style[0]}
+                  type="radio"
+                  id={style[0]}
+                  name={style[0] + style[1]}
+                  {...register('playStyle')}
+                />
+                <Typography paragraph variant="body3" color="onBackgroundSub">
+                  VS
+                </Typography>
+                <RadioChip
+                  name={style[0] + style[1]}
+                  width="fix"
+                  colorProp="primary"
+                  value={style[1]}
+                  htmlFor={style[1]}
+                >
+                  {style[1]}
+                </RadioChip>
+                <CustomInputBox
+                  value={style[1]}
+                  type="radio"
+                  id={style[1]}
+                  name={style[0] + style[1]}
+                  {...register('playStyle')}
+                />
+              </PlayStyleRadio>
+            ))}
+          </PlayStyleContainer>
         </Asking>
       </OnBoardingEachContainer>
       <SubmitButton active={isValid} type="submit" data-testid="submit">

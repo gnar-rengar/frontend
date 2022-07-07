@@ -96,6 +96,18 @@ export const VoiceButton = styled(ShareButton)<{ active: boolean }>`
   }}
 `;
 
+export const PlayStyleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+export const PlayStyleRadio = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
+
 export const SubmitButton = styled(ShareButton)<{ active: boolean }>`
   position: fixed;
   bottom: 20px;
@@ -105,8 +117,8 @@ export const SubmitButton = styled(ShareButton)<{ active: boolean }>`
   padding-top: 5px;
 `;
 
-export const CustomCheckbox = styled.input`
-  display: none;
+export const CustomInputBox = styled.input`
+  /* display: none; */
 `;
 
 export const CheckboxContainer = styled.div`

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { ColorVariant } from '../../../types/theme.type';
+import { Label } from '../checkbox/CheckBox.style';
 
 interface StyledChipProps {
   chosen?: boolean;
@@ -39,4 +40,13 @@ export const Input = styled.input`
   opacity: 0;
   width: 0;
   height: 0;
+`;
+
+export const SelectLabel = styled(Label)<{ width: 'fit-content' | 'fix' }>`
+  ${({ width }) => {
+    if (width === 'fit-content') {
+      return 'width: fit-content';
+    }
+    return 'width: 89px';
+  }}
 `;
