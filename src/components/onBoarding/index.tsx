@@ -77,7 +77,6 @@ function OnBoarding() {
   const router = useRouter();
   const nickNameButtonActive = watch('nickNameCheck');
   const nickNameInputActive = watch('nickName');
-  const test = watch('playStyle');
   const registerProps = register('communication');
   const [useVoice, setUseVoice] = useState('');
   const [summonerIcon, setSummonerIcon] = useState('/icons/onBoarding.png');

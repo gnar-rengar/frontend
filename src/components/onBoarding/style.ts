@@ -118,7 +118,7 @@ export const SubmitButton = styled(ShareButton)<{ active: boolean }>`
 `;
 
 export const CustomInputBox = styled.input`
-  /* display: none; */
+  display: none;
 `;
 
 export const CheckboxContainer = styled.div`
