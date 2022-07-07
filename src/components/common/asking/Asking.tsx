@@ -15,10 +15,12 @@ function Asking(props: AskingProps) {
   return (
     <AskingContainer>
       <TitleContainer>
-        <Typography variant="h3" align="left">
+        <Typography variant="h3" align="left" paragraph>
           {title}
         </Typography>
-        <Typography variant="caption">{caption}</Typography>
+        <Typography variant="caption" paragraph>
+          {caption}
+        </Typography>
       </TitleContainer>
       {children}
     </AskingContainer>

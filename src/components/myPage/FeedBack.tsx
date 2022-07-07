@@ -1,5 +1,5 @@
 import { useTheme } from '@emotion/react';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import React from 'react';
 import { Typography } from '../common';
 
@@ -31,7 +31,7 @@ function FeedBack(props: FeedBackProps) {
           {`${count}명`}
         </Typography>
       </PeopleCount>
-      <Typography variant="body3" color="onSurface">
+      <Typography variant="body3" color="onSurface" paragraph>
         {description}
       </Typography>
     </StyledFeedback>

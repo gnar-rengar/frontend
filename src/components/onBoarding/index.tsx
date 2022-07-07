@@ -105,7 +105,7 @@ function OnBoarding() {
                 </Typography>
               </NickNameButton>
             </div>
-            <Typography color="error" data-testid="nickNameError" variant="caption">
+            <Typography color="error" data-testid="nickNameError" variant="caption" paragraph>
               {errors?.nickName?.message || errors?.nickNameCheck?.message}
             </Typography>
           </div>
@@ -133,7 +133,7 @@ function OnBoarding() {
                 </React.Fragment>
               ))}
             </ChipContainer>
-            <Typography color="error" variant="caption">
+            <Typography color="error" variant="caption" paragraph>
               {(errors?.playStyle as any)?.message}
             </Typography>
           </div>
@@ -158,7 +158,7 @@ function OnBoarding() {
                 </React.Fragment>
               ))}
             </ChipContainer>
-            <Typography color="error" variant="caption">
+            <Typography color="error" variant="caption" paragraph>
               {(errors?.position as any)?.message}
             </Typography>
           </div>
@@ -186,13 +186,13 @@ function OnBoarding() {
                 사용하지 않아요
               </VoiceButton>
             </VoiceButtonContainer>
-            <Typography color="error" variant="caption">
+            <Typography color="error" variant="caption" paragraph>
               {(errors?.useVoice as any)?.message}
             </Typography>
           </div>
           {useVoice === '사용해요' && (
             <div className="container">
-              <Typography data-testid="useVoiceTitle" variant="caption">
+              <Typography data-testid="useVoiceTitle" variant="caption" paragraph>
                 어떤 채널을 주로 사용하시는지도 알려주세요.
               </Typography>
               <ChipContainer>
@@ -211,7 +211,7 @@ function OnBoarding() {
                   </React.Fragment>
                 ))}
               </ChipContainer>
-              <Typography color="error" variant="caption">
+              <Typography color="error" variant="caption" paragraph>
                 {(errors?.voiceChannel as any)?.message}
               </Typography>
             </div>

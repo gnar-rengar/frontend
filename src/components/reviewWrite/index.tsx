@@ -115,7 +115,7 @@ function ReviewWrite() {
           ))}
         </Asking>
       )}
-      <Typography variant="caption" color="error">
+      <Typography variant="caption" color="error" paragraph>
         {(errors?.goodFeedback as any)?.message}
       </Typography>
       <Asking
