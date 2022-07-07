@@ -9,7 +9,6 @@ const playStyles = ['교전지향', '합류를 잘하는', '에이징 커브', '
 
 function UserProfile() {
   const { userId } = useRouter().query;
-
   return (
     <div>
       <div style={{ position: 'relative', left: '-16px', width: '375px', height: '375px' }}>
