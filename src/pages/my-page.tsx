@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import MyPageComponent from '../components/mypage';
+import MyPageComponent from '../components/myPage';
 
 function MyPage() {
   return (
