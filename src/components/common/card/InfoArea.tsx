@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Image from 'next/future/image';
+import Image from 'next/image';
 import { useTheme } from '@emotion/react';
 import PlayStyle from './PlayStyle';
 import Position from './Position';

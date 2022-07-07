@@ -7,7 +7,8 @@ export type TypographyVariant =
   | 'body2'
   | 'body3'
   | 'body4'
-  | 'caption';
+  | 'caption'
+  | 'captionBold';
 
 export type ColorVariant =
   | 'primary'
