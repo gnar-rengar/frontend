@@ -1,17 +1,15 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import React from 'react';
 import useGetUserProfile from '../../hooks/useGetUserProfile';
 import { Typography } from '../common';
 import MatchCard from './MatchCard';
 
 const synergy = ['교전지향', '에이징 커브'];
-const playStyles = ['교전지향', '합류를 잘하는', '에이징 커브', '뇌지컬'];
 
-function UserProfile() {
-  const { userId } = useRouter().query;
-
+function UserProfile({ userId }: { userId: string }) {
   const { data } = useGetUserProfile(userId as string);
+
+  const { nickname, playStyles, positions, voice, voiceChannel, ...other } = data;
 
   return (
     <div>
@@ -30,6 +28,7 @@ function UserProfile() {
         <div>
           {playStyles.map((playStyle) => (
             <Typography
+              key={playStyle}
               variant="h3"
               component="span"
               color={synergy.includes(playStyle) ? 'primary' : 'onBackground'}
