@@ -162,7 +162,7 @@ function OnBoarding() {
             <ChipContainer>
               {position.map((pos) => (
                 <React.Fragment key={pos}>
-                  <CheckBoxChip colorProp="primary" value={pos} key={pos} htmlFor={pos}>
+                  <CheckBoxChip color="primary" value={pos} key={pos} htmlFor={pos}>
                     {pos}
                   </CheckBoxChip>
                   <CustomInputBox
@@ -207,43 +207,42 @@ function OnBoarding() {
             </Typography>
           </div>
           {useVoice === '사용해요' && (
-            <div className="container">
-              <Typography data-testid="useVoiceTitle" variant="caption" paragraph>
-                어떤 채널을 주로 사용하시는지도 알려주세요.
-              </Typography>
-              <ChipContainer>
-                {voiceChannel.map((channel) => (
-                  <React.Fragment key={channel}>
-                    <CheckBoxChip
-                      colorProp="primary"
-                      value={channel}
-                      key={channel}
-                      htmlFor={channel}
-                    >
-                      {channel}
-                    </CheckBoxChip>
-                    <CustomInputBox
-                      value={channel}
-                      key={`${channel} 온보딩`}
-                      type="checkbox"
-                      id={channel}
-                      {...register('voiceChannel')}
-                    />
-                  </React.Fragment>
-                ))}
-              </ChipContainer>
-              <Typography color="error" variant="caption" paragraph>
-                {(errors?.voiceChannel as any)?.message}
-              </Typography>
-              <Typography data-testid="useVoiceTitle" variant="caption">
-                어떤 소통을 선호하시는지도 알려주세요.
-              </Typography>
-              <CheckboxContainer>
-                {communication.map((item) => (
-                  <Radio register={registerProps} label={item} key={item} />
-                ))}
-              </CheckboxContainer>
-            </div>
+            <>
+              <div className="container">
+                <Typography data-testid="useVoiceTitle" variant="body1" paragraph>
+                  어떤 채널을 주로 사용하시는지도 알려주세요.
+                </Typography>
+                <ChipContainer>
+                  {voiceChannel.map((channel) => (
+                    <React.Fragment key={channel}>
+                      <CheckBoxChip color="primary" value={channel} key={channel} htmlFor={channel}>
+                        {channel}
+                      </CheckBoxChip>
+                      <CustomInputBox
+                        value={channel}
+                        key={`${channel} 온보딩`}
+                        type="checkbox"
+                        id={channel}
+                        {...register('voiceChannel')}
+                      />
+                    </React.Fragment>
+                  ))}
+                </ChipContainer>
+                <Typography color="error" variant="caption" paragraph>
+                  {(errors?.voiceChannel as any)?.message}
+                </Typography>
+              </div>
+              <div className="container">
+                <Typography data-testid="useVoiceTitle" variant="body1">
+                  좋아하시는 소통을 알려주세요.
+                </Typography>
+                <CheckboxContainer>
+                  {communication.map((item) => (
+                    <Radio register={registerProps} label={item} key={item} />
+                  ))}
+                </CheckboxContainer>
+              </div>
+            </>
           )}
         </Asking>
       </OnBoardingEachContainer>
@@ -258,7 +257,7 @@ function OnBoarding() {
                 <RadioChip
                   name={style[0] + style[1]}
                   width="fix"
-                  colorProp="primary"
+                  color="primary"
                   value={style[0]}
                   htmlFor={style[0]}
                 >
@@ -277,7 +276,7 @@ function OnBoarding() {
                 <RadioChip
                   name={style[0] + style[1]}
                   width="fix"
-                  colorProp="primary"
+                  color="primary"
                   value={style[1]}
                   htmlFor={style[1]}
                 >
