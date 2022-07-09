@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query';
-import { UserProfileDTO } from '../types/api.type';
 import { axios } from '../axios';
+
+import type { UserProfileDTO } from '../types/api.type';
 
 const fetchUserProfile = async (userId: string) => {
   const { data } = await axios.get(`user/userInfo/${userId}`);
@@ -8,12 +9,8 @@ const fetchUserProfile = async (userId: string) => {
 };
 
 const useGetUserProfile = (userId: string) => {
-  const { data } = useQuery<{ data: UserProfileDTO }>(
-    ['userProfile', userId] as string[],
-    () => fetchUserProfile(userId),
-    {
-      enabled: !!userId,
-    }
+  const { data } = useQuery<{ data: UserProfileDTO }>(['userProfile', userId], () =>
+    fetchUserProfile(userId)
   );
 
   return data;

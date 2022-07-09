@@ -4,6 +4,6 @@ module.exports = {
   reactStrictMode: false,
   concurrentFeatures: true,
   images: {
-    domains: ['ddragon.leagueoflegends.com', 'via.placeholder.com'],
+    domains: ['ddragon.leagueoflegends.com', 'ddragon.canisback.com', 'via.placeholder.com'],
   },
 };

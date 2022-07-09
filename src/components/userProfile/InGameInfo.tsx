@@ -1,56 +1,78 @@
 import Image from 'next/image';
 import React from 'react';
+import { useTheme } from '@emotion/react';
 import TextArea from './TextArea';
+import type { RecentRecord } from '../../types/api.type';
+import {
+  AssetWrapper,
+  ChampionImageWrapper,
+  InGameInfoContainer,
+  ItemContainer,
+  ItemContainerExceptForWard,
+  Left,
+  NoItem,
+  Right,
+  RuneContainer,
+  SpellContainer,
+} from './style';
+import ItemWrapper from './ItemWrapper';
+import ImageArea from './ImageArea';
 
-function InGameInfo() {
+type InGameInfoProps = {
+  championName: string;
+  primaryStyle: string;
+  subStyle: string;
+  spell1: string;
+  spell2: string;
+  item0: number;
+  item1: number;
+  item2: number;
+  item3: number;
+  item4: number;
+  item5: number;
+  item6: number;
+  champLevel: number;
+  totalMinionsKilled: number;
+  kills: number;
+  deaths: number;
+  assists: number;
+  kda: number;
+};
+
+function InGameInfo(props: InGameInfoProps) {
+  const {
+    championName,
+    primaryStyle,
+    subStyle,
+    spell1,
+    spell2,
+    item0,
+    item1,
+    item2,
+    item3,
+    item4,
+    item5,
+    item6,
+    champLevel,
+    totalMinionsKilled,
+    kills,
+    deaths,
+    assists,
+    kda,
+  } = props;
+
+  const {
+    icon: {
+      size: { lg },
+    },
+  } = useTheme();
+
+  const items = [item0, item1, item2, item3, item4, item5];
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-          <div style={{ width: '64px', height: '64px', borderRadius: '50%', overflow: 'hidden' }}>
-            <Image
-              src="http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/588.png"
-              width="64px"
-              height="64px"
-            />
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-            <div style={{ width: '24px', height: '24px', background: 'red' }}>1</div>
-            <div style={{ width: '24px', height: '24px', background: 'red' }}>2</div>
-          </div>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <div>
-            <div>
-              <Image
-                src="http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/588.png"
-                width="24px"
-                height="24px"
-              />
-            </div>
-            <div>
-              <Image
-                src="http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/588.png"
-                width="24px"
-                height="24px"
-              />
-            </div>
-          </div>
-          <div style={{ display: 'flex', gap: '4px', alignItems: 'flex-start' }}>
-            <div style={{ display: 'flex', flexWrap: 'wrap', width: '76px', gap: '2px' }}>
-              <div style={{ width: '24px', height: '24px', background: 'red' }}>1</div>
-              <div style={{ width: '24px', height: '24px', background: 'red' }}>2</div>
-              <div style={{ width: '24px', height: '24px', background: 'red' }}>3</div>
-              <div style={{ width: '24px', height: '24px', background: 'red' }}>4</div>
-              <div style={{ width: '24px', height: '24px', background: 'red' }}>5</div>
-              <div style={{ width: '24px', height: '24px', background: 'red' }}>6</div>
-            </div>
-            <div style={{ width: '24px', height: '24px', background: 'red' }}>7</div>
-          </div>
-        </div>
-      </div>
+    <InGameInfoContainer>
+      <ImageArea />
       <TextArea />
-    </div>
+    </InGameInfoContainer>
   );
 }
 
