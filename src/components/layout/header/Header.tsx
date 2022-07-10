@@ -37,8 +37,8 @@ function Header() {
         component: <Image src="/icons/chat.svg" width={lg} height={lg} alt="chat" />,
       },
       {
-        href: '/profile',
-        component: <Image src="/icons/profile.svg" width={lg} height={lg} alt="profile" />,
+        href: '/my-page',
+        component: <Image src="/icons/profile.svg" width={lg} height={lg} alt="my-page" />,
       },
     ],
     [lg]

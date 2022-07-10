@@ -25,7 +25,7 @@ export const Vignette = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  width: 40px;
+  width: 36px;
   height: 100%;
   background: linear-gradient(
     to right,

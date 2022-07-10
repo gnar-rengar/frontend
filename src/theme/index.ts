@@ -81,6 +81,12 @@ const publicTheme = {
       fontWeight: '400',
       lineHeight: '18px',
     },
+    captionBold: {
+      element: 'p',
+      fontSize: '12px',
+      fontWeight: '700',
+      lineHeight: '18px',
+    },
   },
 };
 
