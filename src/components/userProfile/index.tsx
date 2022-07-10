@@ -29,9 +29,8 @@ function UserProfile({ userId }: { userId: string }) {
     goodFeedback,
   } = data;
 
-  // TODO 프로필 이미지 업데이트 되면 작성.
   return (
-    <div>
+    <>
       <ProfileImg nickname={nickname} tier={tier} />
       <BaseContainer>
         <PlayStyleSection nickname={nickname} positions={positions} playStyles={playStyles} />
@@ -49,7 +48,7 @@ function UserProfile({ userId }: { userId: string }) {
        * 개인적으로는 위아래 패딩을 줄이고 버튼들이 검은 영역의 가운데에 위치하는게 어떨까 생각
        */}
       <ButtonArea />
-    </div>
+    </>
   );
 }
 

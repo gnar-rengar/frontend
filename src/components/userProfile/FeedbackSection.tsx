@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Asking, Feedback } from '../common';
 
 import type { Feedback as FeedbackType } from '../../types/api.type';
