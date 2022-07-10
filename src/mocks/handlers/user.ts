@@ -75,7 +75,7 @@ export const userHandlers = [
       positions: ['top', 'jg'],
       voice: true,
       voiceChannel: ['롤 인보이스', '디스코드'],
-      communication: ['텐션 높게, 즐겁게 얘기하는'],
+      communication: '텐션 높게, 즐겁게 얘기하는',
       mostChamps: ['Yone', 'MonkeyKing', 'Yasuo'],
     };
 

@@ -1,5 +1,28 @@
 import styled from '@emotion/styled';
 
+export const ProfileImgWrapper = styled.div`
+  position: relative;
+  left: 0;
+  width: 375px;
+  height: 375px;
+  margin: 0 -16px;
+`;
+
+export const TierAndNickname = styled.div`
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 16px;
+  gap: 12px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0),
+    ${({ theme: { color } }) => color.surface} 100%
+  );
+`;
+
 export const MostChamps = styled.ul`
   display: inline-flex;
   gap: 8px;
@@ -115,7 +138,7 @@ export const ItemContainerExceptForWard = styled.div`
 export const NoItem = styled.div`
   width: ${({ theme: { icon } }) => icon.size.lg};
   height: ${({ theme: { icon } }) => icon.size.lg};
-  background: ${({ theme: { color } }) => color.onBackgroundSub};
+  background: ${({ theme: { color } }) => color.surface};
   border-radius: inherit;
 `;
 

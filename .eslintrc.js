@@ -30,6 +30,7 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',
     '@typescript-eslint/comma-dangle': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
     'react/display-name': 'off',
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',

@@ -1,21 +1,35 @@
 import React from 'react';
 import { useTheme } from '@emotion/react';
 import Image from 'next/image';
+import ItemWrapper from './ItemWrapper';
+
 import {
   AssetWrapper,
   ChampionImageWrapper,
-  InGameInfoContainer,
   ItemContainer,
   ItemContainerExceptForWard,
   Left,
-  NoItem,
   Right,
   RuneContainer,
   SpellContainer,
 } from './style';
-import ItemWrapper from './ItemWrapper';
 
-function ImageArea(props) {
+interface ImageAreaProps {
+  championName: string;
+  primaryStyle: string;
+  subStyle: string;
+  spell1: string;
+  spell2: string;
+  item0: number;
+  item1: number;
+  item2: number;
+  item3: number;
+  item4: number;
+  item5: number;
+  item6: number;
+}
+
+function ImageArea(props: ImageAreaProps) {
   const {
     championName,
     primaryStyle,
@@ -29,12 +43,6 @@ function ImageArea(props) {
     item4,
     item5,
     item6,
-    champLevel,
-    totalMinionsKilled,
-    kills,
-    deaths,
-    assists,
-    kda,
   } = props;
 
   const {

@@ -1,10 +1,13 @@
-import React, { memo } from 'react';
-import { RecentRecord } from '../../types/api.type';
+import React from 'react';
+import dayjs from 'dayjs';
+
 import ImageArea from './ImageArea';
-import InGameInfo from './InGameInfo';
 import QueueInfo from './QueueInfo';
-import { InGameInfoContainer, MatchCardBackground, MatchCardContainer } from './style';
 import TextArea from './TextArea';
+
+import { InGameInfoContainer, MatchCardBackground, MatchCardContainer } from './style';
+
+import type { RecentRecord } from '../../types/api.type';
 
 interface MatchCardProps {
   matchData: RecentRecord;
@@ -13,21 +16,24 @@ interface MatchCardProps {
 function MatchCard({ matchData }: MatchCardProps) {
   const { win, queueType, gameStartTimestamp, gameEndTimestamp, ...other } = matchData;
 
+  const timeDiff = gameEndTimestamp - gameStartTimestamp;
+
+  const startTime = dayjs(gameStartTimestamp).format('YYYY/MM/DD A h시 mm분 ');
+  const playTime = dayjs(timeDiff).format('mm:ss');
+
+  const playTimeMinute = +dayjs(timeDiff).format('mm');
+
   return (
     <MatchCardBackground win={win}>
       <MatchCardContainer>
-        <QueueInfo
-          queueType={queueType}
-          gameStartTimestamp={gameStartTimestamp}
-          gameEndTimestamp={gameEndTimestamp}
-        />
+        <QueueInfo queueType={queueType} startTime={startTime} playTime={playTime} />
         <InGameInfoContainer>
           <ImageArea {...other} />
-          <TextArea {...other} />
+          <TextArea {...{ ...other, playTimeMinute }} />
         </InGameInfoContainer>
       </MatchCardContainer>
     </MatchCardBackground>
   );
 }
 
-export default memo(MatchCard);
+export default MatchCard;

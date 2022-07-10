@@ -3,27 +3,30 @@ import { Typography } from '../common';
 
 import { KDA, KDAAndMinionKilled, Level, LevelAndChampionName, TextAreaContainer } from './style';
 
-function TextArea(props) {
+interface TextAreaProps {
+  championName: string;
+  champLevel: number;
+  totalMinionsKilled: number;
+  kills: number;
+  deaths: number;
+  assists: number;
+  kda: number;
+  playTimeMinute: number;
+}
+
+function TextArea(props: TextAreaProps) {
   const {
     championName,
-    primaryStyle,
-    subStyle,
-    spell1,
-    spell2,
-    item0,
-    item1,
-    item2,
-    item3,
-    item4,
-    item5,
-    item6,
     champLevel,
     totalMinionsKilled,
     kills,
     deaths,
     assists,
     kda,
+    playTimeMinute,
   } = props;
+
+  const minionPerMinute = (totalMinionsKilled / playTimeMinute).toFixed(1);
 
   return (
     <TextAreaContainer>
@@ -56,7 +59,7 @@ function TextArea(props) {
         </KDA>
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <div>X</div>
-          <Typography variant="caption">{`${totalMinionsKilled}(분당개수)`}</Typography>
+          <Typography variant="caption">{`${totalMinionsKilled}(${minionPerMinute})`}</Typography>
         </div>
       </KDAAndMinionKilled>
     </TextAreaContainer>

@@ -4,23 +4,26 @@ import { AskingContainer, TitleContainer } from './Asking.style';
 
 interface AskingProps {
   title: string;
-  caption: string;
+  caption?: string;
   children: React.ReactNode;
+  paragraph?: boolean;
 }
 
 // TODO 컴포넌트명 변경
 function Asking(props: AskingProps) {
-  const { title, caption, children } = props;
+  const { title, caption, children, paragraph = true } = props;
 
   return (
     <AskingContainer>
       <TitleContainer>
-        <Typography variant="h3" align="left" paragraph>
+        <Typography variant="h3" align="left" paragraph={paragraph}>
           {title}
         </Typography>
-        <Typography variant="caption" paragraph>
-          {caption}
-        </Typography>
+        {caption && (
+          <Typography variant="caption" paragraph={paragraph}>
+            {caption}
+          </Typography>
+        )}
       </TitleContainer>
       {children}
     </AskingContainer>

@@ -34,7 +34,7 @@ export interface UserProfileDTO {
   positions: string[];
   voice: boolean;
   voiceChannel: string[];
-  communication: string[];
+  communication: string;
   mostChamps: string[];
 }
 
