@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import dynamic from 'next/dynamic';
 
 import useGetUserProfile from '../../hooks/useGetUserProfile';
@@ -10,6 +10,7 @@ import VoiceSection from './VoiceSection';
 import PlayStyleSection from './PlayStyleSection';
 import ProfileImg from './ProfileImg';
 import { BaseContainer } from '../common';
+import Blur from './Blur';
 
 const MatchSection = dynamic(() => import('./MatchSection'), {
   ssr: false,
@@ -29,8 +30,17 @@ function UserProfile({ userId }: { userId: string }) {
     goodFeedback,
   } = data;
 
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
   return (
     <>
+      <button
+        type="button"
+        onClick={() => setIsLoggedIn((p) => !p)}
+        style={{ position: 'absolute', top: 0, right: 0, zIndex: '100' }}
+      >
+        로그인
+      </button>
       <ProfileImg nickname={nickname} tier={tier} />
       <BaseContainer>
         <PlayStyleSection nickname={nickname} positions={positions} playStyles={playStyles} />
@@ -42,6 +52,7 @@ function UserProfile({ userId }: { userId: string }) {
         <FeedbackSection goodFeedback={goodFeedback} />
       </BaseContainer>
       <ButtonArea />
+      {isLoggedIn || <Blur />}
     </>
   );
 }

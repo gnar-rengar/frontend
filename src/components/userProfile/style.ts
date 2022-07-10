@@ -184,3 +184,23 @@ export const ButtonContainer = styled.div`
   bottom: 0;
   background: linear-gradient(180deg, rgba(18, 18, 18, 0) 0%, #121212 28.13%);
 `;
+
+export const BlurContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(4px);
+`;
+
+export const LoginMessage = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  transform: translate(-50%, -50%);
+`;
