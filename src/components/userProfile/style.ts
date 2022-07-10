@@ -109,7 +109,6 @@ export const RuneContainer = styled.div`
   gap: 4px;
 `;
 
-//* 변수명을 위해서 의미 없는 함수 호출 한번 더 하는게 맞나?
 export const SpellContainer = styled(RuneContainer)``;
 
 export const AssetWrapper = styled.div`
