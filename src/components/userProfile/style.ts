@@ -32,6 +32,12 @@ export const MostChamps = styled.ul`
   }
 `;
 
+export const MatchCardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
 export const MatchCardBackground = styled.div<{ win: boolean }>`
   width: 343px;
   height: 144px;
@@ -44,7 +50,7 @@ export const MatchCardBackground = styled.div<{ win: boolean }>`
   overflow: hidden;
 `;
 
-export const MatchCardContainer = styled.div`
+export const MatchCardLayout = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;

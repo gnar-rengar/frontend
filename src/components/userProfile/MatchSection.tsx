@@ -5,6 +5,7 @@ import useGetMatchHistory from '../../hooks/useGetMatchHistory';
 
 import MatchCard from './MatchCard';
 import { Typography } from '../common';
+import { MatchCardContainer } from './style';
 
 interface MatchSectionProps {
   userId: string;
@@ -29,17 +30,17 @@ function MatchSection({ userId }: MatchSectionProps) {
           marginBottom: '16px',
         }}
       >
-        <Typography variant="h3">최근 전적은 아래와 같아요</Typography>
+        <Typography variant="h3">최근 전적을 확인해보세요</Typography>
         <div style={{ display: 'flex' }}>
           <Typography variant="caption">더보기</Typography>
           <Image src="/icons/chevron-right.svg" width={sm} height={sm} />
         </div>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <MatchCardContainer>
         {recentRecord.map((matchData) => (
           <MatchCard matchData={matchData} />
         ))}
-      </div>
+      </MatchCardContainer>
     </section>
   );
 }

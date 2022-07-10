@@ -5,7 +5,7 @@ import ImageArea from './ImageArea';
 import QueueInfo from './QueueInfo';
 import TextArea from './TextArea';
 
-import { InGameInfoContainer, MatchCardBackground, MatchCardContainer } from './style';
+import { InGameInfoContainer, MatchCardBackground, MatchCardLayout } from './style';
 
 import type { RecentRecord } from '../../types/api.type';
 
@@ -25,13 +25,13 @@ function MatchCard({ matchData }: MatchCardProps) {
 
   return (
     <MatchCardBackground win={win}>
-      <MatchCardContainer>
+      <MatchCardLayout>
         <QueueInfo queueType={queueType} startTime={startTime} playTime={playTime} />
         <InGameInfoContainer>
           <ImageArea {...other} />
           <TextArea {...{ ...other, playTimeMinute }} />
         </InGameInfoContainer>
-      </MatchCardContainer>
+      </MatchCardLayout>
     </MatchCardBackground>
   );
 }

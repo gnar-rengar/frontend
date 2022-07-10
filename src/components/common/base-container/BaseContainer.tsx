@@ -1,15 +1,12 @@
 import React from 'react';
+import { StyledBaseContainer } from './style';
 
 interface BaseContainerProps {
   children: React.ReactNode;
 }
 
 function BaseContainer({ children }: BaseContainerProps) {
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', padding: '16px 0 64px' }}>
-      {children}
-    </div>
-  );
+  return <StyledBaseContainer>{children}</StyledBaseContainer>;
 }
 
 export default BaseContainer;

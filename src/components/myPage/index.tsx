@@ -34,7 +34,7 @@ function MyPage() {
       >
         <Feedback feedbacks={badFeedback} />
       </Asking>
-      <div>
+      <div style={{ marginTop: '-16px' }}>
         <Divider />
         <AreaButton type="button">
           <Typography variant="body1">로그인</Typography>
