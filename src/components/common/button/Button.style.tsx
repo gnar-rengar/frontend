@@ -41,6 +41,11 @@ export const StyledButton = styled.button<StyledButtonProps>`
         border: 1.5px solid ${theme.color[color]};
         background: inherit;
         color: ${theme.color[color]};
+
+        &:active {
+          background: ${theme.color[color]};
+          color: ${theme.color.onPrimary};
+        }
       `;
     }
     if (variant === 'text') {
