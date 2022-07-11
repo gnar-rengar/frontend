@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useTheme } from '@emotion/react';
 import { Typography } from '../common';
 
-import { MostChamps } from './style';
+import { MostChamps, Section } from './style';
 
 interface MostChampSectionProps {
   mostChamps: string[];
@@ -17,7 +17,7 @@ function MostChampSection({ mostChamps }: MostChampSectionProps) {
   } = useTheme();
 
   return (
-    <section style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+    <Section>
       <Typography variant="h3">숙련도가 가장 높은 챔피언은</Typography>
       <Typography variant="h3">
         <MostChamps>
@@ -35,7 +35,7 @@ function MostChampSection({ mostChamps }: MostChampSectionProps) {
         </MostChamps>
         {' 고요'}
       </Typography>
-    </section>
+    </Section>
   );
 }
 

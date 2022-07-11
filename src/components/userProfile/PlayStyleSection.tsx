@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography } from '../common';
+import { Section } from './style';
 
 interface PlayStyleSectionProps {
   nickname: string;
@@ -12,7 +13,7 @@ const synergy = ['교전지향', '올라운더'];
 function PlayStyleSection(props: PlayStyleSectionProps) {
   const { nickname, positions, playStyles } = props;
   return (
-    <section style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+    <Section>
       <Typography variant="h3">{`${nickname}님은`}</Typography>
       <Typography variant="h3">{`${positions.join(', ')}를 주로 플레이하고`}</Typography>
       <div>
@@ -36,7 +37,7 @@ function PlayStyleSection(props: PlayStyleSectionProps) {
         </Typography>
         으로 표현했어요
       </Typography>
-    </section>
+    </Section>
   );
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography } from '../common';
+import { Section } from './style';
 
 interface VoiceSectionProps {
   isVoiceOn: boolean;
@@ -11,7 +12,7 @@ function VoiceSection(props: VoiceSectionProps) {
   const { isVoiceOn, voiceChannel, communication } = props;
 
   return (
-    <section style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+    <Section>
       {isVoiceOn ? (
         <>
           <Typography variant="h3">{`주로 ${voiceChannel.join(', ')}에서`}</Typography>
@@ -21,7 +22,7 @@ function VoiceSection(props: VoiceSectionProps) {
       ) : (
         <Typography variant="h3">주로 보이스를 사용하지 않아요</Typography>
       )}
-    </section>
+    </Section>
   );
 }
 

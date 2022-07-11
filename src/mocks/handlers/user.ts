@@ -159,7 +159,7 @@ export const userHandlers = [
     ];
 
     const recentRecord: RecentRecord[] = [];
-    Array(10)
+    Array(5)
       .fill(0)
       .forEach(() => recentRecord.push(result[Math.round(Math.random())]));
 
