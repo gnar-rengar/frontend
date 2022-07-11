@@ -7,7 +7,7 @@ import usePatchReviewWrite from '../../hooks/usePatchReviewWrite';
 
 import { Asking, BaseContainer, Button, CheckBox, Typography } from '../common';
 
-import { Form, SubmitButtonWrapper } from './style';
+import { SubmitButtonWrapper } from './style';
 import { ButtonContainer } from '../common/asking/Asking.style';
 
 import type { ReviewWriteDTO } from '../../types/api.type';
