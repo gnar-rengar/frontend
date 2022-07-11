@@ -1,4 +1,5 @@
 import { rest } from 'msw';
+import { RecentRecord } from '../../types/api.type';
 
 export const userHandlers = [
   rest.get(`${process.env.NEXT_PUBLIC_BASE_URL}/user/mypage`, (req, res, ctx) => {
@@ -98,7 +99,7 @@ export const userHandlers = [
   }),
 
   rest.get(`${process.env.NEXT_PUBLIC_BASE_URL}/user/recentRecord/:userId`, (req, res, ctx) => {
-    const recentRecord = [
+    const result = [
       {
         gameMode: 'CLASSIC',
         gameType: 'MATCHED_GAME',
@@ -136,35 +137,7 @@ export const userHandlers = [
         win: false,
         championName: 'Belveth',
         primaryStyle:
-          ' https://ddragon.canisback.com/img/perk-images/Styles/Domination/Electrocute/Electrocute.png',
-        subStyle:
-          'https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Guardian/Guardian.png',
-        spell1: 'SummonerSmite',
-        spell2: 'SummonerFlash',
-        item0: 0,
-        item1: 0,
-        item2: 3026,
-        item3: 3091,
-        item4: 6672,
-        item5: 3111,
-        item6: 3364,
-        champLevel: 16,
-        totalMinionsKilled: 206,
-        kills: 5,
-        deaths: 3,
-        assists: 10,
-        kda: 5,
-      },
-      {
-        gameMode: 'CLASSIC',
-        gameType: 'MATCHED_GAME',
-        queueType: '5v5 Ranked Solo games',
-        gameStartTimestamp: 1656950215973,
-        gameEndTimestamp: 1656952225921,
-        win: true,
-        championName: 'Belveth',
-        primaryStyle:
-          ' https://ddragon.canisback.com/img/perk-images/Styles/Domination/Electrocute/Electrocute.png',
+          'https://ddragon.canisback.com/img/perk-images/Styles/Domination/Electrocute/Electrocute.png',
         subStyle:
           'https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Guardian/Guardian.png',
         spell1: 'SummonerSmite',
@@ -184,6 +157,11 @@ export const userHandlers = [
         kda: 5,
       },
     ];
+
+    const recentRecord: RecentRecord[] = [];
+    Array(10)
+      .fill(0)
+      .forEach(() => recentRecord.push(result[Math.round(Math.random())]));
 
     return res(
       ctx.json({

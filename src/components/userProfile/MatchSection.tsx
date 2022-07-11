@@ -37,7 +37,7 @@ function MatchSection({ userId }: MatchSectionProps) {
         </div>
       </div>
       <MatchCardContainer>
-        {recentRecord.map((matchData) => (
+        {recentRecord.slice(0, 3).map((matchData) => (
           <MatchCard matchData={matchData} />
         ))}
       </MatchCardContainer>
