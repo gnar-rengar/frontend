@@ -1,5 +1,10 @@
+export interface ResponseDTO {
+  success: boolean;
+  message: string;
+}
+
 export interface OnBoardingInput {
-  nickName: string;
+  lolNickname: string;
   nickNameCheck: boolean;
   position: string[];
   communication: string;
@@ -91,8 +96,6 @@ export interface RecentRecord {
   kda: number;
 }
 
-export interface NicknameCheckDTO {
-  success: boolean;
+export interface NicknameCheckDTO extends ResponseDTO {
   profileUrl: string;
-  message: string;
 }
