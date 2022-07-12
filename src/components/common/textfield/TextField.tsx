@@ -6,6 +6,7 @@ interface TextFieldProps {
   placeholder?: string;
   required?: boolean;
   error?: boolean;
+  active?: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 

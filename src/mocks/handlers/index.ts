@@ -20,17 +20,5 @@ export const handlers = [
     }
   }),
 
-  rest.get('https://api.duo-duo/user/checkNick', async (req, res, ctx) => {
-    const nickName = req.url.searchParams.get('lolNickName');
-
-    res(
-      ctx.json({
-        success: true,
-        profileUrl: nickName,
-        message: '계정이 확인되었습니다.',
-      })
-    );
-  }),
-
   ...userHandlers,
 ];

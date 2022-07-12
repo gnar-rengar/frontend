@@ -3,10 +3,15 @@ import Header from './header/Header';
 
 import { LayoutContainer, Main } from './Layout.style';
 
-function Layout({ children }: { children: React.ReactNode }) {
+interface LayoutProps {
+  header?: boolean;
+  children: React.ReactNode;
+}
+
+function Layout({ header = true, children }: LayoutProps) {
   return (
     <LayoutContainer>
-      <Header />
+      {header && <Header />}
       <Main>{children}</Main>
     </LayoutContainer>
   );

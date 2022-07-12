@@ -9,21 +9,22 @@ export interface TypographyProps {
   align?: 'center' | 'left' | 'right' | 'inherit';
   color?: ColorVariant;
   margin?: string;
-  nowrap?: boolean;
   paragraph?: boolean;
   component?: 'div' | 'span';
+  space?: string;
+  isLineHeight?: boolean;
   children: React.ReactNode;
 }
 
 function Typography(props: TypographyProps) {
-  const { children, variant, paragraph, component, ...other } = props;
+  const { children, variant, paragraph, component, isLineHeight = true, ...other } = props;
 
   const theme = useTheme();
 
   const elementType = theme.typography[variant].element;
 
   return (
-    <StyledTypography as={component} {...{ ...other, variant }}>
+    <StyledTypography as={component} {...{ ...other, variant, isLineHeight }}>
       {paragraph ? React.createElement(elementType, {}, children) : children}
     </StyledTypography>
   );
@@ -31,7 +32,6 @@ function Typography(props: TypographyProps) {
 
 Typography.defaultProps = {
   variant: 'body1',
-  nowrap: false,
 };
 
 export default Typography;
