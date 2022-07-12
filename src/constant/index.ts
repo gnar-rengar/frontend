@@ -1,6 +1,15 @@
-const position = ['탑', '정글', '미드', '원딜', '서폿'] as const;
+const position = [
+  ['탑', 'top'],
+  ['정글', 'jungle'],
+  ['미드', 'mid'],
+  ['원딜', 'adcarry'],
+  ['서폿', 'support'],
+] as const;
 
-const voiceChannel = ['디스코드', '롤 인보이스', '기타'] as const;
+const voiceChannel = [
+  ['디스코드', 'discord'],
+  ['롤 인보이스', 'invoice'],
+] as const;
 
 const communication = [
   '텐션 높게, 즐겁게 얘기하는 플레이가 좋아요.',
@@ -9,12 +18,12 @@ const communication = [
   '피드백은 언제나 환영해요',
 ] as const;
 
-const playStyle = [
-  ['교전지향', '안전추구'],
-  ['라인전위주', '라인전위주'],
-  ['올라운더', '원챔장인'],
-  ['피지컬', '뇌지컬'],
-];
+const playStyle = {
+  battle: ['교전지향', '안전추구'],
+  line: ['라인전위주', '로밍위주'],
+  champion: ['올라운더', '원챔장인'],
+  physical: ['피지컬', '뇌지컬'],
+};
 
 const onBoardingErrorMessage = {
   nickName: '정확한 소환사명을 입력해주세요.',

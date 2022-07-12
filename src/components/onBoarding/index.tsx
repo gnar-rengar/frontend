@@ -1,23 +1,27 @@
+/* eslint-disable react/forbid-prop-types */
 import { yupResolver } from '@hookform/resolvers/yup';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import Image from 'next/image';
 import { axios } from '../../axios';
 import {
   communication,
   onBoardingErrorMessage,
+  playStyle,
   position,
   voiceChannel,
-  playStyle,
 } from '../../constant';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { NicknameCheckDTO, OnBoardingInput } from '../../types/api.type';
-import { Asking, Radio, TextField, Typography } from '../common';
+import { Asking, Button, Radio, TextField, Typography } from '../common';
+import CheckBoxChip from '../common/chip/CheckBoxChip';
+import RadioChip from '../common/chip/RadioChip';
 import {
   CheckboxContainer,
   ChipContainer,
+  Container,
   CustomInputBox,
   IconAndNickname,
   IconImageContainer,
@@ -27,15 +31,13 @@ import {
   OnBoardingEachContainer,
   PlayStyleContainer,
   PlayStyleRadio,
-  SubmitButton,
-  VoiceButton,
   VoiceButtonContainer,
 } from './style';
-import CheckBoxChip from '../common/chip/CheckBoxChip';
-import RadioChip from '../common/chip/RadioChip';
+
+type PlayStyleKey = 'battle' | 'line' | 'champion' | 'physical';
 
 const validationSchema = yup.object().shape({
-  nickName: yup.string().required(onBoardingErrorMessage.nickName),
+  lolNickname: yup.string().required(onBoardingErrorMessage.nickName),
   nickNameCheck: yup.boolean().oneOf([true], onBoardingErrorMessage.nickNameCheck),
   position: yup
     .array(yup.string())
@@ -50,7 +52,12 @@ const validationSchema = yup.object().shape({
     is: true,
     then: (schema) => schema.required(onBoardingErrorMessage.checkbox),
   }),
-  playStyle: yup.array(yup.string()).min(4, onBoardingErrorMessage.checkbox),
+  playStyle: yup.object({
+    battle: yup.string().required(),
+    line: yup.string().required(),
+    champion: yup.string().required(),
+    physical: yup.string().required(),
+  }),
 });
 
 function OnBoarding() {
@@ -63,24 +70,24 @@ function OnBoarding() {
     watch,
   } = useForm<OnBoardingInput>({
     defaultValues: {
-      nickName: '',
+      lolNickname: '',
       nickNameCheck: false,
       position: [],
       voiceChannel: [],
       useVoice: null,
       communication: '',
-      playStyle: [],
     },
     resolver: yupResolver(validationSchema),
     mode: 'onChange',
   });
   const router = useRouter();
   const nickNameButtonActive = watch('nickNameCheck');
-  const nickNameInputActive = watch('nickName');
+  const nickNameInputActive = watch('lolNickname');
   const registerProps = register('communication');
   const [useVoice, setUseVoice] = useState('');
   const [summonerIcon, setSummonerIcon] = useState('/icons/onBoarding.png');
   const [nickNameCheck, setNicknameCheck] = useState(false);
+  const [radioChecked, setRadioChecked] = useState('');
   const submitMutation = useOnBoardingMutation();
 
   useEffect(() => {
@@ -91,6 +98,10 @@ function OnBoarding() {
   }, [errors]);
 
   const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
+    // const values = {
+    //   ...data,
+    //   profileImage: summonerIcon,
+    // };
     submitMutation.mutate(data);
   };
 
@@ -120,14 +131,14 @@ function OnBoarding() {
   };
 
   return (
-    <OnBoardingContainer onSubmit={handleSubmit(onSubmitOnBoarding)} id="nickName">
-      <OnBoardingEachContainer id="nickNameCheck">
+    <OnBoardingContainer onSubmit={handleSubmit(onSubmitOnBoarding)} id="lolNickname">
+      <OnBoardingEachContainer gap id="nickNameCheck">
         <Asking
           title="소환사명을 알려주세요"
           caption={'본인 계정의 소환사명을 입력해주세요.\n타인 계정 도용 시 제재를 받을 수 있어요.'}
           space="pre-line"
         >
-          <div className="container">
+          <Container>
             <IconAndNickname>
               <IconImageContainer>
                 <Image src={summonerIcon} width={48} height={48} />
@@ -135,8 +146,8 @@ function OnBoarding() {
               <NicknameContainer>
                 <TextField
                   active={nickNameInputActive && nickNameCheck}
-                  {...register('nickName')}
-                  name="nickName"
+                  {...register('lolNickname')}
+                  name="lolNickname"
                   placeholder="소환사명 입력"
                 />
                 <NickNameButton
@@ -151,26 +162,26 @@ function OnBoarding() {
               </NicknameContainer>
             </IconAndNickname>
             <Typography color="error" data-testid="nickNameError" variant="caption" paragraph>
-              {errors?.nickName?.message || errors?.nickNameCheck?.message}
+              {errors?.lolNickname?.message || errors?.nickNameCheck?.message}
             </Typography>
-          </div>
+          </Container>
         </Asking>
       </OnBoardingEachContainer>
-      <OnBoardingEachContainer id="position">
+      <OnBoardingEachContainer gap id="position">
         <Asking title="어느 포지션을 선호하세요?" caption="최대 두 포지션을 선택할 수 있어요">
-          <div className="container">
+          <Container>
             <ChipContainer>
               {position.map((pos) => (
-                <React.Fragment key={pos}>
-                  <CheckBoxChip color="primary" value={pos} key={pos} htmlFor={pos}>
-                    {pos}
+                <React.Fragment key={pos[1]}>
+                  <CheckBoxChip color="primary" value={pos[0]} key={pos[0]} htmlFor={pos[0]}>
+                    {pos[0]}
                   </CheckBoxChip>
                   <CustomInputBox
                     {...register('position')}
-                    key={`${pos} 온보딩`}
+                    key={`${pos[1]} 온보딩`}
                     type="checkbox"
-                    id={pos}
-                    value={pos}
+                    id={pos[0]}
+                    value={pos[1]}
                   />
                 </React.Fragment>
               ))}
@@ -178,125 +189,129 @@ function OnBoarding() {
             <Typography color="error" variant="caption" paragraph>
               {(errors?.position as any)?.message}
             </Typography>
-          </div>
+          </Container>
         </Asking>
       </OnBoardingEachContainer>
-      <OnBoardingEachContainer id="useVoice">
+      <OnBoardingEachContainer gap={false} id="useVoice">
         <Asking title="음성 채팅을 사용하시나요?" paragraph>
-          <div className="container" id="vocieChannel">
+          <Container id="voiceChannel">
             <VoiceButtonContainer>
-              <VoiceButton
-                data-testid="useVoice"
+              <Button
+                size="md"
+                type="button"
                 onClick={(e) => onClickVoiceButton(e, '사용해요')}
-                active={voiceButtonIsState('사용해요')}
+                color={voiceButtonIsState('사용해요') ? 'primary' : 'disable'}
               >
                 사용해요
-              </VoiceButton>
-              <VoiceButton
+              </Button>
+              <Button
+                size="md"
+                type="button"
                 onClick={(e) => {
                   onClickVoiceButton(e, '사용하지 않아요');
                   setValue('voiceChannel', []);
                 }}
-                active={voiceButtonIsState('사용하지 않아요')}
+                color={voiceButtonIsState('사용하지 않아요') ? 'primary' : 'disable'}
               >
                 사용하지 않아요
-              </VoiceButton>
+              </Button>
             </VoiceButtonContainer>
-            <Typography color="error" variant="caption" paragraph>
-              {(errors?.useVoice as any)?.message}
-            </Typography>
-          </div>
-          {useVoice === '사용해요' && (
-            <>
-              <div className="container">
-                <Typography data-testid="useVoiceTitle" variant="body1" paragraph>
-                  어떤 채널을 주로 사용하시는지도 알려주세요.
-                </Typography>
+            {errors?.useVoice && (
+              <Typography color="error" variant="caption" paragraph>
+                {(errors?.useVoice as any)?.message}
+              </Typography>
+            )}
+          </Container>
+        </Asking>
+        {useVoice === '사용해요' && (
+          <>
+            <Container>
+              <Asking title="어떤 채널을 주로 사용하시나요?" paragraph>
                 <ChipContainer>
                   {voiceChannel.map((channel) => (
-                    <React.Fragment key={channel}>
-                      <CheckBoxChip color="primary" value={channel} key={channel} htmlFor={channel}>
-                        {channel}
+                    <React.Fragment key={channel[1]}>
+                      <CheckBoxChip
+                        color="primary"
+                        value={channel[1]}
+                        key={channel[1]}
+                        htmlFor={channel[1]}
+                      >
+                        {channel[0]}
                       </CheckBoxChip>
                       <CustomInputBox
-                        value={channel}
+                        value={channel[1]}
                         key={`${channel} 온보딩`}
                         type="checkbox"
-                        id={channel}
+                        id={channel[1]}
                         {...register('voiceChannel')}
                       />
                     </React.Fragment>
                   ))}
                 </ChipContainer>
+              </Asking>
+              {errors?.voiceChannel && (
                 <Typography color="error" variant="caption" paragraph>
                   {(errors?.voiceChannel as any)?.message}
                 </Typography>
-              </div>
-              <div className="container">
-                <Typography data-testid="useVoiceTitle" variant="body1">
-                  좋아하시는 소통을 알려주세요.
-                </Typography>
+              )}
+            </Container>
+            <Container>
+              <Asking title="좋아하시는 소통을 알려주세요" paragraph>
                 <CheckboxContainer>
                   {communication.map((item) => (
                     <Radio register={registerProps} label={item} key={item} />
                   ))}
                 </CheckboxContainer>
-              </div>
-            </>
-          )}
-        </Asking>
+              </Asking>
+            </Container>
+          </>
+        )}
       </OnBoardingEachContainer>
-      <OnBoardingEachContainer id="playStyle">
+      <OnBoardingEachContainer gap id="playStyle">
         <Asking
           title="플레이스타일을 알려주세요"
           caption="답변을 토대로 플레이 스타일이 자동 설정되어 있어요"
         >
           <PlayStyleContainer>
-            {playStyle.map((style) => (
-              <PlayStyleRadio key={style[0] + style[1]}>
+            {Object.keys(playStyle).map((style: PlayStyleKey) => (
+              <PlayStyleRadio key={style}>
                 <RadioChip
-                  name={style[0] + style[1]}
+                  name={style}
                   width="fix"
                   color="primary"
-                  value={style[0]}
-                  htmlFor={style[0]}
+                  value={playStyle[style][0]}
+                  htmlFor={playStyle[style][0]}
+                  radioChecked={radioChecked}
+                  setRadioChecked={setRadioChecked}
+                  register={register}
+                  watch={watch}
                 >
-                  {style[0]}
+                  {playStyle[style][0]}
                 </RadioChip>
-                <CustomInputBox
-                  value={style[0]}
-                  type="radio"
-                  id={style[0]}
-                  name={style[0] + style[1]}
-                  {...register('playStyle')}
-                />
                 <Typography paragraph variant="body3" color="onBackgroundSub">
                   VS
                 </Typography>
                 <RadioChip
-                  name={style[0] + style[1]}
-                  width="fix"
+                  name={style}
                   color="primary"
-                  value={style[1]}
-                  htmlFor={style[1]}
+                  width="fix"
+                  value={playStyle[style][1]}
+                  htmlFor={playStyle[style][1]}
+                  radioChecked={radioChecked}
+                  setRadioChecked={setRadioChecked}
+                  register={register}
+                  watch={watch}
                 >
-                  {style[1]}
+                  {playStyle[style][1]}
                 </RadioChip>
-                <CustomInputBox
-                  value={style[1]}
-                  type="radio"
-                  id={style[1]}
-                  name={style[0] + style[1]}
-                  {...register('playStyle')}
-                />
               </PlayStyleRadio>
             ))}
           </PlayStyleContainer>
         </Asking>
       </OnBoardingEachContainer>
-      <SubmitButton active={isValid} type="submit" data-testid="submit">
-        <Typography variant="body1">내 듀오 찾으러 가기</Typography>
-      </SubmitButton>
+      <Button size="lg" color={isValid ? 'primaryVariant' : 'disable'} type="submit">
+        내 듀오 찾으러 가기
+      </Button>
     </OnBoardingContainer>
   );
 }

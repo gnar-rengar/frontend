@@ -10,22 +10,24 @@ export const OnBoardingContainer = styled.form`
   padding-bottom: calc(48px * 2);
 `;
 
-export const OnBoardingEachContainer = styled.div`
+export const OnBoardingEachContainer = styled.div<{ gap: boolean }>`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: ${(props) => (props.gap ? '16' : '0')}px;
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
   .flexContainer {
     display: flex;
     align-items: center;
     gap: 4px;
   }
+`;
+
+export const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 export const IconAndNickname = styled.div`
@@ -82,21 +84,6 @@ export const VoiceButtonContainer = styled.div`
   gap: 16px;
 `;
 
-export const VoiceButton = styled(ShareButton)<{ active: boolean }>`
-  padding: 8px 16px;
-  height: 36px;
-  ${({ active, theme }) => {
-    if (active) {
-      return `
-        background-color: ${theme.color.primary};
-      `;
-    }
-    return `
-      background-color: ${theme.color.disable};
-    `;
-  }}
-`;
-
 export const PlayStyleContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -116,6 +103,7 @@ export const SubmitButton = styled(ShareButton)<{ active: boolean }>`
   width: 100%;
   height: 48px;
   padding-top: 5px;
+  background-color: ${({ active, theme }) => active && theme.color.primary};
 `;
 
 export const CustomInputBox = styled.input`
@@ -131,5 +119,4 @@ export const CheckboxContainer = styled.div`
 export const ChannelAndCommunication = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
 `;
