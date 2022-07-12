@@ -27,7 +27,7 @@ function Button(props: ButtonProps) {
 
   return (
     <StyledButton type={type} value={value} onClick={onClick} {...{ ...other, size }}>
-      <Typography variant={typoVariant[size]} align="center" isLineHeight={false}>
+      <Typography variant={typoVariant[size]} align="center">
         {children}
       </Typography>
     </StyledButton>

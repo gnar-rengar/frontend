@@ -199,7 +199,7 @@ function OnBoarding() {
           <Container id="voiceChannel">
             <VoiceButtonContainer>
               <Button
-                size="md"
+                size="sm"
                 type="button"
                 onClick={(e) => onClickVoiceButton(e, '사용해요')}
                 color={voiceButtonIsState('사용해요') ? 'primary' : 'disable'}
@@ -207,7 +207,7 @@ function OnBoarding() {
                 사용해요
               </Button>
               <Button
-                size="md"
+                size="sm"
                 type="button"
                 onClick={(e) => {
                   onClickVoiceButton(e, '사용하지 않아요');

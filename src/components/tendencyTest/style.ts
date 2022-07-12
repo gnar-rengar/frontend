@@ -16,6 +16,7 @@ export const TestStartContainer = styled(TestContainer)`
 `;
 
 export const ButtonContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -24,6 +25,7 @@ export const ButtonContainer = styled.div`
 export const StartEndButtonContainer = styled(ButtonContainer)`
   position: absolute;
   bottom: 5%;
+  max-width: 345px;
 `;
 
 export const TendencyProgressBar = styled.div<{ width: string }>`
@@ -73,4 +75,8 @@ export const QuestionAndExpression = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 40px;
+`;
+
+export const Test = styled.div`
+  padding: 0 16px;
 `;

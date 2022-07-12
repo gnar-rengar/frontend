@@ -26,6 +26,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
     return `
       width: fit-content;
       height: 36px;
+      padding: 8px 16px;
       border-radius: 8px;
     `;
   }}

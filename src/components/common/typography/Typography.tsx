@@ -12,19 +12,18 @@ export interface TypographyProps {
   paragraph?: boolean;
   component?: 'div' | 'span';
   space?: string;
-  isLineHeight?: boolean;
   children: React.ReactNode;
 }
 
 function Typography(props: TypographyProps) {
-  const { children, variant, paragraph, component, isLineHeight = true, ...other } = props;
+  const { children, variant, paragraph, component, ...other } = props;
 
   const theme = useTheme();
 
   const elementType = theme.typography[variant].element;
 
   return (
-    <StyledTypography as={component} {...{ ...other, variant, isLineHeight }}>
+    <StyledTypography as={component} {...{ ...other, variant }}>
       {paragraph ? React.createElement(elementType, {}, children) : children}
     </StyledTypography>
   );

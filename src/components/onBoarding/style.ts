@@ -50,7 +50,7 @@ export const IconImageContainer = styled.div`
 export const NicknameContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
 `;
 
 const ShareButton = styled.button<{ active?: boolean }>`
