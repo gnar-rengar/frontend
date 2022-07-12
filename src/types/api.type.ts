@@ -27,7 +27,6 @@ export interface LoginDTO {
 
 export interface UserProfileDTO {
   nickname: string;
-  profileOpen: boolean;
   profileUrl: string;
   goodFeedback: Feedback[];
   tier: Tier;
@@ -35,6 +34,8 @@ export interface UserProfileDTO {
   positions: string[];
   voice: boolean;
   voiceChannel: string[];
+  communication: string;
+  mostChamps: string[];
 }
 
 export interface MyPageDTO {
@@ -48,12 +49,44 @@ export interface MyPageDTO {
   badFeedback: Feedback[];
 }
 
-interface Feedback {
+export interface Feedback {
   description: string;
   count: number;
 }
 
-interface Tier {
+export interface Tier {
   tier: string;
   rank: number;
+}
+
+export interface MatchDTO {
+  success: boolean;
+  recentRecord: RecentRecord[];
+}
+
+export interface RecentRecord {
+  gameMode: string;
+  gameType: string;
+  queueType: string;
+  gameStartTimestamp: number;
+  gameEndTimestamp: number;
+  win: boolean;
+  championName: string;
+  primaryStyle: string;
+  subStyle: string;
+  spell1: string;
+  spell2: string;
+  item0: number;
+  item1: number;
+  item2: number;
+  item3: number;
+  item4: number;
+  item5: number;
+  item6: number;
+  champLevel: number;
+  totalMinionsKilled: number;
+  kills: number;
+  deaths: number;
+  assists: number;
+  kda: number;
 }

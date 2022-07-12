@@ -6,7 +6,7 @@ export const OnBoardingContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 8px;
   padding-bottom: calc(48px * 2);
 `;
 

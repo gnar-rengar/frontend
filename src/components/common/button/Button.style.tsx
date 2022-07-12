@@ -16,6 +16,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
       `;
     }
     return `
+      width: fit-content;
       height: 36px;
       border-radius: 8px;
     `;
