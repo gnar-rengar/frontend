@@ -8,15 +8,17 @@ export interface ButtonProps {
   type?: 'button' | 'submit' | 'reset';
   color?: ColorVariant;
   variant?: 'contained' | 'outlined' | 'text';
-  size?: 'sm' | 'lg';
+  size?: 'sm' | 'lg' | 'md';
   value?: string | number;
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   children: React.ReactNode;
+  active?: boolean;
 }
 
 const typoVariant = {
   sm: 'body4',
+  md: 'body3',
   lg: 'body1',
 } as const;
 

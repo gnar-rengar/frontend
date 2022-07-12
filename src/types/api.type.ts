@@ -1,11 +1,16 @@
+export interface ResponseDTO {
+  success: boolean;
+  message: string;
+}
+
 export interface OnBoardingInput {
-  nickName: string;
+  lolNickname: string;
   nickNameCheck: boolean;
-  playStyle: string[];
   position: string[];
   communication: string;
   useVoice: boolean;
   voiceChannel?: string[];
+  playStyle: string[];
 }
 
 export interface ReviewWriteDTO {
@@ -89,4 +94,8 @@ export interface RecentRecord {
   deaths: number;
   assists: number;
   kda: number;
+}
+
+export interface NicknameCheckDTO extends ResponseDTO {
+  profileUrl: string;
 }

@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
 import Chip from './Chip';
-
-import { Label } from '../checkbox/CheckBox.style';
-import { Input } from './Chip.style';
+import { Input, SelectLabel } from './Chip.style';
 
 import type { ChipProps } from './Chip';
 
-interface SelectChipProps extends ChipProps {
+interface CheckBoxChipProps extends ChipProps {
   htmlFor: string;
   value: string;
+  width?: 'fit-content' | 'fix';
 }
 
-function SelectChip(props: SelectChipProps) {
-  const { htmlFor, value, ...other } = props;
+function CheckBoxChip(props: CheckBoxChipProps) {
+  const { htmlFor, value, width = 'fit-content', ...other } = props;
   const [checked, setChecked] = useState(false);
 
   return (
-    <Label htmlFor={htmlFor}>
+    <SelectLabel width={width} htmlFor={htmlFor}>
       <Input type="checkbox" value={value} defaultChecked={checked} />
       <Chip onClick={() => setChecked((p) => !p)} chosen={checked} {...other} />
-    </Label>
+    </SelectLabel>
   );
 }
-export default SelectChip;
+export default CheckBoxChip;

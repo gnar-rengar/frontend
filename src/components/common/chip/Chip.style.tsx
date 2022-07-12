@@ -1,6 +1,15 @@
 import styled from '@emotion/styled';
+import { ColorVariant } from '../../../types/theme.type';
+import { Label } from '../checkbox/CheckBox.style';
 
-export const StyledChip = styled.span<{ chosen: boolean; size: 'sm' | 'lg' }>`
+interface StyledChipProps {
+  chosen?: boolean;
+  size?: 'sm' | 'lg';
+  color?: ColorVariant;
+}
+
+export const StyledChip = styled.span<StyledChipProps>`
+  width: 100%;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -11,20 +20,18 @@ export const StyledChip = styled.span<{ chosen: boolean; size: 'sm' | 'lg' }>`
     return 'padding: 5px 14px;';
   }}
 
-  ${({ theme, chosen }) => {
-    const { color } = theme;
-
+  ${({ theme, chosen, color }) => {
     if (chosen) {
       return `
-        background: ${color.primary};
-        border: 1px solid ${color.primary};
-        color: ${color.onPrimary};
+        background: ${theme.color[color]};
+        border: 1px solid ${theme.color[color]};
+        color: ${theme.color.onPrimary};
       `;
     }
     return `
       background: inherit;
-      border: 1px solid ${color.onBackgroundSub};
-      color: ${color.onBackgroundSub};
+      border: 1px solid ${theme.color.onBackgroundSub};
+      color: ${theme.color.onBackgroundSub};
     `;
   }}
 `;
@@ -34,4 +41,13 @@ export const Input = styled.input`
   opacity: 0;
   width: 0;
   height: 0;
+`;
+
+export const SelectLabel = styled(Label)<{ width: 'fit-content' | 'fix' }>`
+  ${({ width }) => {
+    if (width === 'fit-content') {
+      return 'width: fit-content';
+    }
+    return 'width: 89px';
+  }}
 `;
