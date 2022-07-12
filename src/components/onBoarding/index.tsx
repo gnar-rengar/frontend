@@ -9,7 +9,7 @@ import { axios } from '../../axios';
 import {
   communication,
   onBoardingErrorMessage,
-  playStyle,
+  playStyleText,
   position,
   voiceChannel,
 } from '../../constant';
@@ -98,9 +98,11 @@ function OnBoarding() {
   }, [errors]);
 
   const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
+    // const playStyle = Object.values(data.playStyle);
     // const values = {
     //   ...data,
     //   profileImage: summonerIcon,
+    //   playStyle,
     // };
     submitMutation.mutate(data);
   };
@@ -273,20 +275,20 @@ function OnBoarding() {
           caption="답변을 토대로 플레이 스타일이 자동 설정되어 있어요"
         >
           <PlayStyleContainer>
-            {Object.keys(playStyle).map((style: PlayStyleKey) => (
+            {Object.keys(playStyleText).map((style: PlayStyleKey) => (
               <PlayStyleRadio key={style}>
                 <RadioChip
                   name={style}
                   width="fix"
                   color="primary"
-                  value={playStyle[style][0]}
-                  htmlFor={playStyle[style][0]}
+                  value={playStyleText[style][0]}
+                  htmlFor={playStyleText[style][0]}
                   radioChecked={radioChecked}
                   setRadioChecked={setRadioChecked}
                   register={register}
                   watch={watch}
                 >
-                  {playStyle[style][0]}
+                  {playStyleText[style][0]}
                 </RadioChip>
                 <Typography paragraph variant="body3" color="onBackgroundSub">
                   VS
@@ -295,14 +297,14 @@ function OnBoarding() {
                   name={style}
                   color="primary"
                   width="fix"
-                  value={playStyle[style][1]}
-                  htmlFor={playStyle[style][1]}
+                  value={playStyleText[style][1]}
+                  htmlFor={playStyleText[style][1]}
                   radioChecked={radioChecked}
                   setRadioChecked={setRadioChecked}
                   register={register}
                   watch={watch}
                 >
-                  {playStyle[style][1]}
+                  {playStyleText[style][1]}
                 </RadioChip>
               </PlayStyleRadio>
             ))}

@@ -18,7 +18,7 @@ const communication = [
   '피드백은 언제나 환영해요',
 ] as const;
 
-const playStyle = {
+const playStyleText = {
   battle: ['교전지향', '안전추구'],
   line: ['라인전위주', '로밍위주'],
   champion: ['올라운더', '원챔장인'],
@@ -79,7 +79,7 @@ export {
   position,
   voiceChannel,
   communication,
-  playStyle,
+  playStyleText,
   onBoardingErrorMessage,
   joyfulReasons,
   awfulReasons,
