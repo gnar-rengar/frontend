@@ -23,6 +23,13 @@ export const TierAndNickname = styled.div`
   );
 `;
 
+export const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 0;
+`;
+
 export const MostChamps = styled.ul`
   display: inline-flex;
   gap: 8px;
@@ -30,6 +37,13 @@ export const MostChamps = styled.ul`
   span {
     border-radius: 50%;
   }
+`;
+
+export const MatchSectionTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
 `;
 
 export const MatchCardContainer = styled.div`

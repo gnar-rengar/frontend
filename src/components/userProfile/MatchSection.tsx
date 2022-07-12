@@ -1,11 +1,13 @@
 import React, { memo } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useTheme } from '@emotion/react';
 import useGetMatchHistory from '../../hooks/useGetMatchHistory';
 
 import MatchCard from './MatchCard';
 import { Typography } from '../common';
-import { MatchCardContainer } from './style';
+
+import { MatchCardContainer, MatchSectionTitle, Section } from './style';
 
 interface MatchSectionProps {
   userId: string;
@@ -18,30 +20,29 @@ function MatchSection({ userId }: MatchSectionProps) {
     },
   } = useTheme();
 
-  const { recentRecord } = useGetMatchHistory(userId);
+  const { data } = useGetMatchHistory(userId);
+
+  const { recentRecord } = data.pages[0].data;
 
   return (
-    <section>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '16px',
-        }}
-      >
+    <Section>
+      <MatchSectionTitle>
         <Typography variant="h3">최근 전적을 확인해보세요</Typography>
         <div style={{ display: 'flex' }}>
-          <Typography variant="caption">더보기</Typography>
+          <Link href={`/match-history/${userId}`}>
+            <a>
+              <Typography variant="caption">더보기</Typography>
+            </a>
+          </Link>
           <Image src="/icons/chevron-right.svg" width={sm} height={sm} />
         </div>
-      </div>
+      </MatchSectionTitle>
       <MatchCardContainer>
-        {recentRecord.map((matchData) => (
-          <MatchCard matchData={matchData} />
+        {recentRecord.slice(0, 3).map((matchData) => (
+          <MatchCard matchData={matchData} key={matchData.gameEndTimestamp} />
         ))}
       </MatchCardContainer>
-    </section>
+    </Section>
   );
 }
 

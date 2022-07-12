@@ -10,7 +10,7 @@ import {
   voiceChannel,
 } from '../../constant';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
-import { Radio, TextField, Typography, Asking, BaseContainer } from '../common';
+import { Radio, TextField, Typography, Asking } from '../common';
 import SelectChip from '../common/chip/SelectChip';
 import {
   CheckboxContainer,

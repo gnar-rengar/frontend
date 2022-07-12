@@ -4,6 +4,7 @@ export const AskingContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding: 16px 0;
   gap: 16px;
 `;
 

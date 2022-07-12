@@ -2,6 +2,7 @@ import { ThemeProvider } from '@emotion/react';
 import { AppProps } from 'next/app';
 import React, { useRef } from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { RecoilRoot } from 'recoil';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
@@ -39,6 +40,7 @@ function App({ Component, pageProps }: AppProps) {
             </ThemeProvider>
           </RecoilRoot>
         </Hydrate>
+        <ReactQueryDevtools position="bottom-right" />
       </QueryClientProvider>
     </>
   );

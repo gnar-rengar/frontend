@@ -24,7 +24,7 @@ function Feedback(props: FeedbackProps) {
   return (
     <FeedbackContainer>
       {feedbacks.map((feedback) => (
-        <StyledFeedback>
+        <StyledFeedback key={feedback.description}>
           <PeopleCount>
             <Image src="/icons/people.svg" width={lg} height={lg} alt="people icon" />
             <Typography variant="body3" color="onBackgroundSub">
