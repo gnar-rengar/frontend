@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import Image from 'next/image';
-import { useTheme } from '@emotion/react';
 import Link from 'next/link';
+import { useTheme } from '@emotion/react';
 import useGetMatchHistory from '../../hooks/useGetMatchHistory';
 
 import MatchCard from './MatchCard';
@@ -39,7 +39,7 @@ function MatchSection({ userId }: MatchSectionProps) {
       </MatchSectionTitle>
       <MatchCardContainer>
         {recentRecord.slice(0, 3).map((matchData) => (
-          <MatchCard matchData={matchData} />
+          <MatchCard matchData={matchData} key={matchData.gameEndTimestamp} />
         ))}
       </MatchCardContainer>
     </Section>

@@ -22,7 +22,7 @@ function MostChampSection({ mostChamps }: MostChampSectionProps) {
       <Typography variant="h3">
         <MostChamps>
           {mostChamps.map((mostChamp) => (
-            <li>
+            <li key={mostChamp}>
               <Image
                 src={`https://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${mostChamp}.png`}
                 layout="fixed"

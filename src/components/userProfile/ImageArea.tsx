@@ -91,8 +91,8 @@ function ImageArea(props: ImageAreaProps) {
         </SpellContainer>
         <ItemContainer>
           <ItemContainerExceptForWard>
-            {items.map((item) => (
-              <ItemWrapper item={item} />
+            {items.map((item, index) => (
+              <ItemWrapper item={item} key={item.toString() + (index * 192).toString()} />
             ))}
           </ItemContainerExceptForWard>
           <ItemWrapper item={item6} />

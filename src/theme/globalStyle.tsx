@@ -23,6 +23,10 @@ function GlobalStyle() {
           text-decoration: none;
           outline: none;
         }
+        a:visited {
+          text-decoration: none;
+          color: inherit;
+        }
       `}
     />
   );
