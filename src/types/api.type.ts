@@ -1,26 +1,16 @@
-export interface MyPageDTO {
+export interface ResponseDTO {
   success: boolean;
-  profileUrl: string;
-  nickname: string;
-  profileOpen: true;
-  goodFeedback: {
-    description: string;
-    count: number;
-  }[];
-  badFeedback: {
-    description: string;
-    count: number;
-  }[];
+  message: string;
 }
 
 export interface OnBoardingInput {
-  nickName: string;
+  lolNickname: string;
   nickNameCheck: boolean;
-  playStyle: string[];
   position: string[];
   communication: string;
   useVoice: boolean;
   voiceChannel?: string[];
+  playStyle: string[];
 }
 
 export interface ReviewWriteDTO {
@@ -38,4 +28,74 @@ export interface LoginDTO {
   userId: string;
   rtokenExpireTime: string;
   tokenExpireTime: string;
+}
+
+export interface UserProfileDTO {
+  nickname: string;
+  profileUrl: string;
+  goodFeedback: Feedback[];
+  tier: Tier;
+  playStyles: string[];
+  positions: string[];
+  voice: boolean;
+  voiceChannel: string[];
+  communication: string;
+  mostChamps: string[];
+}
+
+export interface MyPageDTO {
+  nickname: string;
+  profileUrl: string;
+  voice: boolean;
+  tier: Tier;
+  positions: string[];
+  playStyles: string[];
+  goodFeedback: Feedback[];
+  badFeedback: Feedback[];
+}
+
+export interface Feedback {
+  description: string;
+  count: number;
+}
+
+export interface Tier {
+  tier: string;
+  rank: number;
+}
+
+export interface MatchDTO {
+  success: boolean;
+  recentRecord: RecentRecord[];
+}
+
+export interface RecentRecord {
+  gameMode: string;
+  gameType: string;
+  queueType: string;
+  gameStartTimestamp: number;
+  gameEndTimestamp: number;
+  win: boolean;
+  championName: string;
+  primaryStyle: string;
+  subStyle: string;
+  spell1: string;
+  spell2: string;
+  item0: number;
+  item1: number;
+  item2: number;
+  item3: number;
+  item4: number;
+  item5: number;
+  item6: number;
+  champLevel: number;
+  totalMinionsKilled: number;
+  kills: number;
+  deaths: number;
+  assists: number;
+  kda: number;
+}
+
+export interface NicknameCheckDTO extends ResponseDTO {
+  profileUrl: string;
 }

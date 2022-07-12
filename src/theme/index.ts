@@ -9,6 +9,14 @@ export const responsiveView = {
 };
 
 const publicTheme = {
+  icon: {
+    size: {
+      sm: '16px',
+      md: '20px',
+      lg: '24px',
+      xl: '32px',
+    },
+  },
   mq: {
     hdpc: `(max-width: ${responsiveView.HDPC})`,
     pc: `(max-width: ${responsiveView.PC})`,
@@ -71,6 +79,12 @@ const publicTheme = {
       element: 'p',
       fontSize: '12px',
       fontWeight: '400',
+      lineHeight: '18px',
+    },
+    captionBold: {
+      element: 'p',
+      fontSize: '12px',
+      fontWeight: '700',
       lineHeight: '18px',
     },
   },

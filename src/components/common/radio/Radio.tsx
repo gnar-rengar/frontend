@@ -1,7 +1,6 @@
 import React from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import Typography from '../typography/Typography';
-
 import { Input, InputWrapper, Label, Mark } from './Radio.style';
 
 interface RadioProps {
@@ -11,7 +10,6 @@ interface RadioProps {
   checked?: boolean;
   register?: UseFormRegisterReturn<string>;
 }
-
 function Radio(props: RadioProps) {
   const { id, name, label, checked = false, register } = props;
 

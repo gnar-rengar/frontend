@@ -11,8 +11,8 @@ export const StyledTypography = styled.div<StyledTypographyProps>`
 
     return `
       color: ${color[props.color]};
-      align: ${props.align};
-      white-space: ${props.nowrap && 'nowrap'};
+      text-align: ${props.align};
+      white-space: ${props.space};
       font-size: ${variant.fontSize};
       font-weight: ${variant.fontWeight};
       line-height: ${variant.lineHeight};

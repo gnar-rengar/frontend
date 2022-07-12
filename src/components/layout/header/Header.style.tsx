@@ -9,9 +9,11 @@ export const HeaderContainer = styled.header`
   height: 56px;
   padding: 14px 16px;
   background: ${(props) => props.theme.color.surface};
+  z-index: 10;
 `;
 
 export const Nav = styled.nav`
   display: flex;
-  gap: 24px;
+  align-items: center;
+  gap: 18px;
 `;

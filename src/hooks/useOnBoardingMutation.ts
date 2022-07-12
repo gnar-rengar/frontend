@@ -2,10 +2,10 @@ import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
 import { axios } from '../axios';
 
-import type { OnBoardingInput } from '../types/dto/onBoarding.type';
+import type { NicknameCheckDTO, OnBoardingInput } from '../types/api.type';
 
 const onBoardingPatchAPI = async (params: OnBoardingInput) => {
-  const { data } = await axios.patch('/auth/onboarding', params);
+  const { data } = await axios.patch<NicknameCheckDTO>('/auth/onboarding', params);
   return data;
 };
 
