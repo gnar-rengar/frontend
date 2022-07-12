@@ -9,6 +9,7 @@ interface StyledChipProps {
 }
 
 export const StyledChip = styled.span<StyledChipProps>`
+  width: 100%;
   display: inline-flex;
   justify-content: center;
   align-items: center;
