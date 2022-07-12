@@ -8,6 +8,7 @@ export const StyledTypography = styled.div<StyledTypographyProps>`
   ${(props) => {
     const { typography, color } = props.theme;
     const variant = typography[props.variant];
+    const { isLineHeight } = props;
 
     return `
       color: ${color[props.color]};
@@ -15,7 +16,7 @@ export const StyledTypography = styled.div<StyledTypographyProps>`
       white-space: ${props.space};
       font-size: ${variant.fontSize};
       font-weight: ${variant.fontWeight};
-      line-height: ${variant.lineHeight};
+      line-height: ${isLineHeight && variant.lineHeight};
       margin-bottom: ${props.margin}px;
     `;
   }}

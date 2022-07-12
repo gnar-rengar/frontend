@@ -13,6 +13,7 @@ export interface ButtonProps {
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   children: React.ReactNode;
+  active?: boolean;
 }
 
 const typoVariant = {
@@ -26,7 +27,7 @@ function Button(props: ButtonProps) {
 
   return (
     <StyledButton type={type} value={value} onClick={onClick} {...{ ...other, size }}>
-      <Typography variant={typoVariant[size]} align="center">
+      <Typography variant={typoVariant[size]} align="center" isLineHeight={false}>
         {children}
       </Typography>
     </StyledButton>
