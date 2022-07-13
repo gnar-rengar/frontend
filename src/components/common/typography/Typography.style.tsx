@@ -17,6 +17,10 @@ export const StyledTypography = styled.div<StyledTypographyProps>`
       font-weight: ${variant.fontWeight};
       line-height: ${variant.lineHeight};
       margin-bottom: ${props.margin}px;
+
+      & > a {
+        text-decoration: ${props.underline ? 'underline' : 'none'}
+      }
     `;
   }}
 `;
