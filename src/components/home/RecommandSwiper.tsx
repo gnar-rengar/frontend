@@ -1,23 +1,23 @@
-import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import RecommandCard from './RecommandCard';
-import { RecommandSwiperContainer } from './style';
+import React from 'react';
+import RecommandCard from '../common/card/RecommandCard';
+import { CardProps } from '../common/card/Card';
 
-function RecommandSwiper() {
+function RecommandSwiper(props: CardProps) {
   return (
-    <RecommandSwiperContainer>
+    <div>
       <Swiper spaceBetween={-55} slidesPerView="auto" centeredSlides>
         <SwiperSlide>
-          <RecommandCard />
+          <RecommandCard {...props} />
         </SwiperSlide>
         <SwiperSlide>
-          <RecommandCard />
+          <RecommandCard {...props} />
         </SwiperSlide>
         <SwiperSlide>
-          <RecommandCard />
+          <RecommandCard {...props} />
         </SwiperSlide>
       </Swiper>
-    </RecommandSwiperContainer>
+    </div>
   );
 }
 

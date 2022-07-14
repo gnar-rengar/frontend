@@ -1,6 +1,7 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
-import { Card, Typography } from '../common';
+import { Button, Card, Typography } from '../common';
 import Footer from '../common/footer/Footer';
 import Banner from './BannerSwiper';
 import RecommandSwiper from './RecommandSwiper';
@@ -23,7 +24,18 @@ function HomeComponent() {
     <HomeContainer>
       <Banner />
       <Container>
-        <Blur />
+        <Blur>
+          <Typography variant="h3" align="center">
+            로그인 후 찰떡궁합
+            <br />
+            듀오를 확인하세요!
+          </Typography>
+          <Button size="sm">
+            <Link href="/login">
+              <a>로그인</a>
+            </Link>
+          </Button>
+        </Blur>
         <TitleAndMoreContainer>
           <Typography variant="h3">
             롤하는 메기님과
@@ -35,7 +47,7 @@ function HomeComponent() {
             <Image src="/icons/arrow-right.svg" width="16px" height="16px" />
           </MoreContainer>
         </TitleAndMoreContainer>
-        <RecommandSwiper />
+        <RecommandSwiper {...data} />
       </Container>
       <Container>
         <TitleAndMoreContainer>

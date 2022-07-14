@@ -29,44 +29,11 @@ export const TitleAndMoreContainer = styled.div`
 `;
 
 export const MoreContainer = styled.div`
+  padding: 4px 0px;
   display: flex;
   align-items: center;
   gap: 9px;
   cursor: pointer;
-`;
-
-export const RecommandCardContainer = styled.div`
-  position: relative;
-  width: 311px;
-  height: 311px;
-  border-radius: 16px;
-  overflow: hidden;
-  background-color: ${({ theme: { color } }) => color.surface};
-`;
-
-export const RecommandInfoContainer = styled.div`
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 104px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 25%, rgba(47, 47, 47, 1) 55%);
-`;
-
-export const InfoTopContainer = styled.div`
-  padding: 0 16px;
-  height: 54px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-
-export const InfoBottomContainer = styled.div`
-  height: 100%;
-  padding: 0 16px;
 `;
 
 export const Blur = styled.div`
@@ -76,7 +43,10 @@ export const Blur = styled.div`
   top: 0;
   left: 0;
   backdrop-filter: blur(4px);
-  z-index: 999px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
 `;
-
-export const RecommandSwiperContainer = styled.div``;
