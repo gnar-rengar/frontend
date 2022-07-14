@@ -4,7 +4,7 @@ import React from 'react';
 import { Button, Card, Typography } from '../common';
 import Footer from '../common/footer/Footer';
 import Banner from './BannerSwiper';
-import RecommandSwiper from './RecommandSwiper';
+import RecommandSwiper from './RecommendSwiper';
 import { Blur, Container, HomeContainer, MoreContainer, TitleAndMoreContainer } from './style';
 
 const data = {

@@ -21,14 +21,14 @@ function Footer() {
         assets owned by Riot Games. Riot Games does not endorse or sponsor this project.
       </Typography>
       <LinkContainer>
-        <Typography variant="captionBold" underline>
+        <Typography variant="captionBold">
           <Link href="/my-page">
-            <a>개인정보처리방침</a>
+            <a className="underline">개인정보처리방침</a>
           </Link>
         </Typography>
-        <Typography variant="caption" underline>
+        <Typography variant="caption">
           <Link href="/my-page">
-            <a>이용약관</a>
+            <a className="underline">이용약관</a>
           </Link>
         </Typography>
       </LinkContainer>

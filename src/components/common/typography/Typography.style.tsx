@@ -18,8 +18,8 @@ export const StyledTypography = styled.div<StyledTypographyProps>`
       line-height: ${variant.lineHeight};
       margin-bottom: ${props.margin}px;
 
-      & > a {
-        text-decoration: ${props.underline ? 'underline' : 'none'}
+      .underline {
+        text-decoration: underline;
       }
     `;
   }}
