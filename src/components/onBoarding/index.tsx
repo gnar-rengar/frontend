@@ -163,9 +163,11 @@ function OnBoarding() {
                 </NickNameButton>
               </NicknameContainer>
             </IconAndNickname>
-            <Typography color="error" data-testid="nickNameError" variant="caption" paragraph>
-              {errors?.lolNickname?.message || errors?.nickNameCheck?.message}
-            </Typography>
+            {(errors?.lolNickname || errors?.nickNameCheck) && (
+              <Typography color="error" data-testid="nickNameError" variant="caption" paragraph>
+                {errors?.lolNickname?.message || errors?.nickNameCheck?.message}
+              </Typography>
+            )}
           </Container>
         </Asking>
       </OnBoardingEachContainer>
@@ -188,9 +190,11 @@ function OnBoarding() {
                 </React.Fragment>
               ))}
             </ChipContainer>
-            <Typography color="error" variant="caption" paragraph>
-              {(errors?.position as any)?.message}
-            </Typography>
+            {errors?.position && (
+              <Typography color="error" variant="caption" paragraph>
+                {(errors?.position as any)?.message}
+              </Typography>
+            )}
           </Container>
         </Asking>
       </OnBoardingEachContainer>
