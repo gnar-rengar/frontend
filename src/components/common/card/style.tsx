@@ -36,7 +36,7 @@ export const Vignette = styled.div`
 
 export const Ul = styled.ul`
   display: flex;
-  gap: 4px;
+  gap: 6px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

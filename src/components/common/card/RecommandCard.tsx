@@ -47,7 +47,7 @@ function RecommandCard(props: CardProps) {
           </NameVoiceAndPosition>
         </InfoTopContainer>
         <InfoBottomContainer>
-          <PlayStyle playStyles={playStyles} />
+          <PlayStyle type="recommand" playStyles={playStyles} />
         </InfoBottomContainer>
       </RecommandInfoContainer>
     </RecommandCardContainer>
