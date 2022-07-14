@@ -8,13 +8,11 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-const HEADER_HEIGHT = 56;
-
 function Layout({ header = true, children }: LayoutProps) {
   return (
     <LayoutContainer>
-      {header && <Header height={HEADER_HEIGHT} />}
-      <Main headerHeight={HEADER_HEIGHT}>{children}</Main>
+      {header && <Header />}
+      <Main>{children}</Main>
     </LayoutContainer>
   );
 }

@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
 
-export const HeaderContainer = styled.header<{ height: number }>`
+export const HeaderContainer = styled.header`
   position: sticky;
   top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: ${({ height }) => height}px;
+  height: ${({ theme }) => theme.header.height}px;
   padding: 14px 16px;
-  background: ${(props) => props.theme.color.surface};
+  background: ${({ theme }) => theme.color.surface};
   z-index: 10;
 `;
 

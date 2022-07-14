@@ -9,6 +9,9 @@ export const responsiveView = {
 };
 
 const publicTheme = {
+  header: {
+    height: '56px',
+  },
   icon: {
     size: {
       sm: '16px',

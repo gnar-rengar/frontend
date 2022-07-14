@@ -8,8 +8,7 @@ export const LayoutContainer = styled.div`
 `}
 `;
 
-export const Main = styled.main<{ headerHeight: number }>`
+export const Main = styled.main`
   position: relative;
-  min-height: calc(100vh - ${({ headerHeight }) => headerHeight}px);
   padding: 0 16px;
 `;

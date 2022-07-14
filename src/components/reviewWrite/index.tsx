@@ -10,7 +10,7 @@ import OnGoodReview from './OnGoodReview';
 import OnBadReview from './OnBadReview';
 import { Asking, BaseContainer, Button, StickyBottom } from '../common';
 
-import { ButtonContainer } from './style';
+import { ButtonContainer, Form } from './style';
 
 import { reviewWriteErrorMessage } from '../../constant';
 import type { ReviewWriteDTO } from '../../types/api.type';
@@ -79,7 +79,7 @@ function ReviewWrite() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <BaseContainer>
         <Asking title="고수달님은 어떠셨나요?" caption="진짜 플레이 했을 때만 평가해라">
           <ButtonContainer>
@@ -114,7 +114,7 @@ function ReviewWrite() {
           매너 평가하기
         </Button>
       </StickyBottom>
-    </form>
+    </Form>
   );
 }
 

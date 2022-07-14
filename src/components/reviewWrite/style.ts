@@ -1,12 +1,10 @@
 import styled from '@emotion/styled';
 
-export const SubmitButtonWrapper = styled.div`
-  position: fixed;
-  left: 0;
-  bottom: 20px;
+export const Form = styled.form`
+  min-height: calc(100vh - ${({ theme }) => theme.header.height});
   display: flex;
-  justify-content: center;
-  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const ButtonContainer = styled.div`
