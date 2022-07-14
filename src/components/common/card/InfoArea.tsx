@@ -8,7 +8,7 @@ import Typography from '../typography/Typography';
 
 import { Bottom, NameVoiceAndPosition, NameVoice, StyledInfoArea, Tier, Top } from './style';
 
-import type { CardProps } from './Card';
+import type { CardProps } from './SmallCard';
 
 type InfoAreaProps = Omit<CardProps, 'profileUrl'>;
 

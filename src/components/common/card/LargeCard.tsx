@@ -2,7 +2,7 @@ import { useTheme } from '@emotion/react';
 import Image from 'next/image';
 import React from 'react';
 import { Typography } from '..';
-import { CardProps } from './Card';
+import { CardProps } from './SmallCard';
 import PlayStyle from './PlayStyle';
 import Position from './Position';
 import {
@@ -15,7 +15,7 @@ import {
   Tier,
 } from './style';
 
-function RecommandCard(props: CardProps) {
+function LargeCard(props: CardProps) {
   const { profileUrl, tier, nickname, positions, playStyles, voice } = props;
 
   const {
@@ -54,4 +54,4 @@ function RecommandCard(props: CardProps) {
   );
 }
 
-export default RecommandCard;
+export default LargeCard;

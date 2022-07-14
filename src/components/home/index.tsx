@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { Button, Card, Typography } from '../common';
+import { Button, SmallCard, Typography } from '../common';
 import Footer from '../common/footer/Footer';
 import Banner from './BannerSwiper';
 import RecommandSwiper from './RecommendSwiper';
@@ -57,9 +57,9 @@ function HomeComponent() {
             <Image src="/icons/arrow-right.svg" width="16px" height="16px" />
           </MoreContainer>
         </TitleAndMoreContainer>
-        <Card {...data} />
-        <Card {...data} />
-        <Card {...data} />
+        <SmallCard {...data} />
+        <SmallCard {...data} />
+        <SmallCard {...data} />
       </Container>
       <Footer />
     </HomeContainer>
