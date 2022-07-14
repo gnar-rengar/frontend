@@ -51,7 +51,6 @@ export const StyledInfoArea = styled.div`
 `;
 
 export const Tier = styled.span`
-  width: 42px;
   height: 18px;
   padding: 2px 4px;
   border-radius: 4px;

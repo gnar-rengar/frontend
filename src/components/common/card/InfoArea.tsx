@@ -24,7 +24,9 @@ function InfoArea(props: InfoAreaProps) {
   return (
     <StyledInfoArea>
       <Top>
-        <Tier>{`${tier.tier} ${tier.rank}`}</Tier>
+        <div>
+          <Tier>{`${tier.tier} ${tier.rank}`}</Tier>
+        </div>
         <NameVoiceAndPosition>
           <NameVoice>
             <Typography variant="body1" data-testid="nickname">

@@ -12,10 +12,10 @@ function BannerSwiper() {
     <SwiperContainer>
       <Swiper
         modules={[Pagination, Autoplay]}
-        spaceBetween={10}
+        spaceBetween={0}
         slidesPerView={1}
         pagination={{ clickable: true }}
-        autoplay={{ delay: 3000 }}
+        autoplay={{ delay: 5000 }}
       >
         <SwiperSlide>
           <Image src="/banner/home.png" layout="responsive" width="375px" height="200" />

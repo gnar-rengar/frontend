@@ -1,10 +1,10 @@
-import React from 'react';
 import Image from 'next/image';
+import React from 'react';
 import { Card, Typography } from '../common';
-import Banner from './BannerSwiper';
-import { HomeContainer, MoreContainer, Container, TitleAndMoreContainer } from './style';
-import RecommandCard from './RecommandCard';
 import Footer from '../common/footer/Footer';
+import Banner from './BannerSwiper';
+import RecommandSwiper from './RecommandSwiper';
+import { Blur, Container, HomeContainer, MoreContainer, TitleAndMoreContainer } from './style';
 
 const data = {
   nickname: '썩은김치',
@@ -23,6 +23,7 @@ function HomeComponent() {
     <HomeContainer>
       <Banner />
       <Container>
+        <Blur />
         <TitleAndMoreContainer>
           <Typography variant="h3">
             롤하는 메기님과
@@ -34,7 +35,7 @@ function HomeComponent() {
             <Image src="/icons/arrow-right.svg" width="16px" height="16px" />
           </MoreContainer>
         </TitleAndMoreContainer>
-        <RecommandCard />
+        <RecommandSwiper />
       </Container>
       <Container>
         <TitleAndMoreContainer>
