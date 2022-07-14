@@ -138,7 +138,7 @@ function OnBoarding() {
         <Asking
           title="소환사명을 알려주세요"
           caption={'본인 계정의 소환사명을 입력해주세요.\n타인 계정 도용 시 제재를 받을 수 있어요.'}
-          space="pre-line"
+          whiteSpace="pre-line"
         >
           <Container>
             <IconAndNickname>
@@ -157,7 +157,7 @@ function OnBoarding() {
                   type="button"
                   active={nickNameButtonActive && nickNameCheck}
                 >
-                  <Typography space="nowrap" variant="body4" paragraph>
+                  <Typography whiteSpace="nowrap" variant="body4" paragraph>
                     확인
                   </Typography>
                 </NickNameButton>

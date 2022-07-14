@@ -74,15 +74,24 @@ function ReviewWrite() {
     mutate({ userId, payload });
   };
 
-  const handleClick = () => {
-    setIsGood((p) => !p);
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    const { value } = e.currentTarget;
+    if (value === 'joyful') {
+      setIsGood(true);
+    } else {
+      setIsGood(false);
+    }
     setValue('isGood', !getValues('isGood'));
   };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <BaseContainer>
-        <Asking title="고수달님은 어떠셨나요?" caption="진짜 플레이 했을 때만 평가해라">
+        <Asking
+          title="고수달님은 어떠셨나요?"
+          caption={'정말 플레이를 했을 때만 남겨주세요\n허위 리뷰 작성 시 이용이 제한될 수 있어요.'}
+          whiteSpace="pre-line"
+        >
           <ButtonContainer>
             <Button
               type="button"
