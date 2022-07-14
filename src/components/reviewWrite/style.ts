@@ -9,6 +9,11 @@ export const SubmitButtonWrapper = styled.div`
   width: 100%;
 `;
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
 export const TextAreaContainer = styled.div`
   display: flex;
   flex-direction: column;

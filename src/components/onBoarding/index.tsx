@@ -15,10 +15,9 @@ import {
 } from '../../constant';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { NicknameCheckDTO, OnBoardingInput } from '../../types/api.type';
-import { Asking, Button, Radio, TextField, Typography } from '../common';
+import { Asking, Button, Radio, TextField, Typography, StickyBottom } from '../common';
 import CheckBoxChip from '../common/chip/CheckBoxChip';
 import RadioChip from '../common/chip/RadioChip';
-import StickyBottom from '../common/sticky-bottom';
 import {
   CheckboxContainer,
   ChipContainer,

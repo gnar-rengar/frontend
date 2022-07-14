@@ -1,6 +1,5 @@
 import React from 'react';
-import { Button } from '../common';
-import StickyBottom from '../common/sticky-bottom';
+import { Button, StickyBottom } from '../common';
 
 function ButtonArea() {
   return (

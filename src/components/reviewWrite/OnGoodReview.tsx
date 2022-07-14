@@ -13,7 +13,7 @@ function OnGoodReview(props: OnGoodReviewProps) {
   const { register, errors } = props;
 
   return (
-    <div>
+    <div id="goodReview">
       <Asking
         title="어떤 점이 즐거우셨나요?"
         caption="내가 표시한 평가는 상대에게 보여지지만 누가 했는지는 안보여요"

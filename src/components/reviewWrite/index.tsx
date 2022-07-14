@@ -3,17 +3,17 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter } from 'next/router';
 import usePatchReviewWrite from '../../hooks/usePatchReviewWrite';
 
 import OnGoodReview from './OnGoodReview';
 import OnBadReview from './OnBadReview';
-import { Asking, BaseContainer, Button } from '../common';
+import { Asking, BaseContainer, Button, StickyBottom } from '../common';
 
-import { ButtonContainer } from '../common/asking/Asking.style';
+import { ButtonContainer } from './style';
 
 import { reviewWriteErrorMessage } from '../../constant';
 import type { ReviewWriteDTO } from '../../types/api.type';
-import StickyBottom from '../common/sticky-bottom';
 
 const reviewWriteSchema = yup.object().shape({
   isGood: yup.boolean(),
@@ -33,6 +33,8 @@ const userId = '1';
 function ReviewWrite() {
   const [isGood, setIsGood] = useState(true);
 
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -49,6 +51,13 @@ function ReviewWrite() {
     resolver: yupResolver(reviewWriteSchema),
     mode: 'onChange',
   });
+
+  useEffect(() => {
+    const err = Object.keys(errors);
+    if (err.length === 0) return;
+
+    router.push(`#${err[0]}`);
+  }, [errors]);
 
   useEffect(() => {
     if (isGood) {

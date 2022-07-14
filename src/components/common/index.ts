@@ -7,5 +7,6 @@ export { default as Chip } from './chip/Chip';
 export { default as Divider } from './divider/Divider';
 export { default as Feedback } from './feedback/Feedback';
 export { default as Radio } from './radio/Radio';
+export { default as StickyBottom } from './sticky-bottom';
 export { default as TextField } from './textfield/TextField';
 export { default as Typography } from './typography/Typography';

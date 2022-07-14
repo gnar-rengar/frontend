@@ -18,7 +18,7 @@ function OnBadReview(props: OnBadReviewProps) {
 
   return (
     <>
-      <div>
+      <div id="badReview">
         <Asking
           title="어떤 점이 별로였는지 알려주세요"
           caption="내가 표시한 평가는 상대에게 보여지지만 누가 했는지는 안보여요"
