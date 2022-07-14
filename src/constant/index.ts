@@ -31,7 +31,7 @@ const onBoardingErrorMessage = {
   checkbox: '하나 이상 최대 두 포지션을 선택해주셔야 듀오 매칭이 가능해요',
 };
 
-const joyfulReasons = [
+const goodReviewOptions = [
   '텐션이 나랑 잘 맞았어요.',
   '좋은 피드백을 해주셨어요.',
   '팀워크가 잘 맞아요.',
@@ -39,7 +39,7 @@ const joyfulReasons = [
   '긍정적인 플레이어에요.',
 ];
 
-const awfulReasons = [
+const badReviewOptions = [
   '최악이에요. 그냥 걔 싫어요!',
   '협곡의 악의 축을 만났네요.',
   '욕설, 비방을 했어요.',
@@ -81,8 +81,8 @@ export {
   communication,
   playStyleText,
   onBoardingErrorMessage,
-  joyfulReasons,
-  awfulReasons,
+  goodReviewOptions,
+  badReviewOptions,
   reviewWriteErrorMessage,
   tendencyQuestion,
   tendencyAnswer,

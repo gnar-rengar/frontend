@@ -11,7 +11,7 @@ export interface TypographyProps {
   margin?: string;
   paragraph?: boolean;
   component?: 'div' | 'span';
-  space?: string;
+  whiteSpace?: string;
   children: React.ReactNode;
 }
 

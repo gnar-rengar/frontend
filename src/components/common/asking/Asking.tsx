@@ -7,12 +7,12 @@ interface AskingProps {
   caption?: string;
   children: React.ReactNode;
   paragraph?: boolean;
-  space?: string;
+  whiteSpace?: string;
 }
 
 // TODO 컴포넌트명 변경
 function Asking(props: AskingProps) {
-  const { title, caption, children, paragraph = true, space } = props;
+  const { title, caption, children, paragraph = true, whiteSpace } = props;
 
   return (
     <AskingContainer>
@@ -21,7 +21,7 @@ function Asking(props: AskingProps) {
           {title}
         </Typography>
         {caption && (
-          <Typography space={space} variant="caption" paragraph={paragraph}>
+          <Typography whiteSpace={whiteSpace} variant="caption" paragraph={paragraph}>
             {caption}
           </Typography>
         )}
