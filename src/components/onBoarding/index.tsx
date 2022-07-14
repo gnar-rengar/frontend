@@ -18,6 +18,7 @@ import { NicknameCheckDTO, OnBoardingInput } from '../../types/api.type';
 import { Asking, Button, Radio, TextField, Typography } from '../common';
 import CheckBoxChip from '../common/chip/CheckBoxChip';
 import RadioChip from '../common/chip/RadioChip';
+import StickyBottom from '../common/sticky-bottom';
 import {
   CheckboxContainer,
   ChipContainer,
@@ -311,9 +312,11 @@ function OnBoarding() {
           </PlayStyleContainer>
         </Asking>
       </OnBoardingEachContainer>
-      <Button size="lg" color={isValid ? 'primaryVariant' : 'disable'} type="submit">
-        내 듀오 찾으러 가기
-      </Button>
+      <StickyBottom>
+        <Button size="lg" color={isValid ? 'primaryVariant' : 'disable'} type="submit">
+          내 듀오 찾으러 가기
+        </Button>
+      </StickyBottom>
     </OnBoardingContainer>
   );
 }

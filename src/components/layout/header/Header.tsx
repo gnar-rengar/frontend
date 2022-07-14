@@ -4,10 +4,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { Button } from '../../common';
-
 import { HeaderContainer, Nav } from './Header.style';
 
-function Header() {
+interface HeaderProps {
+  height: number;
+}
+
+function Header({ height }: HeaderProps) {
   const { icon } = useTheme();
 
   const {
@@ -45,7 +48,7 @@ function Header() {
   );
 
   return (
-    <HeaderContainer>
+    <HeaderContainer height={height}>
       <Link href="/">
         <a data-testid="home">
           <Image src="/icons/main-logo.svg" width="76px" height="30px" alt="logo" />

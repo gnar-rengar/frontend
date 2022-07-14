@@ -9,7 +9,6 @@ import OnGoodReview from './OnGoodReview';
 import OnBadReview from './OnBadReview';
 import { Asking, BaseContainer, Button } from '../common';
 
-import { SubmitButtonWrapper } from './style';
 import { ButtonContainer } from '../common/asking/Asking.style';
 
 import { reviewWriteErrorMessage } from '../../constant';
@@ -62,14 +61,14 @@ function ReviewWrite() {
   const { mutate } = usePatchReviewWrite();
 
   const onSubmit: SubmitHandler<ReviewWriteDTO> = (payload) => {
-    console.log(payload);
-    // mutate({ userId, payload });
+    mutate({ userId, payload });
   };
 
-  const handleClickIsJoyfulButton = () => {
+  const handleClick = () => {
     setIsGood((p) => !p);
     setValue('isGood', !getValues('isGood'));
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <BaseContainer>
@@ -79,7 +78,7 @@ function ReviewWrite() {
               type="button"
               color={isGood ? 'primary' : 'disable'}
               size="sm"
-              onClick={handleClickIsJoyfulButton}
+              onClick={handleClick}
               value="joyful"
             >
               즐겁게 플레이 했어요
@@ -88,7 +87,7 @@ function ReviewWrite() {
               type="button"
               color={isGood ? 'disable' : 'primary'}
               size="sm"
-              onClick={handleClickIsJoyfulButton}
+              onClick={handleClick}
               value="awful"
             >
               별로에요
