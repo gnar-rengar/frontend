@@ -65,6 +65,7 @@ function ReviewWrite() {
     } else {
       setValue('goodReview', []);
     }
+    setValue('additionalBadReaview', '');
   }, [isGood]);
 
   const { mutate } = usePatchReviewWrite();
