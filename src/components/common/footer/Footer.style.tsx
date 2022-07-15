@@ -19,3 +19,7 @@ export const LinkContainer = styled.div`
   align-items: center;
   gap: 16px;
 `;
+
+export const UnderLineLink = styled.a`
+  text-decoration: underline;
+`;

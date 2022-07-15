@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import Typography from '../typography/Typography';
-import { FooterContainer, InfoKoreanCotainer, LinkContainer } from './Footer.style';
+import { FooterContainer, InfoKoreanCotainer, LinkContainer, UnderLineLink } from './Footer.style';
 
 function Footer() {
   return (
@@ -23,12 +23,12 @@ function Footer() {
       <LinkContainer>
         <Typography variant="captionBold">
           <Link href="/my-page">
-            <a className="underline">개인정보처리방침</a>
+            <UnderLineLink>개인정보처리방침</UnderLineLink>
           </Link>
         </Typography>
         <Typography variant="caption">
           <Link href="/my-page">
-            <a className="underline">이용약관</a>
+            <UnderLineLink>이용약관</UnderLineLink>
           </Link>
         </Typography>
       </LinkContainer>
