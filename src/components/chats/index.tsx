@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
-import { BaseContainer, Divider } from '../common';
-import ChatRoom from './ChatRoom';
+import { Divider } from '../common';
+import ChatRoomCard from './ChatRoomCard';
 import { ChatContainer } from './style';
 
 const chatrooms = [
@@ -32,7 +32,7 @@ const chatrooms = [
   },
 ];
 
-function Chat() {
+function Chats() {
   return (
     <ChatContainer>
       <Divider />
@@ -40,7 +40,7 @@ function Chat() {
         <>
           <Link href={`chat/${room.id}`}>
             <a>
-              <ChatRoom room={room} />
+              <ChatRoomCard room={room} />
             </a>
           </Link>
           <Divider />
@@ -50,4 +50,4 @@ function Chat() {
   );
 }
 
-export default Chat;
+export default Chats;

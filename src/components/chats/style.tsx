@@ -4,7 +4,7 @@ export const ChatContainer = styled.div`
   padding: 16px 0;
 `;
 
-export const ChatRoomContainer = styled.div`
+export const ChatRoomCardContainer = styled.div`
   display: flex;
   padding: 16px 0;
   width: 100%;

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import { Typography } from '../common';
 import {
-  ChatRoomContainer,
+  ChatRoomCardContainer,
   InfoArea,
   Message,
   MessageAndCount,
@@ -11,7 +11,7 @@ import {
   RecentMessageCount,
 } from './style';
 
-interface ChatRoomProps {
+interface ChatRoomCardProps {
   room: {
     id: string;
     profileUrl: string;
@@ -22,7 +22,7 @@ interface ChatRoomProps {
   };
 }
 
-function ChatRoom(props: ChatRoomProps) {
+function ChatRoomCard(props: ChatRoomCardProps) {
   const {
     room: { profileUrl, name, timeStamp, message, unRead },
   } = props;
@@ -30,7 +30,7 @@ function ChatRoom(props: ChatRoomProps) {
   const time = dayjs(timeStamp).format('A h:mm');
 
   return (
-    <ChatRoomContainer>
+    <ChatRoomCardContainer>
       <Image src={profileUrl} layout="fixed" width="48px" height="48px" />
       <InfoArea>
         <NameAndTime>
@@ -54,8 +54,8 @@ function ChatRoom(props: ChatRoomProps) {
           </RecentMessageCount>
         </MessageAndCount>
       </InfoArea>
-    </ChatRoomContainer>
+    </ChatRoomCardContainer>
   );
 }
 
-export default ChatRoom;
+export default ChatRoomCard;
