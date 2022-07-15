@@ -8,7 +8,7 @@ import Typography from '../typography/Typography';
 
 import { Bottom, NameVoiceAndPosition, NameVoice, StyledInfoArea, Tier, Top } from './style';
 
-import type { CardProps } from './Card';
+import type { CardProps } from './SmallCard';
 
 type InfoAreaProps = Omit<CardProps, 'profileUrl'>;
 
@@ -24,7 +24,9 @@ function InfoArea(props: InfoAreaProps) {
   return (
     <StyledInfoArea>
       <Top>
-        <Tier>{`${tier.tier} ${tier.rank}`}</Tier>
+        <div>
+          <Tier>{`${tier.tier} ${tier.rank}`}</Tier>
+        </div>
         <NameVoiceAndPosition>
           <NameVoice>
             <Typography variant="body1" data-testid="nickname">

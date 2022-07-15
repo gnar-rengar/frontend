@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 
 export const StyledCard = styled.div`
   display: flex;
-  width: 343px;
+  width: 100%;
+  max-width: 480px;
   height: 120px;
   background: ${({ theme: { color } }) => color.surface};
   border-radius: 16px;
@@ -36,7 +37,7 @@ export const Vignette = styled.div`
 
 export const Ul = styled.ul`
   display: flex;
-  gap: 4px;
+  gap: 6px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -46,12 +47,11 @@ export const StyledInfoArea = styled.div`
   display: flex;
   flex-direction: column;
   padding: 14px 16px;
-  width: 223px;
+  width: calc(100% - 120px);
   gap: 20px;
 `;
 
 export const Tier = styled.span`
-  width: 42px;
   height: 18px;
   padding: 2px 4px;
   border-radius: 4px;
@@ -90,4 +90,38 @@ export const Bottom = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+`;
+
+export const RecommandCardContainer = styled.div`
+  position: relative;
+  width: 311px;
+  height: 311px;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: ${({ theme: { color } }) => color.surface};
+`;
+
+export const RecommandInfoContainer = styled.div`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 104px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 25%, rgba(47, 47, 47, 1) 55%);
+`;
+
+export const InfoTopContainer = styled.div`
+  padding: 0 16px;
+  height: 54px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const InfoBottomContainer = styled.div`
+  height: 100%;
+  padding: 0 16px;
 `;

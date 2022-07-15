@@ -8,7 +8,7 @@ import { StyledCard } from './style';
 
 export type CardProps = Omit<MyPageDTO, 'goodFeedback' | 'badFeedback'>;
 
-function Card(props: CardProps) {
+function SmallCard(props: CardProps) {
   const { profileUrl, ...other } = props;
 
   return (
@@ -19,4 +19,4 @@ function Card(props: CardProps) {
   );
 }
 
-export default Card;
+export default SmallCard;
