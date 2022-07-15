@@ -6,7 +6,7 @@ import LargeCard from '../common/card/LargeCard';
 function RecommandSwiper(props: CardProps) {
   return (
     <div>
-      <Swiper spaceBetween={-55} slidesPerView="auto" centeredSlides>
+      <Swiper spaceBetween={-120} slidesPerView="auto" centeredSlides>
         <SwiperSlide>
           <LargeCard {...props} />
         </SwiperSlide>

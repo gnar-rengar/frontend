@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 
 export const StyledCard = styled.div`
   display: flex;
-  width: 343px;
+  width: 100%;
+  max-width: 480px;
   height: 120px;
   background: ${({ theme: { color } }) => color.surface};
   border-radius: 16px;
@@ -46,7 +47,7 @@ export const StyledInfoArea = styled.div`
   display: flex;
   flex-direction: column;
   padding: 14px 16px;
-  width: 223px;
+  width: calc(100% - 120px);
   gap: 20px;
 `;
 
