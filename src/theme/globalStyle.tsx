@@ -13,6 +13,10 @@ function GlobalStyle() {
         }
         * {
           box-sizing: border-box;
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
         }
         body {
           overflow-x: hidden;
