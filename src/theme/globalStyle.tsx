@@ -18,6 +18,7 @@ function GlobalStyle() {
           overflow-x: hidden;
           width: 100%;
           font-family: 'Pretendard Variable', notokr, 'Nanum Gothic', 'Malgun Gothic', sans-serif;
+          background: black;
         }
         a {
           text-decoration: none;
