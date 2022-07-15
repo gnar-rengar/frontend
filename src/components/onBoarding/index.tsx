@@ -98,19 +98,19 @@ function OnBoarding() {
   }, [errors]);
 
   const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
-    // const playStyle = Object.values(data.playStyle);
-    // const values = {
-    //   ...data,
-    //   profileImage: summonerIcon,
-    //   playStyle,
-    // };
-    submitMutation.mutate(data);
+    const playStyle = Object.values(data.playStyle);
+    const values = {
+      ...data,
+      profileImage: summonerIcon,
+      playStyle,
+    };
+    submitMutation.mutate(values);
   };
 
   const onClickNickNameCheck = async () => {
     try {
       const { data } = await axios.get<NicknameCheckDTO>(
-        `/user/checkNick?lolNickName=${nickNameInputActive}`
+        `/onboarding/checkNick?lolNickname=${nickNameInputActive}`
       );
       setNicknameCheck(data.success);
       setSummonerIcon(data.profileUrl);

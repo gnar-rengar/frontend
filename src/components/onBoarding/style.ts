@@ -48,6 +48,7 @@ export const IconImageContainer = styled.div`
 `;
 
 export const NicknameContainer = styled.div`
+  width: calc(100% - 50px);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -66,7 +67,7 @@ const ShareButton = styled.button<{ active?: boolean }>`
 
 export const NickNameButton = styled(ShareButton)`
   background-color: ${({ theme }) => theme.color.onBackgroundSub};
-  padding: 8px 16px;
+  padding: 8px 12px;
   height: 48px;
   background-color: ${({ active, theme }) => active && theme.color.primary};
 `;
