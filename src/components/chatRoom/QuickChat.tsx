@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import React from 'react';
 import { Typography } from '../common';
 import {
@@ -11,8 +12,16 @@ import {
 function QuickChat({ setMessages }) {
   const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
     const target = e.target as HTMLElement;
-    const newMessage = { id: '1', timestamp: new Date().getTime(), message: target.innerText };
-    setMessages((messages) => [...messages, newMessage]);
+
+    const timestamp = new Date().getTime();
+    const date = dayjs(timestamp).format('YYYY-MM-DD');
+    const newMessage = { id: '1', timestamp, message: target.innerText };
+    setMessages((messages) => {
+      if (messages[date]) {
+        return { ...messages, [date]: [...messages[date], newMessage] };
+      }
+      return { ...messages, [date]: [newMessage] };
+    });
   };
 
   return (

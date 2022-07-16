@@ -24,7 +24,6 @@ function Message(props: MessageProps) {
   } = props;
 
   const time = dayjs(timestamp).format('A h:mm');
-
   if (id === myId) {
     return (
       <MyMessageContainer>

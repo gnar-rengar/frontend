@@ -1,6 +1,5 @@
 /**
- * @param cb: 쓰로틀링할 콜백 함수
- * @param interval: 쓰로틀링 간격. ms 단위
+ * `interval(ms)` 간격으로 쓰로틀링
  */
 const throttle = (cb: Function, interval: number) => {
   let throttling = false;
@@ -16,14 +15,18 @@ const throttle = (cb: Function, interval: number) => {
   };
 };
 
-const sortByKey = (obj: any) =>
+type PlainObject = { [key in string]: any };
+/**
+ * 객체의 키를 기준으로 정렬
+ */
+const sortByKey = (obj: PlainObject, order: 'asc' | 'desc' = 'desc') =>
   Object.keys(obj)
-    .sort()
+    .sort((a, b) => (order === 'asc' ? b.localeCompare(a) : a.localeCompare(b)))
     .reduce((prev, key) => {
       // eslint-disable-next-line no-param-reassign
       prev[key] = obj[key];
 
       return prev;
-    }, {} as any);
+    }, {} as PlainObject);
 
 export { throttle, sortByKey };

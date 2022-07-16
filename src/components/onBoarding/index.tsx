@@ -110,7 +110,7 @@ function OnBoarding() {
   const onClickNickNameCheck = async () => {
     try {
       const { data } = await axios.get<NicknameCheckDTO>(
-        `/user/checkNick?lolNickName=${nickNameInputActive}`
+        `/onboarding/checkNick?lolNickname=${nickNameInputActive}`
       );
       setNicknameCheck(data.success);
       setSummonerIcon(data.profileUrl);

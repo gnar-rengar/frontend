@@ -7,10 +7,12 @@ import { MessageAreaContainer } from './style';
 
 interface MessageProps {
   messages: {
-    id: string;
-    timestamp: number;
-    message: string;
-  }[];
+    [key in string]: {
+      id: string;
+      timestamp: number;
+      message: string;
+    }[];
+  };
   setMessages: React.Dispatch<
     React.SetStateAction<{
       messages: {
@@ -28,14 +30,18 @@ function MessageArea(props: MessageProps) {
   const sortedMessages = sortByKey(messages);
   return (
     <MessageAreaContainer>
-      {Object.entries(sortedMessages).map(([date, messages]) => (
-        <>
-          <DayDivider>{date}</DayDivider>
-          {messages.map((message) => (
-            <Message message={message} />
-          ))}
-        </>
-      ))}
+      {Object.keys(sortedMessages).length > 0 ? (
+        Object.entries(sortedMessages).map(([date, messages]) => (
+          <>
+            <DayDivider>{date}</DayDivider>
+            {messages.map((message) => (
+              <Message message={message} />
+            ))}
+          </>
+        ))
+      ) : (
+        <QuickChat setMessages={setMessages} />
+      )}
     </MessageAreaContainer>
   );
 }

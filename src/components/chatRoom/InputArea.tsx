@@ -1,4 +1,5 @@
 import { useTheme } from '@emotion/react';
+import dayjs from 'dayjs';
 import Image from 'next/image';
 import React from 'react';
 import { throttle } from '../../utils';
@@ -14,8 +15,17 @@ function InputArea({ setMessages }) {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const form = e.currentTarget;
-    const newMessage = { id: '1', timestamp: new Date().getTime(), message: form.message.value };
-    setMessages((messages) => [...messages, newMessage]);
+
+    const timestamp = new Date().getTime();
+    const date = dayjs(timestamp).format('YYYY-MM-DD');
+    const newMessage = { id: '1', timestamp, message: form.message.value };
+    setMessages((messages) => {
+      if (messages[date]) {
+        return { ...messages, [date]: [...messages[date], newMessage] };
+      }
+      return { ...messages, [date]: [newMessage] };
+    });
+
     form.reset();
   };
 
