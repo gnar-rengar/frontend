@@ -194,17 +194,6 @@ export const KDA = styled.div`
   gap: 2px;
 `;
 
-export const ButtonContainer = styled.div`
-  position: sticky;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
-  padding: 24px 0 34px 0;
-  bottom: 0;
-  background: linear-gradient(180deg, rgba(18, 18, 18, 0) 0%, #121212 28.13%);
-`;
-
 export const BlurContainer = styled.div`
   position: absolute;
   top: 0;

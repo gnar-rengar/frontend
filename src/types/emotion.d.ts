@@ -7,6 +7,9 @@ declare module '@emotion/react' {
     color: {
       [key in ColorVariant]: string;
     };
+    header: {
+      height: string;
+    };
     icon: {
       size: {
         sm: string;

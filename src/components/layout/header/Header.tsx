@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { Button } from '../../common';
-
 import { HeaderContainer, Nav } from './Header.style';
 
 function Header() {

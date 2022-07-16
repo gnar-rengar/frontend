@@ -14,10 +14,10 @@ export interface OnBoardingInput {
 }
 
 export interface ReviewWriteDTO {
-  isJoyful: boolean;
-  goodFeedback: string[];
-  badFeedback: string[];
-  ban: boolean;
+  isGood: boolean;
+  goodReview: string[];
+  badReview: string[];
+  additionalBadReaview: string;
 }
 
 export interface LoginDTO {

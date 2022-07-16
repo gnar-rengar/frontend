@@ -11,5 +11,6 @@ export const LayoutContainer = styled.div`
 `;
 
 export const Main = styled.main`
+  position: relative;
   padding: 0 16px;
 `;
