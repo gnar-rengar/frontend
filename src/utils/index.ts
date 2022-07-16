@@ -16,4 +16,14 @@ const throttle = (cb: Function, interval: number) => {
   };
 };
 
-export { throttle };
+const sortByKey = (obj: any) =>
+  Object.keys(obj)
+    .sort()
+    .reduce((prev, key) => {
+      // eslint-disable-next-line no-param-reassign
+      prev[key] = obj[key];
+
+      return prev;
+    }, {} as any);
+
+export { throttle, sortByKey };

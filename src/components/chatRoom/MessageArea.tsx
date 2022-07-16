@@ -1,4 +1,6 @@
 import React from 'react';
+import { sortByKey } from '../../utils';
+import DayDivider from './DayDivider';
 import Message from './Message';
 import QuickChat from './QuickChat';
 import { MessageAreaContainer } from './style';
@@ -23,13 +25,17 @@ interface MessageProps {
 function MessageArea(props: MessageProps) {
   const { messages, setMessages } = props;
 
+  const sortedMessages = sortByKey(messages);
   return (
     <MessageAreaContainer>
-      {messages.length ? (
-        messages.map((message) => <Message message={message} />)
-      ) : (
-        <QuickChat setMessages={setMessages} />
-      )}
+      {Object.entries(sortedMessages).map(([date, messages]) => (
+        <>
+          <DayDivider>{date}</DayDivider>
+          {messages.map((message) => (
+            <Message message={message} />
+          ))}
+        </>
+      ))}
     </MessageAreaContainer>
   );
 }

@@ -31,6 +31,11 @@ export const OpponentMessageContainer = styled(MessageContainer)`
   justify-content: flex-start;
 `;
 
+export const DayDividerContainer = styled.div`
+  height: 50px;
+  padding: 16px;
+`;
+
 export const QuickChatContainer = styled.div`
   position: relative;
   top: 100%;
