@@ -4,7 +4,7 @@ import React from 'react';
 import { throttle } from '../../utils';
 import { Form, Input, Button } from './style';
 
-function InputArea() {
+function InputArea({ setMessages }) {
   const {
     icon: {
       size: { xl },
@@ -14,9 +14,11 @@ function InputArea() {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const form = e.currentTarget;
-
+    const newMessage = { id: '1', timestamp: new Date().getTime(), message: form.message.value };
+    setMessages((messages) => [...messages, newMessage]);
     form.reset();
   };
+
   const handleChange = throttle(() => console.log('typing'), 1000);
 
   return (

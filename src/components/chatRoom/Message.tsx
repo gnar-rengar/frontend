@@ -32,7 +32,9 @@ function Message(props: MessageProps) {
           {time}
         </Typography>
         <MySpeechBubble>
-          <Typography variant="body2">{message}</Typography>
+          <Typography variant="body2" color="onPrimary">
+            {message}
+          </Typography>
         </MySpeechBubble>
       </MyMessageContainer>
     );
@@ -41,7 +43,9 @@ function Message(props: MessageProps) {
   return (
     <OpponentMessageContainer>
       <OpponentSpeechBubble>
-        <Typography variant="body2">{message}</Typography>
+        <Typography variant="body2" color="surface">
+          {message}
+        </Typography>
       </OpponentSpeechBubble>
       <Typography variant="caption" color="onBackgroundSub">
         {time}

@@ -16,7 +16,7 @@ export const MessageAreaContainer = styled.div`
   gap: 16px;
 `;
 
-const MessageContainer = styled.div`
+export const MessageContainer = styled.div`
   position: relative;
   display: flex;
   align-items: flex-end;
@@ -31,7 +31,26 @@ export const OpponentMessageContainer = styled(MessageContainer)`
   justify-content: flex-start;
 `;
 
-const SpeechBubble = styled.div`
+export const QuickChatContainer = styled.div`
+  position: relative;
+  top: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+  gap: 16px;
+  transform: translateY(-100%);
+`;
+
+export const QuickChatNotice = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: ${({ theme }) => theme.color.surface};
+  border-radius: 8px;
+`;
+
+export const SpeechBubble = styled.div`
   padding: 8px 12px;
   max-width: 248px;
   width: fit-content;
@@ -40,12 +59,22 @@ const SpeechBubble = styled.div`
 
 export const MySpeechBubble = styled(SpeechBubble)`
   background: ${({ theme }) => theme.color.primary};
-  color: ${({ theme }) => theme.color.onPrimary};
 `;
 
 export const OpponentSpeechBubble = styled(SpeechBubble)`
   background: ${({ theme }) => theme.color.onBackground};
-  color: ${({ theme }) => theme.color.surface};
+`;
+
+export const QuickChatSpeechBubble = styled(SpeechBubble)`
+  background: ${({ theme }) => theme.color.surface};
+  border: 1px solid ${({ theme }) => theme.color.onBackgroundSub};
+`;
+
+export const QuickChatSpeechBubbleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
 `;
 
 export const Form = styled.form`
@@ -72,7 +101,7 @@ export const Input = styled.input`
   ${({ theme }) => {
     const {
       color,
-      typography: { body1, body2 },
+      typography: { body2 },
     } = theme;
 
     return `
@@ -83,9 +112,9 @@ export const Input = styled.input`
       background: ${color.onSurface};
 
       &::-webkit-input-placeholder {
-        font-weight: ${body1.fontWeight};
-        font-size: ${body1.fontSize};
-        line-height: ${body1.lineHeight};
+        font-weight: ${body2.fontWeight};
+        font-size: ${body2.fontSize};
+        line-height: ${body2.lineHeight};
         color: ${color.onBackgroundSub};
       }
     `;

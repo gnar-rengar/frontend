@@ -3,15 +3,15 @@
  * @param interval: 쓰로틀링 간격. ms 단위
  */
 const throttle = (cb: Function, interval: number) => {
-  let running = false;
+  let throttling = false;
 
   return () => {
-    if (running) return;
-    running = true;
+    if (throttling) return;
+    throttling = true;
     cb();
 
     setTimeout(() => {
-      running = false;
+      throttling = false;
     }, interval);
   };
 };

@@ -8,7 +8,7 @@ export interface TypographyProps {
   variant?: TypographyVariant;
   align?: 'center' | 'left' | 'right' | 'inherit';
   color?: ColorVariant;
-  margin?: string;
+  mb?: number;
   paragraph?: boolean;
   component?: 'div' | 'span';
   whiteSpace?: string;

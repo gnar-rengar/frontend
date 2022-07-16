@@ -1,19 +1,35 @@
 import React from 'react';
 import Message from './Message';
+import QuickChat from './QuickChat';
 import { MessageAreaContainer } from './style';
 
-const messages = [
-  { id: '1', timestamp: new Date().getTime(), message: '반가워요' },
-  { id: '2', timestamp: new Date().getTime(), message: '안녕' },
-  { id: '1', timestamp: new Date().getTime(), message: '봇듀오 가실래요?' },
-];
+interface MessageProps {
+  messages: {
+    id: string;
+    timestamp: number;
+    message: string;
+  }[];
+  setMessages: React.Dispatch<
+    React.SetStateAction<{
+      messages: {
+        id: string;
+        timestamp: number;
+        message: string;
+      }[];
+    }>
+  >;
+}
 
-function MessageArea() {
+function MessageArea(props: MessageProps) {
+  const { messages, setMessages } = props;
+
   return (
     <MessageAreaContainer>
-      {messages.map((message) => (
-        <Message message={message} />
-      ))}
+      {messages.length ? (
+        messages.map((message) => <Message message={message} />)
+      ) : (
+        <QuickChat setMessages={setMessages} />
+      )}
     </MessageAreaContainer>
   );
 }
