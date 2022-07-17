@@ -31,7 +31,7 @@ function MatchSection({ userId }: MatchSectionProps) {
         <div style={{ display: 'flex' }}>
           <Link href={`/match-history/${userId}`}>
             <a>
-              <Typography variant="caption">더보기</Typography>
+              <Typography variant="captionRegular">더보기</Typography>
             </a>
           </Link>
           <Image src="/icons/chevron-right.svg" width={sm} height={sm} />

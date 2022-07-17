@@ -6,7 +6,7 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: ${({ theme }) => theme.header.height}px;
+  height: ${({ theme }) => theme.header.height};
   padding: 14px 16px;
   background: ${({ theme }) => theme.color.surface};
   z-index: 10;
