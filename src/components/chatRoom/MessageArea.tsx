@@ -1,5 +1,6 @@
 import React from 'react';
 import { sortByKey } from '../../utils';
+import BadWordAlert from './BadWordAlert';
 import DayDivider from './DayDivider';
 import Message from './Message';
 import QuickChat from './QuickChat';
@@ -22,10 +23,13 @@ interface MessageProps {
       }[];
     }>
   >;
+  hasBadWord: boolean;
+  setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
+  ignore: Event;
 }
 
 function MessageArea(props: MessageProps) {
-  const { messages, setMessages } = props;
+  const { messages, setMessages, hasBadWord, setHasBadWord, ignore } = props;
 
   const sortedMessages = sortByKey(messages);
   return (
@@ -35,13 +39,14 @@ function MessageArea(props: MessageProps) {
           <>
             <DayDivider>{date}</DayDivider>
             {messages.map((message) => (
-              <Message message={message} />
+              <Message key={message.timestamp} message={message} />
             ))}
           </>
         ))
       ) : (
         <QuickChat setMessages={setMessages} />
       )}
+      {hasBadWord && <BadWordAlert setHasBadWord={setHasBadWord} ignore={ignore} />}
     </MessageAreaContainer>
   );
 }

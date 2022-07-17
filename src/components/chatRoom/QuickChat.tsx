@@ -2,9 +2,9 @@ import dayjs from 'dayjs';
 import React from 'react';
 import { Typography } from '../common';
 import {
-  Button,
+  ButtonWrapper,
+  Notice,
   QuickChatContainer,
-  QuickChatNotice,
   QuickChatSpeechBubble,
   QuickChatSpeechBubbleContainer,
 } from './style';
@@ -26,7 +26,7 @@ function QuickChat({ setMessages }) {
 
   return (
     <QuickChatContainer>
-      <QuickChatNotice>
+      <Notice>
         <div>
           <Typography variant="body1" mb={2}>
             고수달님과의 첫 대화에요
@@ -37,29 +37,29 @@ function QuickChat({ setMessages }) {
           먼저 이야기 꺼내기 어색하실까봐 저희가 몇가지를 준비했어요. 마음에 드는 문구가 있다면
           눌러서 보내보세요. 고수달님과 영혼의 듀오가 되셨으면 좋겠어요!
         </Typography>
-      </QuickChatNotice>
+      </Notice>
       <QuickChatSpeechBubbleContainer>
-        <Button onClick={handleClick}>
+        <ButtonWrapper onClick={handleClick}>
           <QuickChatSpeechBubble>
             <Typography variant="body2" color="onSurface">
               협곡으로 같이 떠나요!
             </Typography>
           </QuickChatSpeechBubble>
-        </Button>
-        <Button onClick={handleClick}>
+        </ButtonWrapper>
+        <ButtonWrapper onClick={handleClick}>
           <QuickChatSpeechBubble>
             <Typography variant="body2" color="onSurface">
               저랑 같이 플레이 하실래요?
             </Typography>
           </QuickChatSpeechBubble>
-        </Button>
-        <Button onClick={handleClick}>
+        </ButtonWrapper>
+        <ButtonWrapper onClick={handleClick}>
           <QuickChatSpeechBubble>
             <Typography variant="body2" color="onSurface">
               안녕하세요! 언제 시간 되세요?
             </Typography>
           </QuickChatSpeechBubble>
-        </Button>
+        </ButtonWrapper>
       </QuickChatSpeechBubbleContainer>
     </QuickChatContainer>
   );

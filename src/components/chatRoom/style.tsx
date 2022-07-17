@@ -46,7 +46,7 @@ export const QuickChatContainer = styled.div`
   transform: translateY(-100%);
 `;
 
-export const QuickChatNotice = styled.div`
+export const Notice = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -126,9 +126,15 @@ export const Input = styled.input`
   }}
 `;
 
-export const Button = styled.button`
+export const ButtonWrapper = styled.button`
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
 `;

@@ -19,11 +19,25 @@ const defaultMessages = {
 
 function ChatRoom() {
   const [messages, setMessages] = useState(defaultMessages);
+  const [hasBadWord, setHasBadWord] = useState(false);
+
+  const ignore = new Event('ignore');
 
   return (
     <ChatRoomContainer>
-      <MessageArea messages={messages} setMessages={setMessages} />
-      <InputArea setMessages={setMessages} />
+      <MessageArea
+        messages={messages}
+        setMessages={setMessages}
+        hasBadWord={hasBadWord}
+        setHasBadWord={setHasBadWord}
+        ignore={ignore}
+      />
+      <InputArea
+        hasBadWord={hasBadWord}
+        setMessages={setMessages}
+        setHasBadWord={setHasBadWord}
+        ignore={ignore}
+      />
     </ChatRoomContainer>
   );
 }
