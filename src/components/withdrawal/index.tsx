@@ -7,6 +7,7 @@ import { Button, CheckBox, StickyBottom, Typography } from '../common';
 import TextArea from '../common/textarea';
 import { WithdrawalDTO } from '../../types/api.type';
 import {
+  CheckboxContainer,
   ImageContainer,
   TextAreaContainer,
   Ul,
@@ -14,9 +15,10 @@ import {
   WithdrawalInfoContainer,
 } from './style';
 import { withdrawalErrorMessage } from '../../constant';
+import useWithdrawalMutation from '../../hooks/useWithdrawalMutation';
 
 const withdrawalSchema = yup.object().shape({
-  // agree: yup.number().min(0, withdrawalErrorMessage.agree).max(1, withdrawalErrorMessage.agree),
+  agree: yup.boolean().oneOf([true], withdrawalErrorMessage.agree),
 });
 
 function Withdrawal() {
@@ -24,21 +26,17 @@ function Withdrawal() {
     register,
     handleSubmit,
     formState: { errors, isValid },
-    watch,
   } = useForm<WithdrawalDTO>({
-    defaultValues: {
-      agree: 0,
-    },
     resolver: yupResolver(withdrawalSchema),
     mode: 'onChange',
   });
   const agreeRegister = register('agree');
   const reasonRegister = register('reason');
-  const testWatch = watch('agree');
-  const onSubmit = async (data: WithdrawalDTO) => {
-    console.log(data);
-  };
+  const submitMutation = useWithdrawalMutation();
 
+  const onSubmit = async (data: WithdrawalDTO) => {
+    submitMutation.mutate(data);
+  };
   return (
     <>
       <ImageContainer>
@@ -67,12 +65,19 @@ function Withdrawal() {
               </Typography>
             </li>
           </Ul>
-          <CheckBox
-            value={0}
-            register={agreeRegister}
-            variant="body1"
-            label="주의사항을 읽고 이해했어요"
-          />
+          <CheckboxContainer>
+            <CheckBox
+              valueIsBoolean
+              register={agreeRegister}
+              variant="body1"
+              label="주의사항을 읽고 이해했어요"
+            />
+            {errors && (
+              <Typography variant="caption" color="error">
+                {(errors?.agree as any)?.message}
+              </Typography>
+            )}
+          </CheckboxContainer>
         </WithdrawalInfoContainer>
         <TextAreaContainer id="reason">
           <div>
