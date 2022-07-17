@@ -9,7 +9,6 @@ interface CheckBoxProps {
   id?: string;
   register?: UseFormRegisterReturn<string>;
   variant?: TypographyVariant;
-<<<<<<< HEAD
   value?: number;
 }
 
@@ -26,12 +25,6 @@ function CheckBox(props: CheckBoxProps) {
     }
     onChange(e);
   };
-=======
-}
-
-function CheckBox(props: CheckBoxProps) {
-  const { id, label, register, variant = 'body3' } = props;
->>>>>>> origin/UDFM-75-마크업
 
   return (
     <Label htmlFor={id}>
