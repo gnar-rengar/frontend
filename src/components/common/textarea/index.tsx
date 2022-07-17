@@ -9,6 +9,8 @@ interface TextAreaProps {
   minHeight?: number;
   register: UseFormRegisterReturn<string>;
   placeholder?: string;
+  name?: string;
+  id?: string;
 }
 
 function TextArea(props: TextAreaProps) {

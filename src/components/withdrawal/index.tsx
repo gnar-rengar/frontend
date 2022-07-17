@@ -40,7 +40,7 @@ function Withdrawal() {
   return (
     <>
       <ImageContainer>
-        <Image src="/expression/cry.png" width="256px" height="256" />
+        <Image src="/expression/cry.png" width="256px" height="256px" />
       </ImageContainer>
       <WithdrawalForm onSubmit={handleSubmit(onSubmit)}>
         <WithdrawalInfoContainer id="agree">
