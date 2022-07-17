@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 import useGetMyPage from '../../hooks/useGetMyPage';
 
@@ -6,9 +7,8 @@ import { Asking, BaseContainer, Button, Card, Divider, Feedback, Typography } fr
 import { AreaButton, ProfileCardContainer } from './style';
 
 function MyPage() {
-  const {
-    data: { goodFeedback, badFeedback, ...other },
-  } = useGetMyPage();
+  const router = useRouter();
+  const { goodFeedback, badFeedback, ...other } = useGetMyPage();
 
   return (
     <BaseContainer>
@@ -18,7 +18,12 @@ function MyPage() {
           <Typography variant="h3">내가 제일 잘 났지</Typography>
         </div>
         <Card {...other} />
-        <Button size="lg" variant="outlined" color="onBackground">
+        <Button
+          onClick={() => router.push('/on-boarding')}
+          size="lg"
+          variant="outlined"
+          color="onBackground"
+        >
           내 플레이 정보 수정하기
         </Button>
       </ProfileCardContainer>
