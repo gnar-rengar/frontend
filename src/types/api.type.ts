@@ -3,7 +3,7 @@ export interface ResponseDTO {
   message: string;
 }
 
-export interface OnBoardingInput {
+export interface OnBoardingDTO {
   lolNickname: string;
   nickNameCheck: boolean;
   position: string[];
@@ -98,4 +98,9 @@ export interface RecentRecord {
 
 export interface NicknameCheckDTO extends ResponseDTO {
   profileUrl: string;
+}
+
+export interface WithdrawalDTO {
+  agree: 0 | 1;
+  reason: string;
 }

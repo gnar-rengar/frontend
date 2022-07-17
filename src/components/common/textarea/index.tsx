@@ -7,11 +7,12 @@ import { TextAreaContainer } from './style';
 interface TextAreaProps {
   maxLength?: number;
   minHeight?: number;
-  register?: UseFormRegisterReturn<string>;
+  register: UseFormRegisterReturn<string>;
+  placeholder?: string;
 }
 
 function TextArea(props: TextAreaProps) {
-  const { maxLength, minHeight, register } = props;
+  const { maxLength, minHeight, register, placeholder } = props;
 
   const [text, setText] = useState('');
 
@@ -34,7 +35,15 @@ function TextArea(props: TextAreaProps) {
 
   return (
     <TextAreaContainer>
-      <textarea name="" id="" {...other} value={text} onChange={handleChange} ref={ref} />
+      <textarea
+        name=""
+        id=""
+        {...other}
+        value={text}
+        placeholder={placeholder}
+        onChange={handleChange}
+        ref={ref}
+      />
       <Typography variant="caption" align="right">
         {`${text.length}/${maxLength}자`}
       </Typography>

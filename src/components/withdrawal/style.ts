@@ -30,3 +30,9 @@ export const Ul = styled.ul`
     font-size: 10px;
   }
 `;
+
+export const TextAreaContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;

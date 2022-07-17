@@ -1,16 +1,51 @@
 import Image from 'next/image';
 import React from 'react';
-import { CheckBox, Typography } from '../common';
-import { ImageContainer, Ul, WithdrawalForm, WithdrawalInfoContainer } from './style';
+import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, CheckBox, StickyBottom, Typography } from '../common';
+import TextArea from '../common/textarea';
+import { WithdrawalDTO } from '../../types/api.type';
+import {
+  ImageContainer,
+  TextAreaContainer,
+  Ul,
+  WithdrawalForm,
+  WithdrawalInfoContainer,
+} from './style';
+import { withdrawalErrorMessage } from '../../constant';
+
+const withdrawalSchema = yup.object().shape({
+  // agree: yup.number().min(0, withdrawalErrorMessage.agree).max(1, withdrawalErrorMessage.agree),
+});
 
 function Withdrawal() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+    watch,
+  } = useForm<WithdrawalDTO>({
+    defaultValues: {
+      agree: 0,
+    },
+    resolver: yupResolver(withdrawalSchema),
+    mode: 'onChange',
+  });
+  const agreeRegister = register('agree');
+  const reasonRegister = register('reason');
+  const testWatch = watch('agree');
+  const onSubmit = async (data: WithdrawalDTO) => {
+    console.log(data);
+  };
+
   return (
     <>
       <ImageContainer>
         <Image src="/expression/cry.png" width="256px" height="256" />
       </ImageContainer>
-      <WithdrawalForm>
-        <WithdrawalInfoContainer>
+      <WithdrawalForm onSubmit={handleSubmit(onSubmit)}>
+        <WithdrawalInfoContainer id="agree">
           <div>
             <Typography variant="h3">...떠나시는 건가요?</Typography>
             <Typography variant="h3">아래 주의사항을 확인해주세요</Typography>
@@ -32,8 +67,25 @@ function Withdrawal() {
               </Typography>
             </li>
           </Ul>
-          <CheckBox variant="body1" label="주의사항을 읽고 이해했어요" />
+          <CheckBox
+            value="0"
+            register={agreeRegister}
+            variant="body1"
+            label="주의사항을 읽고 이해했어요"
+          />
         </WithdrawalInfoContainer>
+        <TextAreaContainer id="reason">
+          <div>
+            <Typography variant="h3">...정 그렇다면</Typography>
+            <Typography variant="h3">떠나시는 이유라도 알려주세요</Typography>
+          </div>
+          <TextArea placeholder="탈퇴 사유를 입력해주세요" register={reasonRegister} />
+        </TextAreaContainer>
+        <StickyBottom>
+          <Button type="submit" size="lg" color={isValid ? 'primaryVariant' : 'disable'}>
+            탈퇴하기
+          </Button>
+        </StickyBottom>
       </WithdrawalForm>
     </>
   );
