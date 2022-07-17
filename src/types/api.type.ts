@@ -101,6 +101,6 @@ export interface NicknameCheckDTO extends ResponseDTO {
 }
 
 export interface WithdrawalDTO {
-  agree: 0 | 1;
+  agree: boolean;
   reason: string;
 }
