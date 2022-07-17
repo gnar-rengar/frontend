@@ -68,7 +68,7 @@ function Withdrawal() {
             </li>
           </Ul>
           <CheckBox
-            value="0"
+            value={0}
             register={agreeRegister}
             variant="body1"
             label="주의사항을 읽고 이해했어요"
