@@ -25,7 +25,7 @@ function Message(props: MessageProps) {
   if (id === myId) {
     return (
       <MyMessageContainer>
-        <Typography variant="caption" color="onBackgroundSub">
+        <Typography variant="captionRegular" color="onBackgroundSub">
           {time}
         </Typography>
         <MySpeechBubble>
@@ -44,7 +44,7 @@ function Message(props: MessageProps) {
           {message}
         </Typography>
       </OpponentSpeechBubble>
-      <Typography variant="caption" color="onBackgroundSub">
+      <Typography variant="captionRegular" color="onBackgroundSub">
         {time}
       </Typography>
     </OpponentMessageContainer>

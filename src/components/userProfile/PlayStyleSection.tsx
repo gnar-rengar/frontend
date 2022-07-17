@@ -29,9 +29,9 @@ function PlayStyleSection(props: PlayStyleSectionProps) {
         ))}
       </div>
       <Typography variant="h3">이런 플레이를 선호하는 소환사에요</Typography>
-      <Typography variant="caption" color="onBackgroundSub">
+      <Typography variant="captionRegular" color="onBackgroundSub">
         이 중에서 나랑 잘 맞는 부분은
-        <Typography variant="caption" component="span" color="primary">
+        <Typography variant="captionRegular" component="span" color="primary">
           {' '}
           민트색
         </Typography>

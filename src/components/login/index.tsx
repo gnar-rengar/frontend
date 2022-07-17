@@ -9,7 +9,7 @@ function Login() {
 
   return (
     <LoginContainer>
-      <Typography variant="caption">DUODUO</Typography>
+      <Typography variant="captionRegular">DUODUO</Typography>
       <ButtonContainer>
         <Button size="lg">
           <Link href={process.env.NEXT_PUBLIC_KAKAO_URL}>

@@ -27,7 +27,7 @@ function QuickChat({ addMessages }: QuickChatProps) {
           <Typography variant="body1" mb={2}>
             고수달님과의 첫 대화에요
           </Typography>
-          <Typography variant="caption">이 메시지는 메기님에게만 보여요</Typography>
+          <Typography variant="captionRegular">이 메시지는 메기님에게만 보여요</Typography>
         </div>
         <Typography variant="body3">
           먼저 이야기 꺼내기 어색하실까봐 저희가 몇가지를 준비했어요. 마음에 드는 문구가 있다면

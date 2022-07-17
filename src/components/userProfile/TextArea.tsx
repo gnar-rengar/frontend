@@ -32,34 +32,34 @@ function TextArea(props: TextAreaProps) {
     <TextAreaContainer>
       <LevelAndChampionName>
         <Level>
-          <Typography variant="caption">{champLevel}</Typography>
+          <Typography variant="captionRegular">{champLevel}</Typography>
         </Level>
         <Typography variant="captionBold">{championName}</Typography>
       </LevelAndChampionName>
       <KDAAndMinionKilled>
         <KDA>
-          <Typography variant="caption" component="span">
+          <Typography variant="captionRegular" component="span">
             {kills}
           </Typography>
-          <Typography variant="caption" component="span">
+          <Typography variant="captionRegular" component="span">
             /
           </Typography>
           <Typography variant="captionBold" component="span" color="error">
             {deaths}
           </Typography>
-          <Typography variant="caption" component="span">
+          <Typography variant="captionRegular" component="span">
             /
           </Typography>
-          <Typography variant="caption" component="span">
+          <Typography variant="captionRegular" component="span">
             {assists}
           </Typography>
-          <Typography variant="caption" component="span">
+          <Typography variant="captionRegular" component="span">
             {`(${kda.toFixed(1)})`}
           </Typography>
         </KDA>
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <div>X</div>
-          <Typography variant="caption">{`${totalMinionsKilled}(${minionPerMinute})`}</Typography>
+          <Typography variant="captionRegular">{`${totalMinionsKilled}(${minionPerMinute})`}</Typography>
         </div>
       </KDAAndMinionKilled>
     </TextAreaContainer>

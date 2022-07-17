@@ -9,7 +9,7 @@ interface DayDividerProps {
 function DayDivider({ children }: DayDividerProps) {
   return (
     <DayDividerContainer>
-      <Typography variant="caption" align="center" color="onBackground">
+      <Typography variant="captionRegular" align="center" color="onBackground">
         {children}
       </Typography>
     </DayDividerContainer>

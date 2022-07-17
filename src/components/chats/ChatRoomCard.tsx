@@ -37,7 +37,7 @@ function ChatRoomCard(props: ChatRoomCardProps) {
           <Typography variant="body1" color="onSurface">
             {name}
           </Typography>
-          <Typography variant="body4" color="onBackgroundSub">
+          <Typography variant="captionRegular" color="onBackgroundSub">
             {time}
           </Typography>
         </NameAndTime>
@@ -48,7 +48,7 @@ function ChatRoomCard(props: ChatRoomCardProps) {
             </Typography>
           </Message>
           <RecentMessageCount>
-            <Typography variant="body3" color="onBackground" component="span">
+            <Typography variant="captionRegular" color="onBackground" component="span">
               {unRead}
             </Typography>
           </RecentMessageCount>
