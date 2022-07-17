@@ -1,43 +1,25 @@
-import dayjs from 'dayjs';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import useMessages from '../../hooks/useMessages';
 import InputArea from './InputArea';
 import MessageArea from './MessageArea';
 import { ChatRoomContainer } from './style';
 
-const defaultMessages = {
-  // '2022-07-15': [
-  //   { id: '1', timestamp: dayjs('2022/07/15 10:30').unix(), message: '반가워요' },
-  //   { id: '2', timestamp: dayjs('2022/07/15 11:00').unix(), message: '안녕' },
-  //   { id: '2', timestamp: dayjs('2022/07/15 11:02').unix(), message: '봇듀오 가실래요?' },
-  // ],
-  // '2022-07-16': [
-  //   { id: '1', timestamp: dayjs('2022/07/15 10:30').unix(), message: '오늘도 ㄱㄱ?' },
-  //   { id: '2', timestamp: dayjs('2022/07/15 11:00').unix(), message: 'ㅇㅋㅇㅋ' },
-  //   { id: '1', timestamp: dayjs('2022/07/15 11:02').unix(), message: '롤챗 들어오셈' },
-  // ],
-};
-
 function ChatRoom() {
-  const [messages, setMessages] = useState(defaultMessages);
+  const [messages, addMessages] = useMessages();
   const [hasBadWord, setHasBadWord] = useState(false);
 
-  const ignore = new Event('ignore');
+  const inputRef = useRef('');
 
   return (
     <ChatRoomContainer>
       <MessageArea
         messages={messages}
-        setMessages={setMessages}
+        addMessages={addMessages}
         hasBadWord={hasBadWord}
         setHasBadWord={setHasBadWord}
-        ignore={ignore}
+        inputRef={inputRef}
       />
-      <InputArea
-        hasBadWord={hasBadWord}
-        setMessages={setMessages}
-        setHasBadWord={setHasBadWord}
-        ignore={ignore}
-      />
+      <InputArea addMessages={addMessages} setHasBadWord={setHasBadWord} inputRef={inputRef} />
     </ChatRoomContainer>
   );
 }

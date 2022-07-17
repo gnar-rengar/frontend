@@ -1,52 +1,44 @@
-import React from 'react';
-import { sortByKey } from '../../utils';
+import React, { useMemo } from 'react';
+
 import BadWordAlert from './BadWordAlert';
 import DayDivider from './DayDivider';
 import Message from './Message';
 import QuickChat from './QuickChat';
 import { MessageAreaContainer } from './style';
 
+import { sortByKey } from '../../utils';
+import type { AddMessage, Messages } from '../../hooks/useMessages';
+
 interface MessageProps {
-  messages: {
-    [key in string]: {
-      id: string;
-      timestamp: number;
-      message: string;
-    }[];
-  };
-  setMessages: React.Dispatch<
-    React.SetStateAction<{
-      messages: {
-        id: string;
-        timestamp: number;
-        message: string;
-      }[];
-    }>
-  >;
+  messages: Messages;
+  addMessages: AddMessage;
   hasBadWord: boolean;
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
-  ignore: Event;
+  inputRef: React.MutableRefObject<string>;
 }
 
 function MessageArea(props: MessageProps) {
-  const { messages, setMessages, hasBadWord, setHasBadWord, ignore } = props;
+  const { messages, addMessages, hasBadWord, setHasBadWord, inputRef } = props;
 
-  const sortedMessages = sortByKey(messages);
+  const sortedMessages = useMemo(() => sortByKey(messages), [messages]);
+
   return (
     <MessageAreaContainer>
-      {Object.keys(sortedMessages).length > 0 ? (
-        Object.entries(sortedMessages).map(([date, messages]) => (
-          <>
+      {Object.keys(sortedMessages).length > 0 || hasBadWord ? (
+        Object.entries(sortedMessages).map(([date, msgs]) => (
+          <React.Fragment key={date}>
             <DayDivider>{date}</DayDivider>
-            {messages.map((message) => (
+            {msgs.map((message) => (
               <Message key={message.timestamp} message={message} />
             ))}
-          </>
+          </React.Fragment>
         ))
       ) : (
-        <QuickChat setMessages={setMessages} />
+        <QuickChat addMessages={addMessages} />
       )}
-      {hasBadWord && <BadWordAlert setHasBadWord={setHasBadWord} ignore={ignore} />}
+      {hasBadWord && (
+        <BadWordAlert addMessages={addMessages} setHasBadWord={setHasBadWord} inputRef={inputRef} />
+      )}
     </MessageAreaContainer>
   );
 }

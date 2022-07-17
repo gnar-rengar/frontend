@@ -1,29 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Button, Typography } from '../common';
 import { ButtonContainer, Notice } from './style';
 
+import type { AddMessage } from '../../hooks/useMessages';
+
 interface BadWordAlertProps {
+  addMessages: AddMessage;
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
-  ignore: Event;
+  inputRef: React.MutableRefObject<string>;
 }
 
 function BadWordAlert(props: BadWordAlertProps) {
-  const { setHasBadWord, ignore } = props;
-  const [status, setStatus] = useState<'ignore' | 'rewrite'>('rewrite');
-
-  useEffect(() => {
-    if (status === 'ignore') {
-      document.querySelector('#message').dispatchEvent(ignore);
-      setStatus('rewrite');
-    }
-  }, [status]);
+  const { addMessages, setHasBadWord, inputRef } = props;
 
   const handleClickRewrite = () => {
     setHasBadWord(false);
   };
 
   const handleClickIgnore = () => {
-    setStatus('ignore');
+    addMessages('1', inputRef.current);
+    setHasBadWord(false);
   };
 
   return (

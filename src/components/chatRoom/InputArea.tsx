@@ -1,41 +1,28 @@
-import { useTheme } from '@emotion/react';
-import dayjs from 'dayjs';
+import React from 'react';
 import Image from 'next/image';
-import React, { useEffect, useRef } from 'react';
-import { throttle } from '../../utils';
+import { useTheme } from '@emotion/react';
+
 import { Form, Input, ButtonWrapper } from './style';
 
+// import { throttle } from '../../utils';
+import type { AddMessage } from '../../hooks/useMessages';
+
 const badWords = ['개새끼', '병신'];
-function InputArea(props) {
-  const { hasBadWord, setMessages, setHasBadWord } = props;
+
+interface InputAreaProps {
+  addMessages: AddMessage;
+  setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
+  inputRef: React.MutableRefObject<string>;
+}
+
+function InputArea(props: InputAreaProps) {
+  const { addMessages, setHasBadWord, inputRef } = props;
 
   const {
     icon: {
       size: { xl },
     },
   } = useTheme();
-
-  const ref = useRef<HTMLInputElement>(null);
-
-  const sendNewMsg = (id: string, message: string) => {
-    const timestamp = new Date().getTime();
-    const date = dayjs(timestamp).format('YYYY-MM-DD');
-    const newMessage = { id, timestamp, message };
-    setMessages((messages) => {
-      if (messages[date]) {
-        return { ...messages, [date]: [...messages[date], newMessage] };
-      }
-      return { ...messages, [date]: [newMessage] };
-    });
-  };
-
-  useEffect(() => {
-    ref.current.addEventListener('ignore', (e) => {
-      const message = (e.target as HTMLInputElement).value;
-      sendNewMsg('1', message);
-      setHasBadWord(false);
-    });
-  }, []);
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -46,13 +33,18 @@ function InputArea(props) {
     if (badWords.includes(message)) {
       setHasBadWord(true);
     } else {
-      sendNewMsg('1', message);
+      addMessages('1', message);
       form.reset();
     }
   };
 
-  const handleChange = throttle(() => console.log('typing'), 1000);
+  // TODO 입력할 때 ... 애니메이션
+  // const animate = throttle(() => console.log('typing'), 1000);
 
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    inputRef.current = e.target.value;
+    // animate();
+  };
   return (
     <Form onSubmit={handleSubmit}>
       <Input
@@ -60,7 +52,6 @@ function InputArea(props) {
         type="text"
         placeholder="모험은 역시 친구랑 같이 해야 신나는법!"
         onChange={handleChange}
-        ref={ref}
       />
       <ButtonWrapper type="submit">
         <Image src="/icons/send.svg" width={xl} height={xl} />

@@ -8,12 +8,10 @@ import {
   OpponentSpeechBubble,
 } from './style';
 
+import type { Message as MessageType } from '../../hooks/useMessages';
+
 interface MessageProps {
-  message: {
-    id: string;
-    timestamp: number;
-    message: string;
-  };
+  message: MessageType;
 }
 
 const myId = '1';

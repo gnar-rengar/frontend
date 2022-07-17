@@ -1,3 +1,5 @@
+import type { Messages } from '../hooks/useMessages';
+
 /**
  * `interval(ms)` 간격으로 쓰로틀링
  */
@@ -27,6 +29,6 @@ const sortByKey = (obj: PlainObject, order: 'asc' | 'desc' = 'desc') =>
       prev[key] = obj[key];
 
       return prev;
-    }, {} as PlainObject);
+    }, {} as Messages);
 
 export { throttle, sortByKey };

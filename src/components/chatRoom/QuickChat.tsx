@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import React from 'react';
 import { Typography } from '../common';
 import {
@@ -9,19 +8,16 @@ import {
   QuickChatSpeechBubbleContainer,
 } from './style';
 
-function QuickChat({ setMessages }) {
-  const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    const target = e.target as HTMLElement;
+import type { AddMessage } from '../../hooks/useMessages';
 
-    const timestamp = new Date().getTime();
-    const date = dayjs(timestamp).format('YYYY-MM-DD');
-    const newMessage = { id: '1', timestamp, message: target.innerText };
-    setMessages((messages) => {
-      if (messages[date]) {
-        return { ...messages, [date]: [...messages[date], newMessage] };
-      }
-      return { ...messages, [date]: [newMessage] };
-    });
+interface QuickChatProps {
+  addMessages: AddMessage;
+}
+
+function QuickChat({ addMessages }: QuickChatProps) {
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    const target = e.target as HTMLElement;
+    addMessages('1', target.innerText);
   };
 
   return (
