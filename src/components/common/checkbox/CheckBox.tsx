@@ -33,7 +33,7 @@ function CheckBox(props: CheckBoxProps) {
           type="checkbox"
           id={id || label}
           onChange={customOnChange}
-          value={value ? booleanValue : label}
+          value={typeof value === 'number' ? booleanValue : label}
           {...other}
         />
         <Mark />
