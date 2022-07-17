@@ -33,7 +33,7 @@ export const OpponentMessageContainer = styled(MessageContainer)`
 
 export const DayDividerContainer = styled.div`
   height: 50px;
-  padding: 16px;
+  padding: 16px 0;
 `;
 
 export const QuickChatContainer = styled.div`
@@ -96,6 +96,7 @@ export const Form = styled.form`
   gap: 8px;
   background: ${({ theme }) => theme.color.surface};
 `;
+
 export const Input = styled.input`
   flex-grow: 1;
   height: 40px;
@@ -131,6 +132,12 @@ export const ButtonWrapper = styled.button`
   border: none;
   padding: 0;
   cursor: pointer;
+`;
+
+export const WarningMessageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 `;
 
 export const ButtonContainer = styled.div`

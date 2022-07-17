@@ -23,7 +23,7 @@ function useMessages(): [Messages, AddMessage] {
 
   const addMessage: AddMessage = (id: string, message: string) => {
     const timestamp = new Date().getTime();
-    const date = dayjs(timestamp).format('YYYY-MM-DD');
+    const date = dayjs(timestamp).format('YYYY년 M월 D일');
     const newMessage = { id, timestamp, message };
 
     setMessages((msgs) => {
