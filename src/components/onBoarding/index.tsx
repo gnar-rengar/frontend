@@ -14,7 +14,7 @@ import {
   voiceChannel,
 } from '../../constant';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
-import { NicknameCheckDTO, OnBoardingInput } from '../../types/api.type';
+import { NicknameCheckDTO, OnBoardingDTO } from '../../types/api.type';
 import { Asking, Button, Radio, TextField, Typography, StickyBottom } from '../common';
 import CheckBoxChip from '../common/chip/CheckBoxChip';
 import RadioChip from '../common/chip/RadioChip';
@@ -36,7 +36,7 @@ import {
 
 type PlayStyleKey = 'battle' | 'line' | 'champion' | 'physical';
 
-const validationSchema = yup.object().shape({
+const onBoardingSchema = yup.object().shape({
   lolNickname: yup.string().required(onBoardingErrorMessage.nickName),
   nickNameCheck: yup.boolean().oneOf([true], onBoardingErrorMessage.nickNameCheck),
   position: yup
@@ -68,7 +68,7 @@ function OnBoarding() {
     formState: { errors, isValid },
     clearErrors,
     watch,
-  } = useForm<OnBoardingInput>({
+  } = useForm<OnBoardingDTO>({
     defaultValues: {
       lolNickname: '',
       nickNameCheck: false,
@@ -77,7 +77,7 @@ function OnBoarding() {
       useVoice: null,
       communication: '',
     },
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(onBoardingSchema),
     mode: 'onChange',
   });
   const router = useRouter();
@@ -97,7 +97,7 @@ function OnBoarding() {
     }
   }, [errors]);
 
-  const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
+  const onSubmitOnBoarding: SubmitHandler<OnBoardingDTO> = (data: OnBoardingDTO) => {
     // const playStyle = Object.values(data.playStyle);
     // const values = {
     //   ...data,
