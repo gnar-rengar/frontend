@@ -25,7 +25,7 @@ function MessageArea(props: MessageProps) {
   return (
     <MessageAreaContainer>
       {Object.keys(sortedMessages).length > 0 || hasBadWord ? (
-        Object.entries(sortedMessages).map(([date, msgs]) => (
+        Object.entries(sortedMessages as Messages).map(([date, msgs]) => (
           <React.Fragment key={date}>
             <DayDivider>{date}</DayDivider>
             {msgs.map((message) => (

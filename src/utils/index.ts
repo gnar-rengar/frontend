@@ -29,6 +29,6 @@ const sortByKey = (obj: PlainObject, order: 'asc' | 'desc' = 'desc') =>
       prev[key] = obj[key];
 
       return prev;
-    }, {} as Messages);
+    }, {} as PlainObject);
 
 export { throttle, sortByKey };
