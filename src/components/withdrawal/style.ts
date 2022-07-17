@@ -30,9 +30,12 @@ export const Ul = styled.ul`
     font-size: 10px;
   }
 `;
+<<<<<<< HEAD
 
 export const TextAreaContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
 `;
+=======
+>>>>>>> origin/UDFM-75-마크업

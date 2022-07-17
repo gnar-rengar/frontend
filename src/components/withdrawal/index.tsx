@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+<<<<<<< HEAD
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -39,13 +40,24 @@ function Withdrawal() {
     console.log(data);
   };
 
+=======
+import { CheckBox, Typography } from '../common';
+import { ImageContainer, Ul, WithdrawalForm, WithdrawalInfoContainer } from './style';
+
+function Withdrawal() {
+>>>>>>> origin/UDFM-75-마크업
   return (
     <>
       <ImageContainer>
         <Image src="/expression/cry.png" width="256px" height="256" />
       </ImageContainer>
+<<<<<<< HEAD
       <WithdrawalForm onSubmit={handleSubmit(onSubmit)}>
         <WithdrawalInfoContainer id="agree">
+=======
+      <WithdrawalForm>
+        <WithdrawalInfoContainer>
+>>>>>>> origin/UDFM-75-마크업
           <div>
             <Typography variant="h3">...떠나시는 건가요?</Typography>
             <Typography variant="h3">아래 주의사항을 확인해주세요</Typography>
@@ -67,6 +79,7 @@ function Withdrawal() {
               </Typography>
             </li>
           </Ul>
+<<<<<<< HEAD
           <CheckBox
             value="0"
             register={agreeRegister}
@@ -86,6 +99,10 @@ function Withdrawal() {
             탈퇴하기
           </Button>
         </StickyBottom>
+=======
+          <CheckBox variant="body1" label="주의사항을 읽고 이해했어요" />
+        </WithdrawalInfoContainer>
+>>>>>>> origin/UDFM-75-마크업
       </WithdrawalForm>
     </>
   );
