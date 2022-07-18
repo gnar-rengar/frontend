@@ -28,7 +28,7 @@ function RadioChip(props: RadioChipProps) {
     ...other
   } = props;
   const { onBlur, ref, onChange, name } = register(`playStyle.${other.name}`);
-  const testValue = watch(`playStyle.${other.name}`);
+  const playStyleDetail = watch(`playStyle.${other.name}`);
   const onChangeRadio = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e);
     setRadioChecked(e.target.value);
@@ -45,7 +45,7 @@ function RadioChip(props: RadioChipProps) {
         ref={ref}
         name={name}
       />
-      <Chip chosen={(testValue as unknown) === value} {...other} />
+      <Chip chosen={(playStyleDetail as unknown) === value} {...other} />
     </SelectLabel>
   );
 }
