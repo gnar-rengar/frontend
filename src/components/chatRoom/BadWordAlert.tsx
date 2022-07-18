@@ -7,19 +7,21 @@ import type { AddMessage } from '../../hooks/useMessages';
 interface BadWordAlertProps {
   addMessages: AddMessage;
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
-  inputRef: React.MutableRefObject<string>;
+  input: string;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function BadWordAlert(props: BadWordAlertProps) {
-  const { addMessages, setHasBadWord, inputRef } = props;
+  const { addMessages, setHasBadWord, input, setInput } = props;
 
-  const handleClickRewrite = () => {
+  const handleClick = () => {
+    setInput('');
     setHasBadWord(false);
   };
 
   const handleClickIgnore = () => {
-    addMessages('1', inputRef.current);
-    setHasBadWord(false);
+    addMessages('1', input);
+    handleClick();
   };
 
   return (
@@ -32,7 +34,7 @@ function BadWordAlert(props: BadWordAlertProps) {
       </WarningMessageContainer>
       <Typography variant="body3">상대방을 조금 더 배려하는건 어떨까요?</Typography>
       <ButtonContainer>
-        <Button variant="contained" color="primaryVariant" size="sm" onClick={handleClickRewrite}>
+        <Button variant="contained" color="primaryVariant" size="sm" onClick={handleClick}>
           다시 작성
         </Button>
         <Button variant="contained" color="disable" size="sm" onClick={handleClickIgnore}>

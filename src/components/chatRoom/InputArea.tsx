@@ -12,11 +12,12 @@ const badWords = ['개새끼', '병신'];
 interface InputAreaProps {
   addMessages: AddMessage;
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
-  inputRef: React.MutableRefObject<string>;
+  input: string;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function InputArea(props: InputAreaProps) {
-  const { addMessages, setHasBadWord, inputRef } = props;
+  const { addMessages, setHasBadWord, input, setInput } = props;
 
   const {
     icon: {
@@ -34,7 +35,7 @@ function InputArea(props: InputAreaProps) {
       setHasBadWord(true);
     } else {
       addMessages('1', message);
-      form.reset();
+      setInput('');
     }
   };
 
@@ -42,8 +43,8 @@ function InputArea(props: InputAreaProps) {
   // const animate = throttle(() => console.log('typing'), 1000);
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    inputRef.current = e.target.value;
     // animate();
+    setInput(e.target.value);
   };
   return (
     <Form onSubmit={handleSubmit}>
@@ -52,6 +53,7 @@ function InputArea(props: InputAreaProps) {
         type="text"
         placeholder="모험은 역시 친구랑 같이 해야 신나는법!"
         onChange={handleChange}
+        value={input}
       />
       <ButtonWrapper type="submit">
         <Image src="/icons/send.svg" width={xl} height={xl} />

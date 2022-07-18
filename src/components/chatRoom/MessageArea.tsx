@@ -14,11 +14,12 @@ interface MessageProps {
   addMessages: AddMessage;
   hasBadWord: boolean;
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
-  inputRef: React.MutableRefObject<string>;
+  input: string;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function MessageArea(props: MessageProps) {
-  const { messages, addMessages, hasBadWord, setHasBadWord, inputRef } = props;
+  const { messages, addMessages, hasBadWord, setHasBadWord, input, setInput } = props;
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -44,7 +45,12 @@ function MessageArea(props: MessageProps) {
         <QuickChat addMessages={addMessages} />
       )}
       {hasBadWord && (
-        <BadWordAlert addMessages={addMessages} setHasBadWord={setHasBadWord} inputRef={inputRef} />
+        <BadWordAlert
+          addMessages={addMessages}
+          setHasBadWord={setHasBadWord}
+          input={input}
+          setInput={setInput}
+        />
       )}
     </MessageAreaContainer>
   );

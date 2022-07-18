@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import useMessages from '../../hooks/useMessages';
 import InputArea from './InputArea';
 import MessageArea from './MessageArea';
@@ -6,9 +6,9 @@ import { ChatRoomContainer } from './style';
 
 function ChatRoom() {
   const [messages, addMessages] = useMessages();
-  const [hasBadWord, setHasBadWord] = useState(false);
+  const [input, setInput] = useState('');
 
-  const inputRef = useRef('');
+  const [hasBadWord, setHasBadWord] = useState(false);
 
   return (
     <ChatRoomContainer>
@@ -17,9 +17,15 @@ function ChatRoom() {
         addMessages={addMessages}
         hasBadWord={hasBadWord}
         setHasBadWord={setHasBadWord}
-        inputRef={inputRef}
+        input={input}
+        setInput={setInput}
       />
-      <InputArea addMessages={addMessages} setHasBadWord={setHasBadWord} inputRef={inputRef} />
+      <InputArea
+        addMessages={addMessages}
+        setHasBadWord={setHasBadWord}
+        input={input}
+        setInput={setInput}
+      />
     </ChatRoomContainer>
   );
 }
