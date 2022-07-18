@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 
 import BadWordAlert from './BadWordAlert';
 import DayDivider from './DayDivider';
@@ -20,6 +20,12 @@ interface MessageProps {
 function MessageArea(props: MessageProps) {
   const { messages, addMessages, hasBadWord, setHasBadWord, inputRef } = props;
 
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView();
+  }, [messages]);
+
   const sortedMessages = useMemo(() => sortByKey(messages), [messages]);
 
   return (
@@ -31,6 +37,7 @@ function MessageArea(props: MessageProps) {
             {msgs.map((message) => (
               <Message key={message.timestamp} message={message} />
             ))}
+            <div ref={scrollRef} />
           </React.Fragment>
         ))
       ) : (
