@@ -7,18 +7,19 @@ import type { ChipProps } from './Chip';
 
 interface CheckBoxChipProps extends ChipProps {
   htmlFor: string;
+  value: string;
   width?: 'fit-content' | 'fix';
   register?: UseFormRegisterReturn<string>;
   getValues?: string[];
 }
 
 function CheckBoxChip(props: CheckBoxChipProps) {
-  const { htmlFor, width = 'fit-content', register, getValues, ...other } = props;
-  const [checked, setChecked] = useState(getValues?.includes(htmlFor) || false);
+  const { htmlFor, width = 'fit-content', value, register, getValues, ...other } = props;
+  const [checked, setChecked] = useState(getValues?.includes(value) || false);
 
   return (
     <SelectLabel width={width} htmlFor={htmlFor}>
-      <Input type="checkbox" value={htmlFor} id={htmlFor} {...register} />
+      <Input type="checkbox" value={value} id={htmlFor} {...register} />
       <Chip onClick={() => setChecked((p) => !p)} chosen={checked} {...other} />
     </SelectLabel>
   );

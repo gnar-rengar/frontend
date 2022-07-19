@@ -95,7 +95,6 @@ function OnBoarding() {
   const nickNameInputActive = watch('lolNickname');
   const useVoiceValue = getValues('useVoice');
   const [summonerIcon, setSummonerIcon] = useState(userData?.profileUrl || '/icons/onBoarding.png');
-  const [radioChecked, setRadioChecked] = useState('');
   const submitMutation = useOnBoardingMutation();
 
   useEffect(() => {
@@ -191,6 +190,7 @@ function OnBoarding() {
                     register={register('position')}
                     key={pos[0]}
                     htmlFor={pos[0]}
+                    value={pos[0]}
                     getValues={getValues('position')}
                   >
                     {pos[0]}
@@ -249,6 +249,7 @@ function OnBoarding() {
                         color="primary"
                         key={channel[1]}
                         htmlFor={channel[1]}
+                        value={channel[1]}
                         register={register('voiceChannel')}
                         getValues={getValues('voiceChannel')}
                       >
@@ -290,15 +291,13 @@ function OnBoarding() {
             {Object.keys(playStyleText).map((style: PlayStyleKey) => (
               <PlayStyleRadio key={style}>
                 <RadioChip
-                  name={style}
+                  name={`playStyle.${style}`}
                   width="fix"
                   color="primary"
                   value={playStyleText[style][0]}
                   htmlFor={playStyleText[style][0]}
-                  radioChecked={radioChecked}
-                  setRadioChecked={setRadioChecked}
                   register={register}
-                  watch={watch}
+                  watch={watch(`playStyle.${style}`)}
                 >
                   {playStyleText[style][0]}
                 </RadioChip>
@@ -306,15 +305,13 @@ function OnBoarding() {
                   VS
                 </Typography>
                 <RadioChip
-                  name={style}
+                  name={`playStyle.${style}`}
                   color="primary"
                   width="fix"
                   value={playStyleText[style][1]}
                   htmlFor={playStyleText[style][1]}
-                  radioChecked={radioChecked}
-                  setRadioChecked={setRadioChecked}
                   register={register}
-                  watch={watch}
+                  watch={watch(`playStyle.${style}`)}
                 >
                   {playStyleText[style][1]}
                 </RadioChip>
