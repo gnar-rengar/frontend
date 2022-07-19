@@ -23,7 +23,7 @@ function Login() {
           간편 로그인/회원가입
         </Typography>
         <ButtonContainer>
-          <Link href={process.env.NEXT_PUBLIC_KAKAO_URL}>
+          <Link href={process.env.NEXT_PUBLIC_DISCORD_URL}>
             <a>
               <LoginButton color="discord">
                 <IconAndTextContainer color="discord">
@@ -35,25 +35,25 @@ function Login() {
               </LoginButton>
             </a>
           </Link>
-          <Link href={process.env.NEXT_PUBLIC_NAVER_URL}>
+          <Link href={process.env.NEXT_PUBLIC_KAKAO_URL}>
             <a>
               <LoginButton color="kakao">
                 <IconAndTextContainer color="kakao">
                   <Image src="/icons/kakao.svg" width="24px" height="24px" />
                   <Typography variant="body1" color="background">
-                    디스코드 로그인
+                    카카오 로그인
                   </Typography>
                 </IconAndTextContainer>
               </LoginButton>
             </a>
           </Link>
-          <Link href={process.env.NEXT_PUBLIC_DISCORD_URL}>
+          <Link href={process.env.NEXT_PUBLIC_NAVER_URL}>
             <a>
               <LoginButton color="naver">
                 <IconAndTextContainer color="naver">
                   <Image src="/icons/naver.svg" width="24px" height="24px" />
                   <Typography variant="body1" color="onBackground">
-                    디스코드 로그인
+                    네이버 로그인
                   </Typography>
                 </IconAndTextContainer>
               </LoginButton>
