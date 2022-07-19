@@ -13,7 +13,7 @@ export interface ChipProps {
 }
 
 const typoVariant = {
-  sm: 'caption',
+  sm: 'captionRegular',
   lg: 'body4',
 } as const;
 
@@ -22,7 +22,7 @@ function Chip(props: ChipProps) {
 
   return (
     <StyledChip onClick={onClick} chosen={chosen} color={color} size={size}>
-      <Typography variant={typoVariant[size]} space="nowrap">
+      <Typography variant={typoVariant[size]} whiteSpace="nowrap">
         {children}
       </Typography>
     </StyledChip>
