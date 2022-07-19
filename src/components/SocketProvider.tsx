@@ -4,7 +4,10 @@ import { io } from 'socket.io-client';
 const socket = io(process.env.NEXT_PUBLIC_BASE_URL);
 const SocketContext = createContext(null);
 
-const userId = '62d2611ce44a2bec67355e05';
+const roomId = '62d565601115b1eb5763d761';
+
+const userId1 = '62d509be151f1fb3b2e0f792';
+const userId2 = '62d266524bca7feb901a2eac';
 
 function SocketProvider({ children }) {
   const [isConnected, setIsConnected] = useState(socket.connected);
@@ -12,6 +15,15 @@ function SocketProvider({ children }) {
   useEffect(() => {
     socket.on('connect', () => {
       setIsConnected(true);
+    });
+
+    // socket.emit('makeChatRoom', userId1, userId2);
+
+    // socket.emit('sendMessage', roomId, userId1, '썩은김치 짱짱맨');
+
+    socket.emit('enterChatRoom', roomId);
+    socket.on('onEnterChatRoom', (chat) => {
+      console.log(chat);
     });
 
     socket.on('disconnect', () => {
@@ -22,7 +34,7 @@ function SocketProvider({ children }) {
       socket.off('connect');
       socket.off('disconnect');
     };
-  }, [socket, userId]);
+  }, [socket]);
 
   return <SocketContext.Provider value={socket}>{children}</SocketContext.Provider>;
 }

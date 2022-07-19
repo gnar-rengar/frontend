@@ -19,9 +19,9 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
-  require('../mocks');
-}
+// if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+//   require('../mocks');
+// }
 
 dayjs.locale('ko');
 
