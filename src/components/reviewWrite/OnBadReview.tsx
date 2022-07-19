@@ -28,7 +28,7 @@ function OnBadReview(props: OnBadReviewProps) {
           ))}
         </Asking>
         {errors && (
-          <Typography variant="caption" color="error" paragraph>
+          <Typography variant="captionRegular" color="error" paragraph>
             {(errors as any).message}
           </Typography>
         )}

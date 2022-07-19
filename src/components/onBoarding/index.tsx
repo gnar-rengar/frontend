@@ -110,7 +110,7 @@ function OnBoarding() {
   const onClickNickNameCheck = async () => {
     try {
       const { data } = await axios.get<NicknameCheckDTO>(
-        `/user/checkNick?lolNickName=${nickNameInputActive}`
+        `/onboarding/checkNick?lolNickname=${nickNameInputActive}`
       );
       setNicknameCheck(data.success);
       setSummonerIcon(data.profileUrl);
@@ -163,7 +163,12 @@ function OnBoarding() {
                 </NickNameButton>
               </NicknameContainer>
             </IconAndNickname>
-            <Typography color="error" data-testid="nickNameError" variant="caption" paragraph>
+            <Typography
+              color="error"
+              data-testid="nickNameError"
+              variant="captionRegular"
+              paragraph
+            >
               {errors?.lolNickname?.message || errors?.nickNameCheck?.message}
             </Typography>
           </Container>
@@ -188,7 +193,7 @@ function OnBoarding() {
                 </React.Fragment>
               ))}
             </ChipContainer>
-            <Typography color="error" variant="caption" paragraph>
+            <Typography color="error" variant="captionRegular" paragraph>
               {(errors?.position as any)?.message}
             </Typography>
           </Container>
@@ -219,7 +224,7 @@ function OnBoarding() {
               </Button>
             </VoiceButtonContainer>
             {errors?.useVoice && (
-              <Typography color="error" variant="caption" paragraph>
+              <Typography color="error" variant="captionRegular" paragraph>
                 {(errors?.useVoice as any)?.message}
               </Typography>
             )}
@@ -252,7 +257,7 @@ function OnBoarding() {
                 </ChipContainer>
               </Asking>
               {errors?.voiceChannel && (
-                <Typography color="error" variant="caption" paragraph>
+                <Typography color="error" variant="captionRegular" paragraph>
                   {(errors?.voiceChannel as any)?.message}
                 </Typography>
               )}
