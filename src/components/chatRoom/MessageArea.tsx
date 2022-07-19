@@ -36,7 +36,7 @@ function MessageArea(props: MessageProps) {
           <React.Fragment key={date}>
             <DayDivider>{date}</DayDivider>
             {msgs.map((message) => (
-              <Message key={message.timestamp} message={message} />
+              <Message key={message.createdAt} message={message} />
             ))}
             <div ref={scrollRef} />
           </React.Fragment>

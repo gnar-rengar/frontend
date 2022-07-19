@@ -1,25 +1,25 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import dayjs from 'dayjs';
+import { SocketContext } from '../components/SocketProvider';
 
-export type Message = { id: string; timestamp: number; message: string };
+export type Message = { userId: string; text: string; createdAt: string };
 export type Messages = { [key in string]: Message[] };
 export type AddMessage = (id: string, message: string) => void;
 
-const defaultMessages = {
-  // '2022-07-15': [
-  //   { id: '1', timestamp: dayjs('2022/07/15 10:30').unix(), message: '반가워요' },
-  //   { id: '2', timestamp: dayjs('2022/07/15 11:00').unix(), message: '안녕' },
-  //   { id: '2', timestamp: dayjs('2022/07/15 11:02').unix(), message: '봇듀오 가실래요?' },
-  // ],
-  // '2022-07-16': [
-  //   { id: '1', timestamp: dayjs('2022/07/15 10:30').unix(), message: '오늘도 ㄱㄱ?' },
-  //   { id: '2', timestamp: dayjs('2022/07/15 11:00').unix(), message: 'ㅇㅋㅇㅋ' },
-  //   { id: '1', timestamp: dayjs('2022/07/15 11:02').unix(), message: '롤챗 들어오셈' },
-  // ],
-};
-
 function useMessages(): [Messages, AddMessage] {
-  const [messages, setMessages] = useState<Messages>(defaultMessages);
+  const socket = useContext(SocketContext);
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    socket.on('onEnterChatRoom', (data) => {
+      const defaultMessages = data.reduce((prev, crnt) => {
+        const [date, message] = Object.entries(crnt)[0];
+        prev[date] = message;
+        return prev;
+      }, {});
+      setMessages(defaultMessages);
+    });
+  }, []);
 
   const addMessage: AddMessage = (id: string, message: string) => {
     const timestamp = new Date().getTime();

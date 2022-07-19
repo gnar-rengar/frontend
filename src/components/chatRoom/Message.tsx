@@ -14,15 +14,15 @@ interface MessageProps {
   message: MessageType;
 }
 
-const myId = '1';
+const myId = '62d509be151f1fb3b2e0f792';
 
 function Message(props: MessageProps) {
   const {
-    message: { id, timestamp, message },
+    message: { userId, text, createdAt },
   } = props;
 
-  const time = dayjs(timestamp).format('A h:mm');
-  if (id === myId) {
+  const time = dayjs(createdAt).format('A h:mm');
+  if (userId === myId) {
     return (
       <MyMessageContainer>
         <Typography variant="captionRegular" color="onBackgroundSub">
@@ -30,7 +30,7 @@ function Message(props: MessageProps) {
         </Typography>
         <MySpeechBubble>
           <Typography variant="body2" color="onPrimary">
-            {message}
+            {text}
           </Typography>
         </MySpeechBubble>
       </MyMessageContainer>
@@ -41,7 +41,7 @@ function Message(props: MessageProps) {
     <OpponentMessageContainer>
       <OpponentSpeechBubble>
         <Typography variant="body2" color="surface">
-          {message}
+          {text}
         </Typography>
       </OpponentSpeechBubble>
       <Typography variant="captionRegular" color="onBackgroundSub">

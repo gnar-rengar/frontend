@@ -9,7 +9,7 @@ function ChatRoom() {
   const [input, setInput] = useState('');
 
   const [hasBadWord, setHasBadWord] = useState(false);
-
+  console.log(messages);
   return (
     <ChatRoomContainer>
       <MessageArea
