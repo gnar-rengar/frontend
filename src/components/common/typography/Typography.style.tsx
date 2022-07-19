@@ -12,15 +12,11 @@ export const StyledTypography = styled.div<StyledTypographyProps>`
     return `
       color: ${color[props.color]};
       text-align: ${props.align};
-      white-space: ${props.space};
+      white-space: ${props.whiteSpace};
       font-size: ${variant.fontSize};
       font-weight: ${variant.fontWeight};
       line-height: ${variant.lineHeight};
-      margin-bottom: ${props.margin}px;
-
-      & > a {
-        text-decoration: ${props.underline ? 'underline' : 'none'}
-      }
+      margin-bottom: ${props.mb}px;
     `;
   }}
 `;

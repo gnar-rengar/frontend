@@ -3,11 +3,12 @@ import styled from '@emotion/styled';
 export const OnBoardingContainer = styled.form`
   width: 100%;
   height: 100%;
+  min-height: calc(100vh - ${({ theme }) => theme.header.height});
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   gap: 8px;
-  padding-bottom: calc(48px * 2);
 `;
 
 export const OnBoardingEachContainer = styled.div<{ gap: boolean }>`
@@ -48,6 +49,7 @@ export const IconImageContainer = styled.div`
 `;
 
 export const NicknameContainer = styled.div`
+  width: calc(100% - 50px);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -66,7 +68,7 @@ const ShareButton = styled.button<{ active?: boolean }>`
 
 export const NickNameButton = styled(ShareButton)`
   background-color: ${({ theme }) => theme.color.onBackgroundSub};
-  padding: 8px 16px;
+  padding: 8px 12px;
   height: 48px;
   background-color: ${({ active, theme }) => active && theme.color.primary};
 `;

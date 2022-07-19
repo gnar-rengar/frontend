@@ -8,10 +8,10 @@ export interface TypographyProps {
   variant?: TypographyVariant;
   align?: 'center' | 'left' | 'right' | 'inherit';
   color?: ColorVariant;
-  margin?: string;
+  mb?: number;
   paragraph?: boolean;
   component?: 'div' | 'span';
-  space?: string;
+  whiteSpace?: string;
   children: React.ReactNode;
   underline?: boolean;
 }

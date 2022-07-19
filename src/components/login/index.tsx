@@ -19,7 +19,7 @@ function Login() {
     <LoginContainer>
       <Image src="/icons/main-logo.svg" width="160px" height="40px" />
       <LoginSection>
-        <Typography variant="caption" color="onBackgroundSub">
+        <Typography variant="captionRegular" color="onBackgroundSub">
           간편 로그인/회원가입
         </Typography>
         <ButtonContainer>
@@ -60,7 +60,7 @@ function Login() {
             </a>
           </Link>
         </ButtonContainer>
-        <Typography variant="caption" align="center" underline color="onBackgroundSub">
+        <Typography variant="captionRegular" align="center" underline color="onBackgroundSub">
           회원가입 시 듀오해듀오의{' '}
           <Link href="/on-boarding">
             <a>서비스 이용 약관</a>

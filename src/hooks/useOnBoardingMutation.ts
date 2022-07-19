@@ -4,8 +4,8 @@ import { axios } from '../axios';
 
 import type { NicknameCheckDTO, OnBoardingInput } from '../types/api.type';
 
-const onBoardingPatchAPI = async (params: OnBoardingInput) => {
-  const { data } = await axios.patch<NicknameCheckDTO>('/auth/onboarding', params);
+const onBoardingPatchAPI = async (params: OnBoardingInput<string[]>) => {
+  const { data } = await axios.patch<NicknameCheckDTO>('/onboarding', params);
   return data;
 };
 
