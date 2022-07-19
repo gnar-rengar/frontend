@@ -13,7 +13,7 @@ export interface ChipProps {
 }
 
 const typoVariant = {
-  sm: 'caption',
+  sm: 'captionRegular',
   lg: 'body4',
 } as const;
 
