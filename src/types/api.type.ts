@@ -3,14 +3,22 @@ export interface ResponseDTO {
   message: string;
 }
 
-export interface OnBoardingInput {
+export type PlayStyleType = {
+  battle: string;
+  line: string;
+  champion: string;
+  physical: string;
+};
+
+export interface OnBoardingInput<T> {
+  profileUrl?: string;
   lolNickname: string;
-  nickNameCheck: boolean;
+  nickNameCheck?: boolean;
   position: string[];
   communication: string;
   useVoice: boolean;
   voiceChannel?: string[];
-  playStyle: string[];
+  playStyle: T;
 }
 
 export interface ReviewWriteDTO {

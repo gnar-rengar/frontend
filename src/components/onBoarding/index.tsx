@@ -2,7 +2,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { axios } from '../../axios';
@@ -13,8 +13,9 @@ import {
   position,
   voiceChannel,
 } from '../../constant';
+import useGetOnBoarding from '../../hooks/useGetOnBoarding';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
-import { NicknameCheckDTO, OnBoardingInput } from '../../types/api.type';
+import { NicknameCheckDTO, OnBoardingInput, PlayStyleType } from '../../types/api.type';
 import { Asking, Button, Radio, TextField, Typography, StickyBottom } from '../common';
 import CheckBoxChip from '../common/chip/CheckBoxChip';
 import RadioChip from '../common/chip/RadioChip';
@@ -22,7 +23,6 @@ import {
   CheckboxContainer,
   ChipContainer,
   Container,
-  CustomInputBox,
   IconAndNickname,
   IconImageContainer,
   NickNameButton,
@@ -41,16 +41,16 @@ const validationSchema = yup.object().shape({
   nickNameCheck: yup.boolean().oneOf([true], onBoardingErrorMessage.nickNameCheck),
   position: yup
     .array(yup.string())
-    .min(1, onBoardingErrorMessage.checkbox)
-    .max(2, onBoardingErrorMessage.checkbox),
-  useVoice: yup.boolean().typeError(onBoardingErrorMessage.checkbox),
+    .min(1, onBoardingErrorMessage.position)
+    .max(2, onBoardingErrorMessage.position),
+  useVoice: yup.boolean().typeError(onBoardingErrorMessage.useVoice),
   voiceChannel: yup.array(yup.string()).when('useVoice', {
     is: true,
-    then: (schema) => schema.min(1, onBoardingErrorMessage.checkbox),
+    then: (schema) => schema.min(1, onBoardingErrorMessage.voiceAndCommunication),
   }),
   communication: yup.string().when('useVoice', {
     is: true,
-    then: (schema) => schema.required(onBoardingErrorMessage.checkbox),
+    then: (schema) => schema.required(onBoardingErrorMessage.voiceAndCommunication),
   }),
   playStyle: yup.object({
     battle: yup.string().required(),
@@ -61,6 +61,8 @@ const validationSchema = yup.object().shape({
 });
 
 function OnBoarding() {
+  const [queryEnabled, setQueryEnabled] = useState(false); // 사용자 로그인 정보 api 및 로직 구현 후 적용
+  const userData = useGetOnBoarding(queryEnabled, setQueryEnabled);
   const {
     register,
     handleSubmit,
@@ -68,14 +70,22 @@ function OnBoarding() {
     formState: { errors, isValid },
     clearErrors,
     watch,
-  } = useForm<OnBoardingInput>({
+    getValues,
+  } = useForm<OnBoardingInput<PlayStyleType>>({
     defaultValues: {
-      lolNickname: '',
-      nickNameCheck: false,
-      position: [],
-      voiceChannel: [],
-      useVoice: null,
-      communication: '',
+      lolNickname: userData?.lolNickname || '',
+      nickNameCheck: !!userData?.lolNickname,
+      playStyle:
+        {
+          battle: userData?.playStyle[0],
+          line: userData?.playStyle[1],
+          champion: userData?.playStyle[2],
+          physical: userData?.playStyle[3],
+        } || null,
+      position: userData?.position || [],
+      voiceChannel: userData?.voiceChannel || [],
+      useVoice: userData?.useVoice || true,
+      communication: userData?.communication || '',
     },
     resolver: yupResolver(validationSchema),
     mode: 'onChange',
@@ -83,11 +93,8 @@ function OnBoarding() {
   const router = useRouter();
   const nickNameButtonActive = watch('nickNameCheck');
   const nickNameInputActive = watch('lolNickname');
-  const registerProps = register('communication');
-  const [useVoice, setUseVoice] = useState('');
-  const [summonerIcon, setSummonerIcon] = useState('/icons/onBoarding.png');
-  const [nickNameCheck, setNicknameCheck] = useState(false);
-  const [radioChecked, setRadioChecked] = useState('');
+  const useVoiceValue = getValues('useVoice');
+  const [summonerIcon, setSummonerIcon] = useState(userData?.profileUrl || '/icons/onBoarding.png');
   const submitMutation = useOnBoardingMutation();
 
   useEffect(() => {
@@ -97,14 +104,21 @@ function OnBoarding() {
     }
   }, [errors]);
 
-  const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
-    // const playStyle = Object.values(data.playStyle);
-    // const values = {
-    //   ...data,
-    //   profileImage: summonerIcon,
-    //   playStyle,
-    // };
-    submitMutation.mutate(data);
+  const nickNameActiveMemo = useMemo(
+    () => (userData?.lolNickname ? true : nickNameInputActive && nickNameButtonActive),
+    [userData?.lolNickname, nickNameInputActive, nickNameButtonActive]
+  );
+
+  const onSubmitOnBoarding: SubmitHandler<OnBoardingInput<PlayStyleType>> = (
+    data: OnBoardingInput<PlayStyleType>
+  ) => {
+    const playStyle = Object.values(data.playStyle);
+    const values = {
+      ...data,
+      profileUrl: summonerIcon,
+      playStyle,
+    };
+    submitMutation.mutate(values);
   };
 
   const onClickNickNameCheck = async () => {
@@ -112,7 +126,6 @@ function OnBoarding() {
       const { data } = await axios.get<NicknameCheckDTO>(
         `/onboarding/checkNick?lolNickname=${nickNameInputActive}`
       );
-      setNicknameCheck(data.success);
       setSummonerIcon(data.profileUrl);
       setValue('nickNameCheck', true, { shouldValidate: true });
       clearErrors('nickNameCheck');
@@ -120,15 +133,10 @@ function OnBoarding() {
       // console.error(error);
     }
   };
-  const voiceButtonIsState = (innerText: string) => {
-    if (useVoice === innerText) return true;
-    return false;
-  };
 
   const onClickVoiceButton = (e: React.MouseEvent<HTMLButtonElement>, innerText: string) => {
     e.preventDefault();
     const value = innerText === '사용해요';
-    setUseVoice(innerText);
     setValue('useVoice', value, { shouldValidate: true });
   };
 
@@ -143,11 +151,11 @@ function OnBoarding() {
           <Container>
             <IconAndNickname>
               <IconImageContainer>
-                <Image src={summonerIcon} width={48} height={48} />
+                <Image src={userData?.profileUrl || summonerIcon} width={48} height={48} />
               </IconImageContainer>
               <NicknameContainer>
                 <TextField
-                  active={nickNameInputActive && nickNameCheck}
+                  active={nickNameActiveMemo}
                   {...register('lolNickname')}
                   name="lolNickname"
                   placeholder="소환사명 입력"
@@ -155,7 +163,7 @@ function OnBoarding() {
                 <NickNameButton
                   onClick={onClickNickNameCheck}
                   type="button"
-                  active={nickNameButtonActive && nickNameCheck}
+                  active={nickNameActiveMemo}
                 >
                   <Typography whiteSpace="nowrap" variant="body4" paragraph>
                     확인
@@ -163,14 +171,11 @@ function OnBoarding() {
                 </NickNameButton>
               </NicknameContainer>
             </IconAndNickname>
-            <Typography
-              color="error"
-              data-testid="nickNameError"
-              variant="captionRegular"
-              paragraph
-            >
-              {errors?.lolNickname?.message || errors?.nickNameCheck?.message}
-            </Typography>
+            {(errors?.lolNickname || errors?.nickNameCheck) && (
+              <Typography color="error" data-testid="nickNameError" variant="caption" paragraph>
+                {errors?.lolNickname?.message || errors?.nickNameCheck?.message}
+              </Typography>
+            )}
           </Container>
         </Asking>
       </OnBoardingEachContainer>
@@ -180,22 +185,24 @@ function OnBoarding() {
             <ChipContainer>
               {position.map((pos) => (
                 <React.Fragment key={pos[1]}>
-                  <CheckBoxChip color="primary" value={pos[0]} key={pos[0]} htmlFor={pos[0]}>
+                  <CheckBoxChip
+                    color="primary"
+                    register={register('position')}
+                    key={pos[0]}
+                    htmlFor={pos[0]}
+                    value={pos[0]}
+                    getValues={getValues('position')}
+                  >
                     {pos[0]}
                   </CheckBoxChip>
-                  <CustomInputBox
-                    {...register('position')}
-                    key={`${pos[1]} 온보딩`}
-                    type="checkbox"
-                    id={pos[0]}
-                    value={pos[1]}
-                  />
                 </React.Fragment>
               ))}
             </ChipContainer>
-            <Typography color="error" variant="captionRegular" paragraph>
-              {(errors?.position as any)?.message}
-            </Typography>
+            {errors?.position && (
+              <Typography color="error" variant="caption" paragraph>
+                {(errors?.position as any)?.message}
+              </Typography>
+            )}
           </Container>
         </Asking>
       </OnBoardingEachContainer>
@@ -207,7 +214,7 @@ function OnBoarding() {
                 size="sm"
                 type="button"
                 onClick={(e) => onClickVoiceButton(e, '사용해요')}
-                color={voiceButtonIsState('사용해요') ? 'primary' : 'disable'}
+                color={useVoiceValue ? 'primary' : 'disable'}
               >
                 사용해요
               </Button>
@@ -217,8 +224,9 @@ function OnBoarding() {
                 onClick={(e) => {
                   onClickVoiceButton(e, '사용하지 않아요');
                   setValue('voiceChannel', []);
+                  setValue('communication', '');
                 }}
-                color={voiceButtonIsState('사용하지 않아요') ? 'primary' : 'disable'}
+                color={!useVoiceValue ? 'primary' : 'disable'}
               >
                 사용하지 않아요
               </Button>
@@ -230,7 +238,7 @@ function OnBoarding() {
             )}
           </Container>
         </Asking>
-        {useVoice === '사용해요' && (
+        {useVoiceValue && (
           <>
             <Container>
               <Asking title="어떤 채널을 주로 사용하시나요?" paragraph>
@@ -239,19 +247,14 @@ function OnBoarding() {
                     <React.Fragment key={channel[1]}>
                       <CheckBoxChip
                         color="primary"
-                        value={channel[1]}
                         key={channel[1]}
                         htmlFor={channel[1]}
+                        value={channel[1]}
+                        register={register('voiceChannel')}
+                        getValues={getValues('voiceChannel')}
                       >
                         {channel[0]}
                       </CheckBoxChip>
-                      <CustomInputBox
-                        value={channel[1]}
-                        key={`${channel} 온보딩`}
-                        type="checkbox"
-                        id={channel[1]}
-                        {...register('voiceChannel')}
-                      />
                     </React.Fragment>
                   ))}
                 </ChipContainer>
@@ -266,10 +269,15 @@ function OnBoarding() {
               <Asking title="좋아하시는 소통을 알려주세요" paragraph>
                 <CheckboxContainer>
                   {communication.map((item) => (
-                    <Radio register={registerProps} label={item} key={item} />
+                    <Radio register={register('communication')} label={item} key={item} />
                   ))}
                 </CheckboxContainer>
               </Asking>
+              {errors?.communication && (
+                <Typography color="error" variant="caption" paragraph>
+                  {(errors?.communication as any)?.message}
+                </Typography>
+              )}
             </Container>
           </>
         )}
@@ -283,15 +291,13 @@ function OnBoarding() {
             {Object.keys(playStyleText).map((style: PlayStyleKey) => (
               <PlayStyleRadio key={style}>
                 <RadioChip
-                  name={style}
+                  name={`playStyle.${style}`}
                   width="fix"
                   color="primary"
                   value={playStyleText[style][0]}
                   htmlFor={playStyleText[style][0]}
-                  radioChecked={radioChecked}
-                  setRadioChecked={setRadioChecked}
                   register={register}
-                  watch={watch}
+                  watch={watch(`playStyle.${style}`)}
                 >
                   {playStyleText[style][0]}
                 </RadioChip>
@@ -299,15 +305,13 @@ function OnBoarding() {
                   VS
                 </Typography>
                 <RadioChip
-                  name={style}
+                  name={`playStyle.${style}`}
                   color="primary"
                   width="fix"
                   value={playStyleText[style][1]}
                   htmlFor={playStyleText[style][1]}
-                  radioChecked={radioChecked}
-                  setRadioChecked={setRadioChecked}
                   register={register}
-                  watch={watch}
+                  watch={watch(`playStyle.${style}`)}
                 >
                   {playStyleText[style][1]}
                 </RadioChip>
