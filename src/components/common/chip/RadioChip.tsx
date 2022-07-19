@@ -10,42 +10,18 @@ interface RadioChipProps extends ChipProps {
   value: string;
   name?: string;
   width?: 'fit-content' | 'fix';
-  radioChecked: string;
-  setRadioChecked: React.Dispatch<React.SetStateAction<string>>;
   register?: UseFormRegister<any>;
-  watch?: UseFormRegister<any>;
+  watch?: string;
 }
 
 function RadioChip(props: RadioChipProps) {
-  const {
-    htmlFor,
-    value,
-    width = 'fit-content',
-    radioChecked,
-    setRadioChecked,
-    register,
-    watch,
-    ...other
-  } = props;
-  const { onBlur, ref, onChange, name } = register(`playStyle.${other.name}`);
-  const testValue = watch(`playStyle.${other.name}`);
-  const onChangeRadio = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(e);
-    setRadioChecked(e.target.value);
-  };
+  const { htmlFor, value, width = 'fit-content', register, watch, ...other } = props;
+  const readioRegister = register(other.name);
+
   return (
     <SelectLabel width={width} htmlFor={htmlFor}>
-      <Input
-        type="radio"
-        onChange={onChangeRadio}
-        value={value}
-        defaultChecked={false}
-        id={value}
-        onBlur={onBlur}
-        ref={ref}
-        name={name}
-      />
-      <Chip chosen={(testValue as unknown) === value} {...other} />
+      <Input type="radio" value={value} defaultChecked={false} id={value} {...readioRegister} />
+      <Chip chosen={(watch as unknown) === value} {...other} />
     </SelectLabel>
   );
 }
