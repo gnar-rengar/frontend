@@ -15,7 +15,7 @@ import {
 } from '../../constant';
 import useGetOnBoarding from '../../hooks/useGetOnBoarding';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
-import { NicknameCheckDTO, OnBoardingInput } from '../../types/api.type';
+import { NicknameCheckDTO, OnBoardingInput, PlayStyleType } from '../../types/api.type';
 import { Asking, Button, Radio, TextField, Typography, StickyBottom } from '../common';
 import CheckBoxChip from '../common/chip/CheckBoxChip';
 import RadioChip from '../common/chip/RadioChip';
@@ -71,7 +71,7 @@ function OnBoarding() {
     clearErrors,
     watch,
     getValues,
-  } = useForm<OnBoardingInput>({
+  } = useForm<OnBoardingInput<PlayStyleType>>({
     defaultValues: {
       lolNickname: userData?.lolNickname || '',
       nickNameCheck: !!userData?.lolNickname,
@@ -110,7 +110,9 @@ function OnBoarding() {
     [userData?.lolNickname, nickNameInputActive, nickNameButtonActive]
   );
 
-  const onSubmitOnBoarding: SubmitHandler<OnBoardingInput> = (data: OnBoardingInput) => {
+  const onSubmitOnBoarding: SubmitHandler<OnBoardingInput<PlayStyleType>> = (
+    data: OnBoardingInput<PlayStyleType>
+  ) => {
     const playStyle = Object.values(data.playStyle);
     const values = {
       ...data,

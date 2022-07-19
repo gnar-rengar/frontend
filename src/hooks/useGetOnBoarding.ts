@@ -4,7 +4,7 @@ import { OnBoardingInput } from '../types/api.type';
 import { queryKeys } from './queryKeys';
 
 const onBoardingGetAPI = async () => {
-  const { data } = await axios.get<OnBoardingInput>('/onboarding');
+  const { data } = await axios.get<OnBoardingInput<string[]>>('/onboarding');
   return data;
 };
 
