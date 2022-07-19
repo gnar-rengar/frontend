@@ -16,7 +16,7 @@ export const StyledTypography = styled.div<StyledTypographyProps>`
       font-size: ${variant.fontSize};
       font-weight: ${variant.fontWeight};
       line-height: ${variant.lineHeight};
-      margin-bottom: ${props.margin}px;
+      margin-bottom: ${props.mb}px;
     `;
   }}
 `;

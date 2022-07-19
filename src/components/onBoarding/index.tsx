@@ -232,7 +232,7 @@ function OnBoarding() {
               </Button>
             </VoiceButtonContainer>
             {errors?.useVoice && (
-              <Typography color="error" variant="caption" paragraph>
+              <Typography color="error" variant="captionRegular" paragraph>
                 {(errors?.useVoice as any)?.message}
               </Typography>
             )}
@@ -260,7 +260,7 @@ function OnBoarding() {
                 </ChipContainer>
               </Asking>
               {errors?.voiceChannel && (
-                <Typography color="error" variant="caption" paragraph>
+                <Typography color="error" variant="captionRegular" paragraph>
                   {(errors?.voiceChannel as any)?.message}
                 </Typography>
               )}

@@ -7,8 +7,10 @@ export type TypographyVariant =
   | 'body2'
   | 'body3'
   | 'body4'
-  | 'caption'
-  | 'captionBold';
+  | 'captionRegular'
+  | 'captionBold'
+  | 'captionSmallRegular'
+  | 'captionSmallBold';
 
 export type ColorVariant =
   | 'primary'
