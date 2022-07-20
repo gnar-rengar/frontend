@@ -11,7 +11,6 @@ import type { AddMessage, Messages } from '../../hooks/useMessages';
 
 interface MessageProps {
   messages: Messages;
-  addMessages: AddMessage;
   hasBadWord: boolean;
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
   input: string;
@@ -19,7 +18,7 @@ interface MessageProps {
 }
 
 function MessageArea(props: MessageProps) {
-  const { messages, addMessages, hasBadWord, setHasBadWord, input, setInput } = props;
+  const { messages, hasBadWord, setHasBadWord, input, setInput } = props;
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -42,15 +41,10 @@ function MessageArea(props: MessageProps) {
           </React.Fragment>
         ))
       ) : (
-        <QuickChat addMessages={addMessages} />
+        <QuickChat />
       )}
       {hasBadWord && (
-        <BadWordAlert
-          addMessages={addMessages}
-          setHasBadWord={setHasBadWord}
-          input={input}
-          setInput={setInput}
-        />
+        <BadWordAlert setHasBadWord={setHasBadWord} input={input} setInput={setInput} />
       )}
     </MessageAreaContainer>
   );

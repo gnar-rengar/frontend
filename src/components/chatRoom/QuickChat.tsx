@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Typography } from '../common';
+import { SocketContext } from '../SocketProvider';
 import {
   ButtonWrapper,
   Notice,
@@ -8,16 +9,12 @@ import {
   QuickChatSpeechBubbleContainer,
 } from './style';
 
-import type { AddMessage } from '../../hooks/useMessages';
+function QuickChat() {
+  const socket = useContext(SocketContext);
 
-interface QuickChatProps {
-  addMessages: AddMessage;
-}
-
-function QuickChat({ addMessages }: QuickChatProps) {
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    const target = e.target as HTMLElement;
-    addMessages('1', target.innerText);
+    const text = (e.target as HTMLElement).innerText;
+    socket.emit('sendMessage', roomId, userId, text);
   };
 
   return (

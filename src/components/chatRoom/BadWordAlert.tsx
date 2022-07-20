@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useQueryClient } from 'react-query';
 import { Button, Typography } from '../common';
+import { SocketContext } from '../SocketProvider';
 import { ButtonContainer, Notice, WarningMessageContainer } from './style';
 
-import type { AddMessage } from '../../hooks/useMessages';
-
 interface BadWordAlertProps {
-  addMessages: AddMessage;
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function BadWordAlert(props: BadWordAlertProps) {
-  const { addMessages, setHasBadWord, input, setInput } = props;
+  const { setHasBadWord, input, setInput } = props;
+
+  const socket = useContext(SocketContext);
+
+  const [roomData] = useQueryClient().getQueriesData<{
+    roomId: string;
+    userId1: string;
+    userId2: string;
+  }>('chatRoom');
+  const { roomId } = roomData[1];
 
   const handleClick = () => {
     setInput('');
@@ -20,7 +28,7 @@ function BadWordAlert(props: BadWordAlertProps) {
   };
 
   const handleClickIgnore = () => {
-    addMessages('1', input);
+    socket.emit('sendMessage', roomId, userId, input);
     handleClick();
   };
 

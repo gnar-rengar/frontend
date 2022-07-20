@@ -6,6 +6,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
+import { RecoilRoot } from 'recoil';
 import Layout from '../components/layout/Layout';
 import SocketProvider from '../components/SocketProvider';
 import { darkTheme } from '../theme';
@@ -42,11 +43,13 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
       <GlobalStyle />
       <QueryClientProvider client={queryClient.current}>
         <Hydrate state={pageProps.dehydratedState}>
-          <SocketProvider>
-            <ThemeProvider theme={darkTheme}>
-              {getLayout(<Component {...pageProps} />)}
-            </ThemeProvider>
-          </SocketProvider>
+          <RecoilRoot>
+            <SocketProvider>
+              <ThemeProvider theme={darkTheme}>
+                {getLayout(<Component {...pageProps} />)}
+              </ThemeProvider>
+            </SocketProvider>
+          </RecoilRoot>
         </Hydrate>
         <ReactQueryDevtools position="bottom-right" />
       </QueryClientProvider>
