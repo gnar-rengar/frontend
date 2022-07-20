@@ -71,6 +71,7 @@ function OnBoarding() {
     clearErrors,
     watch,
     getValues,
+    setError,
   } = useForm<OnBoardingInput<PlayStyleType>>({
     defaultValues: {
       lolNickname: userData?.lolNickname || '',
@@ -130,7 +131,9 @@ function OnBoarding() {
       setValue('nickNameCheck', true, { shouldValidate: true });
       clearErrors('nickNameCheck');
     } catch (error) {
-      // console.error(error);
+      if (error.response.status === 404) {
+        setError('nickNameCheck', { type: 'focus', message: onBoardingErrorMessage.notExist });
+      }
     }
   };
 
