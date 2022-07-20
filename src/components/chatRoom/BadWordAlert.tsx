@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useQueryClient } from 'react-query';
 import { Button, Typography } from '../common';
-import { SocketContext } from '../SocketProvider';
+import { SocketContext } from '../../contexts/socket';
 import { ButtonContainer, Notice, WarningMessageContainer } from './style';
 
 interface BadWordAlertProps {
@@ -9,6 +9,8 @@ interface BadWordAlertProps {
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
 }
+
+const userId = '62d509be151f1fb3b2e0f792';
 
 function BadWordAlert(props: BadWordAlertProps) {
   const { setHasBadWord, input, setInput } = props;

@@ -1,13 +1,15 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
+import { SocketContext } from '../../contexts/socket';
 
 import BadWordAlert from './BadWordAlert';
 import DayDivider from './DayDivider';
 import Message from './Message';
 import QuickChat from './QuickChat';
-import { MessageAreaContainer } from './style';
+import Typing from './Typing';
+import { MessageAreaContainer, OpponentSpeechBubble } from './style';
 
-import { sortByKey } from '../../utils';
-import type { AddMessage, Messages } from '../../hooks/useMessages';
+import type { Messages } from '../../hooks/useMessages';
+import useTimer from '../../hooks/useTimer';
 
 interface MessageProps {
   messages: Messages;
@@ -15,37 +17,46 @@ interface MessageProps {
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
+  typing: boolean;
 }
 
 function MessageArea(props: MessageProps) {
-  const { messages, hasBadWord, setHasBadWord, input, setInput } = props;
+  const { messages, hasBadWord, setHasBadWord, input, setInput, typing } = props;
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView();
-  }, [messages]);
+  }, [messages, hasBadWord, typing]);
 
-  const sortedMessages = useMemo(() => sortByKey(messages), [messages]);
+  //! 메시지 업데이트마다 정렬하지 않아도 순서가 유지되는지 검증 필요.
+  //! 유지되지 않는다면 여기서 정렬해야 함.
+  // const sortedMessages = useMemo(() => sortByKey(messages), [messages]);
 
   return (
     <MessageAreaContainer>
-      {Object.keys(sortedMessages).length > 0 || hasBadWord ? (
-        Object.entries(sortedMessages as Messages).map(([date, msgs]) => (
+      {Object.keys(messages).length > 0 || hasBadWord ? (
+        Object.entries(messages as Messages).map(([date, msgs]) => (
           <React.Fragment key={date}>
             <DayDivider>{date}</DayDivider>
             {msgs.map((message) => (
               <Message key={message.createdAt} message={message} />
             ))}
-            <div ref={scrollRef} />
           </React.Fragment>
         ))
       ) : (
         <QuickChat />
       )}
-      {hasBadWord && (
-        <BadWordAlert setHasBadWord={setHasBadWord} input={input} setInput={setInput} />
+      {typing && (
+        <OpponentSpeechBubble>
+          <Typing />
+        </OpponentSpeechBubble>
       )}
+      <div ref={scrollRef}>
+        {hasBadWord && (
+          <BadWordAlert setHasBadWord={setHasBadWord} input={input} setInput={setInput} />
+        )}
+      </div>
     </MessageAreaContainer>
   );
 }

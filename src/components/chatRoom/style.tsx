@@ -59,6 +59,7 @@ export const SpeechBubble = styled.div`
   padding: 8px 12px;
   max-width: 248px;
   width: fit-content;
+  height: 40px;
   border-radius: 16px;
 `;
 
@@ -144,4 +145,20 @@ export const ButtonContainer = styled.div`
   display: flex;
   gap: 16px;
   justify-content: flex-end;
+`;
+
+export const TypingContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 4px;
+
+  div {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: black;
+  }
 `;

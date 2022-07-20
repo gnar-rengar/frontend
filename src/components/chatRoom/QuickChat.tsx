@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
+import { useQueryClient } from 'react-query';
+import { SocketContext } from '../../contexts/socket';
 import { Typography } from '../common';
-import { SocketContext } from '../SocketProvider';
 import {
   ButtonWrapper,
   Notice,
@@ -9,8 +10,17 @@ import {
   QuickChatSpeechBubbleContainer,
 } from './style';
 
+const userId = '62d509be151f1fb3b2e0f792';
+
 function QuickChat() {
   const socket = useContext(SocketContext);
+
+  const roomData = useQueryClient().getQueryData<{
+    roomId: string;
+    user1: string;
+    user2: string;
+  }>('chatRoom');
+  const roomId = roomData?.roomId;
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     const text = (e.target as HTMLElement).innerText;

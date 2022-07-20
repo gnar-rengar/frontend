@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import Image from 'next/image';
 import { useTheme } from '@emotion/react';
 
+import { useQueryClient } from 'react-query';
 import { Form, Input, ButtonWrapper } from './style';
 
 import { throttle } from '../../utils';
-import { SocketContext } from '../SocketProvider';
+import { SocketContext } from '../../contexts/socket';
 
 const badWords = ['개새끼', '병신'];
 
@@ -16,10 +17,11 @@ interface InputAreaProps {
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
+  setTyping: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function InputArea(props: InputAreaProps) {
-  const { setHasBadWord, input, setInput } = props;
+  const { setHasBadWord, input, setInput, setTyping } = props;
 
   const socket = useContext(SocketContext);
   const {
@@ -47,11 +49,17 @@ function InputArea(props: InputAreaProps) {
     () =>
       throttle(() => {
         socket.emit('typing', roomId);
-      }, 10000),
+      }, 1000),
     []
   );
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    const text = e.target.value;
+    if (text.length > 0) {
+      setTyping(true);
+    } else {
+      setTyping(false);
+    }
     handleTyping();
     setInput(e.target.value);
   };

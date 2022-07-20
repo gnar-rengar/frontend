@@ -8,7 +8,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import { RecoilRoot } from 'recoil';
 import Layout from '../components/layout/Layout';
-import SocketProvider from '../components/SocketProvider';
+import SocketProvider from '../contexts/socket';
 import { darkTheme } from '../theme';
 import GlobalStyle from '../theme/globalStyle';
 

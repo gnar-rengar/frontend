@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import React from 'react';
+import React, { memo } from 'react';
 import { Typography } from '../common';
 import {
   MyMessageContainer,
@@ -51,4 +51,4 @@ function Message(props: MessageProps) {
   );
 }
 
-export default Message;
+export default memo(Message);
