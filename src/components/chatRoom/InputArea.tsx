@@ -2,7 +2,6 @@ import React, { useContext, useMemo } from 'react';
 import Image from 'next/image';
 import { useTheme } from '@emotion/react';
 
-import { useQueryClient } from 'react-query';
 import { Form, Input, ButtonWrapper } from './style';
 
 import { throttle } from '../../utils';
@@ -34,6 +33,7 @@ function InputArea(props: InputAreaProps) {
     e.preventDefault();
     const form = e.currentTarget;
     const text = form.message.value;
+    if (text.replace(/\s/g, '').length === 0) return;
 
     // TODO 필터링 함수 작성 또는 라이브러리 사용
     if (badWords.includes(text)) {
@@ -45,7 +45,7 @@ function InputArea(props: InputAreaProps) {
   };
 
   // TODO 입력할 때 ... 애니메이션
-  const handleTyping = useMemo(
+  const emitTyping = useMemo(
     () =>
       throttle(() => {
         socket.emit('typing', roomId);
@@ -56,11 +56,8 @@ function InputArea(props: InputAreaProps) {
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const text = e.target.value;
     if (text.length > 0) {
-      setTyping(true);
-    } else {
-      setTyping(false);
+      emitTyping();
     }
-    handleTyping();
     setInput(e.target.value);
   };
 

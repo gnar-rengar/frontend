@@ -14,7 +14,7 @@ const chatrooms = [
     unRead: 10,
   },
   {
-    id: '1',
+    id: '2',
     profileUrl: 'http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/588.png',
     name: '미친놈',
     timeStamp: new Date().getTime(),
@@ -23,7 +23,7 @@ const chatrooms = [
     unRead: 999,
   },
   {
-    id: '1',
+    id: '3',
     profileUrl: 'http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/588.png',
     name: '페부장',
     timeStamp: new Date().getTime(),
@@ -37,14 +37,14 @@ function Chats() {
     <ChatContainer>
       <Divider />
       {chatrooms.map((room) => (
-        <>
+        <React.Fragment key={room.id}>
           <Link href={`chat/${room.id}`}>
             <a>
               <ChatRoomCard room={room} />
             </a>
           </Link>
           <Divider />
-        </>
+        </React.Fragment>
       ))}
     </ChatContainer>
   );

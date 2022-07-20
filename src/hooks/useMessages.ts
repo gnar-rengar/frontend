@@ -16,10 +16,11 @@ function useMessages(): [Messages, AddMessage, React.Dispatch<React.SetStateActi
       if (msgs[date]) {
         return { ...msgs, [date]: [...msgs[date], newMessage] };
       }
-      return { ...messages, [date]: [newMessage] };
+      return { ...msgs, [date]: [newMessage] };
     });
   };
-  return [messages as any, addMessage, setMessages];
+
+  return [messages, addMessage, setMessages];
 }
 
 export default useMessages;

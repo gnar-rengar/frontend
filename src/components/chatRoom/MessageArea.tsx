@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
-import { SocketContext } from '../../contexts/socket';
+import React, { useEffect, useRef } from 'react';
 
 import BadWordAlert from './BadWordAlert';
 import DayDivider from './DayDivider';
@@ -9,7 +8,6 @@ import Typing from './Typing';
 import { MessageAreaContainer, OpponentSpeechBubble } from './style';
 
 import type { Messages } from '../../hooks/useMessages';
-import useTimer from '../../hooks/useTimer';
 
 interface MessageProps {
   messages: Messages;

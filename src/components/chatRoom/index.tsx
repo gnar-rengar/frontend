@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useQueryClient } from 'react-query';
 import { SocketContext } from '../../contexts/socket';
 import useMessages, { Messages, ReceivedMessage } from '../../hooks/useMessages';
-import useTimer from '../../hooks/useTimer';
 import InputArea from './InputArea';
 import MessageArea from './MessageArea';
 import { ChatRoomContainer } from './style';
+
+import { useTimer } from '../../utils';
 
 function ChatRoom() {
   const [messages, addMessage, setMessages] = useMessages();
@@ -24,6 +25,8 @@ function ChatRoom() {
       setTyping(true);
       setTimer();
     });
+
+    // TODO onTypingEnd
   }, [socket]);
 
   const queryClient = useQueryClient();
