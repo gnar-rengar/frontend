@@ -1,39 +1,26 @@
 import { useState } from 'react';
-import dayjs from 'dayjs';
 
-export type Message = { id: string; timestamp: number; message: string };
+export type Message = { userId: string; text: string; createdAt: string };
 export type Messages = { [key in string]: Message[] };
-export type AddMessage = (id: string, message: string) => void;
+export type ReceivedMessage = Message & { date: string; isRead: boolean; updatedAt: string };
+export type AddMessage = (message: ReceivedMessage) => void;
 
-const defaultMessages = {
-  // '2022-07-15': [
-  //   { id: '1', timestamp: dayjs('2022/07/15 10:30').unix(), message: '반가워요' },
-  //   { id: '2', timestamp: dayjs('2022/07/15 11:00').unix(), message: '안녕' },
-  //   { id: '2', timestamp: dayjs('2022/07/15 11:02').unix(), message: '봇듀오 가실래요?' },
-  // ],
-  // '2022-07-16': [
-  //   { id: '1', timestamp: dayjs('2022/07/15 10:30').unix(), message: '오늘도 ㄱㄱ?' },
-  //   { id: '2', timestamp: dayjs('2022/07/15 11:00').unix(), message: 'ㅇㅋㅇㅋ' },
-  //   { id: '1', timestamp: dayjs('2022/07/15 11:02').unix(), message: '롤챗 들어오셈' },
-  // ],
-};
+function useMessages(): [Messages, AddMessage, React.Dispatch<React.SetStateAction<Messages>>] {
+  const [messages, setMessages] = useState<Messages>({});
 
-function useMessages(): [Messages, AddMessage] {
-  const [messages, setMessages] = useState<Messages>(defaultMessages);
-
-  const addMessage: AddMessage = (id: string, message: string) => {
-    const timestamp = new Date().getTime();
-    const date = dayjs(timestamp).format('YYYY년 M월 D일');
-    const newMessage = { id, timestamp, message };
+  const addMessage: AddMessage = (message) => {
+    const { userId, date, text, createdAt } = message;
+    const newMessage = { userId, createdAt, text };
 
     setMessages((msgs) => {
       if (msgs[date]) {
         return { ...msgs, [date]: [...msgs[date], newMessage] };
       }
-      return { ...messages, [date]: [newMessage] };
+      return { ...msgs, [date]: [newMessage] };
     });
   };
-  return [messages, addMessage];
+
+  return [messages, addMessage, setMessages];
 }
 
 export default useMessages;

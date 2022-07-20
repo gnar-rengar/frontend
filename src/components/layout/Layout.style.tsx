@@ -5,8 +5,8 @@ export const LayoutContainer = styled.div`
   max-width: 480px;
   margin: auto;
   ${({ theme: { color } }) => `
-  background: ${color.background};
-  color: ${color.onBackground};
+    background: ${color.background};
+    color: ${color.onBackground};
   `}
 `;
 

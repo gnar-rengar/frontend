@@ -1,14 +1,14 @@
 import React, { ReactElement, useRef } from 'react';
 import { ThemeProvider } from '@emotion/react';
+import { NextPage } from 'next';
 import { AppProps } from 'next/app';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { RecoilRoot } from 'recoil';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
-
-import { NextPage } from 'next';
+import { RecoilRoot } from 'recoil';
 import Layout from '../components/layout/Layout';
+import SocketProvider from '../contexts/socket';
 import { darkTheme } from '../theme';
 import GlobalStyle from '../theme/globalStyle';
 
@@ -20,9 +20,9 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
-  require('../mocks');
-}
+// if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+//   require('../mocks');
+// }
 
 dayjs.locale('ko');
 
@@ -44,9 +44,11 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
       <QueryClientProvider client={queryClient.current}>
         <Hydrate state={pageProps.dehydratedState}>
           <RecoilRoot>
-            <ThemeProvider theme={darkTheme}>
-              {getLayout(<Component {...pageProps} />)}
-            </ThemeProvider>
+            <SocketProvider>
+              <ThemeProvider theme={darkTheme}>
+                {getLayout(<Component {...pageProps} />)}
+              </ThemeProvider>
+            </SocketProvider>
           </RecoilRoot>
         </Hydrate>
         <ReactQueryDevtools position="bottom-right" />
