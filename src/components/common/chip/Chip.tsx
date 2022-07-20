@@ -6,7 +6,7 @@ import { StyledChip } from './Chip.style';
 
 export interface ChipProps {
   chosen?: boolean;
-  size?: 'sm' | 'lg';
+  size?: 'sm' | 'lg' | 'body1';
   color?: ColorVariant;
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLLabelElement>) => void;
@@ -14,6 +14,7 @@ export interface ChipProps {
 
 const typoVariant = {
   sm: 'captionRegular',
+  body1: 'body1',
   lg: 'body4',
 } as const;
 

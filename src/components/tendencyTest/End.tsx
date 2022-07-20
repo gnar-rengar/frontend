@@ -1,17 +1,37 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React from 'react';
-import { tendencyImage } from '../../constant';
+import React, { useEffect, useState } from 'react';
+import { tendencyImage, tendencyResult } from '../../constant';
 import { Button, Chip, Typography } from '../common';
-import { ChipContainer, EndContainer, PlayStyleContainer, StartEndButtonContainer } from './style';
+import {
+  ResultContainer,
+  EndContainer,
+  PlayStyleContainer,
+  StartEndButtonContainer,
+  ChipContainer,
+} from './style';
 
 interface EndProps {
   testAnswer: string[];
+  setTestNumber: React.Dispatch<React.SetStateAction<number>>;
+  setTestAnswer: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function End({ testAnswer }: EndProps) {
+function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
+  const [result, setResult] = useState([]);
   const router = useRouter();
+
+  useEffect(() => {
+    const resultArray = testAnswer.map(
+      (answer: 'top' | 'bottom', index) => tendencyResult[index][answer]
+    );
+    setResult([...resultArray]);
+  }, []);
+
+  const onClickTestReset = () => {
+    setTestNumber(-1);
+    setTestAnswer([]);
+  };
 
   return (
     <>
@@ -20,22 +40,15 @@ function End({ testAnswer }: EndProps) {
           <Typography variant="h3" align="center">
             소환사님은
           </Typography>
-          <ChipContainer>
-            <Chip size="sm" chosen color="secondary">
-              #네글자요
-            </Chip>
-            <Chip size="sm" chosen color="secondary">
-              #네글자요
-            </Chip>
-          </ChipContainer>
-          <ChipContainer>
-            <Chip size="sm" chosen color="secondary">
-              #네글자요
-            </Chip>
-            <Chip size="sm" chosen color="secondary">
-              #네글자요
-            </Chip>
-          </ChipContainer>
+          <ResultContainer>
+            {result.map((style) => (
+              <ChipContainer key={style}>
+                <Chip key={style} size="body1" chosen color="secondary">
+                  {`#${style}`}
+                </Chip>
+              </ChipContainer>
+            ))}
+          </ResultContainer>
         </PlayStyleContainer>
         <Typography variant="h3" align="center">
           이런 플레이 스타일이군요!
@@ -48,16 +61,19 @@ function End({ testAnswer }: EndProps) {
         </Typography>
       </EndContainer>
       <StartEndButtonContainer>
-        <Button size="md" variant="text" color="primaryVariant">
+        <Button onClick={onClickTestReset} size="md" variant="text" color="primaryVariant">
           테스트 다시 하기
         </Button>
         <Button
-          onClick={() => router.push('/on-boarding')}
+          onClick={() =>
+            router.push(
+              `/on-boarding?battle=${result[0]}&line=${result[1]}&champion=${result[2]}&physical=${result[3]}`
+            )}
           size="lg"
           variant="contained"
           color="primaryVariant"
         >
-          지금 바로 듀오 찾으러가기
+          가입하고 찰떡 듀오 매칭하기
         </Button>
       </StartEndButtonContainer>
     </>

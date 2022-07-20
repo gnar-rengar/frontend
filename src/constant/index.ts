@@ -64,7 +64,14 @@ const tendencyAnswer = [
   ['욕심내서 훔쳐 먹는다', '와드만 하고 간다'],
   ['우리 팀 빨리와!! 핑을 찍는다', '내가 갈게!! 로밍을 간다'],
   ['숙련도로 승부한다. 그대로 모스트 픽', '다른 챔프도 괜찮아. 아쉽지만 다른 챔피언을 픽한다.'],
-  ['도망가! 얘네 스킬 다 있어 백핑을 찍는다.', '2:2야 이거 쌉가능1 가고 있음 핑을 찍는다.'],
+  ['도망가! 얘네 스킬 다 있어 백핑을 찍는다.', '2:2야 이거 쌉가능! 가고 있음 핑을 찍는다.'],
+];
+
+const tendencyResult = [
+  { top: '교전지향', bottom: '안전추구' },
+  { top: '라인전위주', bottom: '로밍위주' },
+  { top: '원챔장인', bottom: '올라운더' },
+  { top: '뇌지컬', bottom: '피지컬' },
 ];
 
 const tendencyImage = {
@@ -90,4 +97,5 @@ export {
   tendencyQuestion,
   tendencyAnswer,
   tendencyImage,
+  tendencyResult,
 };

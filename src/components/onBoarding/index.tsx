@@ -61,6 +61,14 @@ const validationSchema = yup.object().shape({
 });
 
 function OnBoarding() {
+  const router = useRouter();
+  const { battle, line, champion, physical } = router.query as PlayStyleType;
+  const [tendencyTestResult, setTendencyResult] = useState({
+    battle: '',
+    line: '',
+    champion: '',
+    physical: '',
+  });
   const [queryEnabled, setQueryEnabled] = useState(false); // 사용자 로그인 정보 api 및 로직 구현 후 적용
   const userData = useGetOnBoarding(queryEnabled, setQueryEnabled);
   const {
@@ -82,7 +90,7 @@ function OnBoarding() {
           line: userData?.playStyle[1],
           champion: userData?.playStyle[2],
           physical: userData?.playStyle[3],
-        } || null,
+        } || tendencyTestResult,
       position: userData?.position || [],
       voiceChannel: userData?.voiceChannel || [],
       useVoice: userData?.useVoice || true,
@@ -91,12 +99,15 @@ function OnBoarding() {
     resolver: yupResolver(validationSchema),
     mode: 'onChange',
   });
-  const router = useRouter();
   const nickNameButtonActive = watch('nickNameCheck');
   const nickNameInputActive = watch('lolNickname');
   const useVoiceValue = getValues('useVoice');
   const [summonerIcon, setSummonerIcon] = useState(userData?.profileUrl || '/icons/onBoarding.png');
   const submitMutation = useOnBoardingMutation();
+
+  useEffect(() => {
+    setTendencyResult({ battle, line, champion, physical });
+  }, []);
 
   useEffect(() => {
     const errorsArr = Object.keys(errors);

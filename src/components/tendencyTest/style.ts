@@ -4,11 +4,12 @@ export const TestContainer = styled.div`
   width: 100%;
   position: absolute;
   left: 50%;
-  top: 30%;
-  transform: translate(-50%, -30%);
+  top: 50%;
+  transform: translate(-50%, 30%);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 export const TestStartContainer = styled(TestContainer)`
@@ -23,9 +24,12 @@ export const ButtonContainer = styled.div`
 `;
 
 export const StartEndButtonContainer = styled(ButtonContainer)`
-  position: absolute;
+  padding: 0 16px;
+  position: fixed;
+  left: 50%;
   bottom: 5%;
-  max-width: 345px;
+  transform: translateX(-50%);
+  max-width: 480px;
 `;
 
 export const TendencyProgressBar = styled.div<{ width: string }>`
@@ -55,10 +59,16 @@ export const PlayStyleContainer = styled.div`
   gap: 12px;
 `;
 
-export const ChipContainer = styled.div`
+export const ResultContainer = styled.div`
+  width: 172px;
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
+`;
+
+export const ChipContainer = styled.div`
+  width: 82px;
 `;
 
 export const QuestionContainer = styled.div`
@@ -78,5 +88,9 @@ export const QuestionAndExpression = styled.div`
 `;
 
 export const Test = styled.div`
-  padding: 0 16px;
+  /* width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
 `;

@@ -1,5 +1,5 @@
-import React from 'react';
 import Image from 'next/image';
+import React from 'react';
 import { tendencyImage } from '../../constant';
 import { Button, Typography } from '../common';
 import { StartEndButtonContainer, Test, TestStartContainer } from './style';

@@ -22,7 +22,9 @@ function TendencyTest() {
         />
       );
     }
-    return <End testAnswer={testAnswer} />;
+    return (
+      <End testAnswer={testAnswer} setTestNumber={setTestNumber} setTestAnswer={setTestAnswer} />
+    );
   }, [testNumber]);
 
   return <div>{pageRenderMemo}</div>;
