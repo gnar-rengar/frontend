@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useQueryClient } from 'react-query';
-import { SocketContext } from '../../contexts/socket';
 import useMessages, { Messages, ReceivedMessage } from '../../hooks/useMessages';
+
+import { SocketContext } from '../../contexts/socket';
+
 import InputArea from './InputArea';
 import MessageArea from './MessageArea';
 import { ChatRoomContainer } from './style';
@@ -10,6 +12,8 @@ import { useTimer } from '../../utils';
 
 function ChatRoom() {
   const [messages, addMessage, setMessages] = useMessages();
+  const [newReceivedMessage, setNewReceivedMessage] = useState('');
+
   const [input, setInput] = useState('');
   const [hasBadWord, setHasBadWord] = useState(false);
 
@@ -46,12 +50,17 @@ function ChatRoom() {
         prev[date] = message;
         return prev;
       }, {});
+
       setMessages(defaultMessages);
     });
+
+    // TODO 내가 보낸 메시지에 대한 반환은 다른 이벤트로.
+    // socket.on('onSendMessage')
 
     socket.on('receiveMessage', (message: ReceivedMessage) => {
       setTyping(false);
       addMessage(message);
+      setNewReceivedMessage(message.text);
     });
   }, [socket]);
 
@@ -59,6 +68,7 @@ function ChatRoom() {
     <ChatRoomContainer>
       <MessageArea
         messages={messages}
+        newReceivedMessage={newReceivedMessage}
         hasBadWord={hasBadWord}
         setHasBadWord={setHasBadWord}
         input={input}
