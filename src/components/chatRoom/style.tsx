@@ -59,8 +59,9 @@ export const SpeechBubble = styled.div`
   padding: 8px 12px;
   max-width: 248px;
   width: fit-content;
-  height: 40px;
   border-radius: 16px;
+  overflow-wrap: break-word;
+  word-break: keep-all;
 `;
 
 export const MySpeechBubble = styled(SpeechBubble)`
