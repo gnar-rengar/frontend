@@ -12,6 +12,8 @@ const badWords = ['개새끼', '병신'];
 const roomId = '62d565601115b1eb5763d761';
 const userId = '62d509be151f1fb3b2e0f792';
 
+const whitespaceValidation = /\S/;
+
 interface InputAreaProps {
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
   input: string;
@@ -33,7 +35,7 @@ function InputArea(props: InputAreaProps) {
     e.preventDefault();
     const form = e.currentTarget;
     const text = form.message.value;
-    if (text.replace(/\s/g, '').length === 0) return;
+    if (!whitespaceValidation.test(text)) return;
 
     // TODO 필터링 함수 작성 또는 라이브러리 사용
     if (badWords.includes(text)) {
