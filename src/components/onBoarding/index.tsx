@@ -106,10 +106,6 @@ function OnBoarding() {
   const [summonerIcon, setSummonerIcon] = useState(userData?.profileUrl || '/icons/onBoarding.png');
   const submitMutation = useOnBoardingMutation();
 
-  // useLayoutEffect(() => {
-  //   setTendencyResult((prev) => ({ ...prev, battle, line, champion, physical }));
-  // }, []);
-
   useEffect(() => {
     const errorsArr = Object.keys(errors);
     if (errorsArr.length > 0) {
