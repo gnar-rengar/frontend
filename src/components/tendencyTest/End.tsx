@@ -68,7 +68,8 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
           onClick={() =>
             router.push(
               `/on-boarding?battle=${result[0]}&line=${result[1]}&champion=${result[2]}&physical=${result[3]}`
-            )}
+            )
+          }
           size="lg"
           variant="contained"
           color="primaryVariant"

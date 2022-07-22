@@ -60,7 +60,7 @@ export const PlayStyleContainer = styled.div`
 `;
 
 export const ResultContainer = styled.div`
-  width: 172px;
+  width: 182px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -68,7 +68,7 @@ export const ResultContainer = styled.div`
 `;
 
 export const ChipContainer = styled.div`
-  width: 82px;
+  width: 87px;
 `;
 
 export const QuestionContainer = styled.div`
@@ -85,12 +85,4 @@ export const QuestionAndExpression = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 40px;
-`;
-
-export const Test = styled.div`
-  /* width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; */
 `;

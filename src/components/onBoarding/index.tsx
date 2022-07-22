@@ -16,7 +16,7 @@ import {
 import useGetOnBoarding from '../../hooks/useGetOnBoarding';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { NicknameCheckDTO, OnBoardingInput, PlayStyleType } from '../../types/api.type';
-import { Asking, Button, Radio, TextField, Typography, StickyBottom } from '../common';
+import { Asking, Button, Radio, StickyBottom, TextField, Typography } from '../common';
 import CheckBoxChip from '../common/chip/CheckBoxChip';
 import RadioChip from '../common/chip/RadioChip';
 import {
@@ -62,15 +62,22 @@ const validationSchema = yup.object().shape({
 
 function OnBoarding() {
   const router = useRouter();
-  const { battle, line, champion, physical } = router.query as PlayStyleType;
-  const [tendencyTestResult, setTendencyResult] = useState({
-    battle: '',
-    line: '',
-    champion: '',
-    physical: '',
-  });
+  const tendencyTestResult = router.query as PlayStyleType | {};
   const [queryEnabled, setQueryEnabled] = useState(false); // 사용자 로그인 정보 api 및 로직 구현 후 적용
   const userData = useGetOnBoarding(queryEnabled, setQueryEnabled);
+
+  const playStyleDefaultValuesFn = () => {
+    if (Object.values(tendencyTestResult).length === 0) {
+      return {
+        battle: userData?.playStyle[0],
+        line: userData?.playStyle[1],
+        champion: userData?.playStyle[2],
+        physical: userData?.playStyle[3],
+      };
+    }
+    return tendencyTestResult;
+  };
+
   const {
     register,
     handleSubmit,
@@ -84,13 +91,7 @@ function OnBoarding() {
     defaultValues: {
       lolNickname: userData?.lolNickname || '',
       nickNameCheck: !!userData?.lolNickname,
-      playStyle:
-        {
-          battle: userData?.playStyle[0],
-          line: userData?.playStyle[1],
-          champion: userData?.playStyle[2],
-          physical: userData?.playStyle[3],
-        } || tendencyTestResult,
+      playStyle: playStyleDefaultValuesFn(),
       position: userData?.position || [],
       voiceChannel: userData?.voiceChannel || [],
       useVoice: userData?.useVoice || true,
@@ -105,9 +106,9 @@ function OnBoarding() {
   const [summonerIcon, setSummonerIcon] = useState(userData?.profileUrl || '/icons/onBoarding.png');
   const submitMutation = useOnBoardingMutation();
 
-  useEffect(() => {
-    setTendencyResult({ battle, line, champion, physical });
-  }, []);
+  // useLayoutEffect(() => {
+  //   setTendencyResult((prev) => ({ ...prev, battle, line, champion, physical }));
+  // }, []);
 
   useEffect(() => {
     const errorsArr = Object.keys(errors);
@@ -153,7 +154,6 @@ function OnBoarding() {
     const value = innerText === '사용해요';
     setValue('useVoice', value, { shouldValidate: true });
   };
-
   return (
     <OnBoardingContainer onSubmit={handleSubmit(onSubmitOnBoarding)} id="lolNickname">
       <OnBoardingEachContainer gap id="nickNameCheck">
