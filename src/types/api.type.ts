@@ -107,3 +107,10 @@ export interface RecentRecord {
 export interface NicknameCheckDTO extends ResponseDTO {
   profileUrl: string;
 }
+
+export interface AuthUserDTO {
+  success: true;
+  userId: string;
+  lolNickname: string;
+  profileURL: string;
+}

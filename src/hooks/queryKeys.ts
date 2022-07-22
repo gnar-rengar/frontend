@@ -3,4 +3,5 @@ export const queryKeys = {
   myPage: ['mypage'] as const,
   matchHistory: (userId: string) => ['matchHistory', userId] as const,
   userProfile: (userId: string) => ['userProfile', userId] as const,
+  authUser: ['user'] as const,
 };
