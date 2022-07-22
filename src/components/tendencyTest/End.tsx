@@ -43,7 +43,7 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
           <ResultContainer>
             {result.map((style) => (
               <ChipContainer key={style}>
-                <Chip key={style} size="body1" chosen color="secondary">
+                <Chip key={style} size="lg" chosen color="secondary">
                   {`#${style}`}
                 </Chip>
               </ChipContainer>

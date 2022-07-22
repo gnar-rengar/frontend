@@ -4,7 +4,7 @@ import { Label } from '../checkbox/CheckBox.style';
 
 interface StyledChipProps {
   chosen?: boolean;
-  size?: 'sm' | 'lg' | 'body1';
+  size?: 'sm' | 'lg' | 'xl';
   color?: ColorVariant;
 }
 
@@ -16,7 +16,7 @@ export const StyledChip = styled.span<StyledChipProps>`
   border-radius: 100px;
 
   ${({ size }) => {
-    if (size === 'sm' || size === 'body1') return 'padding: 4px 8px;';
+    if (size === 'sm' || size === 'xl') return 'padding: 4px 8px;';
     return 'padding: 5px 14px;';
   }}
 
