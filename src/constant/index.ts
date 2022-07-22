@@ -29,7 +29,8 @@ const onBoardingErrorMessage = {
   nickName: '소환사명을 입력해주세요',
   nickNameCheck: '확인 버튼을 통해 소환사명을 확인해주세요',
   notExist: '존재하지 않는 소환사명이에요',
-  position: '하나 이상 선택해주셔야 듀오 매칭이 가능해요',
+  positionMin: '하나 이상 선택해주셔야 듀오 매칭이 가능해요',
+  positionMax: '최대 두 포지션을 선택할 수 있어요',
   useVoice: '음성채팅을 사용하시는지 알려주세요',
   voiceAndCommunication: '하나 이상 선택해주셔야 해요',
 };

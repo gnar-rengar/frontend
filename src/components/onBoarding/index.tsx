@@ -41,8 +41,8 @@ const validationSchema = yup.object().shape({
   nickNameCheck: yup.boolean().oneOf([true], onBoardingErrorMessage.nickNameCheck),
   position: yup
     .array(yup.string())
-    .min(1, onBoardingErrorMessage.position)
-    .max(2, onBoardingErrorMessage.position),
+    .min(1, onBoardingErrorMessage.positionMin)
+    .max(2, onBoardingErrorMessage.positionMax),
   useVoice: yup.boolean().typeError(onBoardingErrorMessage.useVoice),
   voiceChannel: yup.array(yup.string()).when('useVoice', {
     is: true,
