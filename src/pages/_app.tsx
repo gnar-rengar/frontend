@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 
 import { NextPage } from 'next';
+import { CookiesProvider } from 'react-cookie';
 import Layout from '../components/layout/Layout';
 import { darkTheme } from '../theme';
 import GlobalStyle from '../theme/globalStyle';
@@ -20,9 +21,9 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
-  require('../mocks');
-}
+// if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+//   require('../mocks');
+// }
 
 dayjs.locale('ko');
 
@@ -44,9 +45,11 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
       <QueryClientProvider client={queryClient.current}>
         <Hydrate state={pageProps.dehydratedState}>
           <RecoilRoot>
-            <ThemeProvider theme={darkTheme}>
-              {getLayout(<Component {...pageProps} />)}
-            </ThemeProvider>
+            <CookiesProvider>
+              <ThemeProvider theme={darkTheme}>
+                {getLayout(<Component {...pageProps} />)}
+              </ThemeProvider>
+            </CookiesProvider>
           </RecoilRoot>
         </Hydrate>
         <ReactQueryDevtools position="bottom-right" />
