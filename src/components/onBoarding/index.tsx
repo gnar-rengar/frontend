@@ -172,7 +172,12 @@ function OnBoarding() {
               </NicknameContainer>
             </IconAndNickname>
             {(errors?.lolNickname || errors?.nickNameCheck) && (
-              <Typography color="error" data-testid="nickNameError" variant="caption" paragraph>
+              <Typography
+                color="error"
+                data-testid="nickNameError"
+                variant="captionRegular"
+                paragraph
+              >
                 {errors?.lolNickname?.message || errors?.nickNameCheck?.message}
               </Typography>
             )}
@@ -199,7 +204,7 @@ function OnBoarding() {
               ))}
             </ChipContainer>
             {errors?.position && (
-              <Typography color="error" variant="caption" paragraph>
+              <Typography color="error" variant="captionRegular" paragraph>
                 {(errors?.position as any)?.message}
               </Typography>
             )}
@@ -274,7 +279,7 @@ function OnBoarding() {
                 </CheckboxContainer>
               </Asking>
               {errors?.communication && (
-                <Typography color="error" variant="caption" paragraph>
+                <Typography color="error" variant="captionRegular" paragraph>
                   {(errors?.communication as any)?.message}
                 </Typography>
               )}
