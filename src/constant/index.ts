@@ -21,8 +21,8 @@ const communication = [
 const playStyleText = {
   battle: ['교전지향', '안전추구'],
   line: ['라인전위주', '로밍위주'],
-  champion: ['올라운더', '원챔장인'],
-  physical: ['피지컬', '뇌지컬'],
+  champion: ['원챔장인', '올라운더'],
+  physical: ['뇌지컬', '피지컬'],
 };
 
 const onBoardingErrorMessage = {
