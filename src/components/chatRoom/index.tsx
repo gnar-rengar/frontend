@@ -17,11 +17,11 @@ function ChatRoom({ roomId }: { roomId: string }) {
   const [input, setInput] = useState('');
   const [hasBadWord, setHasBadWord] = useState(false);
 
-  const [typing, setTyping] = useState(false);
+  const [isOpponentTyping, setIsOpponentTypingTyping] = useState(false);
 
   const socket = useContext(SocketContext);
 
-  const [setTimer, clearTimer] = useTimer(() => setTyping(false), 5000);
+  const [setTimer, clearTimer] = useTimer(() => setIsOpponentTypingTyping(false), 5000);
 
   const queryClient = useQueryClient();
 
@@ -70,7 +70,7 @@ function ChatRoom({ roomId }: { roomId: string }) {
     // socket.on('onSendMessage')
 
     socket.on('receiveMessage', (message: ReceivedMessage) => {
-      setTyping(false);
+      setIsOpponentTypingTyping(false);
       addMessage(message);
       setNewReceivedMessage(message.text);
     });
@@ -78,13 +78,13 @@ function ChatRoom({ roomId }: { roomId: string }) {
 
   socket.on('onTyping', () => {
     clearTimer();
-    setTyping(true);
+    setIsOpponentTypingTyping(true);
     setTimer();
   });
 
   socket.on('onEndTyping', () => {
     clearTimer();
-    setTyping(false);
+    setIsOpponentTypingTyping(false);
   });
 
   return (
@@ -96,7 +96,7 @@ function ChatRoom({ roomId }: { roomId: string }) {
         setHasBadWord={setHasBadWord}
         input={input}
         setInput={setInput}
-        typing={typing}
+        isOpponentTyping={isOpponentTyping}
       />
       <InputArea setHasBadWord={setHasBadWord} input={input} setInput={setInput} />
     </ChatRoomContainer>

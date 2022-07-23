@@ -5,7 +5,6 @@ export const ChatRoomContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 56px);
-  height: 1px;
 `;
 
 export const MessageAreaContainer = styled.div`

@@ -1,8 +1,9 @@
-import Link from 'next/link';
 import React, { useContext, useEffect, useState } from 'react';
+import Link from 'next/link';
 import { SocketContext } from '../../contexts/socket';
 import { Divider } from '../common';
 import ChatRoomCard from './ChatRoomCard';
+import InValid from './InValid';
 import { ChatContainer } from './style';
 
 type Room = {
@@ -14,6 +15,8 @@ type Room = {
   lastMessagedTime: string;
   unRead: number;
 };
+
+const isLoggedIn = true;
 
 function Chats() {
   const [rooms, setRooms] = useState<Room[]>([]);
@@ -40,6 +43,22 @@ function Chats() {
       setRooms(roomsData);
     });
   }, [socket]);
+
+  if (!isLoggedIn) {
+    return (
+      <InValid title={'로그인 후\n채팅 목록을 확인해보세요!'} path="/login" buttonText="로그인" />
+    );
+  }
+
+  if (rooms.length === 0) {
+    return (
+      <InValid
+        title={'아직 채팅이 없어요\n듀오하고싶은 소환사와 채팅해보세요!'}
+        path="/"
+        buttonText="듀오 찾으러 가기"
+      />
+    );
+  }
 
   return (
     <ChatContainer>

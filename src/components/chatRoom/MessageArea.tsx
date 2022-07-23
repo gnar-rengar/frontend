@@ -20,12 +20,19 @@ interface MessageProps {
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
-  typing: boolean;
+  isOpponentTyping: boolean;
 }
 
 function MessageArea(props: MessageProps) {
-  const { messages, newReceivedMessage, hasBadWord, setHasBadWord, input, setInput, typing } =
-    props;
+  const {
+    messages,
+    newReceivedMessage,
+    hasBadWord,
+    setHasBadWord,
+    input,
+    setInput,
+    isOpponentTyping,
+  } = props;
 
   const [isNewMsgNoticeShown, setIsNewMsgNoticeShown] = useState(false);
 
@@ -43,9 +50,8 @@ function MessageArea(props: MessageProps) {
 
   useEffect(() => {
     if (isNewMsgOutOfSight) return;
-
     scrollToBottom();
-  }, [messages, hasBadWord, typing]);
+  }, [messages, hasBadWord]);
 
   useEffect(() => {
     if (newReceivedMessage.length > 0 && isNewMsgOutOfSight) {
@@ -83,7 +89,7 @@ function MessageArea(props: MessageProps) {
       ) : (
         <QuickChat />
       )}
-      {typing && (
+      {isOpponentTyping && (
         <OpponentSpeechBubble>
           <Typing />
         </OpponentSpeechBubble>
