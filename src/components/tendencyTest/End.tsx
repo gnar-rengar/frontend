@@ -8,7 +8,6 @@ import {
   EndContainer,
   PlayStyleContainer,
   StartEndButtonContainer,
-  ChipContainer,
 } from './style';
 
 interface EndProps {
@@ -42,11 +41,9 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
           </Typography>
           <ResultContainer>
             {result.map((style) => (
-              <ChipContainer key={style}>
-                <Chip key={style} size="lg" chosen color="secondary">
-                  {`#${style}`}
-                </Chip>
-              </ChipContainer>
+              <Chip key={style} size="lg" chosen color="secondary">
+                {`#${style}`}
+              </Chip>
             ))}
           </ResultContainer>
         </PlayStyleContainer>

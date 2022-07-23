@@ -60,15 +60,12 @@ export const PlayStyleContainer = styled.div`
 `;
 
 export const ResultContainer = styled.div`
-  width: 182px;
+  width: 210px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   flex-wrap: wrap;
-`;
-
-export const ChipContainer = styled.div`
-  width: 87px;
 `;
 
 export const QuestionContainer = styled.div`
