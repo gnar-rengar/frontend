@@ -10,7 +10,7 @@ import { ChatRoomContainer } from './style';
 
 import { useTimer } from '../../utils';
 
-function ChatRoom() {
+function ChatRoom({ roomId }: { roomId: string }) {
   const [messages, addMessage, setMessages] = useMessages();
   const [newReceivedMessage, setNewReceivedMessage] = useState('');
 
@@ -19,30 +19,31 @@ function ChatRoom() {
 
   const [typing, setTyping] = useState(false);
 
-  const [setTimer, clearTimer] = useTimer(() => setTyping(false), 5000);
-
   const socket = useContext(SocketContext);
 
-  useEffect(() => {
-    socket.on('onTyping', () => {
-      clearTimer();
-      setTyping(true);
-      setTimer();
-    });
-
-    // TODO onTypingEnd
-  }, [socket]);
+  const [setTimer, clearTimer] = useTimer(() => setTyping(false), 5000);
 
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    socket.on('onEnterChatRoom', (data: Messages[]) => {
-      queryClient.setQueryData('chatRoom', {
-        roomId: '62d565601115b1eb5763d761',
-        user1: '62d509be151f1fb3b2e0f792',
-        user2: '62d509be151f1fb3b2e0f792',
-      });
+    socket.emit('enterChatRoom', roomId, '62d509be151f1fb3b2e0f792');
 
+    socket.on(
+      'onEnterChatRoom',
+      (data: { userId: string; profileUrl: string; lolNickname: string }) => {
+        const { userId, profileUrl, lolNickname } = data;
+        queryClient.setQueryData('chatRoom', {
+          roomId,
+          opponent: {
+            userId,
+            profileUrl,
+            lolNickname,
+          },
+        });
+      }
+    );
+
+    socket.on('getMessages', (data: Messages[]) => {
       data.sort((a, b) => Object.keys(a)[0].localeCompare(Object.keys(b)[0]));
       const defaultMessages = data.reduce((prev, crnt) => {
         const [date, message] = Object.entries(crnt)[0];
@@ -64,6 +65,17 @@ function ChatRoom() {
     });
   }, [socket]);
 
+  socket.on('onTyping', () => {
+    clearTimer();
+    setTyping(true);
+    setTimer();
+  });
+
+  socket.on('onEndTyping', () => {
+    clearTimer();
+    setTyping(false);
+  });
+
   return (
     <ChatRoomContainer>
       <MessageArea
@@ -75,12 +87,7 @@ function ChatRoom() {
         setInput={setInput}
         typing={typing}
       />
-      <InputArea
-        setHasBadWord={setHasBadWord}
-        input={input}
-        setInput={setInput}
-        setTyping={setTyping}
-      />
+      <InputArea setHasBadWord={setHasBadWord} input={input} setInput={setInput} />
     </ChatRoomContainer>
   );
 }

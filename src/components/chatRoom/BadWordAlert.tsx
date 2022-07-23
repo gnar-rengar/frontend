@@ -17,12 +17,15 @@ function BadWordAlert(props: BadWordAlertProps) {
 
   const socket = useContext(SocketContext);
 
-  const [roomData] = useQueryClient().getQueriesData<{
+  const roomData = useQueryClient().getQueryData<{
     roomId: string;
-    userId1: string;
-    userId2: string;
+    opponent: {
+      userId: string;
+      profileUrl: string;
+      lolNickname: string;
+    };
   }>('chatRoom');
-  const { roomId } = roomData[1];
+  const roomId = roomData?.roomId;
 
   const handleClick = () => {
     setInput('');

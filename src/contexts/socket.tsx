@@ -4,8 +4,6 @@ import { io } from 'socket.io-client';
 const socket = io(process.env.NEXT_PUBLIC_BASE_URL);
 export const SocketContext = createContext(null);
 
-const roomId = '62d565601115b1eb5763d761';
-
 interface SocketProviderProps {
   children: React.ReactNode;
 }
@@ -17,12 +15,6 @@ function SocketProvider({ children }: SocketProviderProps) {
     socket.on('connect', () => {
       setIsConnected(true);
     });
-
-    // TODO socket.on('onGetChatRoom', (data) => console.log(data));
-
-    // TODO socket.on('getChatRooms')
-
-    socket.emit('enterChatRoom', roomId);
 
     socket.on('disconnect', () => {
       setIsConnected(false);

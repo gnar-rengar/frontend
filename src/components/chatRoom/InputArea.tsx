@@ -18,11 +18,10 @@ interface InputAreaProps {
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
-  setTyping: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function InputArea(props: InputAreaProps) {
-  const { setHasBadWord, input, setInput, setTyping } = props;
+  const { setHasBadWord, input, setInput } = props;
 
   const socket = useContext(SocketContext);
   const {
@@ -46,7 +45,6 @@ function InputArea(props: InputAreaProps) {
     }
   };
 
-  // TODO 입력할 때 ... 애니메이션
   const emitTyping = useMemo(
     () =>
       throttle(() => {
@@ -59,7 +57,10 @@ function InputArea(props: InputAreaProps) {
     const text = e.target.value;
     if (text.length > 0) {
       emitTyping();
+    } else {
+      socket.emit('endTyping', roomId);
     }
+
     setInput(e.target.value);
   };
 
