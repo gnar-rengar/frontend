@@ -3,34 +3,37 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter } from 'next/router';
 import usePatchReviewWrite from '../../hooks/usePatchReviewWrite';
 
-import { Asking, BaseContainer, Button, CheckBox, Typography } from '../common';
+import OnGoodReview from './OnGoodReview';
+import OnBadReview from './OnBadReview';
+import { Asking, BaseContainer, Button, StickyBottom } from '../common';
 
-import { SubmitButtonWrapper } from './style';
-import { ButtonContainer } from '../common/asking/Asking.style';
+import { ButtonContainer, Form } from './style';
 
+import { reviewWriteErrorMessage } from '../../constant';
 import type { ReviewWriteDTO } from '../../types/api.type';
-import { awfulReasons, joyfulReasons, reviewWriteErrorMessage } from '../../constant';
 
 const reviewWriteSchema = yup.object().shape({
-  isJoyful: yup.boolean(),
-  goodFeedback: yup.array(yup.string()).when('isJoyful', {
+  isGood: yup.boolean(),
+  goodReview: yup.array(yup.string()).when('isGood', {
     is: true,
     then: (schema) => schema.min(1, reviewWriteErrorMessage.feedback),
   }),
-  badFeedback: yup.array(yup.string()).when('isJoyful', {
+  badReview: yup.array(yup.string()).when('isGood', {
     is: false,
     then: (schema) => schema.min(1, reviewWriteErrorMessage.feedback),
   }),
-  ban: yup.boolean().required(),
+  additionalBadReview: yup.string().max(800),
 });
 
 const userId = '1';
 
 function ReviewWrite() {
-  const [isJoyful, setIsJoyful] = useState(true);
-  const [isWillinToBan, setIsWillingToBan] = useState(true);
+  const [isGood, setIsGood] = useState(true);
+
+  const router = useRouter();
 
   const {
     register,
@@ -40,22 +43,30 @@ function ReviewWrite() {
     getValues,
   } = useForm<ReviewWriteDTO>({
     defaultValues: {
-      isJoyful: true,
-      goodFeedback: [],
-      badFeedback: [],
-      ban: true,
+      isGood: true,
+      goodReview: [],
+      badReview: [],
+      additionalBadReaview: '',
     },
     resolver: yupResolver(reviewWriteSchema),
     mode: 'onChange',
   });
 
   useEffect(() => {
-    if (isJoyful) {
-      setValue('badFeedback', []);
+    const err = Object.keys(errors);
+    if (err.length === 0) return;
+
+    router.push(`#${err[0]}`);
+  }, [errors]);
+
+  useEffect(() => {
+    if (isGood) {
+      setValue('badReview', []);
     } else {
-      setValue('goodFeedback', []);
+      setValue('goodReview', []);
     }
-  }, [isJoyful]);
+    setValue('additionalBadReaview', '');
+  }, [isGood]);
 
   const { mutate } = usePatchReviewWrite();
 
@@ -63,94 +74,57 @@ function ReviewWrite() {
     mutate({ userId, payload });
   };
 
-  const handleClickIsJoyfulButton = () => {
-    setIsJoyful((p) => !p);
-    setValue('isJoyful', !getValues('isJoyful'));
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    const { value } = e.currentTarget;
+    if (value === 'joyful') {
+      setIsGood(true);
+    } else {
+      setIsGood(false);
+    }
+    setValue('isGood', !getValues('isGood'));
   };
 
-  const handleClickBanButton = () => {
-    setIsWillingToBan((p) => !p);
-    setValue('ban', !getValues('ban'));
-  };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <BaseContainer>
-        <Asking title="고수달님은 어떠셨나요?" caption="진짜 플레이 했을 때만 평가해라">
+        <Asking
+          title="고수달님은 어떠셨나요?"
+          caption={'정말 플레이를 했을 때만 남겨주세요\n허위 리뷰 작성 시 이용이 제한될 수 있어요.'}
+          whiteSpace="pre-line"
+        >
           <ButtonContainer>
             <Button
               type="button"
-              color={isJoyful ? 'primary' : 'disable'}
+              color={isGood ? 'primary' : 'disable'}
               size="sm"
-              onClick={handleClickIsJoyfulButton}
+              onClick={handleClick}
               value="joyful"
             >
               즐겁게 플레이 했어요
             </Button>
             <Button
               type="button"
-              color={isJoyful ? 'disable' : 'primary'}
+              color={isGood ? 'disable' : 'primary'}
               size="sm"
-              onClick={handleClickIsJoyfulButton}
+              onClick={handleClick}
               value="awful"
             >
               별로에요
             </Button>
           </ButtonContainer>
         </Asking>
-        {isJoyful ? (
-          <Asking
-            title="어떤 점이 즐거우셨나요?"
-            caption="내가 표시한 평가는 상대에게 보여지지만 누가 했는지는 안보여요"
-          >
-            {joyfulReasons.map((reason) => (
-              <CheckBox key={reason} label={reason} register={register('goodFeedback')} />
-            ))}
-          </Asking>
+        {isGood ? (
+          <OnGoodReview errors={errors.goodReview} register={register} />
         ) : (
-          <Asking
-            title="어떤 점이 별로였는지 알려주세요"
-            caption="내가 표시한 평가는 상대에게 보여지지만 누가 했는지는 안보여요"
-          >
-            {awfulReasons.map((reason) => (
-              <CheckBox key={reason} label={reason} register={register('badFeedback')} />
-            ))}
-          </Asking>
+          <OnBadReview errors={errors.badReview} register={register} />
         )}
-        {errors.goodFeedback && (
-          <Typography variant="caption" color="error" paragraph>
-            {(errors.goodFeedback as any).message}
-          </Typography>
-        )}
-        <Asking
-          title="내 프로필을 고수달님에게서 숨기고 다시 만나지 않으실래요?"
-          caption="로그인 안한 상태에선 보일 수 있음"
-        >
-          <ButtonContainer>
-            <Button
-              type="button"
-              color={isWillinToBan ? 'primary' : 'disable'}
-              size="sm"
-              onClick={handleClickBanButton}
-            >
-              숨겨주세요
-            </Button>
-            <Button
-              type="button"
-              color={isWillinToBan ? 'disable' : 'primary'}
-              size="sm"
-              onClick={handleClickBanButton}
-            >
-              괜찮아요
-            </Button>
-          </ButtonContainer>
-        </Asking>
-        <SubmitButtonWrapper>
-          <Button type="submit" size="lg" color={isValid ? 'primaryVariant' : 'disable'}>
-            매너 평가하기
-          </Button>
-        </SubmitButtonWrapper>
       </BaseContainer>
-    </form>
+      <StickyBottom>
+        <Button type="submit" size="lg" color={isValid ? 'primaryVariant' : 'disable'}>
+          매너 평가하기
+        </Button>
+      </StickyBottom>
+    </Form>
   );
 }
 

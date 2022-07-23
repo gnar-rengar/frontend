@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import OnBoarding from '../components/onBoarding';
 
 function OnBoardingPage() {
-  return <OnBoarding />;
+  return (
+    <Suspense fallback="loading">
+      <OnBoarding />
+    </Suspense>
+  );
 }
 
 export default OnBoardingPage;

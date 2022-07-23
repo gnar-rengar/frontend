@@ -6,9 +6,9 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 56px;
+  height: ${({ theme }) => theme.header.height};
   padding: 14px 16px;
-  background: ${(props) => props.theme.color.surface};
+  background: ${({ theme }) => theme.color.surface};
   z-index: 10;
 `;
 
