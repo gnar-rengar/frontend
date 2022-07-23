@@ -13,21 +13,22 @@ import {
 
 interface ChatRoomCardProps {
   room: {
-    id: string;
+    lolNickname: string;
     profileUrl: string;
-    name: string;
-    timeStamp: number;
-    message: string;
+    lastMessageText: string;
+    lastMessagedTime: string;
     unRead: number;
+    roomId: string;
+    userId: string;
   };
 }
 
 function ChatRoomCard(props: ChatRoomCardProps) {
   const {
-    room: { profileUrl, name, timeStamp, message, unRead },
+    room: { lolNickname, profileUrl, lastMessageText, lastMessagedTime, unRead },
   } = props;
 
-  const time = dayjs(timeStamp).format('A h:mm');
+  const time = dayjs(lastMessagedTime).format('A h:mm');
 
   return (
     <ChatRoomCardContainer>
@@ -35,7 +36,7 @@ function ChatRoomCard(props: ChatRoomCardProps) {
       <InfoArea>
         <NameAndTime>
           <Typography variant="body1" color="onSurface">
-            {name}
+            {lolNickname}
           </Typography>
           <Typography variant="captionRegular" color="onBackgroundSub">
             {time}
@@ -44,7 +45,7 @@ function ChatRoomCard(props: ChatRoomCardProps) {
         <MessageAndCount>
           <Message>
             <Typography variant="body3" color="onBackground" paragraph>
-              {message}
+              {lastMessageText}
             </Typography>
           </Message>
           <RecentMessageCount>

@@ -29,7 +29,7 @@ function Message(props: MessageProps) {
           {time}
         </Typography>
         <MySpeechBubble>
-          <Typography variant="body2" color="onPrimary">
+          <Typography variant="body2" color="onPrimary" paragraph>
             {text}
           </Typography>
         </MySpeechBubble>
@@ -40,7 +40,7 @@ function Message(props: MessageProps) {
   return (
     <OpponentMessageContainer>
       <OpponentSpeechBubble>
-        <Typography variant="body2" color="surface">
+        <Typography variant="body2" color="surface" paragraph>
           {text}
         </Typography>
       </OpponentSpeechBubble>

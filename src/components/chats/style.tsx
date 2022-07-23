@@ -53,3 +53,15 @@ export const RecentMessageCount = styled.span`
   border-radius: 50%;
   background: ${({ theme: { color } }) => color.surface};
 `;
+
+export const InValidContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 24px;
+  transform: translate(-50%, -50%);
+`;
