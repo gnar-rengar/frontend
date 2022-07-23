@@ -19,7 +19,7 @@ const data = {
   voice: true,
 };
 
-function HomeComponent() {
+function Home() {
   return (
     <HomeContainer>
       <Banner />
@@ -66,4 +66,4 @@ function HomeComponent() {
   );
 }
 
-export default HomeComponent;
+export default Home;
