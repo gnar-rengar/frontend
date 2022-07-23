@@ -1,20 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { SocketContext } from '../../contexts/socket';
+
 import { Divider } from '../common';
 import ChatRoomCard from './ChatRoomCard';
 import InValid from './InValid';
 import { ChatContainer } from './style';
 
-type Room = {
-  roomId: string;
-  userId: string;
-  lolNickname: string;
-  profileUrl: string;
-  lastMessageText: string;
-  lastMessagedTime: string;
-  unRead: number;
-};
+import type { Room } from '../../types/api.type';
 
 const isLoggedIn = true;
 

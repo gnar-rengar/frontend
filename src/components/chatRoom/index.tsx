@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useQueryClient } from 'react-query';
-import useMessages, { Messages, ReceivedMessage } from '../../hooks/useMessages';
+import useMessages from '../../hooks/useMessages';
+import { queryKeys } from '../../hooks/queryKeys';
 
 import { SocketContext } from '../../contexts/socket';
 
@@ -9,6 +10,8 @@ import MessageArea from './MessageArea';
 import { ChatRoomContainer } from './style';
 
 import { useTimer } from '../../utils';
+
+import type { Messages, ReceivedMessage, Opponent } from '../../types/api.type';
 
 function ChatRoom({ roomId }: { roomId: string }) {
   const [messages, addMessage, setMessages] = useMessages();
@@ -26,15 +29,10 @@ function ChatRoom({ roomId }: { roomId: string }) {
   const queryClient = useQueryClient();
 
   const setRoomData = useCallback(
-    (room: { userId: string; profileUrl: string; lolNickname: string }) => {
-      const { userId, profileUrl, lolNickname } = room;
-      queryClient.setQueryData('chatRoom', {
+    (opponent: Opponent) => {
+      queryClient.setQueryData(queryKeys.chatRoom, {
         roomId,
-        opponent: {
-          userId,
-          profileUrl,
-          lolNickname,
-        },
+        opponent,
       });
     },
     [queryClient]
@@ -58,13 +56,10 @@ function ChatRoom({ roomId }: { roomId: string }) {
   useEffect(() => {
     socket.emit('enterChatRoom', roomId, '62d509be151f1fb3b2e0f792');
 
-    socket.on(
-      'onEnterChatRoom',
-      (room: { userId: string; profileUrl: string; lolNickname: string }, msgs: Messages[]) => {
-        setRoomData(room);
-        setDefaultMessages(msgs);
-      }
-    );
+    socket.on('onEnterChatRoom', (opponent: Opponent, msgs: Messages[]) => {
+      setRoomData(opponent);
+      setDefaultMessages(msgs);
+    });
 
     // TODO 내가 보낸 메시지에 대한 반환은 다른 이벤트로.
     // socket.on('onSendMessage')

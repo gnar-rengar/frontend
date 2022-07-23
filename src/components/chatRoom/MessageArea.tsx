@@ -9,7 +9,7 @@ import NewMessageNotice from './NewMessageNotice';
 
 import { MessageAreaContainer, OpponentSpeechBubble } from './style';
 
-import type { Messages } from '../../hooks/useMessages';
+import type { Messages } from '../../types/api.type';
 
 const INPUT_AREA_HEIGHT = 48;
 

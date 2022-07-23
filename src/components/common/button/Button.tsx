@@ -23,7 +23,7 @@ const typoVariant = {
 } as const;
 
 function Button(props: ButtonProps) {
-  const { type, size, value, onClick, children, ...other } = props;
+  const { type, size, color = 'primary', value, onClick, children, ...other } = props;
 
   return (
     <StyledButton type={type} value={value} onClick={onClick} {...{ ...other, size }}>

@@ -3,6 +3,9 @@ import { useQueryClient } from 'react-query';
 import { Button, Typography } from '../common';
 import { SocketContext } from '../../contexts/socket';
 import { ButtonContainer, Notice, WarningMessageContainer } from './style';
+import { queryKeys } from '../../hooks/queryKeys';
+
+import type { Opponent } from '../../types/api.type';
 
 interface BadWordAlertProps {
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
@@ -19,12 +22,8 @@ function BadWordAlert(props: BadWordAlertProps) {
 
   const roomData = useQueryClient().getQueryData<{
     roomId: string;
-    opponent: {
-      userId: string;
-      profileUrl: string;
-      lolNickname: string;
-    };
-  }>('chatRoom');
+    opponent: Opponent;
+  }>(queryKeys.chatRoom);
   const roomId = roomData?.roomId;
 
   const handleClick = () => {

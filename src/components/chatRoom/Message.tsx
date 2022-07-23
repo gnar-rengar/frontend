@@ -8,7 +8,7 @@ import {
   OpponentSpeechBubble,
 } from './style';
 
-import type { Message as MessageType } from '../../hooks/useMessages';
+import type { Message as MessageType } from '../../types/api.type';
 
 interface MessageProps {
   message: MessageType;
