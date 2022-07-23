@@ -55,6 +55,8 @@ function InputArea(props: InputAreaProps) {
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const text = e.target.value;
+    if (text.length >= 256) return;
+
     if (text.length > 0) {
       emitTyping();
     } else {

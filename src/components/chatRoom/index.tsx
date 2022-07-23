@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useQueryClient } from 'react-query';
 import useMessages, { Messages, ReceivedMessage } from '../../hooks/useMessages';
 
@@ -25,27 +25,25 @@ function ChatRoom({ roomId }: { roomId: string }) {
 
   const queryClient = useQueryClient();
 
-  useEffect(() => {
-    socket.emit('enterChatRoom', roomId, '62d509be151f1fb3b2e0f792');
+  const setRoomData = useCallback(
+    (room: { userId: string; profileUrl: string; lolNickname: string }) => {
+      const { userId, profileUrl, lolNickname } = room;
+      queryClient.setQueryData('chatRoom', {
+        roomId,
+        opponent: {
+          userId,
+          profileUrl,
+          lolNickname,
+        },
+      });
+    },
+    [queryClient]
+  );
 
-    socket.on(
-      'onEnterChatRoom',
-      (data: { userId: string; profileUrl: string; lolNickname: string }) => {
-        const { userId, profileUrl, lolNickname } = data;
-        queryClient.setQueryData('chatRoom', {
-          roomId,
-          opponent: {
-            userId,
-            profileUrl,
-            lolNickname,
-          },
-        });
-      }
-    );
-
-    socket.on('getMessages', (data: Messages[]) => {
-      data.sort((a, b) => Object.keys(a)[0].localeCompare(Object.keys(b)[0]));
-      const defaultMessages = data.reduce((prev, crnt) => {
+  const setDefaultMessages = useCallback(
+    (msgs: Messages[]) => {
+      msgs.sort((a, b) => Object.keys(a)[0].localeCompare(Object.keys(b)[0]));
+      const defaultMessages = msgs.reduce((prev, crnt) => {
         const [date, message] = Object.entries(crnt)[0];
         // eslint-disable-next-line no-param-reassign
         prev[date] = message;
@@ -53,7 +51,20 @@ function ChatRoom({ roomId }: { roomId: string }) {
       }, {});
 
       setMessages(defaultMessages);
-    });
+    },
+    [setMessages]
+  );
+
+  useEffect(() => {
+    socket.emit('enterChatRoom', roomId, '62d509be151f1fb3b2e0f792');
+
+    socket.on(
+      'onEnterChatRoom',
+      (room: { userId: string; profileUrl: string; lolNickname: string }, msgs: Messages[]) => {
+        setRoomData(room);
+        setDefaultMessages(msgs);
+      }
+    );
 
     // TODO 내가 보낸 메시지에 대한 반환은 다른 이벤트로.
     // socket.on('onSendMessage')
