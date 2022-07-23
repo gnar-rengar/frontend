@@ -24,6 +24,19 @@ function Chats() {
     socket.emit('getChatRooms', '62d509be151f1fb3b2e0f792');
 
     socket.on('onGetChatRooms', (roomsData: Room[]) => {
+      roomsData.sort((room1, room2) => {
+        if (!room1.unRead && room2.unRead) {
+          return 1;
+        }
+        if (room1.unRead && !room2.unRead) {
+          return -1;
+        }
+
+        return (
+          new Date(room2.lastMessagedTime).getTime() - new Date(room1.lastMessagedTime).getTime()
+        );
+      });
+
       setRooms(roomsData);
     });
   }, [socket]);
