@@ -39,6 +39,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'no-console': 'error',
     'global-require': 'off',
+    'react/jsx-curly-newline': 'off',
     'jsx-a11y/anchor-is-valid': [
       'error',
       {
