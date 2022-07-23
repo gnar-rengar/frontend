@@ -107,3 +107,26 @@ export interface RecentRecord {
 export interface NicknameCheckDTO extends ResponseDTO {
   profileUrl: string;
 }
+
+export interface Message {
+  userId: string;
+  text: string;
+  createdAt: string;
+}
+
+export type Messages = {
+  [key in string]: Message[];
+};
+
+export type ReceivedMessage = Message & { date: string; isRead: boolean };
+
+export interface Opponent {
+  userId: string;
+  profileUrl: string;
+  lolNickname: string;
+}
+
+export interface EnterChatRoomDTO {
+  opponent: Opponent;
+  messages: Messages[];
+}

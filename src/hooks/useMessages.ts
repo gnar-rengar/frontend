@@ -1,8 +1,6 @@
 import { useState } from 'react';
+import { Messages, ReceivedMessage } from '../types/api.type';
 
-export type Message = { userId: string; text: string; createdAt: string };
-export type Messages = { [key in string]: Message[] };
-export type ReceivedMessage = Message & { date: string; isRead: boolean; updatedAt: string };
 export type AddMessage = (message: ReceivedMessage) => void;
 
 function useMessages(): [Messages, AddMessage, React.Dispatch<React.SetStateAction<Messages>>] {

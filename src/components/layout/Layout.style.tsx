@@ -13,4 +13,5 @@ export const LayoutContainer = styled.div`
 export const Main = styled.main`
   position: relative;
   padding: 0 16px;
+  min-height: ${(props) => `calc(100vh - ${props.theme.header.height})`};
 `;

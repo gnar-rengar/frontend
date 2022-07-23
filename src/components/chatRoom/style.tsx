@@ -5,7 +5,6 @@ export const ChatRoomContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 56px);
-  height: 1px;
 `;
 
 export const MessageAreaContainer = styled.div`
@@ -14,6 +13,13 @@ export const MessageAreaContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  * {
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
 `;
 
 export const MessageContainer = styled.div`
@@ -59,8 +65,8 @@ export const SpeechBubble = styled.div`
   padding: 8px 12px;
   max-width: 248px;
   width: fit-content;
-  height: 40px;
   border-radius: 16px;
+  word-break: break-all;
 `;
 
 export const MySpeechBubble = styled(SpeechBubble)`
@@ -160,5 +166,25 @@ export const TypingContainer = styled.div`
     height: 4px;
     border-radius: 50%;
     background: black;
+  }
+`;
+
+export const NewMessageNoticeWrapper = styled.div`
+  position: sticky;
+  bottom: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 12px 16px;
+  height: 48px;
+  background: ${({ theme }) => theme.color.surface};
+  border-radius: 16px;
+  cursor: pointer;
+
+  & > div {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 `;

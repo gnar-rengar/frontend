@@ -17,8 +17,11 @@ function QuickChat() {
 
   const roomData = useQueryClient().getQueryData<{
     roomId: string;
-    user1: string;
-    user2: string;
+    opponent: {
+      userId: string;
+      profileUrl: string;
+      lolNickname: string;
+    };
   }>('chatRoom');
   const roomId = roomData?.roomId;
 
