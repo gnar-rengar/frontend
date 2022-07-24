@@ -28,7 +28,8 @@ function Home() {
         <Blur />
         <TitleAndMoreContainer>
           <Typography variant="h3">
-            롤하는 메기님과
+            {data.nickname}
+            님과
             <br />
             찰떡궁합 소환사 추천해요!
           </Typography>
