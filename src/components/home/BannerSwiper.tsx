@@ -18,13 +18,13 @@ function BannerSwiper() {
         autoplay={{ delay: 5000 }}
       >
         <SwiperSlide>
-          <Image src="/banner/home.png" layout="responsive" width="375px" height="200" />
+          <Image src="/banner/home.png" layout="responsive" width="375px" height="200px" />
         </SwiperSlide>
         <SwiperSlide>
-          <Image src="/banner/home.png" layout="responsive" width="375px" height="200" />
+          <Image src="/banner/home.png" layout="responsive" width="375px" height="200px" />
         </SwiperSlide>
         <SwiperSlide>
-          <Image src="/banner/home.png" layout="responsive" width="375px" height="200" />
+          <Image src="/banner/home.png" layout="responsive" width="375px" height="200px" />
         </SwiperSlide>
       </Swiper>
     </SwiperContainer>

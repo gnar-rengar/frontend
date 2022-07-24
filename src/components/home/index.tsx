@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { Button, SmallCard, Typography } from '../common';
+import { SmallCard, Typography } from '../common';
 import Footer from '../common/footer/Footer';
 import Banner from './BannerSwiper';
+import Blur from './Blur';
 import RecommandSwiper from './RecommendSwiper';
-import { Blur, Container, HomeContainer, MoreContainer, TitleAndMoreContainer } from './style';
+import { Container, HomeContainer, MoreContainer, TitleAndMoreContainer } from './style';
 
 const data = {
   nickname: '썩은김치',
@@ -24,28 +25,21 @@ function Home() {
     <HomeContainer>
       <Banner />
       <Container>
-        <Blur>
-          <Typography variant="h3" align="center">
-            로그인 후 찰떡궁합
-            <br />
-            듀오를 확인하세요!
-          </Typography>
-          <Button size="sm">
-            <Link href="/login">
-              <a>로그인</a>
-            </Link>
-          </Button>
-        </Blur>
+        <Blur />
         <TitleAndMoreContainer>
           <Typography variant="h3">
             롤하는 메기님과
             <br />
             찰떡궁합 소환사 추천해요!
           </Typography>
-          <MoreContainer>
-            <Typography variant="captionRegular">모아보기</Typography>
-            <Image src="/icons/arrow-right.svg" width="16px" height="16px" />
-          </MoreContainer>
+          <Link href="/recommend/harmony">
+            <a>
+              <MoreContainer>
+                <Typography variant="captionRegular">모아보기</Typography>
+                <Image src="/icons/arrow-right.svg" width="16px" height="16px" />
+              </MoreContainer>
+            </a>
+          </Link>
         </TitleAndMoreContainer>
         <RecommandSwiper {...data} />
       </Container>
