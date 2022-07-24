@@ -6,4 +6,5 @@ export const queryKeys = {
   userProfile: (userId: string) => ['userProfile', userId] as const,
   chatRoom: 'chatRoom',
   roomId: (userId: string) => ['roomId', userId] as const,
+  customList: ['customList'] as const,
 };
