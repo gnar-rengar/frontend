@@ -8,7 +8,6 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 
 import { NextPage } from 'next';
-import { CookiesProvider } from 'react-cookie';
 import Layout from '../components/layout/Layout';
 import { darkTheme } from '../theme';
 import GlobalStyle from '../theme/globalStyle';
@@ -45,11 +44,9 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
       <QueryClientProvider client={queryClient.current}>
         <Hydrate state={pageProps.dehydratedState}>
           <RecoilRoot>
-            <CookiesProvider>
-              <ThemeProvider theme={darkTheme}>
-                {getLayout(<Component {...pageProps} />)}
-              </ThemeProvider>
-            </CookiesProvider>
+            <ThemeProvider theme={darkTheme}>
+              {getLayout(<Component {...pageProps} />)}
+            </ThemeProvider>
           </RecoilRoot>
         </Hydrate>
         <ReactQueryDevtools position="bottom-right" />
