@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import { useRouter } from 'next/router';
 import { axios } from '../axios';
 import { LoginDTO } from '../types/api.type';
-import { getCookie, setCookie } from '../utils/cookie';
+import { separateStringInNumber } from '../utils';
 
 const useLogin = async () => {
   const router = useRouter();
@@ -14,11 +14,14 @@ const useLogin = async () => {
       const { data } = await axios.get<LoginDTO>(
         `/auth/${sns}/callback?code=${code}&state=${state}`
       );
-      const expireAt = dayjs(dayjs()).locale('ko').add(30, 'minute');
-      setCookie('accessToken', data.token, { expires: expireAt.toDate() });
-      axios.defaults.headers.common.Authorization = `Bearer ${getCookie('accessToken')}`;
-      localStorage.setItem('accessToken', data.token);
-      localStorage.setItem('expireAt', expireAt.format('MM-DD-HH-m'));
+      const tokenExpireTime = dayjs(dayjs())
+        .add(separateStringInNumber(data.tokenExpireTime), 'minute')
+        .format('YYYY-MM-DD-HH-mm');
+      const rtokenExpireTime = dayjs(dayjs())
+        .add(separateStringInNumber(data.rtokenExpireTime), 'minute')
+        .format('YYYY-MM-DD-HH-mm');
+      localStorage.setItem('tokenExpireTime', tokenExpireTime);
+      localStorage.setItem('rtokenExpireTime', rtokenExpireTime);
       router.replace('/');
     } catch (error) {
       // eslint-disable-next-line no-console

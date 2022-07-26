@@ -1,9 +1,11 @@
-import React from 'react';
-import useGetAuth from '../hooks/useGetAuth';
+import React, { Suspense } from 'react';
 
 function Home() {
-  useGetAuth();
-  return <div>Home</div>;
+  return (
+    <Suspense fallback="loadding">
+      <div>test</div>
+    </Suspense>
+  );
 }
 
 export default Home;
