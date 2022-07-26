@@ -15,7 +15,7 @@ const useGetAuth = () => {
   const { data } = useQuery(queryKeys.authUser, authUserGetAPI, {
     onError: (error: AxiosError) => {
       if (error.response.status === 401) {
-        router.push('/');
+        router.push('/login');
       }
     },
   });
