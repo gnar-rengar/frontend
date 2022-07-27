@@ -108,6 +108,16 @@ export interface NicknameCheckDTO extends ResponseDTO {
   profileUrl: string;
 }
 
+export interface Room {
+  roomId: string;
+  userId: string;
+  lolNickname: string;
+  profileUrl: string;
+  lastMessageText: string;
+  lastMessagedTime: string;
+  unRead: number;
+}
+
 export interface Message {
   userId: string;
   text: string;
