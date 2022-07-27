@@ -54,7 +54,7 @@ function MyPage() {
       <div>
         <Divider />
         <AreaButton type="button">
-          <Typography variant="body1">로그인</Typography>
+          <Typography variant="body1">로그아웃</Typography>
         </AreaButton>
         <Divider />
         <AreaButton type="button">
