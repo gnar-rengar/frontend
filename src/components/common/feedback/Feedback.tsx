@@ -5,7 +5,7 @@ import Typography from '../typography/Typography';
 
 import { FeedbackContainer, PeopleCount, StyledFeedback } from './style';
 
-interface FeedbackProps {
+export interface FeedbackProps {
   feedbacks: {
     description: string;
     count: number;
