@@ -29,13 +29,6 @@ const sortByKey = (obj: PlainObject, order: 'asc' | 'desc' = 'desc') =>
       return prev;
     }, {} as PlainObject);
 
-const separateStringInNumber = (str: string) => {
-  const splitArray = str
-    .split('')
-    .filter((item) => Number.isInteger(Number(item)))
-    .join('');
-
-  return Number(splitArray);
-};
+const separateStringInNumber = (str: string) => +str.match(/\d/g).join('');
 
 export { throttle, sortByKey, separateStringInNumber };
