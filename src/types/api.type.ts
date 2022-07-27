@@ -36,7 +36,7 @@ export interface LoginDTO extends AuthUserDTO {
 export interface UserProfileDTO {
   nickname: string;
   profileUrl: string;
-  goodFeedback: Feedback[];
+  goodReview: Review[];
   tier: Tier;
   playStyles: string[];
   positions: string[];
@@ -47,19 +47,20 @@ export interface UserProfileDTO {
 }
 
 export interface MyPageDTO {
-  nickname: string;
+  lolNickname: string;
   profileUrl: string;
-  voice: boolean;
-  tier: Tier;
-  positions: string[];
-  playStyles: string[];
-  goodFeedback: Feedback[];
-  badFeedback: Feedback[];
+  leaguePoints: string;
+  playStyle: string[];
+  position: string[];
+  useVoice: boolean;
+  goodReview: Review[];
+  badReview: Review[];
 }
 
-export interface Feedback {
+export interface Review {
   description: string;
   count: number;
+  _id: string;
 }
 
 export interface Tier {

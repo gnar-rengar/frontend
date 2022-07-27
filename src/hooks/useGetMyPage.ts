@@ -11,6 +11,7 @@ const fetchMyPage = async () => {
 
 const useGetMyPage = () => {
   const { data } = useQuery(queryKeys.myPage, fetchMyPage);
+  console.log(data);
   return data;
 };
 

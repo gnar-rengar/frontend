@@ -31,7 +31,7 @@ function MyPage() {
           <Typography variant="h3">많고 많은 소환사 중에</Typography>
           <Typography variant="h3">내가 제일 잘 났지</Typography>
         </div>
-        {/* <Card {...other} /> */}
+        <Card {...other} />
         <Button
           onClick={() => router.push('/on-boarding')}
           size="lg"
