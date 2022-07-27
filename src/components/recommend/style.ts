@@ -21,26 +21,34 @@ export const NewContainer = styled.div`
   gap: 16px;
 `;
 
-export const FilterContainer = styled.div`
+export const FilterContainer = styled.div<{ open: boolean }>`
+  position: relative;
   width: 100%;
   height: 44px;
-  padding: 0 16px;
+  padding: 8px 16px;
   border: 1px solid ${(props) => props.theme.color.onBackground};
-  border-radius: 8px;
+  border-radius: ${(props) => (props.open ? '8px 8px 0 0' : '8px')};
+  border-bottom: ${(props) => props.open && 'none'};
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-export const Accordion = styled.div`
-  width: 100%;
+export const Accordion = styled.div<{ open: boolean }>`
+  visibility: ${(props) => (props.open ? 'visible' : 'hidden')};
+  position: absolute;
+  left: 16px;
+  right: 16px;
   height: 270px;
   padding: 16px;
   border: 1px solid ${(props) => props.theme.color.onBackground};
   border-radius: 0px 0px 8px 8px;
+  border-top: ${(props) => !props.open && 'none'};
   display: flex;
   flex-direction: column;
   gap: 16px;
+  background-color: ${(props) => props.theme.color.background};
+  z-index: 99;
 `;
 
 export const CheckboxContainer = styled.div`
@@ -54,4 +62,8 @@ export const ButtonContainer = styled.div`
   max-width: 480px;
   display: flex;
   gap: 12px;
+`;
+
+export const ArrowButtonContainer = styled.div`
+  cursor: pointer;
 `;

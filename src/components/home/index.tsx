@@ -37,7 +37,12 @@ function Home() {
             <a>
               <MoreContainer>
                 <Typography variant="captionRegular">모아보기</Typography>
-                <Image src="/icons/arrow-right.svg" width="16px" height="16px" />
+                <Image
+                  src="/icons/arrow-right.svg"
+                  width="16px"
+                  height="16px"
+                  alt="harmony summonr recommend"
+                />
               </MoreContainer>
             </a>
           </Link>
@@ -51,7 +56,12 @@ function Home() {
             <a>
               <MoreContainer>
                 <Typography variant="captionRegular">모아보기</Typography>
-                <Image src="/icons/arrow-right.svg" width="16px" height="16px" />
+                <Image
+                  src="/icons/arrow-right.svg"
+                  width="16px"
+                  height="16px"
+                  alt="new summonr recommend"
+                />
               </MoreContainer>
             </a>
           </Link>
