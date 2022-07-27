@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 function Home() {
-  return <div>Home</div>;
+  return (
+    <Suspense fallback="loadding">
+      <div>test</div>
+    </Suspense>
+  );
 }
 
 export default Home;
