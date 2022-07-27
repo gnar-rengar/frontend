@@ -1,5 +1,4 @@
 export const queryKeys = {
-  authUser: ['user'] as const,
   onBoarding: ['onBoarding'] as const,
   myPage: ['mypage'] as const,
   matchHistory: (userId: string) => ['matchHistory', userId] as const,
@@ -7,4 +6,7 @@ export const queryKeys = {
   chatRoom: 'chatRoom',
   roomId: (userId: string) => ['roomId', userId] as const,
   customList: ['customList'] as const,
+  authUser: ['user'] as const,
+  fitSummonerList: ['fitSummonerList'] as const,
+  newSummonerList: ['newSummonerList'] as const,
 };
