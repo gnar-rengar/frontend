@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import useGetUserProfile from '../../hooks/useGetUserProfile';
 
 import ButtonArea from './ButtonArea';
-import FeedbackSection from './FeedbackSection';
+import ReviewSection from './ReviewSection';
 import MostChampSection from './MostChampSection';
 import VoiceSection from './VoiceSection';
 import PlayStyleSection from './PlayStyleSection';
@@ -26,7 +26,7 @@ function UserProfile({ userId }: { userId: string }) {
     voiceChannel,
     communication,
     mostChamps,
-    goodFeedback,
+    goodReview,
   } = data;
 
   return (
@@ -39,7 +39,7 @@ function UserProfile({ userId }: { userId: string }) {
         <Suspense fallback="loading">
           <MatchSection userId={userId} />
         </Suspense>
-        <FeedbackSection goodFeedback={goodFeedback} />
+        <ReviewSection goodFeedback={goodReview} />
       </BaseContainer>
       <ButtonArea />
     </>

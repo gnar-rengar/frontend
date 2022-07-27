@@ -7,19 +7,16 @@ import { Asking, BaseContainer, Button, Divider, Typography } from '../common';
 
 import { AreaButton, ProfileCardContainer } from './style';
 
-import type { FeedbackProps } from '../common/feedback/Feedback';
+import type { ReviewProps } from '../common/review/Review';
 import type { CardProps } from '../common/card/Card';
 
 const Card = dynamic<CardProps>(() => import('../common').then((module) => module.Card), {
   ssr: false,
 });
 
-const Feedback = dynamic<FeedbackProps>(
-  () => import('../common').then((module) => module.Feedback),
-  {
-    ssr: false,
-  }
-);
+const Review = dynamic<ReviewProps>(() => import('../common').then((module) => module.Review), {
+  ssr: false,
+});
 function MyPage() {
   const router = useRouter();
   const { goodReview, badReview, ...other } = useGetMyPage();
@@ -42,14 +39,14 @@ function MyPage() {
         </Button>
       </ProfileCardContainer>
       <Asking title="받은 긍정 플레이 리뷰">
-        <Feedback feedbacks={goodReview} />
+        <Review reviews={goodReview} />
       </Asking>
       <Asking
         title="받은 부정 플레이 리뷰"
         caption="받은 부정 플레이 리뷰는 나에게만 보여요
         피드백 삼아 더 좋은 플레이를 보여주세요!"
       >
-        <Feedback feedbacks={badReview} />
+        <Review reviews={badReview} />
       </Asking>
       <div>
         <Divider />
