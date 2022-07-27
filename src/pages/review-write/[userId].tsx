@@ -1,13 +1,13 @@
 import { GetServerSideProps } from 'next';
-import React, { Suspense } from 'react';
+import React from 'react';
 import ReviewWrite from '../../components/reviewWrite';
 
-function ReviewWritePage() {
-  return (
-    <Suspense fallback="...loading">
-      <ReviewWrite />
-    </Suspense>
-  );
+interface ReviewWritePageProps {
+  userId: string;
+}
+
+function ReviewWritePage({ userId }: ReviewWritePageProps) {
+  return <ReviewWrite userId={userId} />;
 }
 
 export default ReviewWritePage;

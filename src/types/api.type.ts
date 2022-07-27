@@ -106,6 +106,39 @@ export interface NicknameCheckDTO extends ResponseDTO {
   profileUrl: string;
 }
 
+export interface Room {
+  roomId: string;
+  userId: string;
+  lolNickname: string;
+  profileUrl: string;
+  lastMessageText: string;
+  lastMessagedTime: string;
+  unRead: number;
+}
+
+export interface Message {
+  userId: string;
+  text: string;
+  createdAt: string;
+}
+
+export type Messages = {
+  [key in string]: Message[];
+};
+
+export type ReceivedMessage = Message & { date: string; isRead: boolean };
+
+export interface Opponent {
+  userId: string;
+  profileUrl: string;
+  lolNickname: string;
+}
+
+export interface EnterChatRoomDTO {
+  opponent: Opponent;
+  messages: Messages[];
+}
+
 export interface AuthUserDTO {
   userId: string;
   lolNickname: string;

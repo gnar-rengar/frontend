@@ -1,23 +1,29 @@
-import React from 'react';
+import React, { useContext, useMemo } from 'react';
 import Image from 'next/image';
 import { useTheme } from '@emotion/react';
 
 import { Form, Input, ButtonWrapper } from './style';
 
-// import { throttle } from '../../utils';
-import type { AddMessage } from '../../hooks/useMessages';
+import { throttle } from '../../utils';
+import { SocketContext } from '../../contexts/socket';
 
 const badWords = ['개새끼', '병신'];
 
+const roomId = '62d565601115b1eb5763d761';
+const userId = '62d509be151f1fb3b2e0f792';
+
+const whitespaceValidation = /\S/;
+
 interface InputAreaProps {
-  addMessages: AddMessage;
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
-  inputRef: React.MutableRefObject<string>;
+  input: string;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function InputArea(props: InputAreaProps) {
-  const { addMessages, setHasBadWord, inputRef } = props;
+  const { setHasBadWord, input, setInput } = props;
 
+  const socket = useContext(SocketContext);
   const {
     icon: {
       size: { xl },
@@ -27,24 +33,39 @@ function InputArea(props: InputAreaProps) {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const form = e.currentTarget;
-    const message = form.message.value;
+    const text = form.message.value;
+    if (!whitespaceValidation.test(text)) return;
 
     // TODO 필터링 함수 작성 또는 라이브러리 사용
-    if (badWords.includes(message)) {
+    if (badWords.includes(text)) {
       setHasBadWord(true);
     } else {
-      addMessages('1', message);
-      form.reset();
+      socket.emit('sendMessage', roomId, userId, text);
+      setInput('');
     }
   };
 
-  // TODO 입력할 때 ... 애니메이션
-  // const animate = throttle(() => console.log('typing'), 1000);
+  const emitTyping = useMemo(
+    () =>
+      throttle(() => {
+        socket.emit('typing', roomId);
+      }, 1000),
+    []
+  );
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    inputRef.current = e.target.value;
-    // animate();
+    const text = e.target.value;
+    if (text.length >= 256) return;
+
+    if (text.length > 0) {
+      emitTyping();
+    } else {
+      socket.emit('endTyping', roomId);
+    }
+
+    setInput(e.target.value);
   };
+
   return (
     <Form onSubmit={handleSubmit}>
       <Input
@@ -52,6 +73,7 @@ function InputArea(props: InputAreaProps) {
         type="text"
         placeholder="모험은 역시 친구랑 같이 해야 신나는법!"
         onChange={handleChange}
+        value={input}
       />
       <ButtonWrapper type="submit">
         <Image src="/icons/send.svg" width={xl} height={xl} />
