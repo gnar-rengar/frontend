@@ -1,9 +1,8 @@
+import React from 'react';
 import { useTheme } from '@emotion/react';
 import Image from 'next/image';
-import React from 'react';
 import Typography from '../typography/Typography';
-
-import { ReviewContainer, PeopleCount, StyledReview } from './style';
+import { PeopleCount, ReviewContainer, StyledReview } from './style';
 
 export interface ReviewProps {
   reviews: {

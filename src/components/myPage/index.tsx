@@ -10,16 +10,18 @@ import { AreaButton, ProfileCardContainer } from './style';
 import type { ReviewProps } from '../common/review/Review';
 import type { CardProps } from '../common/card/Card';
 
-const Card = dynamic<CardProps>(() => import('../common').then((module) => module.Card), {
-  ssr: false,
-});
+const Card = dynamic<CardProps>(() => import('../common').then((module) => module.Card), {});
+const Review = dynamic<ReviewProps>(() => import('../common').then((module) => module.Review), {});
 
-const Review = dynamic<ReviewProps>(() => import('../common').then((module) => module.Review), {
-  ssr: false,
-});
 function MyPage() {
+  const { data, isLoading } = useGetMyPage();
   const router = useRouter();
-  const { goodReview, badReview, ...other } = useGetMyPage();
+
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
+
+  const { goodReview, badReview, ...other } = data;
 
   return (
     <BaseContainer>
