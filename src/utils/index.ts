@@ -29,4 +29,6 @@ const sortByKey = (obj: PlainObject, order: 'asc' | 'desc' = 'desc') =>
       return prev;
     }, {} as PlainObject);
 
-export { throttle, sortByKey };
+const separateStringInNumber = (str: string) => +str.match(/\d/g).join('');
+
+export { throttle, sortByKey, separateStringInNumber };

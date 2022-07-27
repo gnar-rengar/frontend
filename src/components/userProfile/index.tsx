@@ -16,7 +16,7 @@ const MatchSection = dynamic(() => import('./MatchSection'), {
 });
 
 function UserProfile({ userId }: { userId: string }) {
-  const { data } = useGetUserProfile(userId as string);
+  const data = useGetUserProfile(userId as string);
   const {
     nickname,
     tier,

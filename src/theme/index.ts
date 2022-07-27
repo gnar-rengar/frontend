@@ -133,5 +133,8 @@ export const darkTheme = {
     onSurface: '#FEFEFE',
     onBackgroundSub: '#949494',
     disable: '#7f7f7f',
+    discord: '#5865F2',
+    kakao: '#FEE500',
+    naver: '#03C75A',
   },
 };
