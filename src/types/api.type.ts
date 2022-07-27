@@ -134,6 +134,8 @@ export interface Opponent {
 export interface EnterChatRoomDTO {
   opponent: Opponent;
   messages: Messages[];
+}
+
 export interface AuthUserDTO {
   userId: string;
   lolNickname: string;
