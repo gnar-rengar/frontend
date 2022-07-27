@@ -46,12 +46,14 @@ export interface UserProfileDTO {
   mostChamps: string[];
 }
 
+export type Position = '탑' | '정글' | '미드' | '원딜' | '서폿';
+
 export interface MyPageDTO {
   lolNickname: string;
   profileUrl: string;
   leaguePoints: string;
   playStyle: string[];
-  position: string[];
+  position: Position[];
   useVoice: boolean;
   goodReview: Review[];
   badReview: Review[];
