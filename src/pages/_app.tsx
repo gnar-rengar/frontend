@@ -1,6 +1,6 @@
-import React, { ReactElement, useRef } from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { AppProps } from 'next/app';
+import React, { ReactElement, useRef } from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { RecoilRoot } from 'recoil';
@@ -20,9 +20,9 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
-  require('../mocks');
-}
+// if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+//   require('../mocks');
+// }
 
 dayjs.locale('ko');
 
