@@ -28,12 +28,7 @@ export interface ReviewWriteDTO {
   additionalBadReaview: string;
 }
 
-export interface LoginDTO {
-  success: boolean;
-  token: string;
-  refreshToken: string;
-  nickname: string;
-  userId: string;
+export interface LoginDTO extends AuthUserDTO {
   rtokenExpireTime: string;
   tokenExpireTime: string;
 }
@@ -139,4 +134,8 @@ export interface Opponent {
 export interface EnterChatRoomDTO {
   opponent: Opponent;
   messages: Messages[];
+export interface AuthUserDTO {
+  userId: string;
+  lolNickname: string;
+  profileURL: string;
 }

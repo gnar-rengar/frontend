@@ -31,7 +31,7 @@ function Question(props: QuestionProps) {
         <div />
       </TendencyProgressBar>
       <QuestionAndExpression>
-        <Typography align="center" space="pre-line" variant="h3">
+        <Typography align="center" whiteSpace="pre-line" variant="h3">
           {tendencyQuestion[testNumber]}
         </Typography>
         <Image src={tendencyImage.answer[testNumber]} width={240} height={240} />

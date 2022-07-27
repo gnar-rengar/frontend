@@ -13,6 +13,7 @@ export interface TypographyProps {
   component?: 'div' | 'span';
   whiteSpace?: string;
   children: React.ReactNode;
+  underline?: boolean;
 }
 
 function Typography(props: TypographyProps) {

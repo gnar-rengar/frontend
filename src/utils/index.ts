@@ -46,4 +46,6 @@ function useTimer(cb: (args: void) => void, interval: number) {
 
 export default useTimer;
 
-export { throttle, sortByKey, useTimer };
+const separateStringInNumber = (str: string) => +str.match(/\d/g).join('');
+
+export { throttle, sortByKey, separateStringInNumber };
