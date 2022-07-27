@@ -77,6 +77,8 @@ const tendencyImage = {
   end: '/expression/penguin.png',
 };
 
+const filterTier = ['아이언', '브론즈', '실버', '골드', '플래티넘', '다이아'];
+
 export {
   position,
   voiceChannel,
@@ -89,4 +91,5 @@ export {
   tendencyQuestion,
   tendencyAnswer,
   tendencyImage,
+  filterTier,
 };

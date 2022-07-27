@@ -47,10 +47,14 @@ function Home() {
       <Container>
         <TitleAndMoreContainer>
           <Typography variant="h3">듀오를 찾고 있는 NEW 소환사</Typography>
-          <MoreContainer>
-            <Typography variant="captionRegular">모아보기</Typography>
-            <Image src="/icons/arrow-right.svg" width="16px" height="16px" />
-          </MoreContainer>
+          <Link href="/recommend/new">
+            <a>
+              <MoreContainer>
+                <Typography variant="captionRegular">모아보기</Typography>
+                <Image src="/icons/arrow-right.svg" width="16px" height="16px" />
+              </MoreContainer>
+            </a>
+          </Link>
         </TitleAndMoreContainer>
         <SmallCard {...data} />
         <SmallCard {...data} />
