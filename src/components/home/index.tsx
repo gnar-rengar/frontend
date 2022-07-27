@@ -43,7 +43,7 @@ function HomeComponent() {
             찰떡궁합 소환사 추천해요!
           </Typography>
           <MoreContainer>
-            <Typography variant="caption">모아보기</Typography>
+            <Typography variant="captionRegular">모아보기</Typography>
             <Image src="/icons/arrow-right.svg" width="16px" height="16px" />
           </MoreContainer>
         </TitleAndMoreContainer>
@@ -53,7 +53,7 @@ function HomeComponent() {
         <TitleAndMoreContainer>
           <Typography variant="h3">듀오를 찾고 있는 NEW 소환사</Typography>
           <MoreContainer>
-            <Typography variant="caption">모아보기</Typography>
+            <Typography variant="captionRegular">모아보기</Typography>
             <Image src="/icons/arrow-right.svg" width="16px" height="16px" />
           </MoreContainer>
         </TitleAndMoreContainer>
