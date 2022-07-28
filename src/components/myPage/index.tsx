@@ -1,17 +1,10 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import dynamic from 'next/dynamic';
 import useGetMyPage from '../../hooks/useGetMyPage';
 
-import { Asking, BaseContainer, Button, Divider, Typography } from '../common';
+import { Asking, BaseContainer, Button, Card, Divider, Review, Typography } from '../common';
 
 import { AreaButton, ProfileCardContainer } from './style';
-
-import type { ReviewProps } from '../common/review/Review';
-import type { CardProps } from '../common/card/Card';
-
-const Card = dynamic<CardProps>(() => import('../common').then((module) => module.Card), {});
-const Review = dynamic<ReviewProps>(() => import('../common').then((module) => module.Review), {});
 
 function MyPage() {
   const { data, isLoading } = useGetMyPage();

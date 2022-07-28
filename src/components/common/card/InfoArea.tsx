@@ -13,7 +13,7 @@ import type { CardProps } from './Card';
 type InfoAreaProps = Omit<CardProps, 'profileUrl'>;
 
 function InfoArea(props: InfoAreaProps) {
-  const { lolNickname, useVoice, leaguePoints, playStyle, position } = props;
+  const { lolNickname, useVoice, tier, rank, playStyle, position } = props;
 
   const {
     icon: {
@@ -24,7 +24,9 @@ function InfoArea(props: InfoAreaProps) {
   return (
     <StyledInfoArea>
       <Top>
-        <Tier>{leaguePoints}</Tier>
+        <Tier>
+          {tier} {rank}
+        </Tier>
         <NameVoiceAndPosition>
           <NameVoice>
             <Typography variant="body1" data-testid="nickname">

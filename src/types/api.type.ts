@@ -51,6 +51,8 @@ export type Position = '탑' | '정글' | '미드' | '원딜' | '서폿';
 export interface MyPageDTO {
   lolNickname: string;
   profileUrl: string;
+  tier: string;
+  rank: string;
   leaguePoints: string;
   playStyle: string[];
   position: Position[];

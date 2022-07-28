@@ -28,9 +28,7 @@ const reviewWriteSchema = yup.object().shape({
   additionalBadReview: yup.string().max(800),
 });
 
-const userId = '1';
-
-function ReviewWrite() {
+function ReviewWrite({ userId }: { userId: string }) {
   const [isGood, setIsGood] = useState(true);
 
   const router = useRouter();
