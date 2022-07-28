@@ -1,50 +1,70 @@
+import React, { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
-import React from 'react';
+import { SocketContext } from '../../contexts/socket';
+
 import { Divider } from '../common';
 import ChatRoomCard from './ChatRoomCard';
+import InValid from './InValid';
 import { ChatContainer } from './style';
 
-const chatrooms = [
-  {
-    id: '1',
-    profileUrl: 'http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/588.png',
-    name: '고수달',
-    timeStamp: new Date().getTime(),
-    message: '아 ㅋㅋ 유미 없냐',
-    unRead: 10,
-  },
-  {
-    id: '1',
-    profileUrl: 'http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/588.png',
-    name: '미친놈',
-    timeStamp: new Date().getTime(),
-    message:
-      '자기야 전화 받아 자기야 전화 받아 자기야 전화 받아 자기야 전화 받아자기야 전화 받아 자기야 전화 받아 자기야 전화 받아 자기야 전화 받아 ',
-    unRead: 999,
-  },
-  {
-    id: '1',
-    profileUrl: 'http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/588.png',
-    name: '페부장',
-    timeStamp: new Date().getTime(),
-    message: '죽었다람쥐. 어.. 아닌가렌?',
-    unRead: 1,
-  },
-];
+import type { Room } from '../../types/api.type';
+
+const isLoggedIn = true;
 
 function Chats() {
+  const [rooms, setRooms] = useState<Room[]>([]);
+
+  const socket = useContext(SocketContext);
+
+  useEffect(() => {
+    socket.emit('getChatRooms', '62d509be151f1fb3b2e0f792');
+
+    socket.on('onGetChatRooms', (roomsData: Room[]) => {
+      roomsData.sort((room1, room2) => {
+        if (!room1.unRead && room2.unRead) {
+          return 1;
+        }
+        if (room1.unRead && !room2.unRead) {
+          return -1;
+        }
+
+        return (
+          new Date(room2.lastMessagedTime).getTime() - new Date(room1.lastMessagedTime).getTime()
+        );
+      });
+
+      setRooms(roomsData);
+    });
+  }, [socket]);
+
+  if (!isLoggedIn) {
+    return (
+      <InValid title={'로그인 후\n채팅 목록을 확인해보세요!'} path="/login" buttonText="로그인" />
+    );
+  }
+
+  if (rooms.length === 0) {
+    return (
+      <InValid
+        title={'아직 채팅이 없어요\n듀오하고싶은 소환사와 채팅해보세요!'}
+        path="/"
+        buttonText="듀오 찾으러 가기"
+      />
+    );
+  }
+
   return (
     <ChatContainer>
       <Divider />
-      {chatrooms.map((room) => (
-        <>
-          <Link href={`chat/${room.id}`}>
+      {rooms.map((room) => (
+        <React.Fragment key={room.roomId}>
+          <Link href={`chats/${room.roomId}`}>
             <a>
               <ChatRoomCard room={room} />
             </a>
           </Link>
           <Divider />
-        </>
+        </React.Fragment>
       ))}
     </ChatContainer>
   );
