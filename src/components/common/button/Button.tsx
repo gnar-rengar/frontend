@@ -9,6 +9,7 @@ export interface ButtonProps {
   color?: ColorVariant;
   variant?: 'contained' | 'outlined' | 'text';
   size?: 'sm' | 'lg' | 'md';
+  width: string;
   value?: string | number;
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -37,7 +38,7 @@ function Button(props: ButtonProps) {
 Button.defaultProps = {
   color: 'primary',
   variant: 'contained',
-  width: 'long',
+  width: '100%',
   disabled: false,
 };
 

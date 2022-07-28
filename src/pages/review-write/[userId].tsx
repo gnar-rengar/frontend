@@ -4,19 +4,21 @@ import ReviewWrite from '../../components/reviewWrite';
 
 interface ReviewWritePageProps {
   userId: string;
+  lolNickname: string;
 }
 
-function ReviewWritePage({ userId }: ReviewWritePageProps) {
-  return <ReviewWrite userId={userId} />;
+function ReviewWritePage(props: ReviewWritePageProps) {
+  return <ReviewWrite {...props} />;
 }
 
 export default ReviewWritePage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { userId } = context.query;
+  const { userId, lolNickname } = context.query;
   return {
     props: {
       userId,
+      lolNickname,
     },
   };
 };

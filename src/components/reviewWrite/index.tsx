@@ -28,11 +28,15 @@ const reviewWriteSchema = yup.object().shape({
   additionalBadReview: yup.string().max(800),
 });
 
-const userId = '1';
+interface ReviewWriteProps {
+  userId: string;
+  lolNickname: string;
+}
 
-function ReviewWrite() {
+function ReviewWrite(props: ReviewWriteProps) {
+  const { userId, lolNickname } = props;
+
   const [isGood, setIsGood] = useState(true);
-
   const router = useRouter();
 
   const {
@@ -88,7 +92,7 @@ function ReviewWrite() {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <BaseContainer>
         <Asking
-          title="고수달님은 어떠셨나요?"
+          title={`${lolNickname}님은 어떠셨나요?`}
           caption={'정말 플레이를 했을 때만 남겨주세요\n허위 리뷰 작성 시 이용이 제한될 수 있어요.'}
           whiteSpace="pre-line"
         >

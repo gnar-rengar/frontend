@@ -15,7 +15,6 @@ function MostChampSection({ mostChamps }: MostChampSectionProps) {
       size: { xl },
     },
   } = useTheme();
-
   return (
     <Section>
       <Typography variant="h3">숙련도가 가장 높은 챔피언은</Typography>
@@ -24,7 +23,7 @@ function MostChampSection({ mostChamps }: MostChampSectionProps) {
           {mostChamps.map((mostChamp) => (
             <li key={mostChamp}>
               <Image
-                src={`https://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${mostChamp}.png`}
+                src={`${process.env.NEXT_PUBLIC_RIOT_CHAMPION_IMG_URL}/${mostChamp}.png`}
                 layout="fixed"
                 width={xl}
                 height={xl}
