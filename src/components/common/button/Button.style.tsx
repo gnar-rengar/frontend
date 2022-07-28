@@ -10,10 +10,10 @@ export const StyledButton = styled.button<StyledButtonProps>`
     if (variant === 'text') return '';
     if (size === 'lg') {
       return `
-      width: 100%;
-      max-width: 480px;
-      height: 48px;
-      border-radius: 16px;
+        width: 100%;
+        max-width: 480px;
+        height: 48px;
+        border-radius: 16px;
       `;
     }
     if (size === 'md') {

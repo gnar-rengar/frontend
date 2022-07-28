@@ -5,15 +5,14 @@ import { ProfileImgWrapper, TierAndNickname } from './style';
 import { Tier as TierWrapper } from '../common/card/style';
 import { Typography } from '../common';
 
-import type { Tier } from '../../types/api.type';
-
 interface ProfileImgProps {
   nickname: string;
-  tier: Tier;
+  tier: string;
+  rank: string;
 }
 
 function ProfileImg(props: ProfileImgProps) {
-  const { nickname, tier } = props;
+  const { nickname, tier, rank } = props;
 
   return (
     <ProfileImgWrapper>
@@ -25,7 +24,7 @@ function ProfileImg(props: ProfileImgProps) {
         priority
       />
       <TierAndNickname>
-        <TierWrapper>{`${tier.tier} ${tier.rank}`}</TierWrapper>
+        <TierWrapper>{`${tier} ${rank}`}</TierWrapper>
         <Typography variant="h2" color="onSurface">
           {nickname}
         </Typography>

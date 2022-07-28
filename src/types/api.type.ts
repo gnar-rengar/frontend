@@ -33,17 +33,19 @@ export interface LoginDTO extends AuthUserDTO {
   tokenExpireTime: string;
 }
 
-export interface UserProfileDTO {
-  nickname: string;
+export interface ProfileDTO {
+  lolNickname: string;
   profileUrl: string;
   goodReview: Review[];
-  tier: Tier;
-  playStyles: string[];
-  positions: string[];
-  voice: boolean;
+  tier: string;
+  rank: string;
+  leaguePoints: string;
+  playStyle: string[];
+  position: string[];
+  useVoice: boolean;
   voiceChannel: string[];
   communication: string;
-  mostChamps: string[];
+  mostChampion: string[];
 }
 
 export type Position = '탑' | '정글' | '미드' | '원딜' | '서폿';
@@ -85,10 +87,10 @@ export interface RecentRecord {
   gameEndTimestamp: number;
   win: boolean;
   championName: string;
-  primaryStyle: string;
-  subStyle: string;
   spell1: string;
   spell2: string;
+  perk1: string;
+  perk2: string;
   item0: number;
   item1: number;
   item2: number;

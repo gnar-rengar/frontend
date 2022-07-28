@@ -16,10 +16,10 @@ import {
 
 interface ImageAreaProps {
   championName: string;
-  primaryStyle: string;
-  subStyle: string;
   spell1: string;
   spell2: string;
+  perk1: string;
+  perk2: string;
   item0: number;
   item1: number;
   item2: number;
@@ -32,10 +32,10 @@ interface ImageAreaProps {
 function ImageArea(props: ImageAreaProps) {
   const {
     championName,
-    primaryStyle,
-    subStyle,
     spell1,
     spell2,
+    perk1,
+    perk2,
     item0,
     item1,
     item2,
@@ -65,10 +65,10 @@ function ImageArea(props: ImageAreaProps) {
         </ChampionImageWrapper>
         <RuneContainer>
           <AssetWrapper>
-            <Image src={primaryStyle} width={lg} height={lg} />
+            <Image src={`https://ddragon.canisback.com/img/${perk1}`} width={lg} height={lg} />
           </AssetWrapper>
           <AssetWrapper>
-            <Image src={subStyle} width={lg} height={lg} />
+            <Image src={`https://ddragon.canisback.com/img/${perk2}`} width={lg} height={lg} />
           </AssetWrapper>
         </RuneContainer>
       </Left>

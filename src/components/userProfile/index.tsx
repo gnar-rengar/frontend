@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 
-import useGetUserProfile from '../../hooks/useGetUserProfile';
+import useGetUserProfile from '../../hooks/useGetProfile';
 
 import ButtonArea from './ButtonArea';
 import ReviewSection from './ReviewSection';
@@ -18,28 +18,35 @@ const MatchSection = dynamic(() => import('./MatchSection'), {
 function UserProfile({ userId }: { userId: string }) {
   const data = useGetUserProfile(userId as string);
   const {
-    nickname,
+    lolNickname,
     tier,
-    playStyles,
-    positions,
-    voice,
+    rank,
+    playStyle,
+    position,
+    useVoice,
     voiceChannel,
     communication,
     mostChamps,
     goodReview,
   } = data;
 
+  console.log(useVoice, voiceChannel, communication);
+
   return (
     <>
-      <ProfileImg nickname={nickname} tier={tier} />
+      <ProfileImg nickname={lolNickname} tier={tier} rank={rank} />
       <BaseContainer>
-        <PlayStyleSection nickname={nickname} positions={positions} playStyles={playStyles} />
-        <VoiceSection isVoiceOn={voice} voiceChannel={voiceChannel} communication={communication} />
-        <MostChampSection mostChamps={mostChamps} />
+        {/* <PlayStyleSection nickname={lolNickname} positions={position} playStyles={playStyle} /> */}
+        {/* <VoiceSection
+          isVoiceOn={useVoice}
+          voiceChannel={voiceChannel}
+          communication={communication}
+        /> */}
+        {/* <MostChampSection mostChamps={mostChamps} />
         <Suspense fallback="loading">
           <MatchSection userId={userId} />
         </Suspense>
-        <ReviewSection goodFeedback={goodReview} />
+        <ReviewSection goodFeedback={goodReview} /> */}
       </BaseContainer>
       <ButtonArea />
     </>
