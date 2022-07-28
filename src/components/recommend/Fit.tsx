@@ -1,4 +1,5 @@
 import React from 'react';
+import useGetFitSummonerList from '../../hooks/useGetFitSummonerList';
 import { Typography } from '../common';
 import LargeCard from '../common/card/LargeCard';
 import Footer from '../common/footer/Footer';
@@ -17,6 +18,8 @@ const data = {
 };
 
 function Harmony() {
+  const test = useGetFitSummonerList();
+  console.log(test);
   return (
     <>
       <HarmonyContainer>

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import useGetAuth from '../../hooks/useGetAuth';
 import { SmallCard, Typography } from '../common';
 import Footer from '../common/footer/Footer';
 import Banner from './BannerSwiper';
@@ -8,7 +9,7 @@ import Blur from './Blur';
 import RecommandSwiper from './RecommendSwiper';
 import { Container, HomeContainer, MoreContainer, TitleAndMoreContainer } from './style';
 
-const data = {
+const test = {
   nickname: '썩은김치',
   profileUrl: 'http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/588.png',
   tier: {
@@ -21,19 +22,20 @@ const data = {
 };
 
 function Home() {
+  const data = useGetAuth();
   return (
     <HomeContainer>
       <Banner />
       <Container>
-        <Blur />
+        {!data && !data?.lolNickname && <Blur />}
         <TitleAndMoreContainer>
           <Typography variant="h3">
-            {data.nickname}
+            {data?.lolNickname}
             님과
             <br />
             찰떡궁합 소환사 추천해요!
           </Typography>
-          <Link href="/recommend/harmony">
+          <Link href="/recommend/fit">
             <a>
               <MoreContainer>
                 <Typography variant="captionRegular">모아보기</Typography>
@@ -47,7 +49,7 @@ function Home() {
             </a>
           </Link>
         </TitleAndMoreContainer>
-        <RecommandSwiper {...data} />
+        <RecommandSwiper {...test} />
       </Container>
       <Container>
         <TitleAndMoreContainer>
@@ -66,9 +68,9 @@ function Home() {
             </a>
           </Link>
         </TitleAndMoreContainer>
-        <SmallCard {...data} />
-        <SmallCard {...data} />
-        <SmallCard {...data} />
+        <SmallCard {...test} />
+        <SmallCard {...test} />
+        <SmallCard {...test} />
       </Container>
       <Footer />
     </HomeContainer>

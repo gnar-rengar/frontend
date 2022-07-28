@@ -142,6 +142,8 @@ export interface AuthUserDTO {
   userId: string;
   lolNickname: string;
   profileURL: string;
+}
+
 export type FilterTierType = '아이언' | '브론즈' | '실버' | '골드' | '플래티넘' | '다이아';
 
 export interface FilterRequestDTO {
