@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import useGetMyPage from '../../hooks/useGetMyPage';
+import useLogoutMutation from '../../hooks/useLogoutMutation';
 
 import { Asking, BaseContainer, Button, Card, Divider, Review, Typography } from '../common';
 
@@ -9,12 +10,17 @@ import { AreaButton, ProfileCardContainer } from './style';
 function MyPage() {
   const { data, isLoading } = useGetMyPage();
   const router = useRouter();
+  const logoutMutation = useLogoutMutation();
 
   if (isLoading) {
     return <div>loading...</div>;
   }
 
   const { goodReview, badReview, ...other } = data;
+
+  const onClickLogout = () => {
+    logoutMutation.mutate();
+  };
 
   return (
     <BaseContainer>
@@ -45,11 +51,11 @@ function MyPage() {
       </Asking>
       <div>
         <Divider />
-        <AreaButton type="button">
+        <AreaButton type="button" onClick={onClickLogout}>
           <Typography variant="body1">로그아웃</Typography>
         </AreaButton>
         <Divider />
-        <AreaButton type="button">
+        <AreaButton type="button" onClick={() => router.push('/withdrawal')}>
           <Typography variant="body1">회원 탈퇴</Typography>
         </AreaButton>
         <Divider />
