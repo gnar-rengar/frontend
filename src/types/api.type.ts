@@ -141,3 +141,8 @@ export interface AuthUserDTO {
   lolNickname: string;
   profileURL: string;
 }
+
+export interface WithdrawalDTO {
+  agree: boolean;
+  reason?: string;
+}
