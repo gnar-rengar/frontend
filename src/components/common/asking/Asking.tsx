@@ -21,7 +21,7 @@ function Asking(props: AskingProps) {
           {title}
         </Typography>
         {caption && (
-          <Typography whiteSpace={whiteSpace} variant="caption" paragraph={paragraph}>
+          <Typography whiteSpace={whiteSpace} variant="captionRegular" paragraph={paragraph}>
             {caption}
           </Typography>
         )}

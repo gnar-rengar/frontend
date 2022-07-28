@@ -37,16 +37,8 @@ function TextArea(props: TextAreaProps) {
 
   return (
     <TextAreaContainer>
-      <textarea
-        name=""
-        id=""
-        {...other}
-        value={text}
-        placeholder={placeholder}
-        onChange={handleChange}
-        ref={ref}
-      />
-      <Typography variant="caption" align="right">
+      <textarea name="" id="" {...other} value={text} onChange={handleChange} ref={ref} />
+      <Typography variant="captionRegular" align="right">
         {`${text.length}/${maxLength}자`}
       </Typography>
     </TextAreaContainer>

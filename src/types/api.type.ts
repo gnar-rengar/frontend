@@ -3,14 +3,22 @@ export interface ResponseDTO {
   message: string;
 }
 
-export interface OnBoardingDTO {
+export type PlayStyleType = {
+  battle: string;
+  line: string;
+  champion: string;
+  physical: string;
+};
+
+export interface OnBoardingInput<T> {
+  profileUrl?: string;
   lolNickname: string;
-  nickNameCheck: boolean;
+  nickNameCheck?: boolean;
   position: string[];
   communication: string;
   useVoice: boolean;
   voiceChannel?: string[];
-  playStyle: string[];
+  playStyle: T;
 }
 
 export interface ReviewWriteDTO {
@@ -20,12 +28,7 @@ export interface ReviewWriteDTO {
   additionalBadReaview: string;
 }
 
-export interface LoginDTO {
-  success: boolean;
-  token: string;
-  refreshToken: string;
-  nickname: string;
-  userId: string;
+export interface LoginDTO extends AuthUserDTO {
   rtokenExpireTime: string;
   tokenExpireTime: string;
 }
@@ -100,7 +103,41 @@ export interface NicknameCheckDTO extends ResponseDTO {
   profileUrl: string;
 }
 
-export interface WithdrawalDTO {
-  agree: boolean;
-  reason: string;
+export interface Room {
+  roomId: string;
+  userId: string;
+  lolNickname: string;
+  profileUrl: string;
+  lastMessageText: string;
+  lastMessagedTime: string;
+  unRead: number;
+}
+
+export interface Message {
+  userId: string;
+  text: string;
+  createdAt: string;
+}
+
+export type Messages = {
+  [key in string]: Message[];
+};
+
+export type ReceivedMessage = Message & { date: string; isRead: boolean };
+
+export interface Opponent {
+  userId: string;
+  profileUrl: string;
+  lolNickname: string;
+}
+
+export interface EnterChatRoomDTO {
+  opponent: Opponent;
+  messages: Messages[];
+}
+
+export interface AuthUserDTO {
+  userId: string;
+  lolNickname: string;
+  profileURL: string;
 }

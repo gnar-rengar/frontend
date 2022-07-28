@@ -5,12 +5,13 @@ export const LayoutContainer = styled.div`
   max-width: 480px;
   margin: auto;
   ${({ theme: { color } }) => `
-  background: ${color.background};
-  color: ${color.onBackground};
+    background: ${color.background};
+    color: ${color.onBackground};
   `}
 `;
 
 export const Main = styled.main`
   position: relative;
   padding: 0 16px;
+  min-height: ${(props) => `calc(100vh - ${props.theme.header.height})`};
 `;

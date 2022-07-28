@@ -8,11 +8,12 @@ export interface TypographyProps {
   variant?: TypographyVariant;
   align?: 'center' | 'left' | 'right' | 'inherit';
   color?: ColorVariant;
-  margin?: string;
+  mb?: number;
   paragraph?: boolean;
   component?: 'div' | 'span';
   whiteSpace?: string;
   children: React.ReactNode;
+  underline?: boolean;
 }
 
 function Typography(props: TypographyProps) {

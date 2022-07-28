@@ -78,7 +78,7 @@ const publicTheme = {
       fontWeight: '600',
       lineHeight: '20px',
     },
-    caption: {
+    captionRegular: {
       element: 'p',
       fontSize: '12px',
       fontWeight: '400',
@@ -89,6 +89,18 @@ const publicTheme = {
       fontSize: '12px',
       fontWeight: '700',
       lineHeight: '18px',
+    },
+    captionSmallRegular: {
+      element: 'p',
+      fontSize: '10px',
+      fontWeight: '400',
+      lineHeight: '14px',
+    },
+    captionSmallBold: {
+      element: 'p',
+      fontSize: '10px',
+      fontWeight: '700',
+      lineHeight: '14px',
     },
   },
 };
@@ -121,5 +133,8 @@ export const darkTheme = {
     onSurface: '#FEFEFE',
     onBackgroundSub: '#949494',
     disable: '#7f7f7f',
+    discord: '#5865F2',
+    kakao: '#FEE500',
+    naver: '#03C75A',
   },
 };
