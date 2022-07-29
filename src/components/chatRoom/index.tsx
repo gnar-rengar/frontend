@@ -13,6 +13,8 @@ import { useTimer } from '../../utils';
 
 import type { Messages, ReceivedMessage, Opponent } from '../../types/api.type';
 
+const userId = '62e2937b0763ae06b6956d9c';
+
 function ChatRoom({ roomId }: { roomId: string }) {
   const [messages, addMessage, setMessages] = useMessages();
   const [newReceivedMessage, setNewReceivedMessage] = useState('');
@@ -54,7 +56,7 @@ function ChatRoom({ roomId }: { roomId: string }) {
   );
 
   useEffect(() => {
-    socket.emit('enterChatRoom', roomId, '62d509be151f1fb3b2e0f792');
+    socket.emit('enterChatRoom', roomId, userId);
 
     socket.on('onEnterChatRoom', (opponent: Opponent, msgs: Messages[]) => {
       setRoomData(opponent);
@@ -92,8 +94,15 @@ function ChatRoom({ roomId }: { roomId: string }) {
         input={input}
         setInput={setInput}
         isOpponentTyping={isOpponentTyping}
+        userId={userId}
       />
-      <InputArea setHasBadWord={setHasBadWord} input={input} setInput={setInput} />
+      <InputArea
+        setHasBadWord={setHasBadWord}
+        input={input}
+        setInput={setInput}
+        roomId={roomId}
+        userId={userId}
+      />
     </ChatRoomContainer>
   );
 }

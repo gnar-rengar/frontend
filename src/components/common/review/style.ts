@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const StyledFeedback = styled.div`
+export const StyledReview = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
@@ -16,7 +16,7 @@ export const PeopleCount = styled.div`
   gap: 4px;
 `;
 
-export const FeedbackContainer = styled.div`
+export const ReviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
