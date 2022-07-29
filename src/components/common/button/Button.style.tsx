@@ -2,15 +2,15 @@ import styled from '@emotion/styled';
 
 import type { ButtonProps } from './Button';
 
-type StyledButtonProps = Pick<ButtonProps, 'color' | 'variant' | 'size' | 'disabled'>;
+type StyledButtonProps = Pick<ButtonProps, 'color' | 'variant' | 'size' | 'width' | 'disabled'>;
 
 export const StyledButton = styled.button<StyledButtonProps>`
   cursor: pointer;
-  ${({ variant, size }) => {
+  ${({ variant, size, width }) => {
     if (variant === 'text') return '';
     if (size === 'lg') {
       return `
-        width: 100%;
+        width: ${width};
         max-width: 480px;
         height: 48px;
         border-radius: 16px;
