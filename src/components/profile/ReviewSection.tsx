@@ -3,14 +3,16 @@ import { Asking, Review } from '../common';
 
 import type { Review as ReviewType } from '../../types/api.type';
 
-interface FeedbackSectionProps {
+interface ReviewSectionProps {
   goodReview: ReviewType[];
+  lolNickname: string;
 }
 
-function ReviewSection({ goodReview }: FeedbackSectionProps) {
+function ReviewSection(props: ReviewSectionProps) {
+  const { goodReview, lolNickname } = props;
   return (
     <section>
-      <Asking title="고수달님이 받은 칭찬">
+      <Asking title={`${lolNickname}님이 받은 칭찬`}>
         <Review reviews={goodReview} />
       </Asking>
     </section>

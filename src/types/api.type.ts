@@ -69,16 +69,6 @@ export interface Review {
   _id: string;
 }
 
-export interface Tier {
-  tier: string;
-  rank: number;
-}
-
-export interface MatchDTO {
-  success: boolean;
-  recentRecord: RecentRecord[];
-}
-
 export interface RecentRecord {
   gameMode: string;
   gameType: string;
@@ -104,6 +94,10 @@ export interface RecentRecord {
   deaths: number;
   assists: number;
   kda: number;
+}
+
+export interface MatchHistoryDTO {
+  recentRecord: RecentRecord[];
 }
 
 export interface NicknameCheckDTO extends ResponseDTO {

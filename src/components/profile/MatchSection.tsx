@@ -22,8 +22,6 @@ function MatchSection({ userId }: MatchSectionProps) {
 
   const { recentRecord } = useGetMatchHistory(userId);
 
-  console.log(recentRecord);
-
   return (
     <Section>
       <MatchSectionTitle>
@@ -31,7 +29,9 @@ function MatchSection({ userId }: MatchSectionProps) {
         <div style={{ display: 'flex' }}>
           <Link href={`/match-history/${userId}`}>
             <a>
-              <Typography variant="captionRegular">더보기</Typography>
+              <Typography variant="captionRegular" color="onBackground">
+                더보기
+              </Typography>
             </a>
           </Link>
           <Image src="/icons/chevron-right.svg" width={sm} height={sm} />
