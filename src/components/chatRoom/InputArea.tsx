@@ -9,19 +9,18 @@ import { SocketContext } from '../../contexts/socket';
 
 const badWords = ['개새끼', '병신'];
 
-const roomId = '62d565601115b1eb5763d761';
-const userId = '62d509be151f1fb3b2e0f792';
-
 const whitespaceValidation = /\S/;
 
 interface InputAreaProps {
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
+  roomId: string;
+  userId: string;
 }
 
 function InputArea(props: InputAreaProps) {
-  const { setHasBadWord, input, setInput } = props;
+  const { setHasBadWord, input, setInput, roomId, userId } = props;
 
   const socket = useContext(SocketContext);
   const {

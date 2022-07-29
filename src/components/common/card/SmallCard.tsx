@@ -6,7 +6,7 @@ import InfoArea from './InfoArea';
 
 import { StyledCard } from './style';
 
-export type CardProps = Omit<MyPageDTO, 'goodFeedback' | 'badFeedback'>;
+export type CardProps = Omit<MyPageDTO, 'goodReview' | 'badReview'>;
 
 function SmallCard(props: CardProps) {
   const { profileUrl, ...other } = props;

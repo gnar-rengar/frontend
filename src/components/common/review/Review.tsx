@@ -1,19 +1,18 @@
+import React from 'react';
 import { useTheme } from '@emotion/react';
 import Image from 'next/image';
-import React from 'react';
 import Typography from '../typography/Typography';
+import { PeopleCount, ReviewContainer, StyledReview } from './style';
 
-import { FeedbackContainer, PeopleCount, StyledFeedback } from './style';
-
-interface FeedbackProps {
-  feedbacks: {
+export interface ReviewProps {
+  reviews: {
     description: string;
     count: number;
   }[];
 }
 
-function Feedback(props: FeedbackProps) {
-  const { feedbacks } = props;
+function Review(props: ReviewProps) {
+  const { reviews } = props;
 
   const {
     icon: {
@@ -22,22 +21,22 @@ function Feedback(props: FeedbackProps) {
   } = useTheme();
 
   return (
-    <FeedbackContainer>
-      {feedbacks.map((feedback) => (
-        <StyledFeedback key={feedback.description}>
+    <ReviewContainer>
+      {reviews.map((review) => (
+        <StyledReview key={review.description}>
           <PeopleCount>
             <Image src="/icons/people.svg" width={lg} height={lg} alt="people icon" />
             <Typography variant="body3" color="onBackgroundSub">
-              {`${feedback.count}명`}
+              {`${review.count}명`}
             </Typography>
           </PeopleCount>
           <Typography variant="body3" color="onSurface" paragraph>
-            {feedback.description}
+            {review.description}
           </Typography>
-        </StyledFeedback>
+        </StyledReview>
       ))}
-    </FeedbackContainer>
+    </ReviewContainer>
   );
 }
 
-export default Feedback;
+export default Review;

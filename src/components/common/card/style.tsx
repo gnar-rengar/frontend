@@ -2,8 +2,6 @@ import styled from '@emotion/styled';
 
 export const StyledCard = styled.div`
   display: flex;
-  width: 100%;
-  max-width: 480px;
   height: 120px;
   background: ${({ theme: { color } }) => color.surface};
   border-radius: 16px;
@@ -45,13 +43,14 @@ export const Ul = styled.ul`
 
 export const StyledInfoArea = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
   padding: 14px 16px;
-  width: calc(100% - 120px);
   gap: 20px;
 `;
 
 export const Tier = styled.span`
+  width: fit-content;
   height: 18px;
   padding: 2px 4px;
   border-radius: 4px;
