@@ -46,6 +46,7 @@ export interface ProfileDTO {
   voiceChannel: string[];
   communication: string;
   mostChampion: string[];
+  roomId: string;
 }
 
 export type Position = '탑' | '정글' | '미드' | '원딜' | '서폿';

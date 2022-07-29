@@ -27,6 +27,7 @@ function UserProfile({ userId }: { userId: string }) {
     communication,
     mostChampion,
     goodReview,
+    roomId,
   } = useGetProfile(userId as string);
 
   return (
@@ -45,7 +46,7 @@ function UserProfile({ userId }: { userId: string }) {
         </Suspense>
         <ReviewSection goodReview={goodReview} lolNickname={lolNickname} />
       </BaseContainer>
-      <ButtonArea userId={userId} lolNickname={lolNickname} />
+      <ButtonArea userId={userId} lolNickname={lolNickname} roomId={roomId} />
     </>
   );
 }
