@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import { axios } from '../../axios';
+import useGetRoomId from '../../hooks/useGetRoomId';
 import { Button, StickyBottom } from '../common';
 
 interface ButtonAreaProps {
@@ -12,6 +12,7 @@ function ButtonArea(props: ButtonAreaProps) {
   const { userId, lolNickname } = props;
 
   const router = useRouter();
+  const { refetch } = useGetRoomId(userId);
 
   const handleClickReviewButton = () => {
     router.push({ pathname: `/review-write/${userId}`, query: { lolNickname } });
@@ -20,7 +21,7 @@ function ButtonArea(props: ButtonAreaProps) {
   const handleClickChatButton = async () => {
     const {
       data: { roomId },
-    } = await axios.get(`/user/roomId/${userId}`);
+    } = await refetch();
 
     router.push(`/chats/${roomId}`);
   };
