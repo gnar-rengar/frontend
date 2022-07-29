@@ -10,9 +10,7 @@ import {
   QuickChatSpeechBubbleContainer,
 } from './style';
 
-const userId = '62d509be151f1fb3b2e0f792';
-
-function QuickChat() {
+function QuickChat({ userId }: { userId: string }) {
   const socket = useContext(SocketContext);
 
   const roomData = useQueryClient().getQueryData<{

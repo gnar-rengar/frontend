@@ -12,7 +12,8 @@ import { ChatRoomContainer } from './style';
 import { useTimer } from '../../utils';
 
 import type { Messages, ReceivedMessage, Opponent } from '../../types/api.type';
-import useGetAuth from '../../hooks/useGetAuth';
+
+const userId = '62e2937b0763ae06b6956d9c';
 
 function ChatRoom({ roomId }: { roomId: string }) {
   const [messages, addMessage, setMessages] = useMessages();
@@ -28,8 +29,6 @@ function ChatRoom({ roomId }: { roomId: string }) {
   const [setTimer, clearTimer] = useTimer(() => setIsOpponentTypingTyping(false), 5000);
 
   const queryClient = useQueryClient();
-
-  const { userId } = useGetAuth();
 
   const setRoomData = useCallback(
     (opponent: Opponent) => {
@@ -95,6 +94,7 @@ function ChatRoom({ roomId }: { roomId: string }) {
         input={input}
         setInput={setInput}
         isOpponentTyping={isOpponentTyping}
+        userId={userId}
       />
       <InputArea
         setHasBadWord={setHasBadWord}

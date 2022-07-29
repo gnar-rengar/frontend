@@ -89,7 +89,7 @@ function MessageArea(props: MessageProps) {
           </React.Fragment>
         ))
       ) : (
-        <QuickChat />
+        <QuickChat userId={userId} />
       )}
       {isOpponentTyping && (
         <OpponentSpeechBubble>
