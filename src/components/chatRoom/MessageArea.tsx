@@ -21,6 +21,7 @@ interface MessageProps {
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
   isOpponentTyping: boolean;
+  userId: string;
 }
 
 function MessageArea(props: MessageProps) {
@@ -32,6 +33,7 @@ function MessageArea(props: MessageProps) {
     input,
     setInput,
     isOpponentTyping,
+    userId,
   } = props;
 
   const [isNewMsgNoticeShown, setIsNewMsgNoticeShown] = useState(false);
@@ -96,7 +98,12 @@ function MessageArea(props: MessageProps) {
       )}
       <div ref={scrollRef}>
         {hasBadWord && (
-          <BadWordAlert setHasBadWord={setHasBadWord} input={input} setInput={setInput} />
+          <BadWordAlert
+            setHasBadWord={setHasBadWord}
+            input={input}
+            setInput={setInput}
+            userId={userId}
+          />
         )}
       </div>
       {isNewMsgNoticeShown && (

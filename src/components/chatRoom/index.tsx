@@ -12,6 +12,7 @@ import { ChatRoomContainer } from './style';
 import { useTimer } from '../../utils';
 
 import type { Messages, ReceivedMessage, Opponent } from '../../types/api.type';
+import useGetAuth from '../../hooks/useGetAuth';
 
 function ChatRoom({ roomId }: { roomId: string }) {
   const [messages, addMessage, setMessages] = useMessages();
@@ -27,6 +28,8 @@ function ChatRoom({ roomId }: { roomId: string }) {
   const [setTimer, clearTimer] = useTimer(() => setIsOpponentTypingTyping(false), 5000);
 
   const queryClient = useQueryClient();
+
+  const { userId } = useGetAuth();
 
   const setRoomData = useCallback(
     (opponent: Opponent) => {
@@ -54,7 +57,7 @@ function ChatRoom({ roomId }: { roomId: string }) {
   );
 
   useEffect(() => {
-    socket.emit('enterChatRoom', roomId, '62d509be151f1fb3b2e0f792');
+    socket.emit('enterChatRoom', roomId, userId);
 
     socket.on('onEnterChatRoom', (opponent: Opponent, msgs: Messages[]) => {
       setRoomData(opponent);
@@ -93,7 +96,13 @@ function ChatRoom({ roomId }: { roomId: string }) {
         setInput={setInput}
         isOpponentTyping={isOpponentTyping}
       />
-      <InputArea setHasBadWord={setHasBadWord} input={input} setInput={setInput} />
+      <InputArea
+        setHasBadWord={setHasBadWord}
+        input={input}
+        setInput={setInput}
+        roomId={roomId}
+        userId={userId}
+      />
     </ChatRoomContainer>
   );
 }

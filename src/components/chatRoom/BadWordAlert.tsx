@@ -11,12 +11,11 @@ interface BadWordAlertProps {
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
+  userId: string;
 }
 
-const userId = '62d509be151f1fb3b2e0f792';
-
 function BadWordAlert(props: BadWordAlertProps) {
-  const { setHasBadWord, input, setInput } = props;
+  const { setHasBadWord, input, setInput, userId } = props;
 
   const socket = useContext(SocketContext);
 
