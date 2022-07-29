@@ -15,11 +15,15 @@ import {
 import { filterTier } from '../../constant';
 import { FilterRequestDTO } from '../../types/api.type';
 
+interface FilterProps {
+  setFilterState: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
 const filterSchema = yup.object().shape({
   tier: yup.array(yup.string()).min(1, ''),
 });
 
-function Filter() {
+function Filter({ setFilterState }: FilterProps) {
   const [open, setOpen] = useState(false);
   const {
     icon: {

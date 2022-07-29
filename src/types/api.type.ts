@@ -149,3 +149,23 @@ export type FilterTierType = '아이언' | '브론즈' | '실버' | '골드' | '
 export interface FilterRequestDTO {
   tier: FilterTierType[];
 }
+
+export interface SummonerRecommendDTO {
+  bandId: string[];
+  communication: string;
+  createdAt: string;
+  leaguePoints: string;
+  lolNickname: string;
+  nickname: string;
+  playStyle: string[];
+  position: string[];
+  profileUrl: string;
+  ranK: string;
+  social: 'naver' | 'discord' | 'kakao';
+  socialId: string;
+  tier: string;
+  updatedAt: string;
+  useVoice: boolean;
+  __v: number;
+  _id: string;
+}

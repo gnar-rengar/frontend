@@ -16,7 +16,7 @@ import {
 } from './style';
 
 function LargeCard(props: CardProps) {
-  const { profileUrl, tier, nickname, positions, playStyles, voice } = props;
+  const { profileUrl, tier, lolNickname, positions, playStyles, voice } = props;
 
   const {
     icon: {
@@ -35,7 +35,7 @@ function LargeCard(props: CardProps) {
           <NameVoiceAndPosition>
             <NameVoice>
               <Typography variant="body1" data-testid="nickname">
-                {nickname}
+                {lolNickname}
               </Typography>
               {voice ? (
                 <Image src="/icons/voice.svg" width={sm} height={sm} alt="voice on" />

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import useGetNewSummonerList from '../../hooks/useGetNewSummonerList';
 import { SmallCard } from '../common';
 import Filter from './Filter';
 import { NewContainer } from './style';
@@ -16,13 +18,23 @@ const data = {
 };
 
 function New() {
+  const [filterState, setFilterState] = useState<string[]>([]);
+  const [ref, inView] = useInView();
+  const {
+    data: { pages },
+    fetchNextPage,
+  } = useGetNewSummonerList(filterState);
+
   return (
-    <NewContainer>
-      <Filter />
-      <SmallCard {...data} />
-      <SmallCard {...data} />
-      <SmallCard {...data} />
-    </NewContainer>
+    <>
+      <NewContainer>
+        <Filter setFilterState={setFilterState} />
+        <SmallCard {...data} />
+        <SmallCard {...data} />
+        <SmallCard {...data} />
+      </NewContainer>
+      <div ref={ref} />
+    </>
   );
 }
 
