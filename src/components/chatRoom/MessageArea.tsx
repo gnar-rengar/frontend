@@ -53,7 +53,7 @@ function MessageArea(props: MessageProps) {
   useEffect(() => {
     if (isNewMsgOutOfSight) return;
     scrollToBottom();
-  }, [messages, hasBadWord]);
+  }, [messages, hasBadWord, isOpponentTyping]);
 
   useEffect(() => {
     if (newReceivedMessage.length > 0 && isNewMsgOutOfSight) {
