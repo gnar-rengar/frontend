@@ -1,21 +1,20 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import React from 'react';
-import { CardProps } from '../common/card/SmallCard';
 import LargeCard from '../common/card/LargeCard';
+import { CardProps, SummonerFitRecommendDTO } from '../../types/api.type';
 
-function RecommandSwiper(props: CardProps) {
+function RecommandSwiper(props: SummonerFitRecommendDTO) {
+  const { customList } = props;
+  console.log(customList);
   return (
     <div>
       <Swiper spaceBetween={-120} slidesPerView="auto" centeredSlides>
-        <SwiperSlide>
-          <LargeCard {...props} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <LargeCard {...props} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <LargeCard {...props} />
-        </SwiperSlide>
+        {customList &&
+          customList.map((list) => (
+            <SwiperSlide key={list._id}>
+              <LargeCard {...list} key={list._id} />
+            </SwiperSlide>
+          ))}
       </Swiper>
     </div>
   );

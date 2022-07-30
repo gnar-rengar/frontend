@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from 'react-query';
 import { axios } from '../axios';
-import { FilterTierType } from '../types/api.type';
+import { FilterTierType, SummonerNewRecommendDTO } from '../types/api.type';
 import { queryKeys } from './queryKeys';
 
 const newSummonerListGetAPI = async (page: number, tier: FilterTierType[]) => {
@@ -8,21 +8,21 @@ const newSummonerListGetAPI = async (page: number, tier: FilterTierType[]) => {
   tier.forEach((str) => {
     tierString += `tier=${str}&`;
   });
-  const { data } = await axios.get(`/duo/newList?page=${page}&${tierString}`);
+  const { data } = await axios.get<SummonerNewRecommendDTO>(`/duo/newList?page=${page}&tier[]=`);
   return {
     data,
     page,
   };
 };
-const useGetNewSummonerList = (tier: FilterTierType[]) => {
+const useGetNewSummonerList = (tier?: FilterTierType[]) => {
   const query = useInfiniteQuery(
     queryKeys.newSummonerList,
-    ({ pageParam = 0 }) => newSummonerListGetAPI(pageParam, tier),
+    ({ pageParam = 1 }) => newSummonerListGetAPI(pageParam, tier),
     {
       getNextPageParam: (lastPage) => lastPage.page + 1,
     }
   );
   return query;
 };
-
+// `/duo/newList?page=${page}&${tierString}`
 export default useGetNewSummonerList;

@@ -37,8 +37,7 @@ function Filter({ setFilterState }: FilterProps) {
   const checkedTier = watch('tier') as string[];
 
   const onSubmit: SubmitHandler<FilterRequestDTO> = (data) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+    setFilterState((prev) => [...prev, ...data.tier]);
   };
 
   return (

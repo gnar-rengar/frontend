@@ -1,6 +1,16 @@
-export interface ResponseDTO {
-  success: boolean;
-  message: string;
+export type Position = '탑' | '정글' | '미드' | '원딜' | '서폿';
+export type FilterTierType = '아이언' | '브론즈' | '실버' | '골드' | '플래티넘' | '다이아';
+
+export interface CardProps {
+  leaguePoints: string;
+  lolNickname: string;
+  playStyle: string[];
+  position: Position[];
+  profileUrl: string;
+  rank: string;
+  tier: string;
+  useVoice: boolean;
+  _id?: string;
 }
 
 export type PlayStyleType = {
@@ -48,8 +58,6 @@ export interface ProfileDTO {
   mostChampion: string[];
   roomId: string;
 }
-
-export type Position = '탑' | '정글' | '미드' | '원딜' | '서폿';
 
 export interface MyPageDTO {
   lolNickname: string;
@@ -101,8 +109,10 @@ export interface MatchHistoryDTO {
   recentRecord: RecentRecord[];
 }
 
-export interface NicknameCheckDTO extends ResponseDTO {
+export interface NicknameCheckDTO {
+  lolNickname: string;
   profileUrl: string;
+  message: string;
 }
 
 export interface Room {
@@ -144,28 +154,14 @@ export interface AuthUserDTO {
   profileURL: string;
 }
 
-export type FilterTierType = '아이언' | '브론즈' | '실버' | '골드' | '플래티넘' | '다이아';
-
 export interface FilterRequestDTO {
   tier: FilterTierType[];
 }
 
-export interface SummonerRecommendDTO {
-  bandId: string[];
-  communication: string;
-  createdAt: string;
-  leaguePoints: string;
-  lolNickname: string;
-  nickname: string;
-  playStyle: string[];
-  position: string[];
-  profileUrl: string;
-  ranK: string;
-  social: 'naver' | 'discord' | 'kakao';
-  socialId: string;
-  tier: string;
-  updatedAt: string;
-  useVoice: boolean;
-  __v: number;
-  _id: string;
+export interface SummonerFitRecommendDTO {
+  customList: CardProps[];
+}
+
+export interface SummonerNewRecommendDTO {
+  newList: CardProps[];
 }
