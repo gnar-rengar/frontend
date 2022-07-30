@@ -5,6 +5,4 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// api.interceptors.request.use(refresh, refreshError); backend token 정책 테스트 후 적용하기
-
 export { api as axios };
