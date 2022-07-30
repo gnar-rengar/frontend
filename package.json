@@ -37,6 +37,7 @@
     "react-hook-form": "^7.32.2",
     "react-query": "^3.39.1",
     "recoil": "^0.7.3-alpha.2",
+    "sharp": "^0.30.7",
     "socket.io-client": "^4.5.1",
     "yup": "^0.32.11"
   },
