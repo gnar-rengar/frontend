@@ -17,7 +17,7 @@ function Login() {
 
   return (
     <LoginContainer>
-      <Image src="/icons/main-logo.svg" width="160px" height="40px" />
+      <Image src="/icons/main-logo.svg" width="160px" height="40px" alt="logo" />
       <LoginSection>
         <Typography variant="captionRegular" color="onBackgroundSub">
           간편 로그인/회원가입
@@ -27,7 +27,7 @@ function Login() {
             <a>
               <LoginButton color="discord">
                 <IconAndTextContainer color="discord">
-                  <Image src="/icons/discord.svg" width="24px" height="24px" />
+                  <Image src="/icons/discord.svg" width="24px" height="24px" alt="discord login" />
                   <Typography variant="body1" color="onBackground">
                     디스코드 로그인
                   </Typography>
@@ -39,7 +39,7 @@ function Login() {
             <a>
               <LoginButton color="kakao">
                 <IconAndTextContainer color="kakao">
-                  <Image src="/icons/kakao.svg" width="24px" height="24px" />
+                  <Image src="/icons/kakao.svg" width="24px" height="24px" alt="kakao login" />
                   <Typography variant="body1" color="background">
                     카카오 로그인
                   </Typography>
@@ -51,7 +51,7 @@ function Login() {
             <a>
               <LoginButton color="naver">
                 <IconAndTextContainer color="naver">
-                  <Image src="/icons/naver.svg" width="24px" height="24px" />
+                  <Image src="/icons/naver.svg" width="24px" height="24px" alt="naver login" />
                   <Typography variant="body1" color="onBackground">
                     네이버 로그인
                   </Typography>
