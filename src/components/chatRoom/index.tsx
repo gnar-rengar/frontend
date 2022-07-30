@@ -15,7 +15,7 @@ import type { Messages, ReceivedMessage, Opponent } from '../../types/api.type';
 import useGetAuth from '../../hooks/useGetAuth';
 
 function ChatRoom({ roomId }: { roomId: string }) {
-  const { userId: myId } = useGetAuth();
+  const { userId: myId, lolNickname } = useGetAuth();
 
   const [messages, addMessage, setMessages] = useMessages();
   const [newReceivedMessage, setNewReceivedMessage] = useState('');
@@ -56,22 +56,32 @@ function ChatRoom({ roomId }: { roomId: string }) {
     [setMessages]
   );
 
+  const handleEnterChatRoom = useCallback((opponent: Opponent, msgs: Messages[]) => {
+    setRoomData(opponent);
+    setDefaultMessages(msgs);
+  }, []);
+
+  const handleReceiveMessage = useCallback(
+    (message: ReceivedMessage) => {
+      if (message.userId !== myId) {
+        setIsOpponentTypingTyping(false);
+        setNewReceivedMessage(message.text);
+      }
+      addMessage(message);
+      socket.emit('readMessage', roomId, myId);
+    },
+    [socket]
+  );
+
   useEffect(() => {
     socket.emit('enterChatRoom', roomId, myId);
+    socket.on('onEnterChatRoom', handleEnterChatRoom);
+    socket.on('receiveMessage', handleReceiveMessage);
 
-    socket.on('onEnterChatRoom', (opponent: Opponent, msgs: Messages[]) => {
-      setRoomData(opponent);
-      setDefaultMessages(msgs);
-    });
-
-    // TODO 내가 보낸 메시지에 대한 반환은 다른 이벤트로.
-    // socket.on('onSendMessage')
-
-    socket.on('receiveMessage', (message: ReceivedMessage) => {
-      setIsOpponentTypingTyping(false);
-      addMessage(message);
-      setNewReceivedMessage(message.text);
-    });
+    return () => {
+      socket.off('onEnterChatRoom', handleEnterChatRoom);
+      socket.off('receiveMessage', handleReceiveMessage);
+    };
   }, [socket]);
 
   socket.on('onTyping', () => {
@@ -96,6 +106,7 @@ function ChatRoom({ roomId }: { roomId: string }) {
         setInput={setInput}
         isOpponentTyping={isOpponentTyping}
         myId={myId}
+        lolNickname={lolNickname}
       />
       <InputArea
         setHasBadWord={setHasBadWord}

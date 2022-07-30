@@ -22,6 +22,7 @@ interface MessageProps {
   setInput: React.Dispatch<React.SetStateAction<string>>;
   isOpponentTyping: boolean;
   myId: string;
+  lolNickname: string;
 }
 
 function MessageArea(props: MessageProps) {
@@ -34,6 +35,7 @@ function MessageArea(props: MessageProps) {
     setInput,
     isOpponentTyping,
     myId,
+    lolNickname,
   } = props;
 
   const [isNewMsgNoticeShown, setIsNewMsgNoticeShown] = useState(false);
@@ -77,10 +79,11 @@ function MessageArea(props: MessageProps) {
   //! 유지되지 않는다면 여기서 정렬해야 함.
   // const sortedMessages = useMemo(() => sortByKey(messages), [messages]);
 
-  console.log(Object.keys(messages).length, hasBadWord);
   return (
     <MessageAreaContainer ref={containerRef}>
-      {Object.keys(messages).length > 0 || hasBadWord ? (
+      {Object.keys(messages).length === 0 && !hasBadWord ? (
+        <QuickChat myId={myId} lolNickname={lolNickname} />
+      ) : (
         Object.entries(messages as Messages).map(([date, msgs]) => (
           <React.Fragment key={date}>
             <DayDivider>{date}</DayDivider>
@@ -89,8 +92,6 @@ function MessageArea(props: MessageProps) {
             ))}
           </React.Fragment>
         ))
-      ) : (
-        <QuickChat myId={myId} />
       )}
       {isOpponentTyping && (
         <OpponentSpeechBubble>
