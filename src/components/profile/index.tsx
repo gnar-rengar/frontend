@@ -41,10 +41,10 @@ function UserProfile({ userId }: { userId: string }) {
           communication={communication}
         />
         <MostChampSection mostChamps={mostChampion} />
+        <ReviewSection goodReview={goodReview} lolNickname={lolNickname} />
         <Suspense fallback="loading">
           <MatchSection userId={userId} />
         </Suspense>
-        <ReviewSection goodReview={goodReview} lolNickname={lolNickname} />
       </BaseContainer>
       <ButtonArea userId={userId} lolNickname={lolNickname} />
     </>
