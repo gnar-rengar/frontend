@@ -10,7 +10,7 @@ import {
   QuickChatSpeechBubbleContainer,
 } from './style';
 
-function QuickChat({ userId }: { userId: string }) {
+function QuickChat({ myId }: { myId: string }) {
   const socket = useContext(SocketContext);
 
   const roomData = useQueryClient().getQueryData<{
@@ -25,7 +25,7 @@ function QuickChat({ userId }: { userId: string }) {
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     const text = (e.target as HTMLElement).innerText;
-    socket.emit('sendMessage', roomId, userId, text);
+    socket.emit('sendMessage', roomId, myId, text);
   };
 
   return (
