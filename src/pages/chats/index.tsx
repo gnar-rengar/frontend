@@ -1,8 +1,14 @@
-import React from 'react';
-import Chats from '../../components/chats';
+import dynamic from 'next/dynamic';
+import React, { Suspense } from 'react';
+
+const Chats = dynamic(() => import('../../components/chats'), { ssr: false });
 
 function ChatsPage() {
-  return <Chats />;
+  return (
+    <Suspense fallback="loading">
+      <Chats />
+    </Suspense>
+  );
 }
 
 export default ChatsPage;
