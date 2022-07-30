@@ -120,10 +120,9 @@ export const userHandlers = [
         gameEndTimestamp: 1656952225921,
         win: true,
         championName: 'Belveth',
-        primaryStyle:
+        perk1:
           'https://ddragon.canisback.com/img/perk-images/Styles/Domination/Electrocute/Electrocute.png',
-        subStyle:
-          'https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Guardian/Guardian.png',
+        perk2: 'https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Guardian/Guardian.png',
         spell1: 'SummonerSmite',
         spell2: 'SummonerFlash',
         item0: 0,
@@ -148,10 +147,9 @@ export const userHandlers = [
         gameEndTimestamp: 1656952225921,
         win: false,
         championName: 'Belveth',
-        primaryStyle:
+        perk1:
           'https://ddragon.canisback.com/img/perk-images/Styles/Domination/Electrocute/Electrocute.png',
-        subStyle:
-          'https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Guardian/Guardian.png',
+        perk2: 'https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Guardian/Guardian.png',
         spell1: 'SummonerSmite',
         spell2: 'SummonerFlash',
         item0: 0,
