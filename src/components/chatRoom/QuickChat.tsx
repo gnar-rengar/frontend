@@ -29,8 +29,7 @@ function QuickChat(props: QuickChatProps) {
       lolNickname: string;
     };
   }>(queryKeys.chatRoom);
-  const roomId = roomData?.roomId;
-  const opponent = roomData?.opponent;
+  const { roomId, opponent } = roomData ?? {};
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     const text = (e.target as HTMLElement).innerText;
@@ -42,13 +41,13 @@ function QuickChat(props: QuickChatProps) {
       <Notice>
         <div>
           <Typography variant="body1" mb={2}>
-            {opponent.lolNickname}님과의 첫 대화에요
+            {opponent?.lolNickname}님과의 첫 대화에요
           </Typography>
           <Typography variant="captionRegular">이 메시지는 {lolNickname}님에게만 보여요</Typography>
         </div>
         <Typography variant="body3">
           먼저 이야기 꺼내기 어색하실까봐 저희가 몇가지를 준비했어요. 마음에 드는 문구가 있다면
-          눌러서 보내보세요. {opponent.lolNickname}님과 영혼의 듀오가 되셨으면 좋겠어요!
+          눌러서 보내보세요. {opponent?.lolNickname}님과 영혼의 듀오가 되셨으면 좋겠어요!
         </Typography>
       </Notice>
       <QuickChatSpeechBubbleContainer>
