@@ -77,6 +77,7 @@ function MessageArea(props: MessageProps) {
   //! 유지되지 않는다면 여기서 정렬해야 함.
   // const sortedMessages = useMemo(() => sortByKey(messages), [messages]);
 
+  console.log(Object.keys(messages).length, hasBadWord);
   return (
     <MessageAreaContainer ref={containerRef}>
       {Object.keys(messages).length > 0 || hasBadWord ? (
