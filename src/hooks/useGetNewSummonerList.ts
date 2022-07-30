@@ -16,13 +16,15 @@ const newSummonerListGetAPI = async (page: number, tier: FilterTierType[]) => {
     page,
   };
 };
-const useGetNewSummonerList = (tier?: FilterTierType[]) => {
-  const query = useInfiniteQuery<{
-    data: SummonerNewRecommendDTO;
-    page: number;
-  }>(queryKeys.newSummonerList, ({ pageParam = 1 }) => newSummonerListGetAPI(pageParam, tier), {
-    getNextPageParam: (lastPage) => lastPage.page + 1,
-  });
+const useGetNewSummonerList = (tier: FilterTierType[]) => {
+  const query = useInfiniteQuery(
+    queryKeys.newSummonerList,
+    ({ pageParam = 1 }) => newSummonerListGetAPI(pageParam, tier),
+    {
+      suspense: false,
+      getNextPageParam: (lastPage) => lastPage.page + 1,
+    }
+  );
   return query;
 };
 

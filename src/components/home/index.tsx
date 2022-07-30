@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import useGetAuth from '../../hooks/useGetAuth';
 import useGetFitSummonerList from '../../hooks/useGetFitSummonerList';
+import useGetNewSummonerList from '../../hooks/useGetNewSummonerList';
 import { SmallCard, Typography } from '../common';
 import Footer from '../common/footer/Footer';
 import Banner from './BannerSwiper';
@@ -13,6 +14,10 @@ import { Container, HomeContainer, MoreContainer, TitleAndMoreContainer } from '
 function Home() {
   const userData = useGetAuth();
   const { data: fitData } = useGetFitSummonerList();
+  const {
+    data: { pages: newData },
+  } = useGetNewSummonerList([]);
+  console.log(newData);
   return (
     <HomeContainer>
       <Banner />
