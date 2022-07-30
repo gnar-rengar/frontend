@@ -12,7 +12,7 @@ import {
   ButtonContainer,
   ArrowButtonContainer,
 } from './style';
-import { filterTier } from '../../constant';
+import { filterTier, tierEng } from '../../constant';
 import { FilterRequestDTO } from '../../types/api.type';
 
 interface FilterProps {
@@ -37,7 +37,8 @@ function Filter({ setFilterState }: FilterProps) {
   const checkedTier = watch('tier') as string[];
 
   const onSubmit: SubmitHandler<FilterRequestDTO> = (data) => {
-    setFilterState((prev) => [...prev, ...data.tier]);
+    const selectTier = data.tier.map((item) => tierEng[item]);
+    setFilterState([...selectTier]);
   };
 
   return (

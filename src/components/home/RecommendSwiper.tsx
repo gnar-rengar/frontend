@@ -1,11 +1,11 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import React from 'react';
 import LargeCard from '../common/card/LargeCard';
-import { CardProps, SummonerFitRecommendDTO } from '../../types/api.type';
+import { SummonerFitRecommendDTO } from '../../types/api.type';
 
 function RecommandSwiper(props: SummonerFitRecommendDTO) {
   const { customList } = props;
-  console.log(customList);
+
   return (
     <div>
       <Swiper spaceBetween={-120} slidesPerView="auto" centeredSlides>
