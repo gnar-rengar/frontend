@@ -9,9 +9,16 @@ import { NewContainer } from './style';
 function New() {
   const [filterState, setFilterState] = useState<FilterTierType[]>([]);
   const [ref, inView] = useInView();
-  const { data, fetchNextPage, isLoading, hasNextPage, refetch } =
-    useGetNewSummonerList(filterState);
-  console.log(data);
+  const {
+    data: { pages },
+    fetchNextPage,
+    isLoading,
+    hasNextPage,
+    refetch,
+  } = useGetNewSummonerList(filterState);
+
+  console.log(pages);
+
   useEffect(() => {
     if (inView && !isLoading) {
       fetchNextPage();
@@ -26,8 +33,9 @@ function New() {
     <>
       <NewContainer>
         <Filter setFilterState={setFilterState} />
-        {data && data.map((list) => <SmallCard {...list} />)}
-        {/* <SmallCard {...data[0]} /> */}
+        {pages.map((page) =>
+          page.data.newList.map((list) => <SmallCard {...list} key={list._id} />)
+        )}
       </NewContainer>
       <div ref={hasNextPage ? ref : undefined} />
     </>
