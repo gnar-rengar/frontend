@@ -20,7 +20,9 @@ function MatchSection({ userId }: MatchSectionProps) {
     },
   } = useTheme();
 
-  const { recentRecord } = useGetMatchHistory(userId);
+  const { data } = useGetMatchHistory(userId);
+
+  const { recentRecord } = data.pages[0].data;
 
   return (
     <Section>
@@ -38,7 +40,7 @@ function MatchSection({ userId }: MatchSectionProps) {
         </div>
       </MatchSectionTitle>
       <MatchCardContainer>
-        {recentRecord.slice(0, 3).map((matchData) => (
+        {recentRecord.map((matchData) => (
           <MatchCard matchData={matchData} key={matchData.gameEndTimestamp} />
         ))}
       </MatchCardContainer>

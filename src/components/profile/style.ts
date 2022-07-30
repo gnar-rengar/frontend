@@ -3,9 +3,9 @@ import styled from '@emotion/styled';
 export const ProfileImgWrapper = styled.div`
   position: relative;
   left: 0;
-  width: 375px;
-  height: 375px;
-  margin: 0 -16px;
+  margin-left: -16px;
+  width: calc(100% + 32px);
+  padding-top: 100%;
 `;
 
 export const TierAndNickname = styled.div`
