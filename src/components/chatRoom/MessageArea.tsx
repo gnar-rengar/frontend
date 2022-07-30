@@ -21,7 +21,7 @@ interface MessageProps {
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
   isOpponentTyping: boolean;
-  userId: string;
+  myId: string;
 }
 
 function MessageArea(props: MessageProps) {
@@ -33,7 +33,7 @@ function MessageArea(props: MessageProps) {
     input,
     setInput,
     isOpponentTyping,
-    userId,
+    myId,
   } = props;
 
   const [isNewMsgNoticeShown, setIsNewMsgNoticeShown] = useState(false);
@@ -84,12 +84,12 @@ function MessageArea(props: MessageProps) {
           <React.Fragment key={date}>
             <DayDivider>{date}</DayDivider>
             {msgs.map((message) => (
-              <Message key={message.createdAt} message={message} />
+              <Message key={message.createdAt} myId={myId} message={message} />
             ))}
           </React.Fragment>
         ))
       ) : (
-        <QuickChat userId={userId} />
+        <QuickChat myId={myId} />
       )}
       {isOpponentTyping && (
         <OpponentSpeechBubble>
@@ -102,7 +102,7 @@ function MessageArea(props: MessageProps) {
             setHasBadWord={setHasBadWord}
             input={input}
             setInput={setInput}
-            userId={userId}
+            myId={myId}
           />
         )}
       </div>
