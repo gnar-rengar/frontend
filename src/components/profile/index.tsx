@@ -1,10 +1,10 @@
 import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 
-import useGetUserProfile from '../../hooks/useGetUserProfile';
+import useGetProfile from '../../hooks/useGetProfile';
 
 import ButtonArea from './ButtonArea';
-import FeedbackSection from './FeedbackSection';
+import ReviewSection from './ReviewSection';
 import MostChampSection from './MostChampSection';
 import VoiceSection from './VoiceSection';
 import PlayStyleSection from './PlayStyleSection';
@@ -16,32 +16,37 @@ const MatchSection = dynamic(() => import('./MatchSection'), {
 });
 
 function UserProfile({ userId }: { userId: string }) {
-  const data = useGetUserProfile(userId as string);
   const {
-    nickname,
+    lolNickname,
+    profileUrl,
     tier,
-    playStyles,
-    positions,
-    voice,
+    rank,
+    playStyle,
+    position,
+    useVoice,
     voiceChannel,
     communication,
-    mostChamps,
-    goodFeedback,
-  } = data;
+    mostChampion,
+    goodReview,
+  } = useGetProfile(userId as string);
 
   return (
     <>
-      <ProfileImg nickname={nickname} tier={tier} />
+      <ProfileImg nickname={lolNickname} profileUrl={profileUrl} tier={tier} rank={rank} />
       <BaseContainer>
-        <PlayStyleSection nickname={nickname} positions={positions} playStyles={playStyles} />
-        <VoiceSection isVoiceOn={voice} voiceChannel={voiceChannel} communication={communication} />
-        <MostChampSection mostChamps={mostChamps} />
+        <PlayStyleSection nickname={lolNickname} positions={position} playStyles={playStyle} />
+        <VoiceSection
+          isVoiceOn={useVoice}
+          voiceChannel={voiceChannel}
+          communication={communication}
+        />
+        <MostChampSection mostChamps={mostChampion} />
         <Suspense fallback="loading">
           <MatchSection userId={userId} />
         </Suspense>
-        <FeedbackSection goodFeedback={goodFeedback} />
+        <ReviewSection goodReview={goodReview} lolNickname={lolNickname} />
       </BaseContainer>
-      <ButtonArea userId={userId} />
+      <ButtonArea userId={userId} lolNickname={lolNickname} />
     </>
   );
 }

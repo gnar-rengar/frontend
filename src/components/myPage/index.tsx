@@ -1,14 +1,26 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import useGetMyPage from '../../hooks/useGetMyPage';
+import useLogoutMutation from '../../hooks/useLogoutMutation';
 
-import { Asking, BaseContainer, Button, Card, Divider, Feedback, Typography } from '../common';
+import { Asking, BaseContainer, Button, Card, Divider, Review, Typography } from '../common';
 
 import { AreaButton, ProfileCardContainer } from './style';
 
 function MyPage() {
+  const { data, isLoading } = useGetMyPage();
   const router = useRouter();
-  const { goodFeedback, badFeedback, ...other } = useGetMyPage();
+  const logoutMutation = useLogoutMutation();
+
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
+
+  const { goodReview, badReview, ...other } = data;
+
+  const onClickLogout = () => {
+    logoutMutation.mutate();
+  };
 
   return (
     <BaseContainer>
@@ -28,22 +40,22 @@ function MyPage() {
         </Button>
       </ProfileCardContainer>
       <Asking title="받은 긍정 플레이 리뷰">
-        <Feedback feedbacks={goodFeedback} />
+        <Review reviews={goodReview} />
       </Asking>
       <Asking
         title="받은 부정 플레이 리뷰"
         caption="받은 부정 플레이 리뷰는 나에게만 보여요
         피드백 삼아 더 좋은 플레이를 보여주세요!"
       >
-        <Feedback feedbacks={badFeedback} />
+        <Review reviews={badReview} />
       </Asking>
       <div>
         <Divider />
-        <AreaButton type="button">
-          <Typography variant="body1">로그인</Typography>
+        <AreaButton type="button" onClick={onClickLogout}>
+          <Typography variant="body1">로그아웃</Typography>
         </AreaButton>
         <Divider />
-        <AreaButton type="button">
+        <AreaButton type="button" onClick={() => router.push('/withdrawal')}>
           <Typography variant="body1">회원 탈퇴</Typography>
         </AreaButton>
         <Divider />

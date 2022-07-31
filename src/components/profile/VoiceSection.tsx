@@ -20,7 +20,7 @@ function VoiceSection(props: VoiceSectionProps) {
           <Typography variant="h3">플레이를 좋아해요</Typography>
         </>
       ) : (
-        <Typography variant="h3">주로 보이스를 사용하지 않아요</Typography>
+        <Typography variant="h3">보이스를 하지 않아요</Typography>
       )}
     </Section>
   );

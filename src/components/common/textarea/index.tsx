@@ -5,6 +5,9 @@ import { Typography } from '..';
 import { TextAreaContainer } from './style';
 
 interface TextAreaProps {
+  id?: string;
+  name?: string;
+  width?: string;
   maxLength?: number;
   minHeight?: number;
   register: UseFormRegisterReturn<string>;
@@ -14,7 +17,7 @@ interface TextAreaProps {
 }
 
 function TextArea(props: TextAreaProps) {
-  const { maxLength, minHeight, register, placeholder } = props;
+  const { id, name, width, maxLength, minHeight, register } = props;
 
   const [text, setText] = useState('');
 
@@ -36,8 +39,8 @@ function TextArea(props: TextAreaProps) {
   }, []);
 
   return (
-    <TextAreaContainer>
-      <textarea name="" id="" {...other} value={text} onChange={handleChange} ref={ref} />
+    <TextAreaContainer width={width}>
+      <textarea id={id} name={name} {...other} value={text} onChange={handleChange} ref={ref} />
       <Typography variant="captionRegular" align="right">
         {`${text.length}/${maxLength}자`}
       </Typography>
@@ -48,6 +51,9 @@ function TextArea(props: TextAreaProps) {
 export default TextArea;
 
 TextArea.defaultProps = {
+  id: '',
+  name: '',
+  width: 'auto',
   maxLength: 800,
   minHeight: 120,
 };

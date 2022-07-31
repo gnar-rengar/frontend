@@ -16,10 +16,10 @@ import {
 
 interface ImageAreaProps {
   championName: string;
-  primaryStyle: string;
-  subStyle: string;
   spell1: string;
   spell2: string;
+  perk1: string;
+  perk2: string;
   item0: number;
   item1: number;
   item2: number;
@@ -32,10 +32,10 @@ interface ImageAreaProps {
 function ImageArea(props: ImageAreaProps) {
   const {
     championName,
-    primaryStyle,
-    subStyle,
     spell1,
     spell2,
+    perk1,
+    perk2,
     item0,
     item1,
     item2,
@@ -58,17 +58,25 @@ function ImageArea(props: ImageAreaProps) {
       <Left>
         <ChampionImageWrapper>
           <Image
-            src={`https://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${championName}.png`}
+            src={`${process.env.NEXT_PUBLIC_RIOT_CHAMPION_IMG_URL}/${championName}.png`}
             width="64px"
             height="64px"
           />
         </ChampionImageWrapper>
         <RuneContainer>
           <AssetWrapper>
-            <Image src={primaryStyle} width={lg} height={lg} />
+            <Image
+              src={`${process.env.NEXT_PUBLIC_RIOT_PERK_IMG_URL}/${perk1}`}
+              width={lg}
+              height={lg}
+            />
           </AssetWrapper>
           <AssetWrapper>
-            <Image src={subStyle} width={lg} height={lg} />
+            <Image
+              src={`${process.env.NEXT_PUBLIC_RIOT_PERK_IMG_URL}/${perk2}`}
+              width={lg}
+              height={lg}
+            />
           </AssetWrapper>
         </RuneContainer>
       </Left>
@@ -76,14 +84,14 @@ function ImageArea(props: ImageAreaProps) {
         <SpellContainer>
           <AssetWrapper>
             <Image
-              src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/spell/${spell1}.png`}
+              src={`${process.env.NEXT_PUBLIC_RIOT_SPELL_IMG_URL}/${spell1}.png`}
               width={lg}
               height={lg}
             />
           </AssetWrapper>
           <AssetWrapper>
             <Image
-              src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/spell/${spell2}.png`}
+              src={`${process.env.NEXT_PUBLIC_RIOT_SPELL_IMG_URL}/${spell2}.png`}
               width={lg}
               height={lg}
             />
