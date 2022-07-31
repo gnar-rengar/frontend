@@ -8,16 +8,18 @@ import InValid from './InValid';
 import { ChatContainer } from './style';
 
 import type { Room } from '../../types/api.type';
+import useGetAuth from '../../hooks/useGetAuth';
 
 const isLoggedIn = true;
 
 function Chats() {
+  const { userId } = useGetAuth();
   const [rooms, setRooms] = useState<Room[]>([]);
 
   const socket = useContext(SocketContext);
 
   useEffect(() => {
-    socket.emit('getChatRooms', '62d509be151f1fb3b2e0f792');
+    socket.emit('getChatRooms', userId);
 
     socket.on('onGetChatRooms', (roomsData: Room[]) => {
       roomsData.sort((room1, room2) => {
