@@ -137,6 +137,7 @@ function OnBoarding() {
       );
       setSummonerIcon(data.profileUrl);
       setValue('nickNameCheck', true, { shouldValidate: true });
+      setValue('lolNickname', data.lolNickname);
       clearErrors('nickNameCheck');
     } catch (error) {
       if (error.response.status === 404) {
