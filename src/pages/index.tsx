@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Home from '../components/home';
 
 function HomePage() {
-  return <Home />;
+  return (
+    <Suspense>
+      <Home />
+    </Suspense>
+  );
 }
 
 export default HomePage;

@@ -21,7 +21,6 @@ const useGetNewSummonerList = (tier: FilterTierType[]) => {
     queryKeys.newSummonerList,
     ({ pageParam = 1 }) => newSummonerListGetAPI(pageParam, tier),
     {
-      suspense: false,
       getNextPageParam: (lastPage) => lastPage.page + 1,
     }
   );

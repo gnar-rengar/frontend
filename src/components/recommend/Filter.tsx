@@ -31,10 +31,15 @@ function Filter({ setFilterState }: FilterProps) {
     },
   } = useTheme();
 
-  const { register, handleSubmit, watch } = useForm<FilterRequestDTO>({
+  const { register, handleSubmit, watch, reset } = useForm<FilterRequestDTO>({
     resolver: yupResolver(filterSchema),
   });
   const checkedTier = watch('tier') as string[];
+
+  const onClickFilterReset = () => {
+    setFilterState([]);
+    reset();
+  };
 
   const onSubmit: SubmitHandler<FilterRequestDTO> = (data) => {
     const selectTier = data.tier.map((item) => tierEng[item]);
@@ -44,7 +49,7 @@ function Filter({ setFilterState }: FilterProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FilterContainer open={open}>
-        {checkedTier ? (
+        {checkedTier && checkedTier.length > 0 ? (
           <Typography variant="body3">{checkedTier.join(', ')}</Typography>
         ) : (
           <Typography variant="body3" color="onBackgroundSub">
@@ -78,10 +83,16 @@ function Filter({ setFilterState }: FilterProps) {
           ))}
         </CheckboxContainer>
         <ButtonContainer>
-          <Button size="md" variant="outlined" color="onBackgroundSub">
+          <Button
+            size="lg"
+            onClick={onClickFilterReset}
+            width="120px"
+            variant="outlined"
+            color="onBackgroundSub"
+          >
             필터 초기화
           </Button>
-          <Button type="submit" size="md" color="primaryVariant">
+          <Button type="submit" width="calc(100% - 120px)" size="lg" color="primaryVariant">
             필터 적용하기
           </Button>
         </ButtonContainer>

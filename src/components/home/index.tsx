@@ -15,9 +15,18 @@ function Home() {
   const userData = useGetAuth();
   const { data: fitData } = useGetFitSummonerList();
   const {
-    data: { pages: newData },
+    data: { pages },
   } = useGetNewSummonerList([]);
-  console.log(newData);
+
+  const newList = () => pages.map((page) => page.data.newList.filter((list, index) => index <= 2));
+  const recommendProps = () => {
+    if (userData) {
+      return fitData?.customList;
+    }
+
+    return newList()[0];
+  };
+
   return (
     <HomeContainer>
       <Banner />
@@ -44,7 +53,7 @@ function Home() {
             </a>
           </Link>
         </TitleAndMoreContainer>
-        <RecommandSwiper {...fitData} />
+        <RecommandSwiper listProps={recommendProps()} />
       </Container>
       <Container>
         <TitleAndMoreContainer>
@@ -63,9 +72,9 @@ function Home() {
             </a>
           </Link>
         </TitleAndMoreContainer>
-        {/* <SmallCard {...test} />
-        <SmallCard {...test} />
-        <SmallCard {...test} /> */}
+        {newList()[0].map((list) => (
+          <SmallCard {...list} key={list._id} />
+        ))}
       </Container>
       <Footer />
     </HomeContainer>

@@ -59,7 +59,6 @@ export const CheckboxContainer = styled.div`
 
 export const ButtonContainer = styled.div`
   width: 100%;
-  max-width: 480px;
   display: flex;
   gap: 12px;
 `;
