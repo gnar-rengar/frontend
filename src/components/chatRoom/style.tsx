@@ -43,7 +43,7 @@ export const DayDividerContainer = styled.div`
 `;
 
 export const QuickChatContainer = styled.div`
-  position: relative;
+  position: absolute;
   top: 100%;
   display: flex;
   flex-direction: column;

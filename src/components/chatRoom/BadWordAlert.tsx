@@ -11,11 +11,11 @@ interface BadWordAlertProps {
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
-  userId: string;
+  myId: string;
 }
 
 function BadWordAlert(props: BadWordAlertProps) {
-  const { setHasBadWord, input, setInput, userId } = props;
+  const { setHasBadWord, input, setInput, myId } = props;
 
   const socket = useContext(SocketContext);
 
@@ -31,7 +31,7 @@ function BadWordAlert(props: BadWordAlertProps) {
   };
 
   const handleClickIgnore = () => {
-    socket.emit('sendMessage', roomId, userId, input);
+    socket.emit('sendMessage', roomId, myId, input);
     handleClick();
   };
 

@@ -21,7 +21,8 @@ interface MessageProps {
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
   isOpponentTyping: boolean;
-  userId: string;
+  myId: string;
+  lolNickname: string;
 }
 
 function MessageArea(props: MessageProps) {
@@ -33,7 +34,8 @@ function MessageArea(props: MessageProps) {
     input,
     setInput,
     isOpponentTyping,
-    userId,
+    myId,
+    lolNickname,
   } = props;
 
   const [isNewMsgNoticeShown, setIsNewMsgNoticeShown] = useState(false);
@@ -53,7 +55,7 @@ function MessageArea(props: MessageProps) {
   useEffect(() => {
     if (isNewMsgOutOfSight) return;
     scrollToBottom();
-  }, [messages, hasBadWord]);
+  }, [messages, hasBadWord, isOpponentTyping]);
 
   useEffect(() => {
     if (newReceivedMessage.length > 0 && isNewMsgOutOfSight) {
@@ -79,17 +81,17 @@ function MessageArea(props: MessageProps) {
 
   return (
     <MessageAreaContainer ref={containerRef}>
-      {Object.keys(messages).length > 0 || hasBadWord ? (
+      {Object.keys(messages).length === 0 && !hasBadWord ? (
+        <QuickChat myId={myId} lolNickname={lolNickname} />
+      ) : (
         Object.entries(messages as Messages).map(([date, msgs]) => (
           <React.Fragment key={date}>
             <DayDivider>{date}</DayDivider>
             {msgs.map((message) => (
-              <Message key={message.createdAt} message={message} />
+              <Message key={message.createdAt} myId={myId} message={message} />
             ))}
           </React.Fragment>
         ))
-      ) : (
-        <QuickChat userId={userId} />
       )}
       {isOpponentTyping && (
         <OpponentSpeechBubble>
@@ -102,7 +104,7 @@ function MessageArea(props: MessageProps) {
             setHasBadWord={setHasBadWord}
             input={input}
             setInput={setInput}
-            userId={userId}
+            myId={myId}
           />
         )}
       </div>

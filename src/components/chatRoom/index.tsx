@@ -12,10 +12,11 @@ import { ChatRoomContainer } from './style';
 import { useTimer } from '../../utils';
 
 import type { Messages, ReceivedMessage, Opponent } from '../../types/api.type';
-
-const userId = '62e2937b0763ae06b6956d9c';
+import useGetAuth from '../../hooks/useGetAuth';
 
 function ChatRoom({ roomId }: { roomId: string }) {
+  const { userId: myId, lolNickname } = useGetAuth();
+
   const [messages, addMessage, setMessages] = useMessages();
   const [newReceivedMessage, setNewReceivedMessage] = useState('');
 
@@ -55,22 +56,32 @@ function ChatRoom({ roomId }: { roomId: string }) {
     [setMessages]
   );
 
-  useEffect(() => {
-    socket.emit('enterChatRoom', roomId, userId);
+  const handleEnterChatRoom = useCallback((opponent: Opponent, msgs: Messages[]) => {
+    setRoomData(opponent);
+    setDefaultMessages(msgs);
+  }, []);
 
-    socket.on('onEnterChatRoom', (opponent: Opponent, msgs: Messages[]) => {
-      setRoomData(opponent);
-      setDefaultMessages(msgs);
-    });
-
-    // TODO 내가 보낸 메시지에 대한 반환은 다른 이벤트로.
-    // socket.on('onSendMessage')
-
-    socket.on('receiveMessage', (message: ReceivedMessage) => {
-      setIsOpponentTypingTyping(false);
+  const handleReceiveMessage = useCallback(
+    (message: ReceivedMessage) => {
+      if (message.userId !== myId) {
+        setIsOpponentTypingTyping(false);
+        setNewReceivedMessage(message.text);
+      }
       addMessage(message);
-      setNewReceivedMessage(message.text);
-    });
+      socket.emit('readMessage', roomId, myId);
+    },
+    [socket]
+  );
+
+  useEffect(() => {
+    socket.emit('enterChatRoom', roomId, myId);
+    socket.on('onEnterChatRoom', handleEnterChatRoom);
+    socket.on('receiveMessage', handleReceiveMessage);
+
+    return () => {
+      socket.off('onEnterChatRoom', handleEnterChatRoom);
+      socket.off('receiveMessage', handleReceiveMessage);
+    };
   }, [socket]);
 
   socket.on('onTyping', () => {
@@ -94,14 +105,15 @@ function ChatRoom({ roomId }: { roomId: string }) {
         input={input}
         setInput={setInput}
         isOpponentTyping={isOpponentTyping}
-        userId={userId}
+        myId={myId}
+        lolNickname={lolNickname}
       />
       <InputArea
         setHasBadWord={setHasBadWord}
         input={input}
         setInput={setInput}
         roomId={roomId}
-        userId={userId}
+        myId={myId}
       />
     </ChatRoomContainer>
   );
