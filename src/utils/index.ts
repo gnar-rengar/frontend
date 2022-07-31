@@ -1,3 +1,5 @@
+import txt from './filters.txt';
+
 /**
  * `interval(ms)` 간격으로 쓰로틀링
  */
@@ -46,4 +48,8 @@ function useTimer(cb: (args: void) => void, interval: number) {
 
 const separateStringInNumber = (str: string) => +str.match(/\d/g).join('');
 
-export { throttle, sortByKey, useTimer, separateStringInNumber };
+const test = (str: string) => {
+  const filter = txt.split(/\r\n/);
+  str.match();
+};
+export { throttle, sortByKey, useTimer, separateStringInNumber, test };
