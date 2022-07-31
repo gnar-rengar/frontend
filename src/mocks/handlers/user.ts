@@ -171,9 +171,9 @@ export const userHandlers = [
     ];
 
     const recentRecord: RecentRecord[] = [];
-    Array(5)
-      .fill(0)
-      .forEach(() => recentRecord.push(result[Math.round(Math.random())]));
+    // Array(5)
+    //   .fill(0)
+    //   .forEach(() => recentRecord.push(result[Math.round(Math.random())]));
 
     return res(
       ctx.json({
