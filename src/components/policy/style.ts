@@ -6,3 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 16px;
 `;
+
+export const Ol = styled.ol`
+  margin-left: 16px;
+`;
