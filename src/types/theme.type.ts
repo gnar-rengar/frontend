@@ -24,4 +24,7 @@ export type ColorVariant =
   | 'onBackground'
   | 'onSurface'
   | 'onBackgroundSub'
-  | 'disable';
+  | 'disable'
+  | 'discord'
+  | 'kakao'
+  | 'naver';

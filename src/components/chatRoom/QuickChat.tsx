@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useQueryClient } from 'react-query';
+import { SocketContext } from '../../contexts/socket';
 import { Typography } from '../common';
 import {
   ButtonWrapper,
@@ -8,16 +10,22 @@ import {
   QuickChatSpeechBubbleContainer,
 } from './style';
 
-import type { AddMessage } from '../../hooks/useMessages';
+function QuickChat({ userId }: { userId: string }) {
+  const socket = useContext(SocketContext);
 
-interface QuickChatProps {
-  addMessages: AddMessage;
-}
+  const roomData = useQueryClient().getQueryData<{
+    roomId: string;
+    opponent: {
+      userId: string;
+      profileUrl: string;
+      lolNickname: string;
+    };
+  }>('chatRoom');
+  const roomId = roomData?.roomId;
 
-function QuickChat({ addMessages }: QuickChatProps) {
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    const target = e.target as HTMLElement;
-    addMessages('1', target.innerText);
+    const text = (e.target as HTMLElement).innerText;
+    socket.emit('sendMessage', roomId, userId, text);
   };
 
   return (

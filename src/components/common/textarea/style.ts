@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
-export const TextAreaContainer = styled.div`
+export const TextAreaContainer = styled.div<{ width: string }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 343px;
+  width: ${(props) => props.width};
   min-height: 176px;
   padding: 16px;
   gap: 6px;

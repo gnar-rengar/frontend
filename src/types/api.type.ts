@@ -28,53 +28,46 @@ export interface ReviewWriteDTO {
   additionalBadReaview: string;
 }
 
-export interface LoginDTO {
-  success: boolean;
-  token: string;
-  refreshToken: string;
-  nickname: string;
-  userId: string;
+export interface LoginDTO extends AuthUserDTO {
   rtokenExpireTime: string;
   tokenExpireTime: string;
 }
 
-export interface UserProfileDTO {
-  nickname: string;
+export interface ProfileDTO {
+  lolNickname: string;
   profileUrl: string;
-  goodFeedback: Feedback[];
-  tier: Tier;
-  playStyles: string[];
-  positions: string[];
-  voice: boolean;
+  goodReview: Review[];
+  tier: string;
+  rank: string;
+  leaguePoints: string;
+  playStyle: string[];
+  position: string[];
+  useVoice: boolean;
   voiceChannel: string[];
   communication: string;
-  mostChamps: string[];
+  mostChampion: string[];
+  roomId: string;
 }
+
+export type Position = '탑' | '정글' | '미드' | '원딜' | '서폿';
 
 export interface MyPageDTO {
-  nickname: string;
+  lolNickname: string;
   profileUrl: string;
-  voice: boolean;
-  tier: Tier;
-  positions: string[];
-  playStyles: string[];
-  goodFeedback: Feedback[];
-  badFeedback: Feedback[];
+  tier: string;
+  rank: string;
+  leaguePoints: string;
+  playStyle: string[];
+  position: Position[];
+  useVoice: boolean;
+  goodReview: Review[];
+  badReview: Review[];
 }
 
-export interface Feedback {
+export interface Review {
   description: string;
   count: number;
-}
-
-export interface Tier {
-  tier: string;
-  rank: number;
-}
-
-export interface MatchDTO {
-  success: boolean;
-  recentRecord: RecentRecord[];
+  _id: string;
 }
 
 export interface RecentRecord {
@@ -85,10 +78,10 @@ export interface RecentRecord {
   gameEndTimestamp: number;
   win: boolean;
   championName: string;
-  primaryStyle: string;
-  subStyle: string;
   spell1: string;
   spell2: string;
+  perk1: string;
+  perk2: string;
   item0: number;
   item1: number;
   item2: number;
@@ -104,6 +97,49 @@ export interface RecentRecord {
   kda: number;
 }
 
+export interface MatchHistoryDTO {
+  recentRecord: RecentRecord[];
+}
+
 export interface NicknameCheckDTO extends ResponseDTO {
   profileUrl: string;
+}
+
+export interface Room {
+  roomId: string;
+  userId: string;
+  lolNickname: string;
+  profileUrl: string;
+  lastMessageText: string;
+  lastMessagedTime: string;
+  unRead: number;
+}
+
+export interface Message {
+  userId: string;
+  text: string;
+  createdAt: string;
+}
+
+export type Messages = {
+  [key in string]: Message[];
+};
+
+export type ReceivedMessage = Message & { date: string; isRead: boolean };
+
+export interface Opponent {
+  userId: string;
+  profileUrl: string;
+  lolNickname: string;
+}
+
+export interface EnterChatRoomDTO {
+  opponent: Opponent;
+  messages: Messages[];
+}
+
+export interface AuthUserDTO {
+  userId: string;
+  lolNickname: string;
+  profileURL: string;
 }

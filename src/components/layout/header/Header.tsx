@@ -32,7 +32,7 @@ function Header() {
         ),
       },
       {
-        href: '/chat',
+        href: '/chats',
         component: <Image src="/icons/chat.svg" width={lg} height={lg} alt="chat" />,
       },
       {

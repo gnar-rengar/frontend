@@ -33,7 +33,7 @@ function PlayStyleSection(props: PlayStyleSectionProps) {
         이 중에서 나랑 잘 맞는 부분은
         <Typography variant="captionRegular" component="span" color="primary">
           {' '}
-          민트색
+          이 색
         </Typography>
         으로 표현했어요
       </Typography>

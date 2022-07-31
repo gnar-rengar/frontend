@@ -66,18 +66,6 @@ function OnBoarding() {
   const [queryEnabled, setQueryEnabled] = useState(false); // 사용자 로그인 정보 api 및 로직 구현 후 적용
   const userData = useGetOnBoarding(queryEnabled, setQueryEnabled);
 
-  const playStyleDefaultValuesFn = () => {
-    if (Object.values(tendencyTestResult).length === 0) {
-      return {
-        battle: userData?.playStyle[0],
-        line: userData?.playStyle[1],
-        champion: userData?.playStyle[2],
-        physical: userData?.playStyle[3],
-      };
-    }
-    return tendencyTestResult;
-  };
-
   const {
     register,
     handleSubmit,

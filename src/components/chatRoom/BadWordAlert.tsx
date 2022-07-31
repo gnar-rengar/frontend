@@ -1,25 +1,38 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useQueryClient } from 'react-query';
 import { Button, Typography } from '../common';
+import { SocketContext } from '../../contexts/socket';
 import { ButtonContainer, Notice, WarningMessageContainer } from './style';
+import { queryKeys } from '../../hooks/queryKeys';
 
-import type { AddMessage } from '../../hooks/useMessages';
+import type { Opponent } from '../../types/api.type';
 
 interface BadWordAlertProps {
-  addMessages: AddMessage;
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
-  inputRef: React.MutableRefObject<string>;
+  input: string;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
+  userId: string;
 }
 
 function BadWordAlert(props: BadWordAlertProps) {
-  const { addMessages, setHasBadWord, inputRef } = props;
+  const { setHasBadWord, input, setInput, userId } = props;
 
-  const handleClickRewrite = () => {
+  const socket = useContext(SocketContext);
+
+  const roomData = useQueryClient().getQueryData<{
+    roomId: string;
+    opponent: Opponent;
+  }>(queryKeys.chatRoom);
+  const roomId = roomData?.roomId;
+
+  const handleClick = () => {
+    setInput('');
     setHasBadWord(false);
   };
 
   const handleClickIgnore = () => {
-    addMessages('1', inputRef.current);
-    setHasBadWord(false);
+    socket.emit('sendMessage', roomId, userId, input);
+    handleClick();
   };
 
   return (
@@ -32,7 +45,7 @@ function BadWordAlert(props: BadWordAlertProps) {
       </WarningMessageContainer>
       <Typography variant="body3">상대방을 조금 더 배려하는건 어떨까요?</Typography>
       <ButtonContainer>
-        <Button variant="contained" color="primaryVariant" size="sm" onClick={handleClickRewrite}>
+        <Button variant="contained" color="primaryVariant" size="sm" onClick={handleClick}>
           다시 작성
         </Button>
         <Button variant="contained" color="disable" size="sm" onClick={handleClickIgnore}>

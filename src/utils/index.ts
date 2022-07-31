@@ -29,4 +29,21 @@ const sortByKey = (obj: PlainObject, order: 'asc' | 'desc' = 'desc') =>
       return prev;
     }, {} as PlainObject);
 
-export { throttle, sortByKey };
+function useTimer(cb: (args: void) => void, interval: number) {
+  let timer: NodeJS.Timeout = null;
+
+  const setTime = () => {
+    timer = setTimeout(cb, interval);
+  };
+
+  const clearTime = () => {
+    clearTimeout(timer);
+    timer = null;
+  };
+
+  return [setTime, clearTime];
+}
+
+const separateStringInNumber = (str: string) => +str.match(/\d/g).join('');
+
+export { throttle, sortByKey, useTimer, separateStringInNumber };

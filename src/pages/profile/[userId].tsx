@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next';
 import React, { Suspense } from 'react';
-import UserProfile from '../../components/userProfile';
+import UserProfile from '../../components/profile';
 
 interface UserProfilePageProps {
   userId: string;

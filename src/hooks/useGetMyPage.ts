@@ -4,14 +4,15 @@ import { axios } from '../axios';
 import type { MyPageDTO } from '../types/api.type';
 import { queryKeys } from './queryKeys';
 
-const fetchMyPage = async () => {
+export const fetchMyPage = async () => {
   const { data } = await axios.get<MyPageDTO>('/user/mypage');
   return data;
 };
 
+// TODO suspense로 되지 않는 이유 찾고 수정.
 const useGetMyPage = () => {
-  const { data } = useQuery(queryKeys.myPage, fetchMyPage);
-  return data;
+  const query = useQuery(queryKeys.myPage, fetchMyPage, { suspense: false });
+  return query;
 };
 
 export default useGetMyPage;

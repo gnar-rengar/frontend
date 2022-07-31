@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import React from 'react';
+import React, { memo } from 'react';
 import { Typography } from '../common';
 import {
   MyMessageContainer,
@@ -8,29 +8,29 @@ import {
   OpponentSpeechBubble,
 } from './style';
 
-import type { Message as MessageType } from '../../hooks/useMessages';
+import type { Message as MessageType } from '../../types/api.type';
 
 interface MessageProps {
   message: MessageType;
 }
 
-const myId = '1';
+const myId = '62d509be151f1fb3b2e0f792';
 
 function Message(props: MessageProps) {
   const {
-    message: { id, timestamp, message },
+    message: { userId, text, createdAt },
   } = props;
 
-  const time = dayjs(timestamp).format('A h:mm');
-  if (id === myId) {
+  const time = dayjs(createdAt).format('A h:mm');
+  if (userId === myId) {
     return (
       <MyMessageContainer>
         <Typography variant="captionRegular" color="onBackgroundSub">
           {time}
         </Typography>
         <MySpeechBubble>
-          <Typography variant="body2" color="onPrimary">
-            {message}
+          <Typography variant="body2" color="onPrimary" paragraph>
+            {text}
           </Typography>
         </MySpeechBubble>
       </MyMessageContainer>
@@ -40,8 +40,8 @@ function Message(props: MessageProps) {
   return (
     <OpponentMessageContainer>
       <OpponentSpeechBubble>
-        <Typography variant="body2" color="surface">
-          {message}
+        <Typography variant="body2" color="surface" paragraph>
+          {text}
         </Typography>
       </OpponentSpeechBubble>
       <Typography variant="captionRegular" color="onBackgroundSub">
@@ -51,4 +51,4 @@ function Message(props: MessageProps) {
   );
 }
 
-export default Message;
+export default memo(Message);

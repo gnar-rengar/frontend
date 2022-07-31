@@ -13,7 +13,7 @@ import type { CardProps } from './Card';
 type InfoAreaProps = Omit<CardProps, 'profileUrl'>;
 
 function InfoArea(props: InfoAreaProps) {
-  const { tier, nickname, positions, playStyles, voice } = props;
+  const { lolNickname, useVoice, tier, rank, playStyle, position } = props;
 
   const {
     icon: {
@@ -24,23 +24,25 @@ function InfoArea(props: InfoAreaProps) {
   return (
     <StyledInfoArea>
       <Top>
-        <Tier>{`${tier.tier} ${tier.rank}`}</Tier>
+        <Tier>
+          {tier} {rank}
+        </Tier>
         <NameVoiceAndPosition>
           <NameVoice>
             <Typography variant="body1" data-testid="nickname">
-              {nickname}
+              {lolNickname}
             </Typography>
-            {voice ? (
+            {useVoice ? (
               <Image src="/icons/voice.svg" width={sm} height={sm} alt="voice on" />
             ) : (
               <Image src="/icons/voice-off.svg" width={sm} height={sm} alt="voice off" />
             )}
           </NameVoice>
-          <Position positions={positions} />
+          <Position positions={position} />
         </NameVoiceAndPosition>
       </Top>
       <Bottom>
-        <PlayStyle playStyles={playStyles} />
+        <PlayStyle playStyles={playStyle} />
       </Bottom>
     </StyledInfoArea>
   );
