@@ -49,7 +49,7 @@ function useTimer(cb: (args: void) => void, interval: number) {
 const separateStringInNumber = (str: string) => +str.match(/\d/g).join('');
 
 const badWordFilter = (() => {
-  const filter = new RegExp(txt.replace(/\r\n/g, '|'));
+  const filter = new RegExp(txt.replace(/\n/g, '|'));
 
   return (str: string) => {
     const censored = str.replace(filter, (substr) => '*'.repeat(substr.length));
