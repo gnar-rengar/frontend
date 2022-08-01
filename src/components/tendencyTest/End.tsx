@@ -8,6 +8,9 @@ import {
   EndContainer,
   PlayStyleContainer,
   StartEndButtonContainer,
+  ShareContainer,
+  ShareButton,
+  Share,
 } from './style';
 
 interface EndProps {
@@ -56,6 +59,38 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
           <br />
           찰떡궁합 듀오가 기다리오 있어요
         </Typography>
+        <ShareContainer>
+          <Share>
+            <ShareButton color="kakao">
+              <Image src="/icons/kakao.svg" width="24px" height="24px" alt="kakao share" />
+            </ShareButton>
+            <Typography align="center" variant="captionSmallRegular">
+              카카오톡으로
+              <br />
+              공유하기
+            </Typography>
+          </Share>
+          <Share>
+            <ShareButton color="linkShare">
+              <Image src="/icons/link.svg" width="24px" height="24px" alt="kakao share" />
+            </ShareButton>
+            <Typography align="center" variant="captionSmallRegular">
+              링크로
+              <br />
+              공유하기
+            </Typography>
+          </Share>
+          <Share>
+            <ShareButton color="otherShare">
+              <Image src="/icons/save.svg" width="24px" height="24px" alt="kakao share" />
+            </ShareButton>
+            <Typography align="center" variant="captionSmallRegular">
+              다른 곳으로
+              <br />
+              공유하기
+            </Typography>
+          </Share>
+        </ShareContainer>
       </EndContainer>
       <StartEndButtonContainer>
         <Button onClick={onClickTestReset} size="md" variant="text" color="primaryVariant">
