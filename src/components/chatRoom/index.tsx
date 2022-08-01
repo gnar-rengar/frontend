@@ -9,9 +9,8 @@ import InputArea from './InputArea';
 import MessageArea from './MessageArea';
 import { ChatRoomContainer } from './style';
 
-import { useTimer } from '../../utils';
-
 import type { Messages, ReceivedMessage, Opponent } from '../../types/api.type';
+import { useTimer } from '../../utils';
 
 const userId = '62e2937b0763ae06b6956d9c';
 

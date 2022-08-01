@@ -36,7 +36,7 @@ import {
 
 type PlayStyleKey = 'battle' | 'line' | 'champion' | 'physical';
 
-const validationSchema = yup.object().shape({
+const onBoardingSchema = yup.object().shape({
   lolNickname: yup.string().required(onBoardingErrorMessage.nickName),
   nickNameCheck: yup.boolean().oneOf([true], onBoardingErrorMessage.nickNameCheck),
   position: yup
@@ -97,7 +97,7 @@ function OnBoarding() {
       useVoice: userData?.useVoice || true,
       communication: userData?.communication || '',
     },
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(onBoardingSchema),
     mode: 'onChange',
   });
   const nickNameButtonActive = watch('nickNameCheck');
