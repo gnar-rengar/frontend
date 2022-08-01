@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { useQueryClient } from 'react-query';
 import useMessages from '../../hooks/useMessages';
-import { queryKeys } from '../../hooks/queryKeys';
+import useGetAuth from '../../hooks/useGetAuth';
+import useGetMessages from '../../hooks/useGetMessages';
 
 import { SocketContext } from '../../contexts/socket';
 
@@ -11,11 +11,12 @@ import { ChatRoomContainer } from './style';
 
 import { useTimer } from '../../utils';
 
-import type { Messages, ReceivedMessage, Opponent } from '../../types/api.type';
-import useGetAuth from '../../hooks/useGetAuth';
+import type { Messages, ReceivedMessage } from '../../types/api.type';
 
 function ChatRoom({ roomId }: { roomId: string }) {
   const { userId: myId, lolNickname } = useGetAuth();
+
+  const { chat } = useGetMessages(roomId);
 
   const [messages, addMessage, setMessages] = useMessages();
   const [newReceivedMessage, setNewReceivedMessage] = useState('');
@@ -28,18 +29,6 @@ function ChatRoom({ roomId }: { roomId: string }) {
   const socket = useContext(SocketContext);
 
   const [setTimer, clearTimer] = useTimer(() => setIsOpponentTypingTyping(false), 5000);
-
-  const queryClient = useQueryClient();
-
-  const setRoomData = useCallback(
-    (opponent: Opponent) => {
-      queryClient.setQueryData(queryKeys.chatRoom, {
-        roomId,
-        opponent,
-      });
-    },
-    [queryClient]
-  );
 
   const setDefaultMessages = useCallback(
     (msgs: Messages[]) => {
@@ -56,11 +45,6 @@ function ChatRoom({ roomId }: { roomId: string }) {
     [setMessages]
   );
 
-  const handleEnterChatRoom = useCallback((opponent: Opponent, msgs: Messages[]) => {
-    setRoomData(opponent);
-    setDefaultMessages(msgs);
-  }, []);
-
   const handleReceiveMessage = useCallback(
     (message: ReceivedMessage) => {
       if (message.userId !== myId) {
@@ -73,31 +57,39 @@ function ChatRoom({ roomId }: { roomId: string }) {
     [socket]
   );
 
-  useEffect(() => {
-    socket.emit('enterChatRoom', roomId, myId);
-    socket.on('onEnterChatRoom', handleEnterChatRoom);
-    socket.on('receiveMessage', handleReceiveMessage);
-
-    return () => {
-      socket.off('onEnterChatRoom', handleEnterChatRoom);
-      socket.off('receiveMessage', handleReceiveMessage);
-    };
-  }, [socket]);
-
-  socket.on('onTyping', () => {
+  const handleOnTyping = useCallback(() => {
     clearTimer();
     setIsOpponentTypingTyping(true);
     setTimer();
-  });
+  }, []);
 
-  socket.on('onEndTyping', () => {
+  const handleOnEndTyping = useCallback(() => {
     clearTimer();
     setIsOpponentTypingTyping(false);
-  });
+  }, []);
+
+  useEffect(() => {
+    setDefaultMessages(chat);
+  }, []);
+
+  useEffect(() => {
+    socket.emit('enterChatRoom', roomId, myId);
+    socket.on('receiveMessage', handleReceiveMessage);
+    socket.on('onTyping', handleOnTyping);
+    socket.on('onEndTyping', handleOnEndTyping);
+
+    return () => {
+      socket.off('receiveMessage', handleReceiveMessage);
+      socket.off('onTyping', handleOnTyping);
+      socket.off('onEndTyping', handleOnEndTyping);
+    };
+  }, [socket]);
 
   return (
     <ChatRoomContainer>
+      {/* <Header opponent={opponent} /> */}
       <MessageArea
+        roomId={roomId}
         messages={messages}
         newReceivedMessage={newReceivedMessage}
         hasBadWord={hasBadWord}
@@ -109,10 +101,10 @@ function ChatRoom({ roomId }: { roomId: string }) {
         lolNickname={lolNickname}
       />
       <InputArea
+        roomId={roomId}
         setHasBadWord={setHasBadWord}
         input={input}
         setInput={setInput}
-        roomId={roomId}
         myId={myId}
       />
     </ChatRoomContainer>

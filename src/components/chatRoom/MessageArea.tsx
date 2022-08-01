@@ -14,6 +14,7 @@ import type { Messages } from '../../types/api.type';
 const INPUT_AREA_HEIGHT = 48;
 
 interface MessageProps {
+  roomId: string;
   messages: Messages;
   newReceivedMessage: string;
   hasBadWord: boolean;
@@ -27,6 +28,7 @@ interface MessageProps {
 
 function MessageArea(props: MessageProps) {
   const {
+    roomId,
     messages,
     newReceivedMessage,
     hasBadWord,
@@ -82,7 +84,7 @@ function MessageArea(props: MessageProps) {
   return (
     <MessageAreaContainer ref={containerRef}>
       {Object.keys(messages).length === 0 && !hasBadWord ? (
-        <QuickChat myId={myId} lolNickname={lolNickname} />
+        <QuickChat roomId={roomId} myId={myId} lolNickname={lolNickname} />
       ) : (
         Object.entries(messages as Messages).map(([date, msgs]) => (
           <React.Fragment key={date}>
@@ -98,16 +100,16 @@ function MessageArea(props: MessageProps) {
           <Typing />
         </OpponentSpeechBubble>
       )}
-      <div ref={scrollRef}>
-        {hasBadWord && (
-          <BadWordAlert
-            setHasBadWord={setHasBadWord}
-            input={input}
-            setInput={setInput}
-            myId={myId}
-          />
-        )}
-      </div>
+      {hasBadWord && (
+        <BadWordAlert
+          roomId={roomId}
+          setHasBadWord={setHasBadWord}
+          input={input}
+          setInput={setInput}
+          myId={myId}
+        />
+      )}
+      <div ref={scrollRef} />
       {isNewMsgNoticeShown && (
         <NewMessageNotice
           setIsNewMsgNoticeShown={setIsNewMsgNoticeShown}

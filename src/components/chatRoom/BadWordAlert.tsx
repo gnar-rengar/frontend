@@ -1,13 +1,10 @@
 import React, { useContext } from 'react';
-import { useQueryClient } from 'react-query';
 import { Button, Typography } from '../common';
 import { SocketContext } from '../../contexts/socket';
 import { ButtonContainer, Notice, WarningMessageContainer } from './style';
-import { queryKeys } from '../../hooks/queryKeys';
-
-import type { Opponent } from '../../types/api.type';
 
 interface BadWordAlertProps {
+  roomId: string;
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
@@ -15,15 +12,9 @@ interface BadWordAlertProps {
 }
 
 function BadWordAlert(props: BadWordAlertProps) {
-  const { setHasBadWord, input, setInput, myId } = props;
+  const { roomId, setHasBadWord, input, setInput, myId } = props;
 
   const socket = useContext(SocketContext);
-
-  const roomData = useQueryClient().getQueryData<{
-    roomId: string;
-    opponent: Opponent;
-  }>(queryKeys.chatRoom);
-  const roomId = roomData?.roomId;
 
   const handleClick = () => {
     setInput('');

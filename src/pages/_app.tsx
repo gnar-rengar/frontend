@@ -11,6 +11,7 @@ import Layout from '../components/layout/Layout';
 import SocketProvider from '../contexts/socket';
 import { darkTheme } from '../theme';
 import GlobalStyle from '../theme/globalStyle';
+import Header from '../components/layout/header/Header';
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => React.ReactNode;
@@ -27,7 +28,8 @@ type AppPropsWithLayout = AppProps & {
 dayjs.locale('ko');
 
 function App({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.getLayout || ((page: React.ReactNode) => <Layout>{page}</Layout>);
+  const getLayout =
+    Component.getLayout || ((page: React.ReactNode) => <Layout header={<Header />}>{page}</Layout>);
   const queryClient = useRef(
     new QueryClient({
       defaultOptions: {
