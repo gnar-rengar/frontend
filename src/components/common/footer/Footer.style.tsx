@@ -6,7 +6,7 @@ const Container = styled.div`
 `;
 
 export const FooterContainer = styled(Container)`
-  padding: 16px 0 64px;
+  padding: 64px 0;
   gap: 16px;
 `;
 
@@ -21,5 +21,6 @@ export const LinkContainer = styled.div`
 `;
 
 export const UnderLineLink = styled.a`
+  cursor: pointer;
   text-decoration: underline;
 `;

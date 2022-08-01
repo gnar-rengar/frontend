@@ -27,6 +27,7 @@ function GlobalStyle() {
         a {
           text-decoration: none;
           outline: none;
+          color: inherit;
         }
         a:visited {
           text-decoration: none;

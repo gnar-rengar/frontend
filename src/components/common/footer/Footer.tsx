@@ -22,12 +22,12 @@ function Footer() {
       </Typography>
       <LinkContainer>
         <Typography variant="captionBold">
-          <Link href="/my-page">
+          <Link href="/policy/privacy">
             <UnderLineLink>개인정보처리방침</UnderLineLink>
           </Link>
         </Typography>
         <Typography variant="captionRegular">
-          <Link href="/my-page">
+          <Link href="/policy/service">
             <UnderLineLink>이용약관</UnderLineLink>
           </Link>
         </Typography>

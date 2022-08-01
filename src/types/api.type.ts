@@ -1,6 +1,16 @@
-export interface ResponseDTO {
-  success: boolean;
-  message: string;
+export type Position = '탑' | '정글' | '미드' | '원딜' | '서폿';
+export type FilterTierType = '아이언' | '브론즈' | '실버' | '골드' | '플래티넘' | '다이아';
+
+export interface ListDTO {
+  leaguePoints: string;
+  lolNickname: string;
+  playStyle: string[];
+  position: Position[];
+  profileUrl: string;
+  rank: string;
+  tier: string;
+  useVoice: boolean;
+  _id?: string;
 }
 
 export type PlayStyleType = {
@@ -48,8 +58,6 @@ export interface ProfileDTO {
   mostChampion: string[];
   roomId: string;
 }
-
-export type Position = '탑' | '정글' | '미드' | '원딜' | '서폿';
 
 export interface MyPageDTO {
   lolNickname: string;
@@ -101,8 +109,10 @@ export interface MatchHistoryDTO {
   recentRecord: RecentRecord[];
 }
 
-export interface NicknameCheckDTO extends ResponseDTO {
+export interface NicknameCheckDTO {
+  lolNickname: string;
   profileUrl: string;
+  message: string;
 }
 
 export interface Room {
@@ -142,4 +152,16 @@ export interface AuthUserDTO {
   userId: string;
   lolNickname: string;
   profileURL: string;
+}
+
+export interface FilterRequestDTO {
+  tier: FilterTierType[];
+}
+
+export interface SummonerFitRecommendDTO {
+  customList: ListDTO[];
+}
+
+export interface SummonerNewRecommendDTO {
+  newList: ListDTO[];
 }

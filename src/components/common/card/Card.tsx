@@ -1,12 +1,14 @@
 import React from 'react';
+import { MyPageDTO } from '../../../types/api.type';
 
 import ImageArea from './ImageArea';
 import InfoArea from './InfoArea';
-import { CardProps } from './LargeCard';
 
 import { StyledCard } from './style';
 
-function SmallCard(props: CardProps) {
+export type CardProps = Omit<MyPageDTO, 'goodReview' | 'badReview'>;
+
+function Card(props: CardProps) {
   const { profileUrl, ...other } = props;
 
   return (
@@ -17,4 +19,4 @@ function SmallCard(props: CardProps) {
   );
 }
 
-export default SmallCard;
+export default Card;

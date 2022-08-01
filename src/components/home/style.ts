@@ -8,7 +8,8 @@ export const HomeContainer = styled.div`
 
 export const SwiperContainer = styled.div`
   width: 100vw;
-  margin-left: calc(-50vw + 50%);
+  max-width: 480px;
+  margin-left: -16px;
   padding-bottom: 16px;
   --swiper-theme-color: ${(props) => props.theme.color.onBackground};
 `;
@@ -32,11 +33,11 @@ export const MoreContainer = styled.div`
   padding: 4px 0px;
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 4px;
   cursor: pointer;
 `;
 
-export const Blur = styled.div`
+export const BlurContainer = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;

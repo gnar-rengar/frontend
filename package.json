@@ -35,10 +35,11 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.32.2",
+    "react-intersection-observer": "^9.4.0",
     "react-query": "^3.39.1",
     "recoil": "^0.7.3-alpha.2",
-    "swiper": "^8.3.0",
     "socket.io-client": "^4.5.1",
+    "swiper": "^8.3.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
