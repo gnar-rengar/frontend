@@ -77,6 +77,10 @@ const tendencyImage = {
   end: '/expression/penguin.png',
 };
 
+const withdrawalErrorMessage = {
+  agree: '주의사항에 동의해주세요',
+};
+
 export {
   position,
   voiceChannel,
@@ -89,4 +93,5 @@ export {
   tendencyQuestion,
   tendencyAnswer,
   tendencyImage,
+  withdrawalErrorMessage,
 };
