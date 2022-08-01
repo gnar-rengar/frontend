@@ -200,7 +200,7 @@ export const HeaderContainer = styled.div`
   background: ${({ theme }) => theme.color.surface};
   z-index: 10;
 
-  & > a {
+  & > div {
     display: inline-flex;
     align-items: center;
     height: 100%;

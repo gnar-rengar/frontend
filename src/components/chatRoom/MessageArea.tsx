@@ -100,17 +100,16 @@ function MessageArea(props: MessageProps) {
           <Typing />
         </OpponentSpeechBubble>
       )}
-      <div ref={scrollRef}>
-        {hasBadWord && (
-          <BadWordAlert
-            roomId={roomId}
-            setHasBadWord={setHasBadWord}
-            input={input}
-            setInput={setInput}
-            myId={myId}
-          />
-        )}
-      </div>
+      {hasBadWord && (
+        <BadWordAlert
+          roomId={roomId}
+          setHasBadWord={setHasBadWord}
+          input={input}
+          setInput={setInput}
+          myId={myId}
+        />
+      )}
+      <div ref={scrollRef} />
       {isNewMsgNoticeShown && (
         <NewMessageNotice
           setIsNewMsgNoticeShown={setIsNewMsgNoticeShown}
