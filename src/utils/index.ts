@@ -52,8 +52,13 @@ const badWordFilter = (() => {
   const filter = new RegExp(txt.replace(/\r\n/g, '|'));
 
   return (str: string) => {
-    const result = str.replace(filter, (substr) => '*'.repeat(substr.length));
-    return result === str ? str : result;
+    const censored = str.replace(filter, (substr) => '*'.repeat(substr.length));
+    const hasBadWord = censored !== str;
+
+    return {
+      hasBadWord,
+      censored,
+    };
   };
 })();
 

@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useQueryClient } from 'react-query';
 import useMessages from '../../hooks/useMessages';
+import useGetAuth from '../../hooks/useGetAuth';
 import { queryKeys } from '../../hooks/queryKeys';
 
 import { SocketContext } from '../../contexts/socket';
@@ -12,7 +13,6 @@ import { ChatRoomContainer } from './style';
 import { useTimer } from '../../utils';
 
 import type { Messages, ReceivedMessage, Opponent } from '../../types/api.type';
-import useGetAuth from '../../hooks/useGetAuth';
 
 function ChatRoom({ roomId }: { roomId: string }) {
   const { userId: myId, lolNickname } = useGetAuth();
