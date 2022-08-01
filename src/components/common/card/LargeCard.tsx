@@ -2,7 +2,6 @@ import { useTheme } from '@emotion/react';
 import Image from 'next/image';
 import React from 'react';
 import { Typography } from '..';
-import { CardProps } from '../../../types/api.type';
 import PlayStyle from './PlayStyle';
 import Position from './Position';
 import {
@@ -14,6 +13,19 @@ import {
   RecommandInfoContainer,
   Tier,
 } from './style';
+import { Position as PositionType } from '../../../types/api.type';
+
+export interface CardProps {
+  leaguePoints: string;
+  lolNickname: string;
+  playStyle: string[];
+  position: PositionType[];
+  profileUrl: string;
+  rank: string;
+  tier: string;
+  useVoice: boolean;
+  _id?: string;
+}
 
 function LargeCard(props: CardProps) {
   const { profileUrl, tier, rank, lolNickname, position, playStyle, useVoice } = props;

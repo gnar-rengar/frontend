@@ -1,8 +1,8 @@
 import React from 'react';
-import { CardProps } from '../../../types/api.type';
 
 import ImageArea from './ImageArea';
 import InfoArea from './InfoArea';
+import { CardProps } from './LargeCard';
 
 import { StyledCard } from './style';
 

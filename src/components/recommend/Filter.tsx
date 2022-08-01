@@ -27,7 +27,7 @@ function Filter({ setFilterState }: FilterProps) {
   const [open, setOpen] = useState(false);
   const {
     icon: {
-      size: { sm },
+      size: { md },
     },
   } = useTheme();
 
@@ -48,7 +48,7 @@ function Filter({ setFilterState }: FilterProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FilterContainer open={open}>
+      <FilterContainer onClick={() => setOpen((prev) => !prev)} open={open}>
         {checkedTier && checkedTier.length > 0 ? (
           <Typography variant="body3">{checkedTier.join(', ')}</Typography>
         ) : (
@@ -58,21 +58,9 @@ function Filter({ setFilterState }: FilterProps) {
         )}
         <ArrowButtonContainer>
           {open ? (
-            <Image
-              onClick={() => setOpen((prev) => !prev)}
-              src="/icons/arrow-top.svg"
-              width={sm}
-              height={sm}
-              alt="filter close"
-            />
+            <Image src="/icons/arrow-top.svg" width={md} height={md} alt="filter close" />
           ) : (
-            <Image
-              onClick={() => setOpen((prev) => !prev)}
-              src="/icons/arrow-bottom.svg"
-              width={sm}
-              height={sm}
-              alt="filter open"
-            />
+            <Image src="/icons/arrow-bottom.svg" width={md} height={md} alt="filter open" />
           )}
         </ArrowButtonContainer>
       </FilterContainer>

@@ -7,7 +7,7 @@ import Position from './Position';
 import Typography from '../typography/Typography';
 
 import { Bottom, NameVoiceAndPosition, NameVoice, StyledInfoArea, Tier, Top } from './style';
-import { CardProps } from '../../../types/api.type';
+import { CardProps } from './LargeCard';
 
 type InfoAreaProps = Omit<CardProps, 'profileUrl'>;
 

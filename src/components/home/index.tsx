@@ -1,3 +1,4 @@
+import { useTheme } from '@emotion/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -8,7 +9,7 @@ import { SmallCard, Typography } from '../common';
 import Footer from '../common/footer/Footer';
 import Banner from './BannerSwiper';
 import Blur from './Blur';
-import RecommandSwiper from './RecommendSwiper';
+import RecommendSwiper from './RecommendSwiper';
 import { Container, HomeContainer, MoreContainer, TitleAndMoreContainer } from './style';
 
 function Home() {
@@ -18,20 +19,26 @@ function Home() {
     data: { pages },
   } = useGetNewSummonerList([]);
 
-  const newList = () => pages.map((page) => page.data.newList.filter((list, index) => index <= 2));
+  const {
+    icon: {
+      size: { sm },
+    },
+  } = useTheme();
+
+  const newList = pages[0].data.newList.slice(0, 3);
   const recommendProps = () => {
     if (userData) {
       return fitData?.customList;
     }
 
-    return newList()[0];
+    return newList;
   };
 
   return (
     <HomeContainer>
       <Banner />
       <Container>
-        {!userData && !userData?.lolNickname && <Blur />}
+        {!userData?.lolNickname && <Blur />}
         <TitleAndMoreContainer>
           <Typography variant="h3">
             {userData?.lolNickname}
@@ -45,15 +52,15 @@ function Home() {
                 <Typography variant="captionRegular">모아보기</Typography>
                 <Image
                   src="/icons/arrow-right.svg"
-                  width="16px"
-                  height="16px"
+                  width={sm}
+                  height={sm}
                   alt="harmony summonr recommend"
                 />
               </MoreContainer>
             </a>
           </Link>
         </TitleAndMoreContainer>
-        <RecommandSwiper listProps={recommendProps()} />
+        <RecommendSwiper listProps={recommendProps()} />
       </Container>
       <Container>
         <TitleAndMoreContainer>
@@ -72,7 +79,7 @@ function Home() {
             </a>
           </Link>
         </TitleAndMoreContainer>
-        {newList()[0].map((list) => (
+        {newList.map((list) => (
           <SmallCard {...list} key={list._id} />
         ))}
       </Container>

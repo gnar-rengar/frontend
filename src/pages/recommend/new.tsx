@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import New from '../../components/recommend/New';
 
 function NewPage() {
-  return <New />;
+  return (
+    <Suspense>
+      <New />
+    </Suspense>
+  );
 }
 
 export default NewPage;

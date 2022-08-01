@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Fit from '../../components/recommend/Fit';
 
 function FitPage() {
-  return <Fit />;
+  return (
+    <Suspense>
+      <Fit />
+    </Suspense>
+  );
 }
 
 export default FitPage;

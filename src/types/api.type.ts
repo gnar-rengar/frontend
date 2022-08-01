@@ -1,7 +1,7 @@
 export type Position = '탑' | '정글' | '미드' | '원딜' | '서폿';
 export type FilterTierType = '아이언' | '브론즈' | '실버' | '골드' | '플래티넘' | '다이아';
 
-export interface CardProps {
+export interface ListDTO {
   leaguePoints: string;
   lolNickname: string;
   playStyle: string[];
@@ -159,9 +159,9 @@ export interface FilterRequestDTO {
 }
 
 export interface SummonerFitRecommendDTO {
-  customList: CardProps[];
+  customList: ListDTO[];
 }
 
 export interface SummonerNewRecommendDTO {
-  newList: CardProps[];
+  newList: ListDTO[];
 }

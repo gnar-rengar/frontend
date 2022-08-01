@@ -33,7 +33,7 @@ export const MoreContainer = styled.div`
   padding: 4px 0px;
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 4px;
   cursor: pointer;
 `;
 
