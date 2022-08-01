@@ -80,7 +80,11 @@ function Home() {
           </Link>
         </TitleAndMoreContainer>
         {newList.map((list) => (
-          <SmallCard {...list} key={list._id} />
+          <Link href={`/profile/${list._id}`} key={list._id}>
+            <a>
+              <SmallCard {...list} />
+            </a>
+          </Link>
         ))}
       </Container>
       <Footer />

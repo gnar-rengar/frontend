@@ -20,7 +20,7 @@ interface FilterProps {
 }
 
 const filterSchema = yup.object().shape({
-  tier: yup.array(yup.string()).min(1, ''),
+  // tier: yup.array(yup.string()).min(1, ''),
 });
 
 function Filter({ setFilterState }: FilterProps) {
@@ -42,7 +42,7 @@ function Filter({ setFilterState }: FilterProps) {
   };
 
   const onSubmit: SubmitHandler<FilterRequestDTO> = (data) => {
-    const selectTier = data.tier.map((item) => tierEng[item]);
+    const selectTier = data.tier ? data.tier.map((item) => tierEng[item]) : [];
     setFilterState([...selectTier]);
   };
 
