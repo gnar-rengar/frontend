@@ -48,8 +48,13 @@ function useTimer(cb: (args: void) => void, interval: number) {
 
 const separateStringInNumber = (str: string) => +str.match(/\d/g).join('');
 
-const test = (str: string) => {
-  const filter = txt.split(/\r\n/);
-  str.match();
-};
-export { throttle, sortByKey, useTimer, separateStringInNumber, test };
+const badWordFilter = (() => {
+  const filter = new RegExp(txt.replace(/\r\n/g, '|'));
+
+  return (str: string) => {
+    const result = str.replace(filter, (substr) => '*'.repeat(substr.length));
+    return result === str ? str : result;
+  };
+})();
+
+export { throttle, sortByKey, useTimer, separateStringInNumber, badWordFilter };
