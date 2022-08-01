@@ -4,6 +4,7 @@ export const queryKeys = {
   myPage: ['mypage'] as const,
   matchHistory: (userId: string) => ['matchHistory', userId] as const,
   userProfile: (userId: string) => ['userProfile', userId] as const,
-  chatRoom: 'chatRoom',
   roomId: (userId: string) => ['roomId', userId] as const,
+  message: ['message'] as const,
+  opponent: ['opponent'] as const,
 };

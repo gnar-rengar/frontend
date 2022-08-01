@@ -1,3 +1,5 @@
+import txt from './filters.txt';
+
 /**
  * `interval(ms)` 간격으로 쓰로틀링
  */
@@ -46,4 +48,18 @@ function useTimer(cb: (args: void) => void, interval: number) {
 
 const separateStringInNumber = (str: string) => +str.match(/\d/g).join('');
 
-export { throttle, sortByKey, useTimer, separateStringInNumber };
+const badWordFilter = (() => {
+  const filter = new RegExp(txt.replace(/\n/g, '|'));
+
+  return (str: string) => {
+    const censored = str.replace(filter, (substr) => '*'.repeat(substr.length));
+    const hasBadWord = censored !== str;
+
+    return {
+      hasBadWord,
+      censored,
+    };
+  };
+})();
+
+export { throttle, sortByKey, useTimer, separateStringInNumber, badWordFilter };

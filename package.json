@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node ./node_modules/next/dist/bin/next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "node ./node_modules/next/dist/bin/next start -p 3000",
     "test": "jest",
     "lint": "eslint .",
@@ -32,6 +32,7 @@
     "emotion-reset": "^3.0.1",
     "js-cookie": "^3.0.1",
     "next": "^12.2.0",
+    "raw-loader": "^4.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.32.2",
