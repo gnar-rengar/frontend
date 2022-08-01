@@ -9,5 +9,5 @@ function TendencyTestPage() {
 export default TendencyTestPage;
 
 TendencyTestPage.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
+  return <Layout header={false}>{page}</Layout>;
 };

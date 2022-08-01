@@ -190,9 +190,24 @@ export const NewMessageNoticeWrapper = styled.div`
 `;
 
 export const HeaderContainer = styled.div`
+  box-sizing: content-box;
   position: sticky;
   top: 0;
-  height: 56px;
+  margin-left: -16px;
+  width: 100%;
+  padding: 0 16px;
+  height: ${({ theme }) => theme.header.height};
   background: ${({ theme }) => theme.color.surface};
   z-index: 10;
+
+  & > a {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    gap: 8px;
+  }
+
+  & img {
+    border-radius: 50%;
+  }
 `;

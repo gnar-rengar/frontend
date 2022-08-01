@@ -1,8 +1,6 @@
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
-import React, { ReactElement, Suspense } from 'react';
-import Header from '../../components/chatRoom/Header';
-import Layout from '../../components/layout/Layout';
+import React, { Suspense } from 'react';
 
 const ChatRoom = dynamic(() => import('../../components/chatRoom'), { ssr: false });
 
@@ -15,10 +13,6 @@ function ChatPage({ roomId }: { roomId: string }) {
 }
 
 export default ChatPage;
-
-// ChatPage.getLayout = function getLayout(page: ReactElement) {
-//   return <Layout header={<Header />}>{page}</Layout>;
-// };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { roomId } = context.query;

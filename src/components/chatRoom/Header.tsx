@@ -1,26 +1,24 @@
-import Image from 'next/image';
 import React from 'react';
-import { useQuery, useQueryClient } from 'react-query';
-import { queryKeys } from '../../hooks/queryKeys';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Typography } from '../common';
 import { HeaderContainer } from './style';
 
-function Header() {
-  // const queryClient = useQueryClient();
-  // queryClient
-  //   .getQueryCache()
-  //   .subscribe((e) => e.query.queryKey === 'chatRoom' && console.log(e.query.state.data));
+import type { Opponent } from '../../types/api.type';
 
-  useQuery(queryKeys.chatRoom, () => Promise.resolve('nothing'));
-  // if (!roomData) return;
-
-  // const {
-  // opponent: { profileUrl, lolNickname },
-  // } = roomData;
+function Header({ opponent }: { opponent: Opponent }) {
+  const { userId, profileUrl, lolNickname } = opponent;
 
   return (
     <HeaderContainer>
-      {/* <Image src={profileUrl} width="28px" height="28px" /> */}
-      {/* <Typography>{lolNickname}</Typography> */}
+      <Link href={`/profile/${userId}`}>
+        <a>
+          <Image src={profileUrl} width="28px" height="28px" />
+          <Typography variant="h3" color="onSurface">
+            {lolNickname}
+          </Typography>
+        </a>
+      </Link>
     </HeaderContainer>
   );
 }
