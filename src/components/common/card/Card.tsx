@@ -1,12 +1,10 @@
 import React from 'react';
-import { MyPageDTO } from '../../../types/api.type';
+import { CardProps } from '../../../types/card.type';
 
 import ImageArea from './ImageArea';
 import InfoArea from './InfoArea';
 
 import { StyledCard } from './style';
-
-export type CardProps = Omit<MyPageDTO, 'goodReview' | 'badReview'>;
 
 function Card(props: CardProps) {
   const { profileUrl, ...other } = props;

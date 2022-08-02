@@ -1,7 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import React from 'react';
 import Link from 'next/link';
-import LargeCard, { CardProps } from '../common/card/LargeCard';
+import { CardProps } from '../../types/card.type';
+import LargeCard from '../common/card/LargeCard';
 
 interface RecommendSwiperProps {
   listProps: CardProps[];
