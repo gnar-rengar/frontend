@@ -31,14 +31,14 @@ jobs:
           echo NEXT_PUBLIC_STATE_CSRF=${{ secrets.NEXT_PUBLIC_STATE_CSRF }} >> .env.local
 
           echo NEXT_PUBLIC_KAKAO_REST_ID=${{ secrets.NEXT_PUBLIC_KAKAO_REST_ID }} >> .env.local
-          echo NEXT_PUBLIC_KAKAO_URL=${{ secrets.NEXT_PUBLIC_KAKAO_URL }} >> .env.local
+          echo NEXT_PUBLIC_KAKAO_TEST=${{ secrets.NEXT_PUBLIC_KAKAO_TEST }} >> .env.local
 
           echo NEXT_PUBLIC_NAVER_CLIENT_ID=${{ secrets.NEXT_PUBLIC_NAVER_CLIENT_ID }} >> .env.local
-          echo NEXT_PUBLIC_NAVER_URL=${{ secrets.NEXT_PUBLIC_NAVER_URL }} >> .env.local
+          echo NEXT_PUBLIC_NAVER_TEST=${{ secrets.NEXT_PUBLIC_NAVER_TEST }} >> .env.local
 
           echo NEXT_PUBLIC_DISCORD_CLIENT_ID=${{ secrets.NEXT_PUBLIC_DISCORD_CLIENT_ID }} >> .env.local
           echo NEXT_PUBLIC_DISCORD_PUBLIC_KEY=${{ secrets.NEXT_PUBLIC_DISCORD_PUBLIC_KEY }} >> .env.local
-          echo NEXT_PUBLIC_DISCORD_URL=${{ secrets.NEXT_PUBLIC_DISCORD_URL }} >> .env.local
+          echo NEXT_PUBLIC_DISCORD_TEST=${{ secrets.NEXT_PUBLIC_DISCORD_TEST }} >> .env.local
 
           echo NEXT_PUBLIC_RIOT_CHAMPION_IMG_URL=${{ secrets.NEXT_PUBLIC_RIOT_CHAMPION_IMG_URL }} >> .env.local
           echo NEXT_PUBLIC_RIOT_SPELL_IMG_URL=${{ secrets.NEXT_PUBLIC_RIOT_SPELL_IMG_URL }} >> .env.local
