@@ -20,7 +20,6 @@ function Typography(props: TypographyProps) {
   const { children, variant, paragraph, component, ...other } = props;
 
   const theme = useTheme();
-
   const elementType = theme.typography[variant].element;
 
   return (

@@ -16,7 +16,7 @@ function Header() {
   const links = useMemo(
     () => [
       {
-        href: '/custom',
+        href: '/recommend/fit',
         component: (
           <Button variant="text" size="sm" color="onBackground">
             맞춤추천
@@ -24,7 +24,7 @@ function Header() {
         ),
       },
       {
-        href: '/recent',
+        href: '/recommend/new',
         component: (
           <Button variant="text" size="sm" color="onBackground">
             최신 소환사

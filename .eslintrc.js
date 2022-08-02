@@ -40,6 +40,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'no-console': 'error',
     'global-require': 'off',
+    'no-underscore-dangle': 'off',
     'jsx-a11y/anchor-is-valid': [
       'error',
       {
