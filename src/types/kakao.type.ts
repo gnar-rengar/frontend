@@ -1,6 +1,22 @@
+interface LinkOjbect {
+  webUrl?: string;
+  mobileWebUrl?: string;
+  androidExecutionParams?: string;
+  iosExecutionParams?: string;
+}
+
+interface ContentObject {
+  title: string;
+  imageUrl: string;
+  link: LinkOjbect;
+  imageWidth?: number;
+  imageHeight?: number;
+  description?: string;
+}
+
 interface DefaultFeedSettings {
-  objectType: string;
-  content: any;
+  objectType: 'feed';
+  content: ContentObject;
   social?: any;
   buttons?: Array<any>;
   callback?: () => void;
@@ -13,6 +29,6 @@ interface KakaoShare {
 
 export interface Kakao {
   isInitialized: () => boolean;
-  init: (...args: any[]) => void;
+  init: (str: string) => void;
   Share: KakaoShare;
 }
