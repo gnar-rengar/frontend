@@ -113,7 +113,7 @@ export const lightTheme = {
     secondary: '#E48DBF',
     error: '#D34851',
     background: '#121212',
-    surface: '#323232',
+    surface: '#FCFCFC ',
   },
 };
 
@@ -125,7 +125,7 @@ export const darkTheme = {
     secondary: '#E48DBF',
     error: '#CF6679',
     background: '#121212',
-    surface: '#323232',
+    surface: '#2f2f2f',
     onPrimary: '#151515',
     onSecondary: '#1c1c1c',
     onError: '#181818',

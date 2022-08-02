@@ -43,7 +43,7 @@ export const DayDividerContainer = styled.div`
 `;
 
 export const QuickChatContainer = styled.div`
-  position: relative;
+  position: absolute;
   top: 100%;
   display: flex;
   flex-direction: column;
@@ -186,5 +186,28 @@ export const NewMessageNoticeWrapper = styled.div`
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+  }
+`;
+
+export const HeaderContainer = styled.div`
+  box-sizing: content-box;
+  position: sticky;
+  top: 0;
+  margin-left: -16px;
+  width: 100%;
+  padding: 0 16px;
+  height: ${({ theme }) => theme.header.height};
+  background: ${({ theme }) => theme.color.surface};
+  z-index: 10;
+
+  & > div {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    gap: 8px;
+  }
+
+  & img {
+    border-radius: 50%;
   }
 `;

@@ -48,11 +48,13 @@ function ChatRoomCard(props: ChatRoomCardProps) {
               {lastMessageText}
             </Typography>
           </Message>
-          <RecentMessageCount>
-            <Typography variant="captionRegular" color="onBackground" component="span">
-              {unRead}
-            </Typography>
-          </RecentMessageCount>
+          {unRead !== 0 && (
+            <RecentMessageCount>
+              <Typography variant="captionRegular" color="onBackground" component="span">
+                {unRead}
+              </Typography>
+            </RecentMessageCount>
+          )}
         </MessageAndCount>
       </InfoArea>
     </ChatRoomCardContainer>

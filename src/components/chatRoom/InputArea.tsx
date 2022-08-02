@@ -4,10 +4,8 @@ import { useTheme } from '@emotion/react';
 
 import { Form, Input, ButtonWrapper } from './style';
 
-import { throttle } from '../../utils';
+import { badWordFilter, throttle } from '../../utils';
 import { SocketContext } from '../../contexts/socket';
-
-const badWords = ['개새끼', '병신'];
 
 const whitespaceValidation = /\S/;
 
@@ -16,11 +14,11 @@ interface InputAreaProps {
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
   roomId: string;
-  userId: string;
+  myId: string;
 }
 
 function InputArea(props: InputAreaProps) {
-  const { setHasBadWord, input, setInput, roomId, userId } = props;
+  const { setHasBadWord, input, setInput, roomId, myId } = props;
 
   const socket = useContext(SocketContext);
   const {
@@ -35,11 +33,12 @@ function InputArea(props: InputAreaProps) {
     const text = form.message.value;
     if (!whitespaceValidation.test(text)) return;
 
-    // TODO 필터링 함수 작성 또는 라이브러리 사용
-    if (badWords.includes(text)) {
+    const { hasBadWord } = badWordFilter(text);
+
+    if (hasBadWord) {
       setHasBadWord(true);
     } else {
-      socket.emit('sendMessage', roomId, userId, text);
+      socket.emit('sendMessage', roomId, myId, text);
       setInput('');
     }
   };
