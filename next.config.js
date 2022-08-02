@@ -5,7 +5,6 @@ module.exports = {
   concurrentFeatures: true,
   images: {
     domains: ['ddragon.leagueoflegends.com', 'ddragon.canisback.com', 'via.placeholder.com'],
-    unoptimized: true,
   },
   webpack: (config) => {
     config.module.rules.push({
