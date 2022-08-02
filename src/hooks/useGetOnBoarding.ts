@@ -9,12 +9,12 @@ const onBoardingGetAPI = async () => {
 };
 
 const useGetOnBoarding = (
-  queryEnabled: boolean,
-  setQueryEnabled: React.Dispatch<React.SetStateAction<boolean>>
+  queryEnabled: boolean
+  // setQueryEnabled: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const { data } = useQuery(queryKeys.onBoarding, onBoardingGetAPI, {
     enabled: queryEnabled,
-    onSuccess: () => setQueryEnabled((prev) => !prev),
+    // onSuccess: () => setQueryEnabled((prev) => !prev),
   });
   return data;
 };
