@@ -10,10 +10,10 @@ export const authUserGetAPI = async () => {
   return data;
 };
 
-const useGetAuth = () => {
+const useGetAuth = (enableState = true) => {
   const router = useRouter();
   const { data } = useQuery(queryKeys.authUser, authUserGetAPI, {
-    suspense: false,
+    suspense: enableState,
     onError: (error: AxiosError) => {
       if (error.response.status === 401) {
         router.push('/login');

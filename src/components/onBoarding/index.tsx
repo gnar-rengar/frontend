@@ -64,20 +64,8 @@ const onBoardingSchema = yup.object().shape({
 function OnBoarding() {
   const router = useRouter();
   const tendencyTestResult = router.query as PlayStyleType | {};
-  const loginData = useGetAuth();
+  const loginData = useGetAuth(false);
   const userData = useGetOnBoarding(!!loginData);
-
-  // const playStyleDefaultValuesFn = () => {
-  //   if (Object.values(tendencyTestResult).length === 0) {
-  //     return {
-  //       battle: userData?.playStyle[0],
-  //       line: userData?.playStyle[1],
-  //       champion: userData?.playStyle[2],
-  //       physical: userData?.playStyle[3],
-  //     };
-  //   }
-  //   return tendencyTestResult;
-  // };
 
   const useVoiceDefaultValuesFn = () => {
     if (!userData?.useVoice) return false;
@@ -129,11 +117,12 @@ function OnBoarding() {
   const nickNameButtonActive = watch('nickNameCheck');
   const nickNameInputActive = watch('lolNickname');
   const useVoiceValue = getValues('useVoice');
-  const [summonerIcon, setSummonerIcon] = useState(userData?.profileUrl || '/icons/onBoarding.png');
+  const [summonerIcon, setSummonerIcon] = useState('/icons/onBoarding.png');
   const submitMutation = useOnBoardingMutation();
 
   useEffect(() => {
     reset(userDataDefaultValues);
+    if (userData?.profileUrl) setSummonerIcon(userData?.profileUrl);
   }, [userData]);
 
   useEffect(() => {
@@ -193,7 +182,7 @@ function OnBoarding() {
           <Container>
             <IconAndNickname>
               <IconImageContainer>
-                <Image src={userData?.profileUrl || summonerIcon} width={48} height={48} />
+                <Image src={summonerIcon} width={48} height={48} />
               </IconImageContainer>
               <NicknameContainer>
                 <TextField
