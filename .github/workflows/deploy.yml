@@ -33,9 +33,6 @@ jobs:
           echo NEXT_PUBLIC_KAKAO_REST_ID=${{ secrets.NEXT_PUBLIC_KAKAO_REST_ID }} >> .env.local
           echo NEXT_PUBLIC_KAKAO_URL=${{ secrets.NEXT_PUBLIC_KAKAO_TEST }} >> .env.local
 
-          echo NEXT_PUBLIC_NAVER_CLIENT_ID=${{ secrets.NEXT_PUBLIC_NAVER_CLIENT_ID }} >> .env.local
-          echo NEXT_PUBLIC_NAVER_URL=${{ secrets.NEXT_PUBLIC_NAVER_TEST }} >> .env.local
-
           echo NEXT_PUBLIC_DISCORD_CLIENT_ID=${{ secrets.NEXT_PUBLIC_DISCORD_CLIENT_ID }} >> .env.local
           echo NEXT_PUBLIC_DISCORD_PUBLIC_KEY=${{ secrets.NEXT_PUBLIC_DISCORD_PUBLIC_KEY }} >> .env.local
           echo NEXT_PUBLIC_DISCORD_URL=${{ secrets.NEXT_PUBLIC_DISCORD_TEST }} >> .env.local
