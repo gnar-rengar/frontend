@@ -113,7 +113,7 @@ export const lightTheme = {
     secondary: '#E48DBF',
     error: '#D34851',
     background: '#121212',
-    surface: '#323232',
+    surface: '#FCFCFC ',
   },
 };
 

@@ -165,3 +165,8 @@ export interface SummonerFitRecommendDTO {
 export interface SummonerNewRecommendDTO {
   newList: ListDTO[];
 }
+
+export interface WithdrawalDTO {
+  agree: boolean;
+  reason?: string;
+}

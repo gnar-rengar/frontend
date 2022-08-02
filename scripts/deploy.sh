@@ -13,5 +13,5 @@ then
         pm2 reload ${APP}
 else
         echo "애플리케이션을 실행합니다."
-        pm2 start "sudo npm run dev" --watch --name "${APP}"
+        pm2 start "sudo npm run start" --watch --name "${APP}"
 fi                                     

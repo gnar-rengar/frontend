@@ -10,7 +10,8 @@ interface TextAreaProps {
   width?: string;
   maxLength?: number;
   minHeight?: number;
-  register?: UseFormRegisterReturn<string>;
+  register: UseFormRegisterReturn<string>;
+  placeholder?: string;
 }
 
 function TextArea(props: TextAreaProps) {

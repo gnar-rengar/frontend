@@ -87,6 +87,10 @@ const tierEng = {
   다이아: 'DIAMOND',
 };
 
+const withdrawalErrorMessage = {
+  agree: '주의사항에 동의해주세요',
+};
+
 export {
   position,
   voiceChannel,
@@ -101,4 +105,5 @@ export {
   tendencyImage,
   filterTier,
   tierEng,
+  withdrawalErrorMessage,
 };

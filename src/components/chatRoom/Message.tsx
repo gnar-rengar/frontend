@@ -11,17 +11,18 @@ import {
 import type { Message as MessageType } from '../../types/api.type';
 
 interface MessageProps {
+  myId: string;
   message: MessageType;
 }
 
-const myId = '62d509be151f1fb3b2e0f792';
-
 function Message(props: MessageProps) {
   const {
+    myId,
     message: { userId, text, createdAt },
   } = props;
 
   const time = dayjs(createdAt).format('A h:mm');
+
   if (userId === myId) {
     return (
       <MyMessageContainer>
