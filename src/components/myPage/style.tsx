@@ -5,6 +5,7 @@ export const ProfileCardContainer = styled.div`
   flex-direction: column;
   padding: 16px 0;
   gap: 16px;
+  cursor: pointer;
 `;
 
 export const AreaButton = styled.button`
