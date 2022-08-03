@@ -86,6 +86,16 @@ const tendencyImage = {
   end: '/expression/penguin.png',
 };
 
+const filterTier = ['아이언', '브론즈', '실버', '골드', '플래티넘', '다이아'];
+const tierEng = {
+  아이언: 'IRON',
+  브론즈: 'BRONZE',
+  실버: 'SILVER',
+  골드: 'GOLD',
+  플래티넘: 'PLATINUM',
+  다이아: 'DIAMOND',
+};
+
 const withdrawalErrorMessage = {
   agree: '주의사항에 동의해주세요',
 };
@@ -103,5 +113,7 @@ export {
   tendencyAnswer,
   tendencyImage,
   tendencyResult,
+  filterTier,
+  tierEng,
   withdrawalErrorMessage,
 };

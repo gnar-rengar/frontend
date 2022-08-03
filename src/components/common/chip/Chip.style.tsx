@@ -17,7 +17,7 @@ export const StyledChip = styled.span<StyledChipProps>`
   border-radius: 100px;
 
   ${({ size }) => {
-    if (size === 'sm' || size === 'xl') return 'padding: 4px 8px;';
+    if (size === 'sm') return 'padding: 3px 8px;';
     return 'padding: 5px 14px;';
   }}
 

@@ -6,7 +6,7 @@ import InfoArea from './InfoArea';
 
 import { StyledCard } from './style';
 
-function Card(props: CardProps) {
+function SmallCard(props: CardProps) {
   const { profileUrl, ...other } = props;
 
   return (
@@ -17,4 +17,4 @@ function Card(props: CardProps) {
   );
 }
 
-export default Card;
+export default SmallCard;
