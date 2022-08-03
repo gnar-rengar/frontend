@@ -10,6 +10,7 @@ import VoiceSection from './VoiceSection';
 import PlayStyleSection from './PlayStyleSection';
 import ProfileImg from './ProfileImg';
 import { BaseContainer } from '../common';
+import useGetAuth from '../../hooks/useGetAuth';
 
 const MatchSection = dynamic(() => import('./MatchSection'), {
   ssr: false,
@@ -30,11 +31,18 @@ function UserProfile({ userId }: { userId: string }) {
     goodReview,
   } = useGetProfile(userId as string);
 
+  const me = useGetAuth();
+
   return (
     <>
       <ProfileImg nickname={lolNickname} profileUrl={profileUrl} tier={tier} rank={rank} />
       <BaseContainer>
-        <PlayStyleSection nickname={lolNickname} positions={position} playStyles={playStyle} />
+        <PlayStyleSection
+          nickname={lolNickname}
+          positions={position}
+          playStyles={playStyle}
+          myId={me?.userId}
+        />
         <VoiceSection
           isVoiceOn={useVoice}
           voiceChannel={voiceChannel}
@@ -46,7 +54,7 @@ function UserProfile({ userId }: { userId: string }) {
           <MatchSection userId={userId} />
         </Suspense>
       </BaseContainer>
-      <ButtonArea userId={userId} lolNickname={lolNickname} />
+      <ButtonArea userId={userId} lolNickname={lolNickname} isMe={me?.userId === userId} />
     </>
   );
 }

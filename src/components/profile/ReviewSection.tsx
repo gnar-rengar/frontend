@@ -10,6 +10,7 @@ interface ReviewSectionProps {
 
 function ReviewSection(props: ReviewSectionProps) {
   const { goodReview, lolNickname } = props;
+
   return (
     <section>
       <Asking title={`${lolNickname}님이 받은 칭찬`}>

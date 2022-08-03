@@ -10,7 +10,7 @@ import { AreaButton, ProfileCardContainer } from './style';
 
 function MyPage() {
   const { data, isLoading } = useGetMyPage();
-  const auth = useGetAuth();
+  const me = useGetAuth();
   const logoutMutation = useLogoutMutation();
   const router = useRouter();
 
@@ -26,7 +26,7 @@ function MyPage() {
 
   return (
     <BaseContainer>
-      <ProfileCardContainer onClick={() => router.push(`/profile/${auth?.userId}`)}>
+      <ProfileCardContainer onClick={() => router.push(`/profile/${me?.userId}`)}>
         <div>
           <Typography variant="h3">많고 많은 소환사 중에</Typography>
           <Typography variant="h3">내가 제일 잘 났지</Typography>
