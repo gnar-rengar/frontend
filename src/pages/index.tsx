@@ -1,7 +1,5 @@
-import dynamic from 'next/dynamic';
 import React, { Suspense } from 'react';
-
-const Home = dynamic(() => import('../components/home'), { ssr: false });
+import Home from '../components/home';
 
 function HomePage() {
   return (
