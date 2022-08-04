@@ -22,7 +22,6 @@ const useGetAuth = () => {
       }
     },
   });
-  console.log(data);
   return data;
 };
 
