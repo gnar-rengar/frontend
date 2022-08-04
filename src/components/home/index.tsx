@@ -13,7 +13,7 @@ import RecommendSwiper from './RecommendSwiper';
 import { Container, HomeContainer, MoreContainer, TitleAndMoreContainer } from './style';
 
 function Home() {
-  const userData = useGetAuth();
+  const userData = useGetAuth(false);
   const { data: fitData } = useGetFitSummonerList();
   const {
     data: { pages },

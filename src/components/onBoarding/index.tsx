@@ -13,6 +13,7 @@ import {
   position,
   voiceChannel,
 } from '../../constant';
+import useGetAuth from '../../hooks/useGetAuth';
 import useGetOnBoarding from '../../hooks/useGetOnBoarding';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { NicknameCheckDTO, OnBoardingInput, PlayStyleType } from '../../types/api.type';
@@ -63,20 +64,27 @@ const onBoardingSchema = yup.object().shape({
 function OnBoarding() {
   const router = useRouter();
   const tendencyTestResult = router.query as PlayStyleType | {};
-  const [queryEnabled, setQueryEnabled] = useState(false); // 사용자 로그인 정보 api 및 로직 구현 후 적용
-  const userData = useGetOnBoarding(queryEnabled, setQueryEnabled);
+  const loginData = useGetAuth(false);
+  const userData = useGetOnBoarding(!!loginData);
 
-  const playStyleDefaultValuesFn = () => {
-    if (Object.values(tendencyTestResult).length === 0) {
-      return {
-        battle: userData?.playStyle[0],
-        line: userData?.playStyle[1],
-        champion: userData?.playStyle[2],
-        physical: userData?.playStyle[3],
-      };
-    }
-    return tendencyTestResult;
-  };
+  const userDataDefaultValues = useMemo(
+    () => ({
+      lolNickname: userData?.lolNickname || '',
+      nickNameCheck: !!userData?.lolNickname || false,
+      playStyle:
+        {
+          battle: userData?.playStyle[0],
+          line: userData?.playStyle[1],
+          champion: userData?.playStyle[2],
+          physical: userData?.playStyle[3],
+        } || tendencyTestResult,
+      position: userData?.position || [],
+      voiceChannel: userData?.voiceChannel || [],
+      useVoice: !!userData?.useVoice,
+      communication: userData?.communication || '',
+    }),
+    [userData]
+  );
 
   const {
     register,
@@ -87,15 +95,16 @@ function OnBoarding() {
     watch,
     getValues,
     setError,
+    reset,
   } = useForm<OnBoardingInput<PlayStyleType>>({
     defaultValues: {
-      lolNickname: userData?.lolNickname || '',
-      nickNameCheck: !!userData?.lolNickname,
-      playStyle: playStyleDefaultValuesFn(),
-      position: userData?.position || [],
-      voiceChannel: userData?.voiceChannel || [],
-      useVoice: userData?.useVoice || true,
-      communication: userData?.communication || '',
+      lolNickname: '',
+      nickNameCheck: false,
+      playStyle: tendencyTestResult,
+      position: [],
+      voiceChannel: [],
+      useVoice: true,
+      communication: '',
     },
     resolver: yupResolver(onBoardingSchema),
     mode: 'onChange',
@@ -103,8 +112,13 @@ function OnBoarding() {
   const nickNameButtonActive = watch('nickNameCheck');
   const nickNameInputActive = watch('lolNickname');
   const useVoiceValue = getValues('useVoice');
-  const [summonerIcon, setSummonerIcon] = useState(userData?.profileUrl || '/icons/onBoarding.png');
+  const [summonerIcon, setSummonerIcon] = useState('/icons/onBoarding.png');
   const submitMutation = useOnBoardingMutation();
+
+  useEffect(() => {
+    reset(userDataDefaultValues);
+    if (userData?.profileUrl) setSummonerIcon(userData?.profileUrl);
+  }, [userData]);
 
   useEffect(() => {
     const errorsArr = Object.keys(errors);
@@ -137,6 +151,7 @@ function OnBoarding() {
       );
       setSummonerIcon(data.profileUrl);
       setValue('nickNameCheck', true, { shouldValidate: true });
+      setValue('lolNickname', data.lolNickname);
       clearErrors('nickNameCheck');
     } catch (error) {
       if (error.response.status === 404) {
@@ -150,6 +165,7 @@ function OnBoarding() {
     const value = innerText === '사용해요';
     setValue('useVoice', value, { shouldValidate: true });
   };
+
   return (
     <OnBoardingContainer onSubmit={handleSubmit(onSubmitOnBoarding)} id="lolNickname">
       <OnBoardingEachContainer gap id="nickNameCheck">
@@ -161,7 +177,7 @@ function OnBoarding() {
           <Container>
             <IconAndNickname>
               <IconImageContainer>
-                <Image src={userData?.profileUrl || summonerIcon} width={48} height={48} />
+                <Image src={summonerIcon} width={48} height={48} />
               </IconImageContainer>
               <NicknameContainer>
                 <TextField

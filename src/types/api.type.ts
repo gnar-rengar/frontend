@@ -11,6 +11,7 @@ export interface ListDTO {
   tier: string;
   useVoice: boolean;
   _id?: string;
+  createdAt?: string;
 }
 
 export type PlayStyleType = {

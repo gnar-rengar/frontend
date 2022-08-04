@@ -1,11 +1,9 @@
 import styled from '@emotion/styled';
+import { ColorVariant } from '../../types/theme.type';
 
 export const TestContainer = styled.div`
   width: 100%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, 30%);
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,10 +23,9 @@ export const ButtonContainer = styled.div`
 
 export const StartEndButtonContainer = styled(ButtonContainer)`
   padding: 0 16px;
-  position: fixed;
+  position: sticky;
   left: 50%;
   bottom: 5%;
-  transform: translateX(-50%);
   max-width: 480px;
 `;
 
@@ -51,6 +48,8 @@ export const TendencyProgressBar = styled.div<{ width: string }>`
 
 export const EndContainer = styled(TestContainer)`
   gap: 24px;
+  padding-top: 16px;
+  padding-bottom: 32px;
 `;
 
 export const PlayStyleContainer = styled.div`
@@ -82,4 +81,28 @@ export const QuestionAndExpression = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 40px;
+`;
+
+export const ShareContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+`;
+
+export const Share = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const ShareButton = styled.div<{ color: ColorVariant }>`
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  background-color: ${(props) => props.theme.color[props.color]};
+  cursor: pointer;
 `;
