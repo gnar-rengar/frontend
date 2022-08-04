@@ -23,7 +23,6 @@ const useGetAuth = (enableState = true) => {
       }
     },
   });
-
   return data;
 };
 

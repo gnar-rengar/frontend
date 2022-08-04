@@ -23,7 +23,7 @@ function Login() {
           간편 로그인/회원가입
         </Typography>
         <ButtonContainer>
-          <Link href={process.env.NEXT_PUBLIC_DISCORD_URL}>
+          <Link href={process.env.NEXT_PUBLIC_DISCORD_URL ?? ''}>
             <a>
               <LoginButton color="discord">
                 <IconAndTextContainer color="discord">
@@ -35,7 +35,7 @@ function Login() {
               </LoginButton>
             </a>
           </Link>
-          <Link href={process.env.NEXT_PUBLIC_KAKAO_URL}>
+          <Link href={process.env.NEXT_PUBLIC_KAKAO_URL ?? ''}>
             <a>
               <LoginButton color="kakao">
                 <IconAndTextContainer color="kakao">
@@ -47,7 +47,7 @@ function Login() {
               </LoginButton>
             </a>
           </Link>
-          <Link href={process.env.NEXT_PUBLIC_NAVER_URL}>
+          <Link href={process.env.NEXT_PUBLIC_NAVER_URL ?? ''}>
             <a>
               <LoginButton color="naver">
                 <IconAndTextContainer color="naver">
