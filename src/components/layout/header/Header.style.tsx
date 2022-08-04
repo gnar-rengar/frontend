@@ -9,7 +9,7 @@ export const HeaderContainer = styled.header`
   height: ${({ theme }) => theme.header.height};
   padding: 14px 16px;
   background: ${({ theme }) => theme.color.surface};
-  z-index: 10;
+  z-index: 50;
 `;
 
 export const Nav = styled.nav`
