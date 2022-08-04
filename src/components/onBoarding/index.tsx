@@ -67,11 +67,6 @@ function OnBoarding() {
   const loginData = useGetAuth(false);
   const userData = useGetOnBoarding(!!loginData);
 
-  const useVoiceDefaultValuesFn = () => {
-    if (!userData?.useVoice) return false;
-    return true;
-  };
-
   const userDataDefaultValues = useMemo(
     () => ({
       lolNickname: userData?.lolNickname || '',
@@ -85,7 +80,7 @@ function OnBoarding() {
         } || tendencyTestResult,
       position: userData?.position || [],
       voiceChannel: userData?.voiceChannel || [],
-      useVoice: useVoiceDefaultValuesFn(),
+      useVoice: !!userData?.useVoice,
       communication: userData?.communication || '',
     }),
     [userData]

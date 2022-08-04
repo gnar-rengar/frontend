@@ -23,10 +23,9 @@ export const ButtonContainer = styled.div`
 
 export const StartEndButtonContainer = styled(ButtonContainer)`
   padding: 0 16px;
-  position: absolute;
+  position: sticky;
   left: 50%;
   bottom: 5%;
-  transform: translateX(-50%);
   max-width: 480px;
 `;
 
@@ -49,6 +48,7 @@ export const TendencyProgressBar = styled.div<{ width: string }>`
 
 export const EndContainer = styled(TestContainer)`
   gap: 24px;
+  padding-top: 16px;
   padding-bottom: 32px;
 `;
 
