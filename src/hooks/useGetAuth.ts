@@ -23,7 +23,6 @@ const useGetAuth = () => {
       }
     },
   });
-
   return data;
 };
 
