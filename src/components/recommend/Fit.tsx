@@ -8,7 +8,7 @@ import Footer from '../common/footer/Footer';
 import { FitContainer, FitRecommend } from './style';
 
 function Fit() {
-  const userData = useGetAuth();
+  const userData = useGetAuth(false);
   const { data } = useGetFitSummonerList();
 
   return (
@@ -21,13 +21,14 @@ function Fit() {
           찰떡궁합 소환사 추천해요!
         </Typography>
         <FitRecommend>
-          {data?.customList.map((list) => (
-            <Link href={`/profile/${list._id}`} key={list._id}>
-              <a>
-                <LargeCard {...list} />
-              </a>
-            </Link>
-          ))}
+          {data &&
+            data?.customList.map((list) => (
+              <Link href={`/profile/${list._id}`} key={list._id}>
+                <a>
+                  <LargeCard {...list} />
+                </a>
+              </Link>
+            ))}
         </FitRecommend>
       </FitContainer>
       <Footer />

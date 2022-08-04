@@ -21,7 +21,12 @@ const useGetNewSummonerList = (tier: FilterTierType[]) => {
     queryKeys.newSummonerList,
     ({ pageParam = 1 }) => newSummonerListGetAPI(pageParam, tier),
     {
-      getNextPageParam: (lastPage) => lastPage.page + 1,
+      getNextPageParam: (lastPage) => {
+        if (lastPage.data.newList.length > 0) {
+          return lastPage.page + 1;
+        }
+        return false;
+      },
     }
   );
   return query;

@@ -44,7 +44,7 @@ export const BlurContainer = styled.div`
   top: 0;
   left: 0;
   backdrop-filter: blur(4px);
-  z-index: 999;
+  z-index: 40;
   display: flex;
   flex-direction: column;
   gap: 16px;

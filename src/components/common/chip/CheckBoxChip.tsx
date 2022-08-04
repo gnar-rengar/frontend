@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import Chip from './Chip';
 import { Input, SelectLabel } from './Chip.style';
@@ -16,6 +16,10 @@ interface CheckBoxChipProps extends ChipProps {
 function CheckBoxChip(props: CheckBoxChipProps) {
   const { htmlFor, width = 'fit-content', value, register, getValues, ...other } = props;
   const [checked, setChecked] = useState(getValues?.includes(value) || false);
+
+  useEffect(() => {
+    setChecked(getValues?.includes(value));
+  }, [getValues]);
 
   return (
     <SelectLabel width={width} htmlFor={htmlFor}>
