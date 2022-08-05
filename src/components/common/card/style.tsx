@@ -34,19 +34,21 @@ export const Vignette = styled.div`
 `;
 
 export const Ul = styled.ul`
+  position: absolute;
   display: flex;
+  // width: calc(100% - 32px);
   gap: 6px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 `;
 
 export const StyledInfoArea = styled.div`
+  position: relative;
   display: flex;
   flex: 1;
   flex-direction: column;
   padding: 14px 16px;
   gap: 20px;
+  over-flow: hidden;
 `;
 
 export const Tier = styled.span`
