@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { SocketContext } from '../../contexts/socket';
 
@@ -18,10 +18,8 @@ function Chats() {
 
   const socket = useContext(SocketContext);
 
-  useEffect(() => {
-    socket.emit('getChatRooms', userId);
-
-    socket.on('onGetChatRooms', (roomsData: Room[]) => {
+  const handleGetChatRooms = useCallback(
+    (roomsData: Room[]) => {
       roomsData.sort((room1, room2) => {
         if (!room1.unRead && room2.unRead) {
           return 1;
@@ -36,7 +34,14 @@ function Chats() {
       });
 
       setRooms(roomsData);
-    });
+    },
+    [setRooms]
+  );
+
+  useEffect(() => {
+    socket.emit('getChatRooms', userId);
+    socket.on('onGetChatRooms', handleGetChatRooms);
+    return () => socket.off('onGetChatRooms', handleGetChatRooms);
   }, [socket]);
 
   if (!isLoggedIn) {

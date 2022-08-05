@@ -12,7 +12,7 @@ function ImageArea(props: ImageAreaProps) {
 
   return (
     <ImageContainer>
-      <Image src={profileUrl} width="120px" height="120px" alt="summoner icon" />
+      <Image src={profileUrl} layout="fixed" width="120px" height="120px" alt="summoner icon" />
       <Vignette />
     </ImageContainer>
   );
