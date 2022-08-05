@@ -12,6 +12,7 @@ import { CardProps } from '../../../types/card.type';
 type InfoAreaProps = Omit<CardProps, 'profileUrl'>;
 
 const ellipseWidth = 25.88;
+const gap = 6;
 
 function InfoArea(props: InfoAreaProps) {
   const { lolNickname, useVoice, tier, rank, playStyle, position } = props;
@@ -30,8 +31,6 @@ function InfoArea(props: InfoAreaProps) {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const ulRef = useRef<HTMLUListElement>(null);
-
-  const gap = 6;
 
   const handleResize = useCallback(() => {
     const width = containerRef.current.clientWidth - 32; // 32는 좌우 패딩을 의미
