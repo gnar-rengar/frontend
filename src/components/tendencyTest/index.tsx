@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { tendencyQuestion } from '../../constant';
 import End from './End';
 import Question from './Question';
@@ -8,7 +8,7 @@ function TendencyTest() {
   const [testNumber, setTestNumber] = useState(-1);
   const [testAnswer, setTestAnswer] = useState<string[]>([]);
 
-  const pageRenderMemo = useMemo(() => {
+  const pageRenderMemo = () => {
     if (testNumber === -1) {
       return <Start setTestNumber={setTestNumber} />;
     }
@@ -22,10 +22,12 @@ function TendencyTest() {
         />
       );
     }
-    return <End testAnswer={testAnswer} />;
-  }, [testNumber]);
+    return (
+      <End testAnswer={testAnswer} setTestNumber={setTestNumber} setTestAnswer={setTestAnswer} />
+    );
+  };
 
-  return <div>{pageRenderMemo}</div>;
+  return <div>{pageRenderMemo()}</div>;
 }
 
 export default TendencyTest;

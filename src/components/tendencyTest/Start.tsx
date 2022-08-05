@@ -1,8 +1,8 @@
-import React from 'react';
 import Image from 'next/image';
+import React from 'react';
 import { tendencyImage } from '../../constant';
 import { Button, Typography } from '../common';
-import { StartEndButtonContainer, Test, TestStartContainer } from './style';
+import { StartEndButtonContainer, TestStartContainer } from './style';
 
 interface StartProps {
   setTestNumber: React.Dispatch<React.SetStateAction<number>>;
@@ -10,7 +10,7 @@ interface StartProps {
 
 function Start({ setTestNumber }: StartProps) {
   return (
-    <Test>
+    <>
       <TestStartContainer>
         <Typography variant="h2" align="center">
           나는 어떤
@@ -34,7 +34,7 @@ function Start({ setTestNumber }: StartProps) {
           내 플레이 스타일 알아보기
         </Button>
       </StartEndButtonContainer>
-    </Test>
+    </>
   );
 }
 

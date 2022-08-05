@@ -21,7 +21,7 @@ function RadioChip(props: RadioChipProps) {
   return (
     <SelectLabel width={width} htmlFor={htmlFor}>
       <Input type="radio" value={value} defaultChecked={false} id={value} {...readioRegister} />
-      <Chip chosen={(watch as unknown) === value} {...other} />
+      <Chip chosen={(watch as unknown) === value} {...other} width="100%" />
     </SelectLabel>
   );
 }

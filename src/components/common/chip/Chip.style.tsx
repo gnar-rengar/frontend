@@ -4,12 +4,13 @@ import { Label } from '../checkbox/CheckBox.style';
 
 interface StyledChipProps {
   chosen?: boolean;
-  size?: 'sm' | 'lg';
+  size?: 'sm' | 'lg' | 'xl';
   color?: ColorVariant;
+  width?: string;
 }
 
 export const StyledChip = styled.span<StyledChipProps>`
-  width: 100%;
+  width: ${(props) => props.width || 'auto'};
   display: inline-flex;
   justify-content: center;
   align-items: center;
