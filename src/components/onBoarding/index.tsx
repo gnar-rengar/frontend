@@ -13,10 +13,11 @@ import {
   position,
   voiceChannel,
 } from '../../constant';
+import useGetAuth from '../../hooks/useGetAuth';
 import useGetOnBoarding from '../../hooks/useGetOnBoarding';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { NicknameCheckDTO, OnBoardingInput, PlayStyleType } from '../../types/api.type';
-import { Asking, Button, Radio, TextField, Typography, StickyBottom } from '../common';
+import { Asking, Button, Radio, StickyBottom, TextField, Typography } from '../common';
 import CheckBoxChip from '../common/chip/CheckBoxChip';
 import RadioChip from '../common/chip/RadioChip';
 import {
@@ -41,8 +42,8 @@ const onBoardingSchema = yup.object().shape({
   nickNameCheck: yup.boolean().oneOf([true], onBoardingErrorMessage.nickNameCheck),
   position: yup
     .array(yup.string())
-    .min(1, onBoardingErrorMessage.position)
-    .max(2, onBoardingErrorMessage.position),
+    .min(1, onBoardingErrorMessage.positionMin)
+    .max(2, onBoardingErrorMessage.positionMax),
   useVoice: yup.boolean().typeError(onBoardingErrorMessage.useVoice),
   voiceChannel: yup.array(yup.string()).when('useVoice', {
     is: true,
@@ -61,8 +62,29 @@ const onBoardingSchema = yup.object().shape({
 });
 
 function OnBoarding() {
-  const [queryEnabled, setQueryEnabled] = useState(false); // 사용자 로그인 정보 api 및 로직 구현 후 적용
-  const userData = useGetOnBoarding(queryEnabled, setQueryEnabled);
+  const router = useRouter();
+  const tendencyTestResult = router.query as PlayStyleType | {};
+  const loginData = useGetAuth(false);
+  const userData = useGetOnBoarding(!!loginData);
+
+  const userDataDefaultValues = useMemo(
+    () => ({
+      lolNickname: userData?.lolNickname || '',
+      nickNameCheck: !!userData?.lolNickname || false,
+      playStyle:
+        {
+          battle: userData?.playStyle[0],
+          line: userData?.playStyle[1],
+          champion: userData?.playStyle[2],
+          physical: userData?.playStyle[3],
+        } || tendencyTestResult,
+      position: userData?.position || [],
+      voiceChannel: userData?.voiceChannel || [],
+      useVoice: !!userData?.useVoice,
+      communication: userData?.communication || '',
+    }),
+    [userData]
+  );
 
   const {
     register,
@@ -72,31 +94,31 @@ function OnBoarding() {
     clearErrors,
     watch,
     getValues,
+    setError,
+    reset,
   } = useForm<OnBoardingInput<PlayStyleType>>({
     defaultValues: {
-      lolNickname: userData?.lolNickname || '',
-      nickNameCheck: !!userData?.lolNickname,
-      playStyle:
-        {
-          battle: userData?.playStyle[0],
-          line: userData?.playStyle[1],
-          champion: userData?.playStyle[2],
-          physical: userData?.playStyle[3],
-        } || null,
-      position: userData?.position || [],
-      voiceChannel: userData?.voiceChannel || [],
-      useVoice: userData?.useVoice || true,
-      communication: userData?.communication || '',
+      lolNickname: '',
+      nickNameCheck: false,
+      playStyle: tendencyTestResult,
+      position: [],
+      voiceChannel: [],
+      useVoice: true,
+      communication: '',
     },
     resolver: yupResolver(onBoardingSchema),
     mode: 'onChange',
   });
-  const router = useRouter();
   const nickNameButtonActive = watch('nickNameCheck');
   const nickNameInputActive = watch('lolNickname');
   const useVoiceValue = getValues('useVoice');
-  const [summonerIcon, setSummonerIcon] = useState(userData?.profileUrl || '/icons/onBoarding.png');
+  const [summonerIcon, setSummonerIcon] = useState('/icons/onBoarding.png');
   const submitMutation = useOnBoardingMutation();
+
+  useEffect(() => {
+    reset(userDataDefaultValues);
+    if (userData?.profileUrl) setSummonerIcon(userData?.profileUrl);
+  }, [userData]);
 
   useEffect(() => {
     const errorsArr = Object.keys(errors);
@@ -129,9 +151,12 @@ function OnBoarding() {
       );
       setSummonerIcon(data.profileUrl);
       setValue('nickNameCheck', true, { shouldValidate: true });
+      setValue('lolNickname', data.lolNickname);
       clearErrors('nickNameCheck');
     } catch (error) {
-      // console.error(error);
+      if (error.response.status === 404) {
+        setError('nickNameCheck', { type: 'focus', message: onBoardingErrorMessage.notExist });
+      }
     }
   };
 
@@ -152,7 +177,7 @@ function OnBoarding() {
           <Container>
             <IconAndNickname>
               <IconImageContainer>
-                <Image src={userData?.profileUrl || summonerIcon} width={48} height={48} />
+                <Image src={summonerIcon} width={48} height={48} />
               </IconImageContainer>
               <NicknameContainer>
                 <TextField

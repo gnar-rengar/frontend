@@ -27,4 +27,6 @@ export type ColorVariant =
   | 'disable'
   | 'discord'
   | 'kakao'
-  | 'naver';
+  | 'naver'
+  | 'linkShare'
+  | 'otherShare';

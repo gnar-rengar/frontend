@@ -136,5 +136,7 @@ export const darkTheme = {
     discord: '#5865F2',
     kakao: '#FEE500',
     naver: '#03C75A',
+    linkShare: '#7BD0BD',
+    otherShare: '#999A9A',
   },
 };

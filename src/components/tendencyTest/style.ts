@@ -1,14 +1,13 @@
 import styled from '@emotion/styled';
+import { ColorVariant } from '../../types/theme.type';
 
 export const TestContainer = styled.div`
   width: 100%;
-  position: absolute;
-  left: 50%;
-  top: 30%;
-  transform: translate(-50%, -30%);
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 export const TestStartContainer = styled(TestContainer)`
@@ -23,9 +22,11 @@ export const ButtonContainer = styled.div`
 `;
 
 export const StartEndButtonContainer = styled(ButtonContainer)`
-  position: absolute;
+  padding: 0 16px;
+  position: sticky;
+  left: 50%;
   bottom: 5%;
-  max-width: 345px;
+  max-width: 480px;
 `;
 
 export const TendencyProgressBar = styled.div<{ width: string }>`
@@ -47,6 +48,8 @@ export const TendencyProgressBar = styled.div<{ width: string }>`
 
 export const EndContainer = styled(TestContainer)`
   gap: 24px;
+  padding-top: 16px;
+  padding-bottom: 32px;
 `;
 
 export const PlayStyleContainer = styled.div`
@@ -55,10 +58,13 @@ export const PlayStyleContainer = styled.div`
   gap: 12px;
 `;
 
-export const ChipContainer = styled.div`
+export const ResultContainer = styled.div`
+  width: 210px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  flex-wrap: wrap;
 `;
 
 export const QuestionContainer = styled.div`
@@ -77,6 +83,26 @@ export const QuestionAndExpression = styled.div`
   gap: 40px;
 `;
 
-export const Test = styled.div`
-  padding: 0 16px;
+export const ShareContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+`;
+
+export const Share = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const ShareButton = styled.div<{ color: ColorVariant }>`
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  background-color: ${(props) => props.theme.color[props.color]};
+  cursor: pointer;
 `;

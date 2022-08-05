@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import useGetNewSummonerList from '../../hooks/useGetNewSummonerList';
@@ -32,7 +33,13 @@ function New() {
       <NewContainer>
         <Filter setFilterState={setFilterState} />
         {pages.map((page) =>
-          page.data.newList.map((list) => <SmallCard {...list} key={list._id} />)
+          page.data.newList.map((list) => (
+            <Link href={`/profile/${list._id}`} key={list._id}>
+              <a>
+                <SmallCard {...list} />
+              </a>
+            </Link>
+          ))
         )}
       </NewContainer>
       <div ref={hasNextPage ? ref : undefined} />
