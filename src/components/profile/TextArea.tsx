@@ -4,8 +4,7 @@ import { Typography } from '../common';
 import { KDA, KDAAndMinionKilled, Level, LevelAndChampionName, TextAreaContainer } from './style';
 
 interface TextAreaProps {
-  championName: string;
-  championName_KR: string;
+  championNameKR: string;
   champLevel: number;
   totalMinionsKilled: number;
   kills: number;
@@ -17,8 +16,7 @@ interface TextAreaProps {
 
 function TextArea(props: TextAreaProps) {
   const {
-    championName,
-    championName_KR,
+    championNameKR,
     champLevel,
     totalMinionsKilled,
     kills,
@@ -36,7 +34,7 @@ function TextArea(props: TextAreaProps) {
         <Level>
           <Typography variant="captionRegular">{champLevel}</Typography>
         </Level>
-        <Typography variant="captionBold">{championName_KR}</Typography>
+        <Typography variant="captionBold">{championNameKR}</Typography>
       </LevelAndChampionName>
       <KDAAndMinionKilled>
         <KDA>

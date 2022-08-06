@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { Button } from '../../common';
-import { HeaderContainer, Nav } from './Header.style';
+import { HeaderContainer, IconWrapper, Nav, TextWrapper } from './Header.style';
 
 function Header() {
   const { icon } = useTheme();
@@ -18,26 +18,38 @@ function Header() {
       {
         href: '/recommend/fit',
         component: (
-          <Button variant="text" size="sm" color="onBackground">
-            맞춤추천
-          </Button>
+          <TextWrapper>
+            <Button variant="text" size="sm" color="onBackground">
+              맞춤추천
+            </Button>
+          </TextWrapper>
         ),
       },
       {
         href: '/recommend/new',
         component: (
-          <Button variant="text" size="sm" color="onBackground">
-            최신 소환사
-          </Button>
+          <TextWrapper>
+            <Button variant="text" size="sm" color="onBackground">
+              최신 소환사
+            </Button>
+          </TextWrapper>
         ),
       },
       {
         href: '/chats',
-        component: <Image src="/icons/chat.svg" width={lg} height={lg} alt="chat" />,
+        component: (
+          <IconWrapper>
+            <Image src="/icons/chat.svg" width={lg} height={lg} alt="chat" />
+          </IconWrapper>
+        ),
       },
       {
         href: '/my-page',
-        component: <Image src="/icons/profile.svg" width={lg} height={lg} alt="my-page" />,
+        component: (
+          <IconWrapper>
+            <Image src="/icons/profile.svg" width={lg} height={lg} alt="my-page" />
+          </IconWrapper>
+        ),
       },
     ],
     [lg]

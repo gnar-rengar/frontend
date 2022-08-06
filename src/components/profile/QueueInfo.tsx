@@ -10,6 +10,7 @@ interface QueueInfoProps {
 
 const queueTypeMap: { [key: string]: string } = {
   '5v5 Ranked Solo games': '솔로랭크',
+  '5v5 Ranked Flex games': '자유랭크',
   '5v5 ARAM games': '무작위 총력전',
   '5v5 Blind Pick games': '일반',
 };
