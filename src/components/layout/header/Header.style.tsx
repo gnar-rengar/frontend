@@ -16,16 +16,6 @@ export const Nav = styled.nav`
   display: flex;
   align-items: center;
   gap: 6px;
-
-  div:nth-child(1) {
-    display: flex;
-    gap: 12px;
-  }
-
-  div:nth-child(2) {
-    display: flex;
-    gap: 10px;
-  }
 `;
 
 export const TextWrapper = styled.div`
