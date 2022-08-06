@@ -87,6 +87,7 @@ export interface RecentRecord {
   gameEndTimestamp: number;
   win: boolean;
   championName: string;
+  championName_KR: string;
   spell1: string;
   spell2: string;
   perk1: string;

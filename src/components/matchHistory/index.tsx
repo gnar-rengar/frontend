@@ -1,5 +1,6 @@
 import React from 'react';
 import useGetMatchHistory from '../../hooks/useGetMatchHistory';
+import useGetProfile from '../../hooks/useGetProfile';
 import { Asking, BaseContainer, Button } from '../common';
 import MatchCard from '../profile/MatchCard';
 
@@ -11,9 +12,11 @@ function MatchHistory({ userId }: { userId: string }) {
     fetchNextPage,
   } = useGetMatchHistory(userId);
 
+  const { lolNickname } = useGetProfile(userId);
+
   return (
     <BaseContainer>
-      <Asking title="고수달님의 최근 전적">
+      <Asking title={`${lolNickname}님의 최근 전적`}>
         <MatchCardContainer>
           {pages.map((page) =>
             page.data.recentRecord.map((matchData) => <MatchCard matchData={matchData} />)

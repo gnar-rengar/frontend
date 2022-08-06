@@ -5,6 +5,7 @@ import { KDA, KDAAndMinionKilled, Level, LevelAndChampionName, TextAreaContainer
 
 interface TextAreaProps {
   championName: string;
+  championName_KR: string;
   champLevel: number;
   totalMinionsKilled: number;
   kills: number;
@@ -17,6 +18,7 @@ interface TextAreaProps {
 function TextArea(props: TextAreaProps) {
   const {
     championName,
+    championName_KR,
     champLevel,
     totalMinionsKilled,
     kills,
@@ -34,7 +36,7 @@ function TextArea(props: TextAreaProps) {
         <Level>
           <Typography variant="captionRegular">{champLevel}</Typography>
         </Level>
-        <Typography variant="captionBold">{championName}</Typography>
+        <Typography variant="captionBold">{championName_KR}</Typography>
       </LevelAndChampionName>
       <KDAAndMinionKilled>
         <KDA>
