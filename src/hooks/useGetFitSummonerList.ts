@@ -9,8 +9,9 @@ const fitSummonerListGetAPI = async () => {
   return data;
 };
 
-const useGetFitSummonerList = () => {
+const useGetFitSummonerList = (enableState = true) => {
   const { data } = useQuery(queryKeys.fitSummonerList, fitSummonerListGetAPI, {
+    enabled: enableState,
     suspense: false,
   });
   return { data };

@@ -15,7 +15,7 @@ const useWithdrawalMutation = () => {
   const router = useRouter();
 
   return useMutation(withdrawalDeleteAPI, {
-    onSuccess: () => router.push('/login'),
+    onSuccess: () => router.replace('/withdrawal/success'),
   });
 };
 

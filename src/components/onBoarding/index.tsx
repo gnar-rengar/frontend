@@ -64,7 +64,7 @@ const onBoardingSchema = yup.object().shape({
 function OnBoarding() {
   const router = useRouter();
   const tendencyTestResult = router.query as PlayStyleType | {};
-  const loginData = useGetAuth(false);
+  const { data: loginData } = useGetAuth(false);
   const userData = useGetOnBoarding(!!loginData);
 
   const userDataDefaultValues = useMemo(

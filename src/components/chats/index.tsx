@@ -13,7 +13,9 @@ import useGetAuth from '../../hooks/useGetAuth';
 const isLoggedIn = true;
 
 function Chats() {
-  const { userId } = useGetAuth();
+  const {
+    data: { userId },
+  } = useGetAuth();
   const [rooms, setRooms] = useState<Room[]>([]);
 
   const socket = useContext(SocketContext);
