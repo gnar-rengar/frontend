@@ -78,6 +78,7 @@ function InputArea(props: InputAreaProps) {
           placeholder="모험은 역시 친구랑 같이 해야 신나는법!"
           onChange={handleChange}
           value={input}
+          autoComplete="off"
         />
         <ButtonWrapper type="submit">
           <Image src="/icons/send.svg" width={xl} height={xl} />
