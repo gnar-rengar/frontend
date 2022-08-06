@@ -8,6 +8,6 @@ export const queryKeys = {
   authUser: ['user'] as const,
   fitSummonerList: ['fitSummonerList'] as const,
   newSummonerList: ['newSummonerList'] as const,
-  message: ['message'] as const,
+  message: (roomId: string) => ['message', roomId] as const,
   opponent: ['opponent'] as const,
 };
