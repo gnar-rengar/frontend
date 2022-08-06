@@ -5,7 +5,7 @@ import { Ul } from './style';
 
 interface PlayStyleProps {
   playStyles: string[];
-  ulRef: React.MutableRefObject<HTMLUListElement>;
+  ulRef?: React.MutableRefObject<HTMLUListElement>;
 }
 
 function PlayStyle(props: PlayStyleProps) {
