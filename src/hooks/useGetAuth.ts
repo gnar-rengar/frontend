@@ -18,7 +18,7 @@ const useGetAuth = (enableState = true) => {
       if (error.response.status === 401) {
         router.push('/login');
       }
-      if (error.response.status === 403) {
+      if (error.response.status === 403 && router.pathname !== '/on-boarding') {
         router.push('/tendency-test');
       }
     },

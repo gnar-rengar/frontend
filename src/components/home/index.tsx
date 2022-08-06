@@ -17,7 +17,7 @@ function Home() {
   const { data: fitData } = useGetFitSummonerList(isSuccess);
   const {
     data: { pages },
-  } = useGetNewSummonerList([], 1);
+  } = useGetNewSummonerList([], 0);
 
   const {
     icon: {
@@ -25,13 +25,12 @@ function Home() {
     },
   } = useTheme();
 
-  const newList = pages[0].data.newList.slice(0, 3);
   const recommendProps = () => {
     if (userData) {
       return fitData?.customList;
     }
 
-    return newList;
+    return pages[0].data.newList;
   };
 
   return (
@@ -79,7 +78,7 @@ function Home() {
             </a>
           </Link>
         </TitleAndMoreContainer>
-        {newList.map((list) => (
+        {pages[0].data.newList.map((list) => (
           <Link href={`/profile/${list._id}`} key={list._id}>
             <a>
               <SmallCard {...list} />
