@@ -24,11 +24,11 @@ function ChatRoom({ roomId }: { roomId: string }) {
   const [input, setInput] = useState('');
   const [hasBadWord, setHasBadWord] = useState(false);
 
-  const [isOpponentTyping, setIsOpponentTypingTyping] = useState(false);
+  const [isOpponentTyping, setIsOpponentTyping] = useState(false);
 
   const socket = useContext(SocketContext);
 
-  const [setTimer, clearTimer] = useTimer(() => setIsOpponentTypingTyping(false), 5000);
+  const [setTimer, clearTimer] = useTimer(() => setIsOpponentTyping(false), 5000);
 
   const setDefaultMessages = useCallback(
     (msgs: Messages[]) => {
@@ -48,7 +48,7 @@ function ChatRoom({ roomId }: { roomId: string }) {
   const handleReceiveMessage = useCallback(
     (message: ReceivedMessage) => {
       if (message.userId !== myId) {
-        setIsOpponentTypingTyping(false);
+        setIsOpponentTyping(false);
         setNewReceivedMessage(message.text);
       }
       addMessage(message);
@@ -59,13 +59,13 @@ function ChatRoom({ roomId }: { roomId: string }) {
 
   const handleOnTyping = useCallback(() => {
     clearTimer();
-    setIsOpponentTypingTyping(true);
+    setIsOpponentTyping(true);
     setTimer();
   }, []);
 
   const handleOnEndTyping = useCallback(() => {
     clearTimer();
-    setIsOpponentTypingTyping(false);
+    setIsOpponentTyping(false);
   }, []);
 
   useEffect(() => {
@@ -96,7 +96,6 @@ function ChatRoom({ roomId }: { roomId: string }) {
         setHasBadWord={setHasBadWord}
         input={input}
         setInput={setInput}
-        isOpponentTyping={isOpponentTyping}
         myId={myId}
         lolNickname={lolNickname}
       />
@@ -106,6 +105,7 @@ function ChatRoom({ roomId }: { roomId: string }) {
         input={input}
         setInput={setInput}
         myId={myId}
+        isOpponentTyping={isOpponentTyping}
       />
     </ChatRoomContainer>
   );

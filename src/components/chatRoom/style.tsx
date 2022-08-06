@@ -89,19 +89,26 @@ export const QuickChatSpeechBubbleContainer = styled.div`
   gap: 8px;
 `;
 
-export const Form = styled.form`
+export const InputAreaContainer = styled.div`
   position: sticky;
   bottom: 0;
   margin-left: -16px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
   width: 100%;
-  height: 48px;
-  padding: 4px 16px;
-  box-sizing: content-box;
+  height: 66px;
+  padding: 6px 16px 4px;
   gap: 8px;
+  box-sizing: content-box;
   background: ${({ theme }) => theme.color.surface};
+`;
+
+export const Form = styled.form`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
 `;
 
 export const Input = styled.input`
@@ -109,6 +116,7 @@ export const Input = styled.input`
   height: 40px;
   padding: 0 16px;
   border-radius: 16px;
+  border: none;
   outline: none;
 
   ${({ theme }) => {

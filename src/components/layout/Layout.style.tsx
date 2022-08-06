@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const LayoutContainer = styled.div`
   min-height: 100vh;
   max-width: 480px;
-  min-width: 375px;
+  min-width: 320px;
   margin: auto;
   ${({ theme: { color } }) => `
     background: ${color.background};
