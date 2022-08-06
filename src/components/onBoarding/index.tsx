@@ -1,4 +1,5 @@
 /* eslint-disable react/forbid-prop-types */
+import { useTheme } from '@emotion/react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -116,6 +117,12 @@ function OnBoarding() {
   const [summonerIcon, setSummonerIcon] = useState('/icons/onBoarding.png');
   const submitMutation = useOnBoardingMutation();
 
+  const {
+    icon: {
+      size: { xl },
+    },
+  } = useTheme();
+
   useEffect(() => {
     if (userData) {
       reset(userDataDefaultValues);
@@ -183,7 +190,7 @@ function OnBoarding() {
             <br />
             찰떡궁합 듀오를 추천해드릴게요
           </Typography>
-          <Image src="/icons/cat.png" width="32px" height="32px" />
+          <Image src="/icons/cat.png" width={xl} height={xl} alt="intro text" />
         </TitleContainer>
       </OnBoardingEachContainer>
       <OnBoardingEachContainer gap id="nickNameCheck">
@@ -195,7 +202,7 @@ function OnBoarding() {
           <Container>
             <IconAndNickname>
               <IconImageContainer>
-                <Image src={summonerIcon} width={48} height={48} />
+                <Image src={summonerIcon} width={48} height={48} alt="summonerIcon" />
               </IconImageContainer>
               <NicknameContainer>
                 <TextField
