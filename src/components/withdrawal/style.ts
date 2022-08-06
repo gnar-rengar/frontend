@@ -42,3 +42,13 @@ export const CheckboxContainer = styled.div`
   flex-direction: column;
   gap: 8px;
 `;
+
+export const SuccessContainer = styled.div`
+  width: 100%;
+  height: calc(100vh - ${({ theme }) => theme.header.height});
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+`;
