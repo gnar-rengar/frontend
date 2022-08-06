@@ -16,10 +16,10 @@ const newSummonerListGetAPI = async (page: number, tier: FilterTierType[]) => {
     page,
   };
 };
-const useGetNewSummonerList = (tier: FilterTierType[]) => {
+const useGetNewSummonerList = (tier: FilterTierType[], pageNumber?: number) => {
   const query = useInfiniteQuery(
     queryKeys.newSummonerList,
-    ({ pageParam = 1 }) => newSummonerListGetAPI(pageParam, tier),
+    ({ pageParam = pageNumber }) => newSummonerListGetAPI(pageParam, tier),
     {
       getNextPageParam: (lastPage) => {
         if (lastPage.data.newList.length > 0) {

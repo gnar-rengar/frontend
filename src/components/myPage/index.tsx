@@ -10,7 +10,7 @@ import { AreaButton, ProfileCardContainer } from './style';
 
 function MyPage() {
   const { data, isLoading } = useGetMyPage();
-  const me = useGetAuth();
+  const { data: me } = useGetAuth();
   const logoutMutation = useLogoutMutation();
   const router = useRouter();
 

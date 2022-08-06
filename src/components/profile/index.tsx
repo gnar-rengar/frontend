@@ -31,7 +31,7 @@ function UserProfile({ userId }: { userId: string }) {
     goodReview,
   } = useGetProfile(userId as string);
 
-  const me = useGetAuth();
+  const { data: me } = useGetAuth();
 
   return (
     <>

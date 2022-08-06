@@ -13,11 +13,11 @@ import RecommendSwiper from './RecommendSwiper';
 import { Container, HomeContainer, MoreContainer, TitleAndMoreContainer } from './style';
 
 function Home() {
-  const userData = useGetAuth(false);
-  const { data: fitData } = useGetFitSummonerList();
+  const { data: userData, isSuccess } = useGetAuth(false);
+  const { data: fitData } = useGetFitSummonerList(isSuccess);
   const {
     data: { pages },
-  } = useGetNewSummonerList([]);
+  } = useGetNewSummonerList([], 1);
 
   const {
     icon: {

@@ -12,18 +12,18 @@ export const authUserGetAPI = async () => {
 
 const useGetAuth = (enableState = true) => {
   const router = useRouter();
-  const { data } = useQuery(queryKeys.authUser, authUserGetAPI, {
+  const { data, isSuccess } = useQuery(queryKeys.authUser, authUserGetAPI, {
     suspense: enableState,
     onError: (error: AxiosError) => {
       if (error.response.status === 401) {
         router.push('/login');
       }
       if (error.response.status === 403) {
-        router.push('/on-boarding');
+        router.push('/tendency-test');
       }
     },
   });
-  return data;
+  return { data, isSuccess };
 };
 
 export default useGetAuth;

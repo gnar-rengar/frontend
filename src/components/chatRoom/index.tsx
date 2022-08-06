@@ -14,7 +14,9 @@ import { useTimer } from '../../utils';
 import type { Messages, ReceivedMessage } from '../../types/api.type';
 
 function ChatRoom({ roomId }: { roomId: string }) {
-  const { userId: myId, lolNickname } = useGetAuth();
+  const {
+    data: { userId: myId, lolNickname },
+  } = useGetAuth();
 
   const { chat } = useGetMessages(roomId);
 
