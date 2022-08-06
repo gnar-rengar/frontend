@@ -50,29 +50,13 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
       window.Kakao.Share.sendDefault({
         objectType: 'feed',
         content: {
-          title: '오늘의 디저트',
-          description: '아메리카노, 빵, 케익',
-          imageUrl:
-            'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
+          title: '듀오해듀오',
+          description: '플레이 스타일 테스트하고, 맞춤 듀오 추천받자!',
+          imageUrl: 'https://s3.ap-northeast-2.amazonaws.com/sungkyu.info/original/kakaoShare.png',
           link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            androidExecutionParams: 'test',
+            mobileWebUrl: 'https://duoduo.lol',
           },
         },
-        buttons: [
-          {
-            title: '웹으로 이동',
-            link: {
-              mobileWebUrl: 'https://developers.kakao.com',
-            },
-          },
-          {
-            title: '앱으로 이동',
-            link: {
-              mobileWebUrl: 'https://developers.kakao.com',
-            },
-          },
-        ],
       });
     }
   };
