@@ -7,7 +7,11 @@ type StyledButtonProps = Pick<ButtonProps, 'color' | 'variant' | 'size' | 'width
 export const StyledButton = styled.button<StyledButtonProps>`
   cursor: pointer;
   ${({ variant, size, width }) => {
-    if (variant === 'text') return '';
+    if (variant === 'text') {
+      return `
+        padding: 0;
+      `;
+    }
     if (size === 'lg') {
       return `
         width: ${width};

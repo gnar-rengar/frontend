@@ -4,7 +4,7 @@ export const ChatRoomContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 56px);
+  min-height: calc(100vh - ${({ theme }) => theme.header.height});
 `;
 
 export const MessageAreaContainer = styled.div`
