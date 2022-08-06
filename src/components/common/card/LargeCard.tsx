@@ -48,7 +48,7 @@ function LargeCard(props: CardProps) {
           </NameVoiceAndPosition>
         </InfoTopContainer>
         <InfoBottomContainer>
-          <PlayStyle type="recommand" playStyles={playStyle} />
+          <PlayStyle playStyles={playStyle} />
         </InfoBottomContainer>
       </RecommandInfoContainer>
     </RecommandCardContainer>
