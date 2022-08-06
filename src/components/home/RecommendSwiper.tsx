@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { CardProps } from '../../types/card.type';
 import LargeCard from '../common/card/LargeCard';
+import { RecommendSwiperContainer } from './style';
 
 interface RecommendSwiperProps {
   listProps: CardProps[];
@@ -10,8 +11,8 @@ interface RecommendSwiperProps {
 
 function RecommendSwiper({ listProps }: RecommendSwiperProps) {
   return (
-    <div>
-      <Swiper spaceBetween={-120} slidesPerView="auto" centeredSlides>
+    <RecommendSwiperContainer>
+      <Swiper slidesPerView="auto">
         {listProps &&
           listProps.map((list) => (
             <SwiperSlide key={list._id}>
@@ -23,7 +24,7 @@ function RecommendSwiper({ listProps }: RecommendSwiperProps) {
             </SwiperSlide>
           ))}
       </Swiper>
-    </div>
+    </RecommendSwiperContainer>
   );
 }
 
