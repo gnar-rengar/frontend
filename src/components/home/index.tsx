@@ -17,7 +17,7 @@ function Home() {
   const { data: fitData } = useGetFitSummonerList(isSuccess);
   const {
     data: { pages },
-  } = useGetNewSummonerList([], 0);
+  } = useGetNewSummonerList([], 0, 'home');
 
   const {
     icon: {

@@ -16,7 +16,7 @@ function New() {
     isLoading,
     hasNextPage,
     refetch,
-  } = useGetNewSummonerList(filterState);
+  } = useGetNewSummonerList(filterState, 1, 'filter');
 
   useEffect(() => {
     if (inView && !isLoading) {
