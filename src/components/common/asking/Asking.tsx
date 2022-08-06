@@ -17,7 +17,7 @@ function Asking(props: AskingProps) {
   return (
     <AskingContainer>
       <TitleContainer>
-        <Typography variant="h3" align="left" paragraph={paragraph}>
+        <Typography whiteSpace={whiteSpace} variant="h3" align="left" paragraph={paragraph}>
           {title}
         </Typography>
         {caption && (

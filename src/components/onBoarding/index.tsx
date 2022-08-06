@@ -32,6 +32,7 @@ import {
   OnBoardingEachContainer,
   PlayStyleContainer,
   PlayStyleRadio,
+  TitleContainer,
   VoiceButtonContainer,
 } from './style';
 
@@ -103,7 +104,7 @@ function OnBoarding() {
       playStyle: tendencyTestResult,
       position: [],
       voiceChannel: [],
-      useVoice: true,
+      useVoice: false,
       communication: '',
     },
     resolver: yupResolver(onBoardingSchema),
@@ -116,7 +117,12 @@ function OnBoarding() {
   const submitMutation = useOnBoardingMutation();
 
   useEffect(() => {
-    reset(userDataDefaultValues);
+    if (userData) {
+      reset(userDataDefaultValues);
+    }
+  }, [userData]);
+
+  useEffect(() => {
     if (userData?.profileUrl) setSummonerIcon(userData?.profileUrl);
   }, [userData]);
 
@@ -168,6 +174,18 @@ function OnBoarding() {
 
   return (
     <OnBoardingContainer onSubmit={handleSubmit(onSubmitOnBoarding)} id="lolNickname">
+      <OnBoardingEachContainer gap={false}>
+        <TitleContainer>
+          <Typography variant="h3">
+            반가워요, 소환사님.
+            <br />
+            몇 가지 정보만 입력해주시면
+            <br />
+            찰떡궁합 듀오를 추천해드릴게요
+          </Typography>
+          <Image src="/icons/cat.png" width="32px" height="32px" />
+        </TitleContainer>
+      </OnBoardingEachContainer>
       <OnBoardingEachContainer gap id="nickNameCheck">
         <Asking
           title="소환사명을 알려주세요"
@@ -217,6 +235,7 @@ function OnBoarding() {
               {position.map((pos) => (
                 <React.Fragment key={pos[1]}>
                   <CheckBoxChip
+                    checkedMax={2}
                     color="primary"
                     register={register('position')}
                     key={pos[0]}
