@@ -7,7 +7,7 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   height: ${({ theme }) => theme.header.height};
-  padding: 14px 16px;
+  padding: 9px 16px;
   background: ${({ theme }) => theme.color.surface};
   z-index: 50;
 `;
@@ -15,5 +15,13 @@ export const HeaderContainer = styled.header`
 export const Nav = styled.nav`
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 6px;
+`;
+
+export const TextWrapper = styled.div`
+  padding: 10px 6px;
+`;
+
+export const IconWrapper = styled.div`
+  padding: 8px;
 `;
