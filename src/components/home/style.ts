@@ -7,7 +7,7 @@ export const HomeContainer = styled.div`
 `;
 
 export const SwiperContainer = styled.div`
-  width: 100vw;
+  width: calc(100% + 32px);
   max-width: 480px;
   margin-left: -16px;
   padding-bottom: 16px;
@@ -50,4 +50,40 @@ export const BlurContainer = styled.div`
   gap: 16px;
   align-items: center;
   justify-content: center;
+`;
+
+export const RecommendSwiperContainer = styled.div`
+  .swiper-slide {
+    margin-right: -120px;
+  }
+
+  @media screen and (max-width: 470px) {
+    .swiper-slide {
+      margin-right: -100px;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    .swiper-slide {
+      margin-right: -80px;
+    }
+  }
+
+  @media screen and (max-width: 430px) {
+    .swiper-slide {
+      margin-right: -60px;
+    }
+  }
+
+  @media screen and (max-width: 410px) {
+    .swiper-slide {
+      margin-right: -40px;
+    }
+  }
+
+  @media screen and (max-width: 390px) {
+    .swiper-slide {
+      margin-right: -20px;
+    }
+  }
 `;
