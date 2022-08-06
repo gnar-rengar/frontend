@@ -4,10 +4,9 @@ import BadWordAlert from './BadWordAlert';
 import DayDivider from './DayDivider';
 import Message from './Message';
 import QuickChat from './QuickChat';
-import Typing from './Typing';
 import NewMessageNotice from './NewMessageNotice';
 
-import { MessageAreaContainer, OpponentSpeechBubble } from './style';
+import { MessageAreaContainer } from './style';
 
 import type { Messages } from '../../types/api.type';
 
@@ -21,7 +20,6 @@ interface MessageProps {
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
-  isOpponentTyping: boolean;
   myId: string;
   lolNickname: string;
 }
@@ -35,7 +33,6 @@ function MessageArea(props: MessageProps) {
     setHasBadWord,
     input,
     setInput,
-    isOpponentTyping,
     myId,
     lolNickname,
   } = props;
@@ -57,7 +54,7 @@ function MessageArea(props: MessageProps) {
   useEffect(() => {
     if (isNewMsgOutOfSight) return;
     scrollToBottom();
-  }, [messages, hasBadWord, isOpponentTyping]);
+  }, [messages, hasBadWord]);
 
   useEffect(() => {
     if (newReceivedMessage.length > 0 && isNewMsgOutOfSight) {
@@ -94,11 +91,6 @@ function MessageArea(props: MessageProps) {
             ))}
           </React.Fragment>
         ))
-      )}
-      {isOpponentTyping && (
-        <OpponentSpeechBubble>
-          <Typing />
-        </OpponentSpeechBubble>
       )}
       {hasBadWord && (
         <BadWordAlert

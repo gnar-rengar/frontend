@@ -96,7 +96,6 @@ function ChatRoom({ roomId }: { roomId: string }) {
         setHasBadWord={setHasBadWord}
         input={input}
         setInput={setInput}
-        isOpponentTyping={isOpponentTyping}
         myId={myId}
         lolNickname={lolNickname}
       />
@@ -106,6 +105,7 @@ function ChatRoom({ roomId }: { roomId: string }) {
         input={input}
         setInput={setInput}
         myId={myId}
+        isOpponentTyping={isOpponentTyping}
       />
     </ChatRoomContainer>
   );
