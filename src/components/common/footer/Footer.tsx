@@ -13,7 +13,7 @@ function Footer() {
           <br />
           경기도 시흥시 봉우재로 11번길 24, 1층 101호
           <br />
-          cs@duoduo.gg
+          duohaeduo@gmail.com
         </Typography>
       </InfoKoreanCotainer>
       <Typography variant="captionRegular">
