@@ -74,11 +74,11 @@ function Login() {
         </ButtonContainer>
         <Typography variant="captionRegular" align="center" underline color="onBackgroundSub">
           회원가입 시 듀오해듀오의{' '}
-          <Link href="/on-boarding">
+          <Link href="/policy/service">
             <UnderLineLink>서비스 이용 약관</UnderLineLink>
           </Link>
           과<br />
-          <Link href="/on-boarding">
+          <Link href="/policy/privacy">
             <UnderLineLink>개인정보 보호정책</UnderLineLink>
           </Link>
           에 동의하게 됩니다.
