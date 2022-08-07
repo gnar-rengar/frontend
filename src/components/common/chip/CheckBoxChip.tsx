@@ -10,29 +10,21 @@ interface CheckBoxChipProps extends ChipProps {
   value: string;
   width?: 'fit-content' | 'fix';
   register?: UseFormRegisterReturn<string>;
-  getValues?: string[];
   checkedMax?: number;
+  watch?: string[];
 }
 
 function CheckBoxChip(props: CheckBoxChipProps) {
-  const {
-    htmlFor,
-    width = 'fit-content',
-    value,
-    register,
-    getValues,
-    checkedMax,
-    ...other
-  } = props;
-  const [checked, setChecked] = useState(getValues?.includes(value) || false);
+  const { htmlFor, width = 'fit-content', value, register, checkedMax, watch, ...other } = props;
+  const [checked, setChecked] = useState(watch?.includes(value) || false);
   const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
-    setChecked(getValues?.includes(value));
-  }, [getValues]);
+    setChecked(watch?.includes(value));
+  }, [watch]);
 
   const onClickChip = () => {
-    if (getValues.length >= checkedMax && !checked) setDisabled(true);
+    if (watch.length + 1 > checkedMax && !checked) setDisabled(true);
     else {
       setDisabled(false);
       setChecked((p) => !p);

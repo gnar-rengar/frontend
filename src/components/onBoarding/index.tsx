@@ -248,7 +248,7 @@ function OnBoarding() {
                     key={pos[0]}
                     htmlFor={pos[0]}
                     value={pos[0]}
-                    getValues={getValues('position')}
+                    watch={watch('position')}
                   >
                     {pos[0]}
                   </CheckBoxChip>
@@ -308,7 +308,7 @@ function OnBoarding() {
                         htmlFor={channel[1]}
                         value={channel[1]}
                         register={register('voiceChannel')}
-                        getValues={getValues('voiceChannel')}
+                        watch={watch('voiceChannel')}
                       >
                         {channel[0]}
                       </CheckBoxChip>
