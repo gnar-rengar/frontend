@@ -66,3 +66,15 @@ export const ButtonContainer = styled.div`
 export const ArrowButtonContainer = styled.div`
   cursor: pointer;
 `;
+
+export const NoneContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+`;
