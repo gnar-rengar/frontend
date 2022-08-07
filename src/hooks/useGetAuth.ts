@@ -13,6 +13,7 @@ export const authUserGetAPI = async () => {
 const useGetAuth = (enableState = true) => {
   const router = useRouter();
   const { data, isSuccess } = useQuery(queryKeys.authUser, authUserGetAPI, {
+    retry: 1,
     suspense: enableState,
     onError: (error: AxiosError) => {
       if (error.response.status === 401) {
