@@ -1,14 +1,15 @@
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
-import React, { Suspense } from 'react';
+import React from 'react';
+import LoadingSuspense from '../../components/common/loadingSuspense';
 
 const ChatRoom = dynamic(() => import('../../components/chatRoom'), { ssr: false });
 
 function ChatPage({ roomId }: { roomId: string }) {
   return (
-    <Suspense fallback="loading">
+    <LoadingSuspense>
       <ChatRoom roomId={roomId} />
-    </Suspense>
+    </LoadingSuspense>
   );
 }
 
