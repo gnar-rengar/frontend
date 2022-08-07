@@ -1,11 +1,12 @@
-import React, { Suspense } from 'react';
+import React from 'react';
+import LoadingSuspense from '../../components/common/loadingSuspense';
 import New from '../../components/recommend/New';
 
 function NewPage() {
   return (
-    <Suspense>
+    <LoadingSuspense>
       <New />
-    </Suspense>
+    </LoadingSuspense>
   );
 }
 

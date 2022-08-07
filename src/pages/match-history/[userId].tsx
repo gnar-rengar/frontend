@@ -1,6 +1,7 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { GetServerSideProps } from 'next';
 import MatchHistory from '../../components/matchHistory';
+import LoadingSuspense from '../../components/common/loadingSuspense';
 
 interface MatchHistoryPageProps {
   userId: string;
@@ -8,9 +9,9 @@ interface MatchHistoryPageProps {
 
 function MatchHistoryPage({ userId }: MatchHistoryPageProps) {
   return (
-    <Suspense fallback="loading">
+    <LoadingSuspense>
       <MatchHistory userId={userId} />
-    </Suspense>
+    </LoadingSuspense>
   );
 }
 

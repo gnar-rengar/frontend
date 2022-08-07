@@ -56,7 +56,7 @@ function Chats() {
     return (
       <InValid
         title={'아직 채팅이 없어요\n듀오하고싶은 소환사와 채팅해보세요!'}
-        path="/"
+        path="/recommend/new"
         buttonText="듀오 찾으러 가기"
       />
     );
