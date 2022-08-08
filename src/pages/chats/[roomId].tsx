@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
 import React from 'react';
-import LoadingSuspense from '../../components/common/loadingSuspense';
+import LoadingSuspense from '../../components/common/loading-suspense';
 
 const ChatRoom = dynamic(() => import('../../components/chatRoom'), { ssr: false });
 

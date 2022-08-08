@@ -13,7 +13,7 @@ function ReviewSection(props: ReviewSectionProps) {
 
   return (
     <section>
-      <Asking title={`${lolNickname}님이 받은 칭찬`}>
+      <Asking title={`${lolNickname}님은 이런 칭찬을 받았어요`}>
         <Review reviews={goodReview} />
       </Asking>
     </section>

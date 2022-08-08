@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadingSuspense from '../components/common/loadingSuspense';
+import LoadingSuspense from '../components/common/loading-suspense';
 import Home from '../components/home';
 
 function HomePage() {

@@ -93,7 +93,7 @@ function ReviewWrite(props: ReviewWriteProps) {
       <BaseContainer>
         <Asking
           title={`${lolNickname}님은 어떠셨나요?`}
-          caption={'정말 플레이를 했을 때만 남겨주세요\n허위 리뷰 작성 시 이용이 제한될 수 있어요.'}
+          caption={'정말 플레이를 했을 때만 남겨주세요\n허위 리뷰 작성 시 이용이 제한될 수 있어요'}
           whiteSpace="pre-line"
         >
           <ButtonContainer>

@@ -52,7 +52,7 @@ export interface ProfileDTO {
   rank: string;
   leaguePoints: string;
   playStyle: string[];
-  position: string[];
+  position: Position[];
   useVoice: boolean;
   voiceChannel: string[];
   communication: string;
