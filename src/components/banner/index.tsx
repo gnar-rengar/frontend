@@ -31,7 +31,7 @@ function BannerDetail(props: BannerDetailProps) {
         <Image src="/icons/close.svg" width={xl} height={xl} />
       </CloseButton>
       <ButtonContainer>
-        <Button color={buttonColor} size="lg">
+        <Button onClick={() => router.push('/')} color={buttonColor} size="lg">
           {buttonText}
         </Button>
       </ButtonContainer>
