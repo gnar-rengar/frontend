@@ -122,3 +122,10 @@ export const ChannelAndCommunication = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+export const TitleContainer = styled.div`
+  padding: 16px 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+`;

@@ -1,7 +1,7 @@
 import { useTheme } from '@emotion/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useGetAuth from '../../hooks/useGetAuth';
 import useGetFitSummonerList from '../../hooks/useGetFitSummonerList';
 import useGetNewSummonerList from '../../hooks/useGetNewSummonerList';
@@ -13,8 +13,9 @@ import RecommendSwiper from './RecommendSwiper';
 import { Container, HomeContainer, MoreContainer, TitleAndMoreContainer } from './style';
 
 function Home() {
-  const { data: userData, isSuccess } = useGetAuth(false);
-  const { data: fitData } = useGetFitSummonerList(isSuccess);
+  const { data: userData } = useGetAuth(false);
+  const [customListState, setCustomList] = useState(false);
+  const { data: fitData } = useGetFitSummonerList(customListState);
   const {
     data: { pages },
   } = useGetNewSummonerList([], 0, 'home');
@@ -24,6 +25,12 @@ function Home() {
       size: { sm },
     },
   } = useTheme();
+
+  useEffect(() => {
+    if (userData?.isOnBoarded) {
+      setCustomList(true);
+    }
+  }, [userData]);
 
   const recommendProps = () => {
     if (userData) {

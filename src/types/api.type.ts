@@ -154,6 +154,7 @@ export interface AuthUserDTO {
   userId: string;
   lolNickname: string;
   profileURL: string;
+  isOnBoarded: boolean;
 }
 
 export interface FilterRequestDTO {

@@ -13,13 +13,16 @@ export const authUserGetAPI = async () => {
 const useGetAuth = (enableState = true) => {
   const router = useRouter();
   const { data, isSuccess } = useQuery(queryKeys.authUser, authUserGetAPI, {
+    retry: 1,
     suspense: enableState,
+    onSuccess: (res) => {
+      if (!res.isOnBoarded && router.pathname !== '/on-boarding') {
+        router.push('/tendency-test');
+      }
+    },
     onError: (error: AxiosError) => {
       if (error.response.status === 401) {
         router.push('/login');
-      }
-      if (error.response.status === 403 && router.pathname !== '/on-boarding') {
-        router.push('/tendency-test');
       }
     },
   });
