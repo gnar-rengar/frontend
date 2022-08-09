@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import useLogin from '../../hooks/useLogin';
 import { Typography } from '../common';
+import { UnderLineLink } from '../common/footer/Footer.style';
 import {
   ButtonContainer,
   IconAndTextContainer,
@@ -14,10 +16,20 @@ import {
 
 function Login() {
   useLogin();
+  const router = useRouter();
+  const { required } = router.query;
 
   return (
     <LoginContainer>
-      <Image src="/icons/main-logo.svg" width="160px" height="40px" alt="logo" />
+      {required ? (
+        <Typography variant="h3" align="center">
+          로그인하고 나만의 맞춤추천
+          <br />
+          소환사를 만나보세요
+        </Typography>
+      ) : (
+        <Image src="/icons/main-logo.svg" width="160px" height="40px" alt="logo" />
+      )}
       <LoginSection>
         <Typography variant="captionRegular" color="onBackgroundSub">
           간편 로그인/회원가입
@@ -62,12 +74,12 @@ function Login() {
         </ButtonContainer>
         <Typography variant="captionRegular" align="center" underline color="onBackgroundSub">
           회원가입 시 듀오해듀오의{' '}
-          <Link href="/on-boarding">
-            <a>서비스 이용 약관</a>
+          <Link href="/policy/service">
+            <UnderLineLink>서비스 이용 약관</UnderLineLink>
           </Link>
           과<br />
-          <Link href="/on-boarding">
-            <a>개인정보 보호정책</a>
+          <Link href="/policy/privacy">
+            <UnderLineLink>개인정보 보호정책</UnderLineLink>
           </Link>
           에 동의하게 됩니다.
         </Typography>

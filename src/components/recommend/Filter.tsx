@@ -78,10 +78,10 @@ function Filter({ setFilterState }: FilterProps) {
             variant="outlined"
             color="onBackgroundSub"
           >
-            필터 초기화
+            조건 초기화
           </Button>
           <Button type="submit" width="calc(100% - 120px)" size="lg" color="primaryVariant">
-            필터 적용하기
+            조건 적용하기
           </Button>
         </ButtonContainer>
       </Accordion>

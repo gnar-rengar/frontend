@@ -5,6 +5,7 @@ import useGetNewSummonerList from '../../hooks/useGetNewSummonerList';
 import { FilterTierType } from '../../types/api.type';
 import { SmallCard } from '../common';
 import Filter from './Filter';
+import None from './None';
 import { NewContainer } from './style';
 
 function New() {
@@ -16,7 +17,7 @@ function New() {
     isLoading,
     hasNextPage,
     refetch,
-  } = useGetNewSummonerList(filterState);
+  } = useGetNewSummonerList(filterState, 1, 'filter');
 
   useEffect(() => {
     if (inView && !isLoading) {
@@ -32,14 +33,18 @@ function New() {
     <>
       <NewContainer>
         <Filter setFilterState={setFilterState} />
-        {pages.map((page) =>
-          page.data.newList.map((list) => (
-            <Link href={`/profile/${list._id}`} key={list._id}>
-              <a>
-                <SmallCard {...list} />
-              </a>
-            </Link>
-          ))
+        {pages[0].data.newList.length > 0 ? (
+          pages.map((page) =>
+            page.data.newList.map((list) => (
+              <Link href={`/profile/${list._id}`} key={list._id}>
+                <a>
+                  <SmallCard {...list} />
+                </a>
+              </Link>
+            ))
+          )
+        ) : (
+          <None />
         )}
       </NewContainer>
       <div ref={hasNextPage ? ref : undefined} />

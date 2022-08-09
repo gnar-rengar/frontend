@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next';
-import React, { Suspense } from 'react';
+import React from 'react';
+import LoadingSuspense from '../../components/common/loadingSuspense';
 import UserProfile from '../../components/profile';
 
 interface UserProfilePageProps {
@@ -8,9 +9,9 @@ interface UserProfilePageProps {
 
 function UserProfilePage({ userId }: UserProfilePageProps) {
   return (
-    <Suspense fallback="loading">
+    <LoadingSuspense>
       <UserProfile userId={userId} />
-    </Suspense>
+    </LoadingSuspense>
   );
 }
 

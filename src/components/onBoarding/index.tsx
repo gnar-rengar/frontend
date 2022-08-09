@@ -1,4 +1,5 @@
 /* eslint-disable react/forbid-prop-types */
+import { useTheme } from '@emotion/react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -32,6 +33,7 @@ import {
   OnBoardingEachContainer,
   PlayStyleContainer,
   PlayStyleRadio,
+  TitleContainer,
   VoiceButtonContainer,
 } from './style';
 
@@ -64,7 +66,7 @@ const onBoardingSchema = yup.object().shape({
 function OnBoarding() {
   const router = useRouter();
   const tendencyTestResult = router.query as PlayStyleType | {};
-  const loginData = useGetAuth(false);
+  const { data: loginData } = useGetAuth(false);
   const userData = useGetOnBoarding(!!loginData);
 
   const userDataDefaultValues = useMemo(
@@ -103,7 +105,7 @@ function OnBoarding() {
       playStyle: tendencyTestResult,
       position: [],
       voiceChannel: [],
-      useVoice: true,
+      useVoice: false,
       communication: '',
     },
     resolver: yupResolver(onBoardingSchema),
@@ -115,8 +117,19 @@ function OnBoarding() {
   const [summonerIcon, setSummonerIcon] = useState('/icons/onBoarding.png');
   const submitMutation = useOnBoardingMutation();
 
+  const {
+    icon: {
+      size: { xl },
+    },
+  } = useTheme();
+
   useEffect(() => {
-    reset(userDataDefaultValues);
+    if (userData) {
+      reset(userDataDefaultValues);
+    }
+  }, [userData]);
+
+  useEffect(() => {
     if (userData?.profileUrl) setSummonerIcon(userData?.profileUrl);
   }, [userData]);
 
@@ -168,6 +181,18 @@ function OnBoarding() {
 
   return (
     <OnBoardingContainer onSubmit={handleSubmit(onSubmitOnBoarding)} id="lolNickname">
+      <OnBoardingEachContainer gap={false}>
+        <TitleContainer>
+          <Typography variant="h3">
+            반가워요, 소환사님.
+            <br />
+            몇 가지 정보만 입력해주시면
+            <br />
+            찰떡궁합 듀오를 추천해드릴게요
+          </Typography>
+          <Image src="/icons/cat.png" width={xl} height={xl} alt="intro text" />
+        </TitleContainer>
+      </OnBoardingEachContainer>
       <OnBoardingEachContainer gap id="nickNameCheck">
         <Asking
           title="소환사명을 알려주세요"
@@ -177,7 +202,7 @@ function OnBoarding() {
           <Container>
             <IconAndNickname>
               <IconImageContainer>
-                <Image src={summonerIcon} width={48} height={48} />
+                <Image src={summonerIcon} width={48} height={48} alt="summonerIcon" />
               </IconImageContainer>
               <NicknameContainer>
                 <TextField
@@ -217,12 +242,13 @@ function OnBoarding() {
               {position.map((pos) => (
                 <React.Fragment key={pos[1]}>
                   <CheckBoxChip
+                    checkedMax={2}
                     color="primary"
                     register={register('position')}
                     key={pos[0]}
                     htmlFor={pos[0]}
                     value={pos[0]}
-                    getValues={getValues('position')}
+                    watch={watch('position')}
                   >
                     {pos[0]}
                   </CheckBoxChip>
@@ -282,7 +308,7 @@ function OnBoarding() {
                         htmlFor={channel[1]}
                         value={channel[1]}
                         register={register('voiceChannel')}
-                        getValues={getValues('voiceChannel')}
+                        watch={watch('voiceChannel')}
                       >
                         {channel[0]}
                       </CheckBoxChip>

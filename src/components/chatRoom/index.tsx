@@ -14,7 +14,9 @@ import { useTimer } from '../../utils';
 import type { Messages, ReceivedMessage } from '../../types/api.type';
 
 function ChatRoom({ roomId }: { roomId: string }) {
-  const { userId: myId, lolNickname } = useGetAuth();
+  const {
+    data: { userId: myId, lolNickname },
+  } = useGetAuth();
 
   const { chat } = useGetMessages(roomId);
 
@@ -96,7 +98,6 @@ function ChatRoom({ roomId }: { roomId: string }) {
         setHasBadWord={setHasBadWord}
         input={input}
         setInput={setInput}
-        isOpponentTyping={isOpponentTyping}
         myId={myId}
         lolNickname={lolNickname}
       />
@@ -106,6 +107,7 @@ function ChatRoom({ roomId }: { roomId: string }) {
         input={input}
         setInput={setInput}
         myId={myId}
+        isOpponentTyping={isOpponentTyping}
       />
     </ChatRoomContainer>
   );

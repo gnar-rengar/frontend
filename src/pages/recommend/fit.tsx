@@ -1,11 +1,12 @@
-import React, { Suspense } from 'react';
+import React from 'react';
+import LoadingSuspense from '../../components/common/loadingSuspense';
 import Fit from '../../components/recommend/Fit';
 
 function FitPage() {
   return (
-    <Suspense>
+    <LoadingSuspense>
       <Fit />
-    </Suspense>
+    </LoadingSuspense>
   );
 }
 

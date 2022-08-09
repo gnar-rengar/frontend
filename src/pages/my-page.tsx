@@ -1,14 +1,15 @@
 import dynamic from 'next/dynamic';
-import React, { Suspense } from 'react';
+import React from 'react';
+import LoadingSuspense from '../components/common/loadingSuspense';
 // import MyPageComponent from '../components/myPage';
 
 const MyPageComponent = dynamic(() => import('../components/myPage'), { ssr: false });
 
 function MyPage() {
   return (
-    <Suspense fallback="loading">
+    <LoadingSuspense>
       <MyPageComponent />
-    </Suspense>
+    </LoadingSuspense>
   );
 }
 

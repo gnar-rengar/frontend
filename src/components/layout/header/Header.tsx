@@ -39,7 +39,7 @@ function Header() {
         href: '/chats',
         component: (
           <IconWrapper>
-            <Image src="/icons/chat.svg" width={lg} height={lg} alt="chat" />
+            <Image src="/icons/chat.svg" layout="fixed" width={lg} height={lg} alt="chat" />
           </IconWrapper>
         ),
       },
@@ -47,7 +47,7 @@ function Header() {
         href: '/my-page',
         component: (
           <IconWrapper>
-            <Image src="/icons/profile.svg" width={lg} height={lg} alt="my-page" />
+            <Image src="/icons/profile.svg" layout="fixed" width={lg} height={lg} alt="my-page" />
           </IconWrapper>
         ),
       },
@@ -59,7 +59,7 @@ function Header() {
     <HeaderContainer>
       <Link href="/">
         <a data-testid="home">
-          <Image src="/icons/main-logo.svg" width="76px" height="30px" alt="logo" />
+          <Image src="/icons/main-logo.svg" layout="fixed" width="76px" height="30px" alt="logo" />
         </a>
       </Link>
       <Nav role="navigation">

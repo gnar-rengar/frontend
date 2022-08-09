@@ -34,7 +34,12 @@ function Question(props: QuestionProps) {
         <Typography align="center" whiteSpace="pre-line" variant="h3">
           {tendencyQuestion[testNumber]}
         </Typography>
-        <Image src={tendencyImage.answer[testNumber]} width={240} height={240} />
+        <Image
+          src={tendencyImage.answer[testNumber]}
+          width={240}
+          height={240}
+          alt="tendency test icon"
+        />
       </QuestionAndExpression>
       <ButtonContainer>
         <Button

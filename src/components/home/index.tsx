@@ -1,7 +1,7 @@
 import { useTheme } from '@emotion/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useGetAuth from '../../hooks/useGetAuth';
 import useGetFitSummonerList from '../../hooks/useGetFitSummonerList';
 import useGetNewSummonerList from '../../hooks/useGetNewSummonerList';
@@ -13,11 +13,12 @@ import RecommendSwiper from './RecommendSwiper';
 import { Container, HomeContainer, MoreContainer, TitleAndMoreContainer } from './style';
 
 function Home() {
-  const userData = useGetAuth(false);
-  const { data: fitData } = useGetFitSummonerList();
+  const { data: userData } = useGetAuth(false);
+  const [customListState, setCustomList] = useState(false);
+  const { data: fitData } = useGetFitSummonerList(customListState);
   const {
     data: { pages },
-  } = useGetNewSummonerList([]);
+  } = useGetNewSummonerList([], 0, 'home');
 
   const {
     icon: {
@@ -25,13 +26,18 @@ function Home() {
     },
   } = useTheme();
 
-  const newList = pages[0].data.newList.slice(0, 3);
+  useEffect(() => {
+    if (userData?.isOnBoarded) {
+      setCustomList(true);
+    }
+  }, [userData]);
+
   const recommendProps = () => {
     if (userData) {
       return fitData?.customList;
     }
 
-    return newList;
+    return pages[0].data.newList;
   };
 
   return (
@@ -79,7 +85,7 @@ function Home() {
             </a>
           </Link>
         </TitleAndMoreContainer>
-        {newList.map((list) => (
+        {pages[0].data.newList.map((list) => (
           <Link href={`/profile/${list._id}`} key={list._id}>
             <a>
               <SmallCard {...list} />
