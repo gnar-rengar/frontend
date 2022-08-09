@@ -138,5 +138,6 @@ export const darkTheme = {
     naver: '#03C75A',
     linkShare: '#7BD0BD',
     otherShare: '#999A9A',
+    eventYellow: '#E0D145',
   },
 };

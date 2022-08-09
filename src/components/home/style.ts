@@ -11,6 +11,7 @@ export const SwiperContainer = styled.div`
   max-width: 480px;
   margin-left: -16px;
   padding-bottom: 16px;
+  cursor: pointer;
   --swiper-theme-color: ${(props) => props.theme.color.onBackground};
 `;
 

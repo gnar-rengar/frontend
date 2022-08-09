@@ -29,4 +29,5 @@ export type ColorVariant =
   | 'kakao'
   | 'naver'
   | 'linkShare'
-  | 'otherShare';
+  | 'otherShare'
+  | 'eventYellow';

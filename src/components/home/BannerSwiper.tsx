@@ -5,6 +5,7 @@ import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper';
+import Link from 'next/link';
 import { SwiperContainer } from './style';
 
 function BannerSwiper() {
@@ -18,13 +19,25 @@ function BannerSwiper() {
         autoplay={{ delay: 5000 }}
       >
         <SwiperSlide>
-          <Image src="/banner/home.png" layout="responsive" width="480px" height="256px" />
+          <Link href="/banner/manual">
+            <a>
+              <Image src="/banner/manual.png" layout="responsive" width="480px" height="256px" />
+            </a>
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Image src="/banner/home.png" layout="responsive" width="480px" height="256px" />
+          <Link href="https://tally.so/r/mJ9WXX">
+            <a target="_blank">
+              <Image src="/banner/survey.png" layout="responsive" width="480px" height="256px" />
+            </a>
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Image src="/banner/home.png" layout="responsive" width="480px" height="256px" />
+          <Link href="/banner/gifticon">
+            <a>
+              <Image src="/banner/gifticon.png" layout="responsive" width="480px" height="256px" />
+            </a>
+          </Link>
         </SwiperSlide>
       </Swiper>
     </SwiperContainer>
