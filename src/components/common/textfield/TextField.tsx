@@ -8,6 +8,7 @@ interface TextFieldProps {
   error?: boolean;
   active?: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
 }
 
 const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => (
