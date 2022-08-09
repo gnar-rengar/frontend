@@ -14,16 +14,7 @@ const useLogin = async () => {
         `/auth/${sns}/callback?code=${code}&state=${state}`
       );
       Cookies.set('token', data.token);
-      // const nowDate = new Date();
-      // const tokenExpireTime = nowDate.setMinutes(
-      //   nowDate.getMinutes() + separateStringInNumber(data.tokenExpireTime)
-      // );
-      // const rtokenExpireTime = nowDate.setMinutes(
-      //   nowDate.getMinutes() + separateStringInNumber(data.rtokenExpireTime)
-      // );
-
-      // localStorage.setItem('tokenExpireTime', tokenExpireTime.toString());
-      // localStorage.setItem('rtokenExpireTime', rtokenExpireTime.toString());
+      await axios.get<LoginDTO>(`/auth/${sns}/callback?code=${code}&state=${state}`);
       router.replace('/');
     } catch (error) {
       // eslint-disable-next-line no-console
