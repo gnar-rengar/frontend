@@ -17,7 +17,6 @@ function VoiceSection(props: VoiceSectionProps) {
         <>
           <Typography variant="h3">{`주로 ${voiceChannel.join(', ')}에서`}</Typography>
           <Typography variant="h3">{communication}</Typography>
-          <Typography variant="h3">플레이를 좋아해요</Typography>
         </>
       ) : (
         <Typography variant="h3">보이스를 하지 않아요</Typography>

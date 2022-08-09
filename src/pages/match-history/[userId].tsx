@@ -1,7 +1,7 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
 import MatchHistory from '../../components/matchHistory';
-import LoadingSuspense from '../../components/common/loadingSuspense';
+import LoadingSuspense from '../../components/common/loading-suspense';
 
 interface MatchHistoryPageProps {
   userId: string;

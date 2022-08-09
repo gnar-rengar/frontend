@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import React from 'react';
-import LoadingSuspense from '../../components/common/loadingSuspense';
+import LoadingSuspense from '../../components/common/loading-suspense';
 
 const Chats = dynamic(() => import('../../components/chats'), { ssr: false });
 

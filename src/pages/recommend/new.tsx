@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadingSuspense from '../../components/common/loadingSuspense';
+import LoadingSuspense from '../../components/common/loading-suspense';
 import New from '../../components/recommend/New';
 
 function NewPage() {

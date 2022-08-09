@@ -22,19 +22,23 @@ function Review(props: ReviewProps) {
 
   return (
     <ReviewContainer>
-      {reviews.map((review) => (
-        <StyledReview key={review.description}>
-          <PeopleCount>
-            <Image src="/icons/people.svg" width={lg} height={lg} alt="people icon" />
-            <Typography variant="body3" color="onBackgroundSub">
-              {`${review.count}명`}
+      {reviews.length > 0 ? (
+        reviews.map((review) => (
+          <StyledReview key={review.description}>
+            <PeopleCount>
+              <Image src="/icons/people.svg" width={lg} height={lg} alt="people icon" />
+              <Typography variant="body3" color="onBackgroundSub">
+                {`${review.count}명`}
+              </Typography>
+            </PeopleCount>
+            <Typography variant="body3" color="onSurface" paragraph>
+              {review.description}
             </Typography>
-          </PeopleCount>
-          <Typography variant="body3" color="onSurface" paragraph>
-            {review.description}
-          </Typography>
-        </StyledReview>
-      ))}
+          </StyledReview>
+        ))
+      ) : (
+        <Typography variant="body3">아직 받은 리뷰가 없어요</Typography>
+      )}
     </ReviewContainer>
   );
 }

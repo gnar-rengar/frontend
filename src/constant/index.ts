@@ -1,3 +1,5 @@
+import type { Position } from '../types/api.type';
+
 const position = [
   ['탑', 'top'],
   ['정글', 'jungle'],
@@ -100,6 +102,14 @@ const withdrawalErrorMessage = {
   agree: '주의사항에 동의해주세요',
 };
 
+const positionImgMap: { [key in Position]: string } = {
+  탑: 'position_top.png',
+  정글: 'position_jug.png',
+  미드: 'position_mid.png',
+  원딜: 'position_bot.png',
+  서폿: 'position_sup.png',
+};
+
 export {
   position,
   voiceChannel,
@@ -116,4 +126,5 @@ export {
   filterTier,
   tierEng,
   withdrawalErrorMessage,
+  positionImgMap,
 };
