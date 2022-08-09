@@ -40,8 +40,7 @@ export interface ReviewWriteDTO {
 }
 
 export interface LoginDTO extends AuthUserDTO {
-  rtokenExpireTime: string;
-  tokenExpireTime: string;
+  token: string;
 }
 
 export interface ProfileDTO {
