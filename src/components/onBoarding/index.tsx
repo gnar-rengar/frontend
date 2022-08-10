@@ -157,7 +157,7 @@ function OnBoarding() {
     submitMutation.mutate(values);
   };
 
-  const onClickNickNameCheck = async () => {
+  const nickNameCheck = async () => {
     try {
       const { data } = await axios.get<NicknameCheckDTO>(
         `/onboarding/checkNick?lolNickname=${nickNameInputActive}`
@@ -170,6 +170,12 @@ function OnBoarding() {
       if (error.response.status === 404) {
         setError('nickNameCheck', { type: 'focus', message: onBoardingErrorMessage.notExist });
       }
+    }
+  };
+
+  const enterNickNameCheck = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      nickNameCheck();
     }
   };
 
@@ -210,12 +216,9 @@ function OnBoarding() {
                   {...register('lolNickname')}
                   name="lolNickname"
                   placeholder="소환사명 입력"
+                  onKeyDown={enterNickNameCheck}
                 />
-                <NickNameButton
-                  onClick={onClickNickNameCheck}
-                  type="button"
-                  active={nickNameActiveMemo}
-                >
+                <NickNameButton onClick={nickNameCheck} type="button" active={nickNameActiveMemo}>
                   <Typography whiteSpace="nowrap" variant="body4" paragraph>
                     확인
                   </Typography>
