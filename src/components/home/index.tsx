@@ -2,7 +2,6 @@ import { useTheme } from '@emotion/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import useGetAuth from '../../hooks/useGetAuth';
 import useGetFitSummonerList from '../../hooks/useGetFitSummonerList';
 import useGetNewSummonerList from '../../hooks/useGetNewSummonerList';
 import { SmallCard, Typography } from '../common';
@@ -12,8 +11,9 @@ import Blur from './Blur';
 import RecommendSwiper from './RecommendSwiper';
 import { Container, HomeContainer, MoreContainer, TitleAndMoreContainer } from './style';
 
-function Home() {
-  const { data: userData } = useGetAuth(false);
+import type { AuthUserDTO } from '../../types/api.type';
+
+function Home({ userData }: { userData: AuthUserDTO }) {
   const [customListState, setCustomList] = useState(false);
   const { data: fitData } = useGetFitSummonerList(customListState);
   const {
@@ -33,7 +33,7 @@ function Home() {
   }, [userData]);
 
   const recommendProps = () => {
-    if (userData) {
+    if (customListState) {
       return fitData?.customList;
     }
 

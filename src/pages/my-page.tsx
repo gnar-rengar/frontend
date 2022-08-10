@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import React from 'react';
-import LoadingSuspense from '../components/common/loading-suspense';
+import LoadingSuspense from '../components/common/loadingSuspense';
 // import MyPageComponent from '../components/myPage';
 
 const MyPageComponent = dynamic(() => import('../components/myPage'), { ssr: false });

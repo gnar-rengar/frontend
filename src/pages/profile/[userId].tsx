@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next';
 import React from 'react';
-import LoadingSuspense from '../../components/common/loading-suspense';
+import LoadingSuspense from '../../components/common/loadingSuspense';
 import UserProfile from '../../components/profile';
 
 interface UserProfilePageProps {

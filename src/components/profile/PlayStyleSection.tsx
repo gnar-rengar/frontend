@@ -4,7 +4,7 @@ import React from 'react';
 import { positionImgMap } from '../../constant';
 import useGetProfile from '../../hooks/useGetProfile';
 import { Typography } from '../common';
-import { Section } from './style';
+import { PositionContainer, Section } from './style';
 
 import type { Position } from '../../types/api.type';
 
@@ -29,7 +29,7 @@ function PlayStyleSection(props: PlayStyleSectionProps) {
   return (
     <Section>
       <Typography variant="h3">{`${nickname}님은`}</Typography>
-      <div style={{ display: 'flex', gap: '8px' }}>
+      <PositionContainer>
         {positions.map((position) => (
           <Image
             key={position}
@@ -40,7 +40,7 @@ function PlayStyleSection(props: PlayStyleSectionProps) {
           />
         ))}
         <Typography variant="h3">를 주로 플레이하고</Typography>
-      </div>
+      </PositionContainer>
       <div>
         {playStyles.map((playStyle, index) => (
           <Typography
