@@ -61,12 +61,16 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
     }
   };
 
-  const onClickCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
+  const onClickShare = async () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: '나의 롤 플레이 스타일은?',
+          text: '듀오해듀오에서 플레이 스타일 테스트하고, 맞춤 듀오 추천받자!',
+          url: window.location.href,
+        })
+        // eslint-disable-next-line no-console
+        .catch((error) => console.log('공유 실패', error));
     }
   };
 
@@ -106,7 +110,7 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
             </Typography>
           </Share>
           <Share>
-            <ShareButton onClick={onClickCopy} color="linkShare">
+            <ShareButton onClick={onClickShare} color="linkShare">
               <Image src="/icons/link.svg" width="24px" height="24px" alt="kakao share" />
             </ShareButton>
             <Typography align="center" variant="captionSmallRegular">
