@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useTheme } from '@emotion/react';
-import * as yup from 'yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, CheckBox, Typography } from '../common';
 import {
   FilterContainer,
@@ -19,10 +17,6 @@ interface FilterProps {
   setFilterState: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const filterSchema = yup.object().shape({
-  // tier: yup.array(yup.string()).min(1, ''),
-});
-
 function Filter({ setFilterState }: FilterProps) {
   const [open, setOpen] = useState(false);
   const {
@@ -31,19 +25,19 @@ function Filter({ setFilterState }: FilterProps) {
     },
   } = useTheme();
 
-  const { register, handleSubmit, watch, reset } = useForm<FilterRequestDTO>({
-    resolver: yupResolver(filterSchema),
-  });
+  const { register, handleSubmit, watch, reset } = useForm<FilterRequestDTO>();
   const checkedTier = watch('tier') as string[];
 
   const onClickFilterReset = () => {
     setFilterState([]);
     reset();
+    setOpen(false);
   };
 
   const onSubmit: SubmitHandler<FilterRequestDTO> = (data) => {
     const selectTier = data.tier ? data.tier.map((item) => tierEng[item]) : [];
     setFilterState([...selectTier]);
+    setOpen(false);
   };
 
   return (

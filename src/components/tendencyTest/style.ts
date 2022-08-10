@@ -86,7 +86,8 @@ export const QuestionAndExpression = styled.div`
 export const ShareContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 54px;
 `;
 
 export const Share = styled.div`
