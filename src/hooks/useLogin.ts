@@ -13,10 +13,7 @@ const useLogin = async () => {
       const { data } = await axios.get<LoginDTO>(
         `/auth/${sns}/callback?code=${code}&state=${state}`
       );
-      console.log(data.token);
       Cookies.set('token', data.token);
-      console.log(Cookies.get('token'));
-
       // const nowDate = new Date();
       // const tokenExpireTime = nowDate.setMinutes(
       //   nowDate.getMinutes() + separateStringInNumber(data.tokenExpireTime)
