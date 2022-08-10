@@ -1,5 +1,5 @@
 export { default as Asking } from './asking/Asking';
-export { default as BaseContainer } from './base-container/BaseContainer';
+export { default as BaseContainer } from './baseContainer/BaseContainer';
 export { default as Button } from './button/Button';
 export { default as Card } from './card/Card';
 export { default as SmallCard } from './card/SmallCard';
@@ -8,8 +8,6 @@ export { default as Chip } from './chip/Chip';
 export { default as Divider } from './divider/Divider';
 export { default as Radio } from './radio/Radio';
 export { default as Review } from './review/Review';
-export { default as StickyBottom } from './sticky-bottom';
+export { default as StickyBottom } from './stickyBottom';
 export { default as TextField } from './textfield/TextField';
 export { default as Typography } from './typography/Typography';
-// eslint-disable-next-line prettier/prettier
-

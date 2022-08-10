@@ -30,6 +30,11 @@ export const Section = styled.section`
   padding: 16px 0;
 `;
 
+export const PositionContainer = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
 export const MostChamps = styled.ul`
   display: inline-flex;
   gap: 8px;

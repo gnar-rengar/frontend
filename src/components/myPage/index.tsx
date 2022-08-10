@@ -53,8 +53,10 @@ function MyPage() {
       </Asking>
       <Asking
         title="받은 부정 플레이 리뷰"
-        caption="받은 부정 플레이 리뷰는 나에게만 보여요
-        피드백 삼아 더 좋은 플레이를 보여주세요!"
+        caption={
+          badReview.length > 0 &&
+          '받은 부정 플레이 리뷰는 나에게만 보여요 피드백 삼아 더 좋은 플레이를 보여주세요!'
+        }
       >
         <Review reviews={badReview} />
       </Asking>

@@ -21,12 +21,7 @@ const usePatchReviewWrite = () => {
 
   return useMutation(patchReviewWrite, {
     onSuccess: () => {
-      // ? 제출 후에는 어떻게?
-      router.replace('/');
-    },
-    onError: () => {
-      // ? 실패하면 어떻게?
-      router.replace('/not-found');
+      router.replace('/review-write/success');
     },
   });
 };

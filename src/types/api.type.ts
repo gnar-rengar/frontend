@@ -40,8 +40,7 @@ export interface ReviewWriteDTO {
 }
 
 export interface LoginDTO extends AuthUserDTO {
-  rtokenExpireTime: string;
-  tokenExpireTime: string;
+  token: string;
 }
 
 export interface ProfileDTO {
@@ -52,7 +51,7 @@ export interface ProfileDTO {
   rank: string;
   leaguePoints: string;
   playStyle: string[];
-  position: string[];
+  position: Position[];
   useVoice: boolean;
   voiceChannel: string[];
   communication: string;
