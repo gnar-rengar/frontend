@@ -1,4 +1,3 @@
-import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { axios } from '../axios';
 import { LoginDTO } from '../types/api.type';
@@ -10,10 +9,6 @@ const useLogin = async () => {
 
   if (code) {
     try {
-      const { data } = await axios.get<LoginDTO>(
-        `/auth/${sns}/callback?code=${code}&state=${state}`
-      );
-      Cookies.set('token', data.token);
       await axios.get<LoginDTO>(`/auth/${sns}/callback?code=${code}&state=${state}`);
       router.replace('/');
     } catch (error) {
