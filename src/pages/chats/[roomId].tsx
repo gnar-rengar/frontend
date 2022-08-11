@@ -9,12 +9,9 @@ import { queryKeys } from '../../hooks/queryKeys';
 import { authUserGetAPI } from '../../hooks/useGetAuth';
 import { fetchMessages } from '../../hooks/useGetMessages';
 
-import type { Messages } from '../../types/api.type';
-
 interface ChatPageProps {
   roomId: string;
   isAuth: boolean;
-  defaultMessages: Messages[];
 }
 
 function ChatPage(props: ChatPageProps) {
@@ -43,14 +40,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const queryClient = new QueryClient();
     axios.defaults.headers.common.Cookie = context.req.headers.cookie;
     await queryClient.prefetchQuery(queryKeys.authUser, authUserGetAPI);
-
-    const { chat: defaultMessages } = await fetchMessages(roomId as string);
+    await queryClient.prefetchQuery(queryKeys.authUser, () => fetchMessages(roomId as string));
 
     return {
       props: {
         isAuth: true,
         roomId,
-        defaultMessages,
         dehydratedState: dehydrate(queryClient),
       },
     };

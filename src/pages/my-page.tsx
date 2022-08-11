@@ -6,7 +6,6 @@ import { axios } from '../axios';
 import LoadingSuspense from '../components/common/loadingSuspense';
 import MyPageComponent from '../components/myPage';
 import { queryKeys } from '../hooks/queryKeys';
-import { authUserGetAPI } from '../hooks/useGetAuth';
 import { fetchMyPage } from '../hooks/useGetMyPage';
 
 function MyPage({ isAuth }: { isAuth: boolean }) {
@@ -30,7 +29,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (token) {
     const queryClient = new QueryClient();
     axios.defaults.headers.common.Cookie = context.req.headers.cookie;
-    await queryClient.prefetchQuery(queryKeys.authUser, authUserGetAPI);
     await queryClient.prefetchQuery(queryKeys.myPage, fetchMyPage);
 
     return {

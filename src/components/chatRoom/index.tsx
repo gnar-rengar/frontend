@@ -10,17 +10,18 @@ import { ChatRoomContainer } from './style';
 
 import { useTimer } from '../../utils';
 
-import type { Messages, ReceivedMessage } from '../../types/api.type';
+import type { ReceivedMessage } from '../../types/api.type';
+import useGetMessages from '../../hooks/useGetMessages';
 
 interface ChatRoomProps {
   roomId: string;
-  defaultMessages: Messages[];
 }
 
 function ChatRoom(props: ChatRoomProps) {
-  const { roomId, defaultMessages } = props;
+  const { roomId } = props;
   const { userId: myId, lolNickname } = useGetAuth();
 
+  const { chat: defaultMessages } = useGetMessages(roomId);
   const [messages, addMessage] = useMessages(defaultMessages);
   const [newReceivedMessage, setNewReceivedMessage] = useState('');
 
