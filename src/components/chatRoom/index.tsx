@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
+import useGetMessages from '../../hooks/useGetMessages';
 import useMessages from '../../hooks/useMessages';
 import useGetAuth from '../../hooks/useGetAuth';
-import useGetMessages from '../../hooks/useGetMessages';
 
 import { SocketContext } from '../../contexts/socket';
 
@@ -11,16 +11,18 @@ import { ChatRoomContainer } from './style';
 
 import { useTimer } from '../../utils';
 
-import type { Messages, ReceivedMessage } from '../../types/api.type';
+import type { ReceivedMessage } from '../../types/api.type';
 
-function ChatRoom({ roomId }: { roomId: string }) {
-  const {
-    data: { userId: myId, lolNickname },
-  } = useGetAuth();
+interface ChatRoomProps {
+  roomId: string;
+}
 
-  const { chat } = useGetMessages(roomId);
+function ChatRoom(props: ChatRoomProps) {
+  const { roomId } = props;
+  const { userId: myId, lolNickname } = useGetAuth();
 
-  const [messages, addMessage, setMessages] = useMessages();
+  const { chat: defaultMessages } = useGetMessages(roomId);
+  const [messages, addMessage] = useMessages(defaultMessages);
   const [newReceivedMessage, setNewReceivedMessage] = useState('');
 
   const [input, setInput] = useState('');
@@ -31,21 +33,6 @@ function ChatRoom({ roomId }: { roomId: string }) {
   const socket = useContext(SocketContext);
 
   const [setTimer, clearTimer] = useTimer(() => setIsOpponentTypingTyping(false), 5000);
-
-  const setDefaultMessages = useCallback(
-    (msgs: Messages[]) => {
-      msgs.sort((a, b) => Object.keys(a)[0].localeCompare(Object.keys(b)[0]));
-      const defaultMessages = msgs.reduce((prev, crnt) => {
-        const [date, message] = Object.entries(crnt)[0];
-        // eslint-disable-next-line no-param-reassign
-        prev[date] = message;
-        return prev;
-      }, {});
-
-      setMessages(defaultMessages);
-    },
-    [setMessages]
-  );
 
   const handleReceiveMessage = useCallback(
     (message: ReceivedMessage) => {
@@ -68,10 +55,6 @@ function ChatRoom({ roomId }: { roomId: string }) {
   const handleOnEndTyping = useCallback(() => {
     clearTimer();
     setIsOpponentTypingTyping(false);
-  }, []);
-
-  useEffect(() => {
-    setDefaultMessages(chat);
   }, []);
 
   useEffect(() => {

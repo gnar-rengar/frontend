@@ -4,15 +4,13 @@ import { queryKeys } from './queryKeys';
 
 import type { Messages } from '../types/api.type';
 
-const fetchMessages = async (roomId: string) => {
+export const fetchMessages = async (roomId: string) => {
   const { data } = await axios.get<{ chat: Messages[] }>(`chat/message/${roomId}`);
   return data;
 };
 
 const useGetMessages = (roomId: string) => {
-  const { data } = useQuery(queryKeys.message(roomId), () => fetchMessages(roomId), {
-    enabled: !!roomId,
-  });
+  const { data } = useQuery(queryKeys.message(roomId), () => fetchMessages(roomId));
   return data;
 };
 

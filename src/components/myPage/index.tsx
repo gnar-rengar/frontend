@@ -9,16 +9,12 @@ import { Asking, BaseContainer, Button, Card, Divider, Review, Typography } from
 import { AreaButton, ProfileCardContainer } from './style';
 
 function MyPage() {
-  const { data, isLoading } = useGetMyPage();
-  const { data: me } = useGetAuth();
+  const me = useGetAuth();
+  const {
+    data: { goodReview, badReview, ...other },
+  } = useGetMyPage();
   const logoutMutation = useLogoutMutation();
   const router = useRouter();
-
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
-
-  const { goodReview, badReview, ...other } = data;
 
   const onClickLogout = () => {
     logoutMutation.mutate();
@@ -66,7 +62,7 @@ function MyPage() {
           <Typography variant="body1">로그아웃</Typography>
         </AreaButton>
         <Divider />
-        <AreaButton type="button" onClick={() => router.push('/withdrawal')}>
+        <AreaButton type="button" onClick={() => router.replace('/withdrawal')}>
           <Typography variant="body1">회원 탈퇴</Typography>
         </AreaButton>
         <Divider />

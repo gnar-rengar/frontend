@@ -2,15 +2,18 @@ import { GetServerSideProps } from 'next';
 import React from 'react';
 import LoadingSuspense from '../../components/common/loadingSuspense';
 import UserProfile from '../../components/profile';
+import { preFetchAuth } from '../../hooks/preFetchFns';
 
 interface UserProfilePageProps {
   userId: string;
+  isAuth: boolean;
 }
 
-function UserProfilePage({ userId }: UserProfilePageProps) {
+function UserProfilePage(props: UserProfilePageProps) {
+  const { userId, isAuth } = props;
   return (
     <LoadingSuspense>
-      <UserProfile userId={userId} />
+      <UserProfile userId={userId} isAuth={isAuth} />
     </LoadingSuspense>
   );
 }
@@ -18,10 +21,12 @@ function UserProfilePage({ userId }: UserProfilePageProps) {
 export default UserProfilePage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { props } = await preFetchAuth(context);
   const { userId } = context.query;
   return {
     props: {
       userId,
+      ...props,
     },
   };
 };

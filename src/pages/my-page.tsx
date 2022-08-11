@@ -1,11 +1,17 @@
-import dynamic from 'next/dynamic';
+import Router from 'next/router';
 import React from 'react';
 import LoadingSuspense from '../components/common/loadingSuspense';
-// import MyPageComponent from '../components/myPage';
+import MyPageComponent from '../components/myPage';
+import { preFetchIfLoggedIn } from '../hooks/preFetchFns';
+import { fetchMyPage } from '../hooks/useGetMyPage';
+import { queryKeys } from '../hooks/queryKeys';
 
-const MyPageComponent = dynamic(() => import('../components/myPage'), { ssr: false });
+function MyPage({ isAuth }: { isAuth: boolean }) {
+  if (!isAuth) {
+    Router.replace('/login');
+    return;
+  }
 
-function MyPage() {
   return (
     <LoadingSuspense>
       <MyPageComponent />
@@ -14,3 +20,7 @@ function MyPage() {
 }
 
 export default MyPage;
+
+export const getServerSideProps = preFetchIfLoggedIn([
+  { queryKey: queryKeys.myPage, fetcher: fetchMyPage },
+]);

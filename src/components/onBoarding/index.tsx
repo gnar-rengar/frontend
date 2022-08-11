@@ -14,7 +14,6 @@ import {
   position,
   voiceChannel,
 } from '../../constant';
-import useGetAuth from '../../hooks/useGetAuth';
 import useGetOnBoarding from '../../hooks/useGetOnBoarding';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { NicknameCheckDTO, OnBoardingInput, PlayStyleType } from '../../types/api.type';
@@ -66,8 +65,7 @@ const onBoardingSchema = yup.object().shape({
 function OnBoarding() {
   const router = useRouter();
   const tendencyTestResult = router.query as PlayStyleType | {};
-  const { data: loginData } = useGetAuth(false);
-  const userData = useGetOnBoarding(!!loginData);
+  const userData = useGetOnBoarding();
 
   const userDataDefaultValues = useMemo(
     () => ({
