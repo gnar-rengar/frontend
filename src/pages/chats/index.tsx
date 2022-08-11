@@ -19,23 +19,4 @@ function ChatsPage({ isAuth }: { isAuth: boolean }) {
 
 export default ChatsPage;
 
-// const fetchIfAuth =
-//   (fetcher: (context: GetServerSidePropsContext) => any) =>
-//   async (context: GetServerSidePropsContext) => {
-//     const { token } = context.req.cookies;
-//     if (!token) return { props: {} };
-
-//     return fetcher(context);
-//   };
-
-// const fetcher = async (context: GetServerSidePropsContext) => {
-//   axios.defaults.headers.common.Cookie = context.req.headers.cookie;
-//   const userData = await authUserGetAPI();
-//   return {
-//     props: { userData },
-//   };
-// };
-
-// export const getServerSideProps = fetchIfAuth(fetcher);
-
 export const getServerSideProps = preFetchAuth;
