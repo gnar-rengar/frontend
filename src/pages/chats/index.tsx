@@ -2,7 +2,7 @@ import React from 'react';
 import LoadingSuspense from '../../components/common/loadingSuspense';
 import Chats from '../../components/chats';
 import InValid from '../../components/chats/InValid';
-import { preFetchAuth } from '../../hooks/preFetchAuth';
+import { preFetchAuth } from '../../hooks/preFetchFns';
 
 function ChatsPage({ isAuth }: { isAuth: boolean }) {
   if (!isAuth) {

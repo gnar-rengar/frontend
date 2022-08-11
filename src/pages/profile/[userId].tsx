@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next';
 import React from 'react';
 import LoadingSuspense from '../../components/common/loadingSuspense';
 import UserProfile from '../../components/profile';
-import { preFetchAuth } from '../../hooks/preFetchAuth';
+import { preFetchAuth } from '../../hooks/preFetchFns';
 
 interface UserProfilePageProps {
   userId: string;

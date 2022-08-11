@@ -1,10 +1,9 @@
 import { GetServerSideProps } from 'next';
 import React from 'react';
-import { dehydrate, QueryClient } from 'react-query';
-import { axios } from '../../axios';
 import ChatRoom from '../../components/chatRoom';
 import InValid from '../../components/chats/InValid';
 import LoadingSuspense from '../../components/common/loadingSuspense';
+import { preFetchIfLoggedIn } from '../../hooks/preFetchFns';
 import { queryKeys } from '../../hooks/queryKeys';
 import { authUserGetAPI } from '../../hooks/useGetAuth';
 import { fetchMessages } from '../../hooks/useGetMessages';
@@ -33,27 +32,20 @@ function ChatPage(props: ChatPageProps) {
 export default ChatPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { token } = context.req.cookies;
   const { roomId } = context.query;
 
-  if (token) {
-    const queryClient = new QueryClient();
-    axios.defaults.headers.common.Cookie = context.req.headers.cookie;
-    await queryClient.prefetchQuery(queryKeys.authUser, authUserGetAPI);
-    await queryClient.prefetchQuery(queryKeys.authUser, () => fetchMessages(roomId as string));
-
-    return {
-      props: {
-        isAuth: true,
-        roomId,
-        dehydratedState: dehydrate(queryClient),
-      },
-    };
-  }
+  const { props } = await preFetchIfLoggedIn([
+    { queryKey: queryKeys.authUser, fetcher: authUserGetAPI },
+    {
+      queryKey: queryKeys.message(roomId as string),
+      fetcher: () => fetchMessages(roomId as string),
+    },
+  ])(context);
 
   return {
     props: {
-      isAuth: false,
+      roomId,
+      ...props,
     },
   };
 };

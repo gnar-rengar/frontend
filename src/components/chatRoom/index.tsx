@@ -1,4 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
+import useGetMessages from '../../hooks/useGetMessages';
 import useMessages from '../../hooks/useMessages';
 import useGetAuth from '../../hooks/useGetAuth';
 
@@ -11,7 +12,6 @@ import { ChatRoomContainer } from './style';
 import { useTimer } from '../../utils';
 
 import type { ReceivedMessage } from '../../types/api.type';
-import useGetMessages from '../../hooks/useGetMessages';
 
 interface ChatRoomProps {
   roomId: string;

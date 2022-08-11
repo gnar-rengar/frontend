@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 
+import Image from 'next/image';
 import useGetProfile from '../../hooks/useGetProfile';
 
 import ButtonArea from './ButtonArea';
@@ -65,7 +66,13 @@ function UserProfile(props: UserProfileProps) {
         />
         <MostChampSection mostChamps={mostChampion} />
         <ReviewSection goodReview={goodReview} lolNickname={lolNickname} />
-        <Suspense fallback="loading">
+        <Suspense
+          fallback={
+            <div>
+              <Image src="/icons/loading.svg" width="24px" height="24px" />
+            </div>
+          }
+        >
           <MatchSection userId={userId} />
         </Suspense>
       </BaseContainer>
