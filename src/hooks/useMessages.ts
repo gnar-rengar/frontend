@@ -3,8 +3,8 @@ import { Messages, ReceivedMessage } from '../types/api.type';
 
 export type AddMessage = (message: ReceivedMessage) => void;
 
-function useMessages(): [Messages, AddMessage, React.Dispatch<React.SetStateAction<Messages>>] {
-  const [messages, setMessages] = useState<Messages>({});
+function useMessages(defaultMessages: Messages[]): [Messages, AddMessage] {
+  const [messages, setMessages] = useState<Messages>(setDefaultMessages(defaultMessages));
 
   const addMessage: AddMessage = (message) => {
     const { userId, date, text, createdAt } = message;
@@ -18,7 +18,17 @@ function useMessages(): [Messages, AddMessage, React.Dispatch<React.SetStateActi
     });
   };
 
-  return [messages, addMessage, setMessages];
+  return [messages, addMessage];
 }
 
 export default useMessages;
+
+const setDefaultMessages = (msgs: Messages[]) => {
+  msgs.sort((a, b) => Object.keys(a)[0].localeCompare(Object.keys(b)[0]));
+  return msgs.reduce((prev, crnt) => {
+    const [date, message] = Object.entries(crnt)[0];
+    // eslint-disable-next-line no-param-reassign
+    prev[date] = message;
+    return prev;
+  }, {});
+};
