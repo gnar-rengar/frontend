@@ -11,12 +11,20 @@ import PlayStyleSection from './PlayStyleSection';
 import ProfileImg from './ProfileImg';
 import { BaseContainer } from '../common';
 import useGetAuth from '../../hooks/useGetAuth';
+import Blur from './Blur';
 
 const MatchSection = dynamic(() => import('./MatchSection'), {
   ssr: false,
 });
 
-function UserProfile({ userId }: { userId: string }) {
+interface UserProfileProps {
+  userId: string;
+  isAuth: boolean;
+}
+
+function UserProfile(props: UserProfileProps) {
+  const { userId, isAuth } = props;
+
   const {
     lolNickname,
     profileUrl,
@@ -32,7 +40,7 @@ function UserProfile({ userId }: { userId: string }) {
   } = useGetProfile(userId as string);
 
   const { data: me } = useGetAuth();
-
+  console.log(isAuth);
   return (
     <>
       <ProfileImg nickname={lolNickname} profileUrl={profileUrl} tier={tier} rank={rank} />
@@ -55,6 +63,7 @@ function UserProfile({ userId }: { userId: string }) {
         </Suspense>
       </BaseContainer>
       <ButtonArea userId={userId} lolNickname={lolNickname} isMe={me?.userId === userId} />
+      <Blur />
     </>
   );
 }

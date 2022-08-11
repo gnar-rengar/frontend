@@ -11,7 +11,7 @@ const useLogoutMutation = () => {
   const router = useRouter();
 
   return useMutation(logoutDeleteAPI, {
-    onSuccess: () => router.push('/login'),
+    onSuccess: () => router.replace('/login'),
   });
 };
 

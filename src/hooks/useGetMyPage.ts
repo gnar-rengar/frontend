@@ -9,9 +9,8 @@ export const fetchMyPage = async () => {
   return data;
 };
 
-// TODO suspense로 되지 않는 이유 찾고 수정.
 const useGetMyPage = () => {
-  const query = useQuery(queryKeys.myPage, fetchMyPage, { suspense: false });
+  const query = useQuery(queryKeys.myPage, fetchMyPage);
   return query;
 };
 

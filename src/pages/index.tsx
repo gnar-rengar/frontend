@@ -1,9 +1,9 @@
 import { GetServerSideProps } from 'next';
 import React from 'react';
+import { axios } from '../axios';
 import LoadingSuspense from '../components/common/loadingSuspense';
 import Home from '../components/home';
 
-import { axios } from '../axios';
 import { authUserGetAPI } from '../hooks/useGetAuth';
 
 import type { AuthUserDTO } from '../types/api.type';

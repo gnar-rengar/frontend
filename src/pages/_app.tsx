@@ -27,7 +27,6 @@ type AppPropsWithLayout = AppProps & {
 dayjs.locale('ko');
 
 function App({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.getLayout || ((page: React.ReactNode) => <Layout>{page}</Layout>);
   const queryClient = useRef(
     new QueryClient({
       defaultOptions: {
@@ -46,7 +45,9 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
           <RecoilRoot>
             <SocketProvider>
               <ThemeProvider theme={darkTheme}>
-                {getLayout(<Component {...pageProps} />)}
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
               </ThemeProvider>
             </SocketProvider>
           </RecoilRoot>

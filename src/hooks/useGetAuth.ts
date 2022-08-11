@@ -6,8 +6,8 @@ import { AuthUserDTO } from '../types/api.type';
 import { queryKeys } from './queryKeys';
 
 export const authUserGetAPI = async () => {
-  const { data } = await axios.get<AuthUserDTO>('/auth');
-  return data;
+  const data = await axios.get<AuthUserDTO>('/auth');
+  return data.data;
 };
 
 const useGetAuth = (enableState = true) => {
@@ -15,6 +15,7 @@ const useGetAuth = (enableState = true) => {
   const { data, isSuccess } = useQuery(queryKeys.authUser, authUserGetAPI, {
     retry: 1,
     suspense: enableState,
+    staleTime: 10000,
     onSuccess: (res) => {
       if (!res.isOnBoarded && router.pathname !== '/on-boarding') {
         router.push('/tendency-test');

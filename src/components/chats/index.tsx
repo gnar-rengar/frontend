@@ -10,8 +10,6 @@ import { ChatContainer } from './style';
 import type { Room } from '../../types/api.type';
 import useGetAuth from '../../hooks/useGetAuth';
 
-const isLoggedIn = true;
-
 function Chats() {
   const {
     data: { userId },
@@ -45,12 +43,6 @@ function Chats() {
     socket.on('onGetChatRooms', handleGetChatRooms);
     return () => socket.off('onGetChatRooms', handleGetChatRooms);
   }, [socket]);
-
-  if (!isLoggedIn) {
-    return (
-      <InValid title={'로그인 후\n채팅 목록을 확인해보세요!'} path="/login" buttonText="로그인" />
-    );
-  }
 
   if (rooms.length === 0) {
     return (
