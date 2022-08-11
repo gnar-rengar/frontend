@@ -12,7 +12,7 @@ export const authUserGetAPI = async () => {
 
 const useGetAuth = (enableState = true) => {
   const router = useRouter();
-  const { data, isSuccess } = useQuery(queryKeys.authUser, authUserGetAPI, {
+  const { data } = useQuery(queryKeys.authUser, authUserGetAPI, {
     retry: 1,
     suspense: enableState,
     staleTime: 10000,
@@ -27,7 +27,7 @@ const useGetAuth = (enableState = true) => {
       }
     },
   });
-  return { data, isSuccess };
+  return data;
 };
 
 export default useGetAuth;

@@ -11,9 +11,7 @@ import type { Room } from '../../types/api.type';
 import useGetAuth from '../../hooks/useGetAuth';
 
 function Chats() {
-  const {
-    data: { userId },
-  } = useGetAuth();
+  const { userId } = useGetAuth();
   const [rooms, setRooms] = useState<Room[]>([]);
 
   const socket = useContext(SocketContext);

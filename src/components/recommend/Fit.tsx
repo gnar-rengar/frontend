@@ -8,7 +8,7 @@ import Footer from '../common/footer/Footer';
 import { FitContainer, FitRecommend } from './style';
 
 function Fit() {
-  const { data: userData } = useGetAuth(false);
+  const userData = useGetAuth();
   const { data } = useGetFitSummonerList();
 
   return (

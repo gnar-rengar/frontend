@@ -9,7 +9,7 @@ import { Asking, BaseContainer, Button, Card, Divider, Review, Typography } from
 import { AreaButton, ProfileCardContainer } from './style';
 
 function MyPage() {
-  const { data: me } = useGetAuth();
+  const me = useGetAuth();
   const {
     data: { goodReview, badReview, ...other },
   } = useGetMyPage();

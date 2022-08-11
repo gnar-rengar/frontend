@@ -24,6 +24,15 @@ interface UserProfileProps {
 
 function UserProfile(props: UserProfileProps) {
   const { userId, isAuth } = props;
+  const me = isAuth
+    ? useGetAuth()
+    : {
+        userId: '',
+        lolNickname: '',
+        profileURL: '',
+        isOnBoarded: true,
+        playStyle: ['', '', '', ''],
+      };
 
   const {
     lolNickname,
@@ -39,8 +48,6 @@ function UserProfile(props: UserProfileProps) {
     goodReview,
   } = useGetProfile(userId as string);
 
-  const { data: me } = useGetAuth();
-  console.log(isAuth);
   return (
     <>
       <ProfileImg nickname={lolNickname} profileUrl={profileUrl} tier={tier} rank={rank} />
@@ -49,7 +56,7 @@ function UserProfile(props: UserProfileProps) {
           nickname={lolNickname}
           positions={position}
           playStyles={playStyle}
-          myId={me?.userId}
+          myPlayStyles={me.playStyle}
         />
         <VoiceSection
           isVoiceOn={useVoice}
@@ -63,7 +70,7 @@ function UserProfile(props: UserProfileProps) {
         </Suspense>
       </BaseContainer>
       <ButtonArea userId={userId} lolNickname={lolNickname} isMe={me?.userId === userId} />
-      <Blur />
+      {isAuth || <Blur />}
     </>
   );
 }

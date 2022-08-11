@@ -1,13 +1,20 @@
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { dehydrate, QueryClient } from 'react-query';
+import { axios } from '../axios';
 import LoadingSuspense from '../components/common/loadingSuspense';
 import MyPageComponent from '../components/myPage';
-import { preFetchAuth } from '../hooks/preFetchAuth';
 import { queryKeys } from '../hooks/queryKeys';
+import { authUserGetAPI } from '../hooks/useGetAuth';
 import { fetchMyPage } from '../hooks/useGetMyPage';
 
-function MyPage() {
+function MyPage({ isAuth }: { isAuth: boolean }) {
+  if (!isAuth) {
+    useRouter().replace('/login');
+    return;
+  }
+
   return (
     <LoadingSuspense>
       <MyPageComponent />
@@ -18,15 +25,25 @@ function MyPage() {
 export default MyPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { props } = await preFetchAuth(context);
+  const { token } = context.req.cookies;
 
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(queryKeys.myPage, fetchMyPage);
+  if (token) {
+    const queryClient = new QueryClient();
+    axios.defaults.headers.common.Cookie = context.req.headers.cookie;
+    await queryClient.prefetchQuery(queryKeys.authUser, authUserGetAPI);
+    await queryClient.prefetchQuery(queryKeys.myPage, fetchMyPage);
+
+    return {
+      props: {
+        isAuth: true,
+        dehydratedState: dehydrate(queryClient),
+      },
+    };
+  }
 
   return {
     props: {
-      ...props,
-      dehydratedState: dehydrate(queryClient),
+      isAuth: false,
     },
   };
 };

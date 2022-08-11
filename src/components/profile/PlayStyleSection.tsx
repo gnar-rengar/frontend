@@ -2,7 +2,6 @@ import { useTheme } from '@emotion/react';
 import Image from 'next/image';
 import React from 'react';
 import { positionImgMap } from '../../constant';
-import useGetProfile from '../../hooks/useGetProfile';
 import { Typography } from '../common';
 import { PositionContainer, Section } from './style';
 
@@ -12,13 +11,11 @@ interface PlayStyleSectionProps {
   nickname: string;
   positions: Position[];
   playStyles: string[];
-  myId: string;
+  myPlayStyles: string[];
 }
 
 function PlayStyleSection(props: PlayStyleSectionProps) {
-  const { nickname, positions, playStyles, myId } = props;
-
-  const { playStyle: myPlayStyles } = useGetProfile(myId as string);
+  const { nickname, positions, playStyles, myPlayStyles } = props;
 
   const {
     icon: {
