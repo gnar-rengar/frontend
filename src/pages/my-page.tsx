@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import React from 'react';
 import { dehydrate, QueryClient } from 'react-query';
 import { axios } from '../axios';
@@ -10,7 +10,7 @@ import { fetchMyPage } from '../hooks/useGetMyPage';
 
 function MyPage({ isAuth }: { isAuth: boolean }) {
   if (!isAuth) {
-    useRouter().replace('/login');
+    Router.replace('/login');
     return;
   }
 
