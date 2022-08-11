@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 
 import Image from 'next/image';
 import useGetProfile from '../../hooks/useGetProfile';
+import useGetAuth from '../../hooks/useGetAuth';
 
 import ButtonArea from './ButtonArea';
 import ReviewSection from './ReviewSection';
@@ -10,9 +11,8 @@ import MostChampSection from './MostChampSection';
 import VoiceSection from './VoiceSection';
 import PlayStyleSection from './PlayStyleSection';
 import ProfileImg from './ProfileImg';
-import { BaseContainer } from '../common';
-import useGetAuth from '../../hooks/useGetAuth';
 import Blur from './Blur';
+import { BaseContainer } from '../common';
 
 const MatchSection = dynamic(() => import('./MatchSection'), {
   ssr: false,

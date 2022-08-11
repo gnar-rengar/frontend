@@ -2,19 +2,20 @@ import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import { axios } from '../axios';
-import { AuthUserDTO } from '../types/api.type';
 import { queryKeys } from './queryKeys';
 
+import type { AuthUserDTO } from '../types/api.type';
+
 export const authUserGetAPI = async () => {
-  const data = await axios.get<AuthUserDTO>('/auth');
-  return data.data;
+  const { data } = await axios.get<AuthUserDTO>('/auth');
+  return data;
 };
 
-const useGetAuth = (enableState = true) => {
+const useGetAuth = () => {
   const router = useRouter();
   const { data } = useQuery(queryKeys.authUser, authUserGetAPI, {
     retry: 1,
-    suspense: enableState,
+    // suspense: enableState,
     staleTime: 10000,
     onSuccess: (res) => {
       if (!res.isOnBoarded && router.pathname !== '/on-boarding') {
