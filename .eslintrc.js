@@ -27,6 +27,7 @@ module.exports = {
     'implicit-arrow-linebreak': 0,
     'no-empty-function': 'off',
     'function-paren-newline': 'off',
+    'func-names': 'off',
     'consistent-return': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',
