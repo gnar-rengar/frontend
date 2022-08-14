@@ -54,7 +54,7 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
           description: '듀오해듀오에서 플레이 스타일 테스트하고, 맞춤 듀오 추천받자!',
           imageUrl: 'https://duoplz.s3.ap-northeast-2.amazonaws.com/kakaoShare.png',
           link: {
-            mobileWebUrl: 'https://duoduo.lol',
+            mobileWebUrl: 'https://duoduo.lol/tendency-test',
           },
         },
       });
