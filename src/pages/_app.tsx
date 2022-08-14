@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import { RecoilRoot } from 'recoil';
+import Head from 'next/head';
 import Layout from '../components/layout/Layout';
 import SocketProvider from '../contexts/socket';
 import { darkTheme } from '../theme';
@@ -40,6 +41,13 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
+      <Head>
+        <title>듀오해듀오</title>
+        <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=5.0,user-scalable=yes,viewport-fit=cover"
+        />
+      </Head>
       <GlobalStyle />
       <QueryClientProvider client={queryClient.current}>
         <Hydrate state={pageProps.dehydratedState}>
