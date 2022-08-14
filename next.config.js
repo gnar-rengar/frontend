@@ -3,6 +3,10 @@ module.exports = {
   outDir: '.next',
   reactStrictMode: false,
   concurrentFeatures: true,
+  i18n: {
+    locales: ['ko'],
+    defaultLocale: 'ko',
+  },
   images: {
     domains: ['ddragon.leagueoflegends.com', 'ddragon.canisback.com', 'via.placeholder.com'],
   },
@@ -11,6 +15,10 @@ module.exports = {
       test: /\.txt$/i,
       use: 'raw-loader',
     });
-    return config;
+    return {
+      ...config,
+      mode: 'production',
+      devtool: 'hidden-source-map',
+    };
   },
 };
