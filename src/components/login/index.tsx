@@ -23,7 +23,7 @@ function Login() {
     <LoginContainer>
       {required ? (
         <Typography variant="h3" align="center">
-          로그인하고 나만의 맞춤추천
+          로그인하고 나의 찰떡 듀오
           <br />
           소환사를 만나보세요
         </Typography>
@@ -32,7 +32,7 @@ function Login() {
       )}
       <LoginSection>
         <Typography variant="captionRegular" color="onBackgroundSub">
-          간편 로그인/회원가입
+          3초 간편 로그인/회원가입
         </Typography>
         <ButtonContainer>
           <Link href={process.env.NEXT_PUBLIC_DISCORD_URL ?? ''}>
@@ -79,7 +79,7 @@ function Login() {
           </Link>
           과<br />
           <Link href="/policy/privacy">
-            <UnderLineLink>개인정보 보호정책</UnderLineLink>
+            <UnderLineLink>개인정보처리방침</UnderLineLink>
           </Link>
           에 동의하게 됩니다.
         </Typography>
