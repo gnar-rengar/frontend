@@ -103,16 +103,15 @@ function OnBoarding() {
     setError,
     reset,
   } = useForm<OnBoardingInput<PlayStyleType>>({
-    defaultValues: userDataDefaultValues,
-    // defaultValues: {
-    //   lolNickname: '',
-    //   nickNameCheck: false,
-    //   playStyle: getLocalStorage(),
-    //   position: [],
-    //   voiceChannel: [],
-    //   useVoice: false,
-    //   communication: '',
-    // },
+    defaultValues: {
+      lolNickname: '',
+      nickNameCheck: false,
+      playStyle: getLocalStorage(),
+      position: [],
+      voiceChannel: [],
+      useVoice: false,
+      communication: '',
+    },
     resolver: yupResolver(onBoardingSchema),
     mode: 'onChange',
   });
@@ -128,11 +127,11 @@ function OnBoarding() {
     },
   } = useTheme();
 
-  // useEffect(() => {
-  //   if (userData) {
-  //     reset(userDataDefaultValues);
-  //   }
-  // }, [userData]);
+  useEffect(() => {
+    if (userData.playStyle.length > 0) {
+      reset(userDataDefaultValues);
+    }
+  }, [userData]);
 
   useEffect(() => {
     if (userData?.profileUrl) setSummonerIcon(userData?.profileUrl);
