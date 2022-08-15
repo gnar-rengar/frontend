@@ -10,7 +10,7 @@ const useLogin = async () => {
   if (code) {
     try {
       await axios.get<LoginDTO>(`/auth/${sns}/callback?code=${code}&state=${state}`);
-      router.replace('/');
+      router.replace('/on-boarding');
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);

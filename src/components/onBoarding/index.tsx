@@ -64,8 +64,14 @@ const onBoardingSchema = yup.object().shape({
 
 function OnBoarding() {
   const router = useRouter();
-  const tendencyTestResult = router.query as PlayStyleType | {};
   const userData = useGetOnBoarding();
+
+  const getLocalStorage: () => PlayStyleType = () => {
+    if (typeof window !== 'undefined') {
+      return JSON.parse(localStorage.getItem('tendencyResult'));
+    }
+    return null;
+  };
 
   const userDataDefaultValues = useMemo(
     () => ({
@@ -77,7 +83,7 @@ function OnBoarding() {
           line: userData?.playStyle[1],
           champion: userData?.playStyle[2],
           physical: userData?.playStyle[3],
-        } || tendencyTestResult,
+        } || getLocalStorage(),
       position: userData?.position || [],
       voiceChannel: userData?.voiceChannel || [],
       useVoice: !!userData?.useVoice,
@@ -97,15 +103,16 @@ function OnBoarding() {
     setError,
     reset,
   } = useForm<OnBoardingInput<PlayStyleType>>({
-    defaultValues: {
-      lolNickname: '',
-      nickNameCheck: false,
-      playStyle: tendencyTestResult,
-      position: [],
-      voiceChannel: [],
-      useVoice: false,
-      communication: '',
-    },
+    defaultValues: userDataDefaultValues,
+    // defaultValues: {
+    //   lolNickname: '',
+    //   nickNameCheck: false,
+    //   playStyle: getLocalStorage(),
+    //   position: [],
+    //   voiceChannel: [],
+    //   useVoice: false,
+    //   communication: '',
+    // },
     resolver: yupResolver(onBoardingSchema),
     mode: 'onChange',
   });
@@ -121,11 +128,11 @@ function OnBoarding() {
     },
   } = useTheme();
 
-  useEffect(() => {
-    if (userData) {
-      reset(userDataDefaultValues);
-    }
-  }, [userData]);
+  // useEffect(() => {
+  //   if (userData) {
+  //     reset(userDataDefaultValues);
+  //   }
+  // }, [userData]);
 
   useEffect(() => {
     if (userData?.profileUrl) setSummonerIcon(userData?.profileUrl);
