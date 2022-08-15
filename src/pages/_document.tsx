@@ -20,6 +20,7 @@ export default class MyDocument extends Document {
             property="og:image"
             content="https://duoplz.s3.ap-northeast-2.amazonaws.com/kakaoShare.png"
           />
+          <link rel="icon" href="/favicon.jpg" />
         </Head>
         <body>
           <Main />
