@@ -3,33 +3,32 @@ import React from 'react';
 import ChatRoom from '../../components/chatRoom';
 import InValid from '../../components/chats/InValid';
 import LoadingSuspense from '../../components/common/loadingSuspense';
+import WithAuth from '../../components/WithAuth';
 import { preFetchIfLoggedIn } from '../../hooks/preFetchFns';
 import { queryKeys } from '../../hooks/queryKeys';
 import { authUserGetAPI } from '../../hooks/useGetAuth';
 import { fetchMessages } from '../../hooks/useGetMessages';
 
 interface ChatPageProps {
-  roomId: string;
   isAuth: boolean;
+  roomId: string;
 }
 
 function ChatPage(props: ChatPageProps) {
-  const { isAuth, ...other } = props;
+  const { isAuth, roomId } = props;
 
   if (!isAuth) {
-    return (
-      <InValid title={'로그인 후\n채팅 목록을 확인해보세요!'} path="/login" buttonText="로그인" />
-    );
+    <InValid title={'로그인 후\n채팅 목록을 확인해보세요!'} path="/login" buttonText="로그인" />;
   }
 
   return (
     <LoadingSuspense>
-      <ChatRoom {...other} />
+      <ChatRoom roomId={roomId} />
     </LoadingSuspense>
   );
 }
 
-export default ChatPage;
+export default WithAuth(ChatPage);
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { roomId } = context.query;

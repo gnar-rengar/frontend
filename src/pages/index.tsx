@@ -2,8 +2,8 @@ import React from 'react';
 import LoadingSuspense from '../components/common/loadingSuspense';
 import Home from '../components/home';
 
+import WithAuth from '../components/WithAuth';
 import { preFetchAuth } from '../hooks/preFetchFns';
-import IsOnBoarded from '../components/Auth';
 
 function HomePage({ isAuth }: { isAuth: boolean }) {
   return (
@@ -13,6 +13,6 @@ function HomePage({ isAuth }: { isAuth: boolean }) {
   );
 }
 
-export default IsOnBoarded(HomePage);
+export default WithAuth(HomePage);
 
 export const getServerSideProps = preFetchAuth;

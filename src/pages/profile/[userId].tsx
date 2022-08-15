@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next';
 import React from 'react';
 import LoadingSuspense from '../../components/common/loadingSuspense';
 import UserProfile from '../../components/profile';
+import WithAuth from '../../components/WithAuth';
 import { preFetchAuth } from '../../hooks/preFetchFns';
 
 interface UserProfilePageProps {
@@ -18,7 +19,7 @@ function UserProfilePage(props: UserProfilePageProps) {
   );
 }
 
-export default UserProfilePage;
+export default WithAuth(UserProfilePage);
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { props } = await preFetchAuth(context);

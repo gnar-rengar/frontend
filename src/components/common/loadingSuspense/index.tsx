@@ -3,7 +3,7 @@ import React, { Suspense } from 'react';
 import Typography from '../typography/Typography';
 import { LoadingContainer } from './style';
 
-function Loading() {
+export function Loading() {
   return (
     <LoadingContainer>
       <Image src="/icons/loading.svg" layout="fixed" width="100px" height="100px" />
