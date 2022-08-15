@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import LoadingSuspense from '../../components/common/loadingSuspense';
+import OnBoardGuard from '../../components/WithAuth';
 import Fit from '../../components/recommend/Fit';
 import { preFetchAuth } from '../../hooks/preFetchFns';
 
@@ -17,6 +18,6 @@ function FitPage({ isAuth }: { isAuth: boolean }) {
   );
 }
 
-export default FitPage;
+export default OnBoardGuard(FitPage);
 
 export const getServerSideProps = preFetchAuth;
