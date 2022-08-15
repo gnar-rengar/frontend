@@ -1,5 +1,6 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Script from 'next/script';
 
 export default class MyDocument extends Document {
   render() {
@@ -7,6 +8,16 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <script src="https://developers.kakao.com/sdk/js/kakao.js" />
+          <Script
+            dangerouslySetInnerHTML={{
+              __html: `function(){window.smartlook||(function(d) {
+                var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+                var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
+                c.charset='utf-8';c.src='https://web-sdk.smartlook.com/recorder.js';h.appendChild(c);
+                })(document);
+                smartlook('init', '4257bcee6edac11202e8c6cc038575b88a131090', { region: 'eu' });}()`,
+            }}
+          />
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="author" content="duohaeduo" />
