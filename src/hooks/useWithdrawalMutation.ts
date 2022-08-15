@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { axios } from '../axios';
 import { WithdrawalDTO } from '../types/api.type';
 
@@ -13,9 +13,13 @@ const withdrawalDeleteAPI = async (params: WithdrawalDTO) => {
 
 const useWithdrawalMutation = () => {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   return useMutation(withdrawalDeleteAPI, {
-    onSuccess: () => router.replace('/withdrawal/success'),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries();
+      router.replace('/withdrawal/success');
+    },
   });
 };
 

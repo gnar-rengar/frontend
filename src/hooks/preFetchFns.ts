@@ -12,7 +12,6 @@ type PrefetchFunc = {
 export const preFetchIfLoggedIn =
   (prefetchFunc: PrefetchFunc[]) => async (context: GetServerSidePropsContext) => {
     const { token } = context.req.cookies;
-
     if (token) {
       const queryClient = new QueryClient();
       axios.defaults.headers.common.Cookie = context.req.headers.cookie;

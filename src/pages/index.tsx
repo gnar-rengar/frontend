@@ -1,35 +1,18 @@
-import { GetServerSideProps } from 'next';
 import React from 'react';
-import { axios } from '../axios';
-import { authUserGetAPI } from '../hooks/useGetAuth';
 import LoadingSuspense from '../components/common/loadingSuspense';
 import Home from '../components/home';
 
-import type { AuthUserDTO } from '../types/api.type';
+import WithAuth from '../components/WithAuth';
+import { preFetchAuth } from '../hooks/preFetchFns';
 
-function HomePage({ userData }: { userData: AuthUserDTO }) {
+function HomePage({ isAuth }: { isAuth: boolean }) {
   return (
     <LoadingSuspense>
-      <Home userData={userData} />
+      <Home isAuth={isAuth} />
     </LoadingSuspense>
   );
 }
 
-export default HomePage;
+export default WithAuth(HomePage);
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { token } = context.req.cookies;
-  const userData = {};
-
-  if (token) {
-    axios.defaults.headers.common.Cookie = context.req.headers.cookie;
-    const data = await authUserGetAPI();
-    Object.assign(userData, data);
-  }
-
-  return {
-    props: {
-      userData,
-    },
-  };
-};
+export const getServerSideProps = preFetchAuth;

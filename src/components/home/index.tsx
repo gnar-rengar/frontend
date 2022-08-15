@@ -11,9 +11,10 @@ import Blur from './Blur';
 import RecommendSwiper from './RecommendSwiper';
 import { Container, HomeContainer, MoreContainer, TitleAndMoreContainer } from './style';
 
-import type { AuthUserDTO } from '../../types/api.type';
+import useGetAuth from '../../hooks/useGetAuth';
 
-function Home({ userData }: { userData: AuthUserDTO }) {
+function Home({ isAuth }: { isAuth: boolean }) {
+  const userData = isAuth && useGetAuth();
   const [customListState, setCustomList] = useState(false);
   const { data: fitData } = useGetFitSummonerList(customListState);
   const {
