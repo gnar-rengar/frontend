@@ -64,8 +64,14 @@ const onBoardingSchema = yup.object().shape({
 
 function OnBoarding() {
   const router = useRouter();
-  const tendencyTestResult = router.query as PlayStyleType | {};
   const userData = useGetOnBoarding();
+
+  const getLocalStorage: () => PlayStyleType = () => {
+    if (typeof window !== 'undefined') {
+      return JSON.parse(localStorage.getItem('tendencyResult'));
+    }
+    return null;
+  };
 
   const userDataDefaultValues = useMemo(
     () => ({
@@ -77,7 +83,7 @@ function OnBoarding() {
           line: userData?.playStyle[1],
           champion: userData?.playStyle[2],
           physical: userData?.playStyle[3],
-        } || tendencyTestResult,
+        } || getLocalStorage(),
       position: userData?.position || [],
       voiceChannel: userData?.voiceChannel || [],
       useVoice: !!userData?.useVoice,
@@ -100,7 +106,7 @@ function OnBoarding() {
     defaultValues: {
       lolNickname: '',
       nickNameCheck: false,
-      playStyle: tendencyTestResult,
+      playStyle: getLocalStorage(),
       position: [],
       voiceChannel: [],
       useVoice: false,
@@ -122,7 +128,7 @@ function OnBoarding() {
   } = useTheme();
 
   useEffect(() => {
-    if (userData) {
+    if (userData.playStyle.length > 0) {
       reset(userDataDefaultValues);
     }
   }, [userData]);

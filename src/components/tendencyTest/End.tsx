@@ -35,6 +35,15 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
       (answer: 'top' | 'bottom', index) => tendencyResult[index][answer]
     );
     setResult([...resultArray]);
+    localStorage.setItem(
+      'tendencyResult',
+      JSON.stringify({
+        battle: resultArray[0],
+        line: resultArray[1],
+        champion: resultArray[2],
+        physical: resultArray[3],
+      })
+    );
   }, []);
 
   const onClickTestReset = () => {
@@ -126,11 +135,7 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
           테스트 다시 하기
         </Button>
         <Button
-          onClick={() =>
-            router.push(
-              `/on-boarding?battle=${result[0]}&line=${result[1]}&champion=${result[2]}&physical=${result[3]}`
-            )
-          }
+          onClick={() => router.push('/login')}
           size="lg"
           variant="contained"
           color="primaryVariant"
