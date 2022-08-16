@@ -29,7 +29,7 @@ export default class MyDocument extends Document {
           <meta property="og:url" content="https://duoduo.lol" />
           <meta
             property="og:image"
-            content="https://duoplz.s3.ap-northeast-2.amazonaws.com/kakaoShare.png"
+            content="https://duoplz.s3.ap-northeast-2.amazonaws.com/logo.png"
           />
           <link rel="icon" href="/favicon.jpg" />
         </Head>

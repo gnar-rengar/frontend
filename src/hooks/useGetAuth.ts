@@ -19,7 +19,7 @@ const useGetAuth = () => {
     staleTime: 10000,
     onSuccess: (res) => {
       if (!res.isOnBoarded && router.pathname !== '/on-boarding') {
-        router.push('/tendency-test');
+        router.push('/on-boarding');
       }
     },
     onError: (error: AxiosError) => {
