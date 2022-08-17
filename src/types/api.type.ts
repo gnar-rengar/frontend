@@ -78,6 +78,9 @@ export interface Review {
   _id: string;
 }
 
+/**
+ * kda -1은 Infinity를 의미함.
+ */
 export interface RecentRecord {
   gameMode: string;
   gameType: string;

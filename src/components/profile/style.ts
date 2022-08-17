@@ -208,13 +208,14 @@ export const BlurContainer = styled.div`
   backdrop-filter: blur(4px);
 `;
 
-export const LoginMessage = styled.div`
+export const GuideText = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: max-content;
   gap: 16px;
   transform: translate(-50%, -50%);
 `;

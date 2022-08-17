@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { axios } from '../axios';
 
 const logoutDeleteAPI = async () => {
@@ -8,10 +8,14 @@ const logoutDeleteAPI = async () => {
 };
 
 const useLogoutMutation = () => {
+  const queryClient = useQueryClient();
   const router = useRouter();
 
   return useMutation(logoutDeleteAPI, {
-    onSuccess: () => router.replace('/'),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries();
+      router.replace('/');
+    },
   });
 };
 
