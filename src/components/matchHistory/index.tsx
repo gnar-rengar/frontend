@@ -13,7 +13,7 @@ function MatchHistory({ userId }: { userId: string }) {
   } = useGetMatchHistory(userId);
 
   const { lolNickname } = useGetProfile(userId);
-  console.log(pages);
+
   return (
     <BaseContainer>
       <Asking title={`${lolNickname}님의 최근 전적`}>

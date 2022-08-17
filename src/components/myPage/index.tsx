@@ -19,7 +19,7 @@ function MyPage() {
   const onClickLogout = () => {
     logoutMutation.mutate();
   };
-  console.log(other.playStyle);
+
   return (
     <BaseContainer>
       <ProfileCardContainer>
