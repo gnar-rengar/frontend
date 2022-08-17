@@ -77,7 +77,7 @@ function UserProfile(props: UserProfileProps) {
         </Suspense>
       </BaseContainer>
       <ButtonArea userId={userId} lolNickname={lolNickname} isMe={me?.userId === userId} />
-      {isAuth || <Blur />}
+      {isAuth ? me.isOnBoarded || <Blur type="onBoarding" /> : <Blur type="login" />}
     </>
   );
 }
