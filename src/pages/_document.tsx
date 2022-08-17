@@ -18,6 +18,11 @@ export default class MyDocument extends Document {
                 smartlook('init', '4257bcee6edac11202e8c6cc038575b88a131090', { region: 'eu' });}()`,
             }}
           />
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4220281451052822"
+            crossOrigin="anonymous"
+          />
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="author" content="duohaeduo" />

@@ -54,7 +54,7 @@ function TextArea(props: TextAreaProps) {
             {assists}
           </Typography>
           <Typography variant="captionRegular" component="span">
-            {`(${kda.toFixed(1)})`}
+            {kda === -1 ? ' Perfect' : `(${kda.toFixed(1)})`}
           </Typography>
         </KDA>
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
