@@ -19,7 +19,7 @@ function UserProfilePage(props: UserProfilePageProps) {
   );
 }
 
-export default WithAuth(UserProfilePage);
+export default UserProfilePage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { props } = await preFetchAuth(context);
