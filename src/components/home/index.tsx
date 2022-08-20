@@ -45,7 +45,7 @@ function Home({ isAuth }: { isAuth: boolean }) {
     <HomeContainer>
       <Banner />
       <Container>
-        {!userData?.lolNickname && <Blur />}
+        {isAuth ? userData?.isOnBoarded || <Blur type="onBoarding" /> : <Blur type="login" />}
         <TitleAndMoreContainer>
           <Typography variant="h3">
             {userData?.lolNickname}

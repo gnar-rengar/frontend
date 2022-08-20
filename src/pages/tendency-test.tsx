@@ -15,7 +15,7 @@ function TendencyTestPage() {
         <meta property="og:url" content="https://duoduo.lol/tendency-test" />
         <meta
           property="og:image"
-          content="https://duoplz.s3.ap-northeast-2.amazonaws.com/kakaoShare.png"
+          content="https://duoplz.s3.ap-northeast-2.amazonaws.com/share.png"
         />
       </Head>
       <TendencyTest />

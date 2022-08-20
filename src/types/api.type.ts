@@ -40,7 +40,7 @@ export interface ReviewWriteDTO {
 }
 
 export interface LoginDTO extends AuthUserDTO {
-  token: string;
+  isOnboarded: boolean;
 }
 
 export interface ProfileDTO {
