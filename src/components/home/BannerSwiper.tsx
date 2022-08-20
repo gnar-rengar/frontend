@@ -26,7 +26,7 @@ function BannerSwiper() {
           </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link href="https://tally.so#tally-open=mJ9WXX&tally-emoji-text=👋&tally-emoji-animation=wave">
+          <Link href="https://tally.so#tally-open=mJ9WXX&tally-emoji-text=❤️&tally-emoji-animation=tada">
             <a>
               <Image src="/banner/survey.png" layout="responsive" width="480px" height="256px" />
             </a>
