@@ -10,12 +10,12 @@ export default class MyDocument extends Document {
           <script src="https://developers.kakao.com/sdk/js/kakao.js" />
           <Script
             dangerouslySetInnerHTML={{
-              __html: `function(){window.smartlook||(function(d) {
+              __html: `window.smartlook||(function(d) {
                 var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
                 var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
                 c.charset='utf-8';c.src='https://web-sdk.smartlook.com/recorder.js';h.appendChild(c);
                 })(document);
-                smartlook('init', '4257bcee6edac11202e8c6cc038575b88a131090', { region: 'eu' });}()`,
+                smartlook('init', '4257bcee6edac11202e8c6cc038575b88a131090', { region: 'eu' });`,
             }}
           />
           <script
@@ -26,6 +26,7 @@ export default class MyDocument extends Document {
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="author" content="duohaeduo" />
+          <meta name="description" content="내 플레이 맞춤 기반 롤 듀오 매칭 서비스" />
           <meta property="og:title" content="찰떡 궁합 듀오 매칭, 듀오해듀오" />
           <meta
             property="og:description"
