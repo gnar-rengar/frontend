@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import { tendencyImage } from '../../constant';
 import { Button, Typography } from '../common';
-import { StartEndButtonContainer, TestStartContainer } from './style';
+import { StartContainer, TestStartContainer } from './style';
 
 interface StartProps {
   setTestNumber: React.Dispatch<React.SetStateAction<number>>;
@@ -24,7 +24,7 @@ function Start({ setTestNumber }: StartProps) {
         </Typography>
         <Image src={tendencyImage.start} width={240} height={240} />
       </TestStartContainer>
-      <StartEndButtonContainer>
+      <StartContainer>
         <Button
           onClick={() => setTestNumber(0)}
           size="lg"
@@ -33,7 +33,7 @@ function Start({ setTestNumber }: StartProps) {
         >
           내 플레이 스타일 알아보기
         </Button>
-      </StartEndButtonContainer>
+      </StartContainer>
     </>
   );
 }

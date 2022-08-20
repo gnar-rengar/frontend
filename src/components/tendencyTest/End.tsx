@@ -3,15 +3,15 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { tendencyImage, tendencyResult } from '../../constant';
 import { Kakao } from '../../types/kakao.type';
-import { Button, Chip, Typography } from '../common';
+import { Button, Chip, StickyBottom, Typography } from '../common';
 import {
-  ResultContainer,
+  EndButtonContainer,
   EndContainer,
   PlayStyleContainer,
-  StartEndButtonContainer,
-  ShareContainer,
-  ShareButton,
+  ResultContainer,
   Share,
+  ShareButton,
+  ShareContainer,
 } from './style';
 
 declare global {
@@ -130,19 +130,21 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
           </Share>
         </ShareContainer>
       </EndContainer>
-      <StartEndButtonContainer>
-        <Button onClick={onClickTestReset} size="md" variant="text" color="primaryVariant">
-          테스트 다시 하기
-        </Button>
-        <Button
-          onClick={() => router.push('/login')}
-          size="lg"
-          variant="contained"
-          color="primaryVariant"
-        >
-          가입하고 찰떡 듀오 매칭하기
-        </Button>
-      </StartEndButtonContainer>
+      <StickyBottom>
+        <EndButtonContainer>
+          <Button onClick={onClickTestReset} size="md" variant="text" color="primaryVariant">
+            테스트 다시 하기
+          </Button>
+          <Button
+            onClick={() => router.push('/login')}
+            size="lg"
+            variant="contained"
+            color="primaryVariant"
+          >
+            가입하고 찰떡 듀오 매칭하기
+          </Button>
+        </EndButtonContainer>
+      </StickyBottom>
     </>
   );
 }

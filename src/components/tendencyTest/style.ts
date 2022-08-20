@@ -21,7 +21,7 @@ export const ButtonContainer = styled.div`
   gap: 10px;
 `;
 
-export const StartEndButtonContainer = styled(ButtonContainer)`
+export const StartContainer = styled(ButtonContainer)`
   padding: 0 16px;
   position: sticky;
   left: 50%;
@@ -106,4 +106,12 @@ export const ShareButton = styled.div<{ color: ColorVariant }>`
   border-radius: 100px;
   background-color: ${(props) => props.theme.color[props.color]};
   cursor: pointer;
+`;
+
+export const EndButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
 `;
