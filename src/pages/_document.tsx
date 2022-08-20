@@ -8,6 +8,7 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <script src="https://developers.kakao.com/sdk/js/kakao.js" />
+          <script async src="https://tally.so/widgets/embed.js" />
           <Script
             dangerouslySetInnerHTML={{
               __html: `window.smartlook||(function(d) {
@@ -38,6 +39,7 @@ export default class MyDocument extends Document {
             content="https://duoplz.s3.ap-northeast-2.amazonaws.com/logo.png"
           />
           <link rel="icon" href="/favicon.jpg" />
+          <link rel="canonical" href="https://duoduo.lol" />
         </Head>
         <body>
           <Main />

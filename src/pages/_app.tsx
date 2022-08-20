@@ -12,6 +12,7 @@ import Layout from '../components/layout/Layout';
 import SocketProvider from '../contexts/socket';
 import { darkTheme } from '../theme';
 import GlobalStyle from '../theme/globalStyle';
+import ErrorBoundary from '../components/ErrorBoundary';
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => React.ReactNode;
@@ -49,18 +50,20 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
         />
       </Head>
       <GlobalStyle />
-      <QueryClientProvider client={queryClient.current}>
-        <Hydrate state={pageProps.dehydratedState}>
-          <RecoilRoot>
-            <SocketProvider>
-              <ThemeProvider theme={darkTheme}>
-                {getLayout(<Component {...pageProps} />)}
-              </ThemeProvider>
-            </SocketProvider>
-          </RecoilRoot>
-        </Hydrate>
-        <ReactQueryDevtools position="bottom-right" />
-      </QueryClientProvider>
+      <ErrorBoundary>
+        <QueryClientProvider client={queryClient.current}>
+          <Hydrate state={pageProps.dehydratedState}>
+            <RecoilRoot>
+              <SocketProvider>
+                <ThemeProvider theme={darkTheme}>
+                  {getLayout(<Component {...pageProps} />)}
+                </ThemeProvider>
+              </SocketProvider>
+            </RecoilRoot>
+          </Hydrate>
+          <ReactQueryDevtools position="bottom-right" />
+        </QueryClientProvider>
+      </ErrorBoundary>
     </>
   );
 }
