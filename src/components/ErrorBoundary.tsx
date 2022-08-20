@@ -3,7 +3,6 @@ import Error from './error';
 
 interface Props {
   children: React.ReactNode;
-  message?: string;
 }
 
 interface State {
