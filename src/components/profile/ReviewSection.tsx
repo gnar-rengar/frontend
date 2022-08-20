@@ -2,6 +2,7 @@ import React from 'react';
 import { Asking, Review, Typography } from '../common';
 
 import type { Review as ReviewType } from '../../types/api.type';
+import { Section } from './style';
 
 interface ReviewSectionProps {
   goodReview: ReviewType[];
@@ -12,7 +13,7 @@ function ReviewSection(props: ReviewSectionProps) {
   const { goodReview, lolNickname } = props;
 
   return (
-    <section>
+    <Section>
       {goodReview.length > 0 ? (
         <Asking title={`${lolNickname}님은 이런 칭찬을 받았어요`}>
           <Review reviews={goodReview} />
@@ -23,7 +24,7 @@ function ReviewSection(props: ReviewSectionProps) {
           whiteSpace="pre-line"
         >{`${lolNickname}님은 아직 \n받은 리뷰가 없어요`}</Typography>
       )}
-    </section>
+    </Section>
   );
 }
 

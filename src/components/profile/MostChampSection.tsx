@@ -15,25 +15,32 @@ function MostChampSection({ mostChamps }: MostChampSectionProps) {
       size: { xl },
     },
   } = useTheme();
+
   return (
     <Section>
-      <Typography variant="h3">숙련도가 가장 높은 챔피언은</Typography>
-      <Typography variant="h3">
-        <MostChamps>
-          {mostChamps.map((mostChamp) => (
-            <li key={mostChamp}>
-              <Image
-                src={`${process.env.NEXT_PUBLIC_RIOT_CHAMPION_IMG_URL}/${mostChamp}.png`}
-                layout="fixed"
-                width={xl}
-                height={xl}
-                key={mostChamp}
-              />
-            </li>
-          ))}
-        </MostChamps>
-        {' 고요'}
-      </Typography>
+      {mostChamps.length ? (
+        <>
+          <Typography variant="h3">숙련도가 가장 높은 챔피언은</Typography>
+          <Typography variant="h3">
+            <MostChamps>
+              {mostChamps.map((mostChamp) => (
+                <li key={mostChamp}>
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_RIOT_CHAMPION_IMG_URL}/${mostChamp}.png`}
+                    layout="fixed"
+                    width={xl}
+                    height={xl}
+                    key={mostChamp}
+                  />
+                </li>
+              ))}
+            </MostChamps>
+            {' 고요'}
+          </Typography>
+        </>
+      ) : (
+        <Typography variant="h3">숙련도가 높은 챔피언이 아직 없어요</Typography>
+      )}
     </Section>
   );
 }
