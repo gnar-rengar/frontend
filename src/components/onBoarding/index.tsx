@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useMemo, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useRecoilValue } from 'recoil';
 import * as yup from 'yup';
 import { axios } from '../../axios';
 import {
@@ -17,6 +18,7 @@ import {
 import useGetOnBoarding from '../../hooks/useGetOnBoarding';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { NicknameCheckDTO, OnBoardingInput, PlayStyleType } from '../../types/api.type';
+import { testState } from '../atom';
 import { Asking, Button, Radio, StickyBottom, TextField, Typography } from '../common';
 import CheckBoxChip from '../common/chip/CheckBoxChip';
 import RadioChip from '../common/chip/RadioChip';
@@ -65,6 +67,7 @@ const onBoardingSchema = yup.object().shape({
 function OnBoarding() {
   const router = useRouter();
   const userData = useGetOnBoarding();
+  const testa = useRecoilValue(testState);
 
   const getLocalStorage: () => PlayStyleType = () => {
     if (typeof window !== 'undefined') {
@@ -103,15 +106,7 @@ function OnBoarding() {
     setError,
     reset,
   } = useForm<OnBoardingInput<PlayStyleType>>({
-    defaultValues: {
-      lolNickname: '',
-      nickNameCheck: false,
-      playStyle: getLocalStorage(),
-      position: [],
-      voiceChannel: [],
-      useVoice: false,
-      communication: '',
-    },
+    defaultValues: testa,
     resolver: yupResolver(onBoardingSchema),
     mode: 'onChange',
   });

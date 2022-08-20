@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { tendencyImage, tendencyResult } from '../../constant';
 import { Kakao } from '../../types/kakao.type';
+import { testState } from '../atom';
 import { Button, Chip, StickyBottom, Typography } from '../common';
 import {
   EndButtonContainer,
@@ -28,6 +30,7 @@ interface EndProps {
 
 function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
   const [result, setResult] = useState([]);
+  const [testa, setTestA] = useRecoilState(testState);
   const router = useRouter();
 
   useEffect(() => {
@@ -44,6 +47,21 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
         physical: resultArray[3],
       })
     );
+    setTestA((prev) => ({
+      ...prev,
+      lolNickname: 'sungkyu',
+      nickNameCheck: true,
+      playStyle: {
+        battle: resultArray[0],
+        line: resultArray[1],
+        champion: resultArray[2],
+        physical: resultArray[3],
+      },
+      position: ['미드', '원딜'],
+      voiceChannel: [],
+      useVoice: false,
+      communication: '',
+    }));
   }, []);
 
   const onClickTestReset = () => {
@@ -136,7 +154,7 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
             테스트 다시 하기
           </Button>
           <Button
-            onClick={() => router.push('/login')}
+            onClick={() => router.push('/on-boarding')}
             size="lg"
             variant="contained"
             color="primaryVariant"
