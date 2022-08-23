@@ -376,7 +376,6 @@ function OnBoarding() {
         <OnBoardingEachContainer gap id="playStyle">
           {type === 'notTest' ? (
             <ChoicePlayStyle
-              setValue={setValue}
               onChoicePlayStyleButton={onChoicePlayStyleButton}
               choicePlayStyleValue={choicePlayStyleValue}
               register={register}
