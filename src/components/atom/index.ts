@@ -1,10 +1,13 @@
 import { atom } from 'recoil';
+import { OnBoardingInput, PlayStyleType } from '../../types/api.type';
 
-export const testState = atom({
-  key: 'test',
+export const onBoardingState = atom<OnBoardingInput<PlayStyleType | string[]>>({
+  key: 'onBoarding',
   default: {
     lolNickname: '',
+    profileUrl: '',
     nickNameCheck: false,
+    choicePlayStyle: true,
     playStyle: null,
     position: [],
     voiceChannel: [],

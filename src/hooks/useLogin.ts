@@ -12,10 +12,18 @@ const useLogin = async () => {
       const { data } = await axios.get<LoginDTO>(
         `/auth/${sns}/callback?code=${code}&state=${state}`
       );
+
+      localStorage.setItem('isOnboarded', JSON.stringify(data.isOnBoarded));
       if (data.isOnBoarded) {
         router.replace('/');
       }
-      router.replace('/on-boarding');
+
+      if (localStorage.getItem('isDirect') === 'false') {
+        localStorage.removeItem('tendencyResult');
+        router.replace('/on-boarding');
+      } else {
+        router.replace('/on-boarding?type=notTest');
+      }
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);

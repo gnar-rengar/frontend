@@ -1,4 +1,3 @@
-import Router from 'next/router';
 import React from 'react';
 import LoadingSuspense from '../components/common/loadingSuspense';
 import Layout from '../components/layout/Layout';
@@ -7,12 +6,7 @@ import { preFetchIfLoggedIn } from '../hooks/preFetchFns';
 import { queryKeys } from '../hooks/queryKeys';
 import { onBoardingGetAPI } from '../hooks/useGetOnBoarding';
 
-function OnBoardingPage({ isAuth }: { isAuth: boolean }) {
-  if (!isAuth) {
-    Router.replace('/login');
-    return;
-  }
-
+function OnBoardingPage() {
   return (
     <LoadingSuspense>
       <OnBoarding />

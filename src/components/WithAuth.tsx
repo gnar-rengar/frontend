@@ -19,7 +19,7 @@ const WithAuth = (Component: React.FC) =>
 
     useEffect(() => {
       if (!isOnBoarded) {
-        Router.replace('/on-boarding');
+        Router.replace('/on-boarding?type=notTest');
       }
     }, []);
 
