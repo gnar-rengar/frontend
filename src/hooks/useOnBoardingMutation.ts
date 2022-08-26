@@ -15,6 +15,7 @@ const useOnBoardingMutation = () => {
   const queryClient = useQueryClient();
   return useMutation(onBoardingPatchAPI, {
     onSuccess: async () => {
+      localStorage.setItem('isOnboarded', 'true');
       localStorage.removeItem('isDirect');
       localStorage.removeItem('tendencyResult');
       await queryClient.invalidateQueries(queryKeys.authUser);
