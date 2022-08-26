@@ -2,10 +2,10 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
+import { onBoardingState } from '../../atom';
 import { tendencyImage, tendencyResult } from '../../constant';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { Kakao } from '../../types/kakao.type';
-import { onBoardingState } from '../atom';
 import { Button, Chip, StickyBottom, Typography } from '../common';
 import {
   EndButtonContainer,
@@ -41,7 +41,6 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
       (answer: 'top' | 'bottom', index) => tendencyResult[index][answer]
     );
     setResult([...resultArray]);
-    localStorage.setItem('isDirect', JSON.stringify(type));
     localStorage.setItem(
       'tendencyResult',
       JSON.stringify({

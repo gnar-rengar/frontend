@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { OnBoardingInput, PlayStyleType } from '../../types/api.type';
+import { OnBoardingInput, PlayStyleType } from '../types/api.type';
 
 export const onBoardingState = atom<OnBoardingInput<PlayStyleType | string[]>>({
   key: 'onBoarding',

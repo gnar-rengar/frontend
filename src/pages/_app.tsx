@@ -50,20 +50,18 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
         />
       </Head>
       <GlobalStyle />
-      <ErrorBoundary>
-        <QueryClientProvider client={queryClient.current}>
-          <Hydrate state={pageProps.dehydratedState}>
-            <RecoilRoot>
-              <SocketProvider>
-                <ThemeProvider theme={darkTheme}>
-                  {getLayout(<Component {...pageProps} />)}
-                </ThemeProvider>
-              </SocketProvider>
-            </RecoilRoot>
-          </Hydrate>
-          <ReactQueryDevtools position="bottom-right" />
-        </QueryClientProvider>
-      </ErrorBoundary>
+      <ThemeProvider theme={darkTheme}>
+        <ErrorBoundary>
+          <QueryClientProvider client={queryClient.current}>
+            <Hydrate state={pageProps.dehydratedState}>
+              <RecoilRoot>
+                <SocketProvider>{getLayout(<Component {...pageProps} />)}</SocketProvider>
+              </RecoilRoot>
+            </Hydrate>
+            <ReactQueryDevtools position="bottom-right" />
+          </QueryClientProvider>
+        </ErrorBoundary>
+      </ThemeProvider>
     </>
   );
 }

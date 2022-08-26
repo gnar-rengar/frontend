@@ -16,13 +16,11 @@ const useLogin = async () => {
       localStorage.setItem('isOnboarded', JSON.stringify(data.isOnBoarded));
       if (data.isOnBoarded) {
         router.replace('/');
-      }
-
-      if (localStorage.getItem('isDirect') === 'false') {
+      } else if (localStorage.getItem('isDirect') === 'false') {
         localStorage.removeItem('tendencyResult');
-        router.replace('/on-boarding');
-      } else {
         router.replace('/on-boarding?type=notTest');
+      } else {
+        router.replace('/on-boarding');
       }
     } catch (error) {
       // eslint-disable-next-line no-console

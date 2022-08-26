@@ -15,6 +15,8 @@ const useOnBoardingMutation = () => {
   const queryClient = useQueryClient();
   return useMutation(onBoardingPatchAPI, {
     onSuccess: async () => {
+      localStorage.removeItem('isDirect');
+      localStorage.removeItem('tendencyResult');
       await queryClient.invalidateQueries(queryKeys.authUser);
       router.push('/');
     },
