@@ -208,14 +208,14 @@ export const HeaderContainer = styled.div`
   background: ${({ theme }) => theme.color.surface};
   z-index: 10;
 
-  & > div {
+  a > div {
     display: inline-flex;
     align-items: center;
     height: 100%;
     gap: 8px;
   }
 
-  & img {
+  img {
     border-radius: 50%;
   }
 `;

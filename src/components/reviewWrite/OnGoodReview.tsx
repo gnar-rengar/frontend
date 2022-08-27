@@ -14,7 +14,7 @@ function OnGoodReview(props: OnGoodReviewProps) {
 
   return (
     <div id="goodReview">
-      <Asking title="어떤 점이 즐거우셨나요?" caption="작성하신 리뷰는 익명으로 전달돼요.">
+      <Asking title="어떤 점이 즐거우셨나요?" caption="작성하신 리뷰는 익명으로 전달돼요">
         {goodReviewOptions.map((option) => (
           <CheckBox key={option} label={option} register={register('goodReview')} />
         ))}

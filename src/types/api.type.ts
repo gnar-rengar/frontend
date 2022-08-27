@@ -37,7 +37,7 @@ export interface ReviewWriteDTO {
   isGood: boolean;
   goodReview: string[];
   badReview: string[];
-  additionalBadReaview: string;
+  additionalBadReview: string;
 }
 
 export interface LoginDTO extends AuthUserDTO {
