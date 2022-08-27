@@ -13,8 +13,8 @@ const useLogoutMutation = () => {
 
   return useMutation(logoutDeleteAPI, {
     onSuccess: async () => {
-      await queryClient.invalidateQueries();
-      router.replace('/');
+      await router.replace('/');
+      queryClient.invalidateQueries();
     },
   });
 };
