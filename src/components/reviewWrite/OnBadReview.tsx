@@ -32,7 +32,7 @@ function OnBadReview(props: OnBadReviewProps) {
       </div>
       <Asking title="아쉬웠던 점을 운영팀에 알려주세요" whiteSpace="pre-line">
         <TextArea
-          register={register('additionalBadReaview')}
+          register={register('additionalBadReview')}
           placeholder="작성하신 의견은 운영팀에게만 전달되어, 서비스 개선에만 활용되니, 솔직한 의견을 남겨주세요."
         />
       </Asking>

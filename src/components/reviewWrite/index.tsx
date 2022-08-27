@@ -50,7 +50,7 @@ function ReviewWrite(props: ReviewWriteProps) {
       isGood: true,
       goodReview: [],
       badReview: [],
-      additionalBadReaview: '',
+      additionalBadReview: '',
     },
     resolver: yupResolver(reviewWriteSchema),
     mode: 'onChange',
@@ -69,7 +69,7 @@ function ReviewWrite(props: ReviewWriteProps) {
     } else {
       setValue('goodReview', []);
     }
-    setValue('additionalBadReaview', '');
+    setValue('additionalBadReview', '');
   }, [isGood]);
 
   const { mutate } = usePatchReviewWrite();
