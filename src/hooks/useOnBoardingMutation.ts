@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useMutation, useQueryClient } from 'react-query';
-import { queryKeys } from './queryKeys';
 import { axios } from '../axios';
+import { queryKeys } from './queryKeys';
 
 import type { NicknameCheckDTO, OnBoardingInput } from '../types/api.type';
 
@@ -15,6 +15,9 @@ const useOnBoardingMutation = () => {
   const queryClient = useQueryClient();
   return useMutation(onBoardingPatchAPI, {
     onSuccess: async () => {
+      localStorage.setItem('isOnboarded', 'true');
+      localStorage.removeItem('isDirect');
+      localStorage.removeItem('tendencyResult');
       await queryClient.invalidateQueries(queryKeys.authUser);
       router.push('/');
     },

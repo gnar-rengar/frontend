@@ -43,6 +43,7 @@ module.exports = {
     'global-require': 'off',
     'react/jsx-curly-newline': 'off',
     'no-underscore-dangle': 'off',
+    eqeqeq: 'off',
     'jsx-a11y/anchor-is-valid': [
       'error',
       {
