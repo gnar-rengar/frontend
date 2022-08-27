@@ -8,10 +8,7 @@ const position = [
   ['서폿', 'support'],
 ] as const;
 
-const voiceChannel = [
-  ['디스코드', 'discord'],
-  ['롤 인보이스', 'invoice'],
-] as const;
+const voiceChannel = ['디스코드', '롤 인보이스'] as const;
 
 const communication = [
   '높은 텐션으로 소통하는 플레이를 좋아해요',
