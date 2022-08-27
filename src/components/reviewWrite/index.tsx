@@ -93,7 +93,9 @@ function ReviewWrite(props: ReviewWriteProps) {
       <BaseContainer>
         <Asking
           title={`${lolNickname}님은 어떠셨나요?`}
-          caption={'정말 플레이를 했을 때만 남겨주세요\n허위 리뷰 작성 시 이용이 제한될 수 있어요'}
+          caption={
+            '실제 플레이를 함께 했을 때만 남겨주세요\n허위 리뷰 작성 시 이용이 제한될 수 있어요'
+          }
           whiteSpace="pre-line"
         >
           <ButtonContainer>
@@ -104,7 +106,7 @@ function ReviewWrite(props: ReviewWriteProps) {
               onClick={handleClick}
               value="joyful"
             >
-              즐겁게 플레이 했어요
+              즐거웠어요
             </Button>
             <Button
               type="button"
@@ -113,7 +115,7 @@ function ReviewWrite(props: ReviewWriteProps) {
               onClick={handleClick}
               value="awful"
             >
-              별로에요
+              실망했어요
             </Button>
           </ButtonContainer>
         </Asking>

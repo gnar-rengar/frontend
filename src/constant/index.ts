@@ -44,10 +44,10 @@ const goodReviewOptions = [
 ];
 
 const badReviewOptions = [
-  '최악이에요. 그냥 걔 싫어요!',
-  '협곡의 악의 축을 만났네요.',
-  '욕설, 비방을 했어요.',
-  '분노 조절을 못해요.',
+  '시간 약속을 안지켰어요',
+  '훈수, 욕설, 비방을 했어요',
+  '쉽게 게임을 포기해요',
+  '배려 없는 플레이를 했어요',
 ];
 
 const reviewWriteErrorMessage = {

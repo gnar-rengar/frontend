@@ -19,10 +19,7 @@ function OnBadReview(props: OnBadReviewProps) {
   return (
     <>
       <div id="badReview">
-        <Asking
-          title="어떤 점이 별로였는지 알려주세요"
-          caption="작성하신 리뷰는 익명으로 전달돼요."
-        >
+        <Asking title="어떤 점이 별로였는지 알려주세요" caption="작성하신 리뷰는 익명으로 전달돼요">
           {badReviewOptions.map((option) => (
             <CheckBox key={option} label={option} register={register('badReview')} />
           ))}
@@ -33,12 +30,11 @@ function OnBadReview(props: OnBadReviewProps) {
           </Typography>
         )}
       </div>
-      <Asking
-        title="어떤 점이 별로였는지 알려주세요"
-        caption={'작성하신 리뷰는 운영팀에게만 전달되어\n서비스 개선에 활용할 예정이에요.'}
-        whiteSpace="pre-line"
-      >
-        <TextArea register={register('additionalBadReaview')} />
+      <Asking title="아쉬웠던 점을 운영팀에 알려주세요" whiteSpace="pre-line">
+        <TextArea
+          register={register('additionalBadReaview')}
+          placeholder="작성하신 의견은 운영팀에게만 전달되어, 서비스 개선에만 활용되니, 솔직한 의견을 남겨주세요."
+        />
       </Asking>
     </>
   );
