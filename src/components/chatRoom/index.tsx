@@ -72,7 +72,6 @@ function ChatRoom(props: ChatRoomProps) {
 
   return (
     <ChatRoomContainer>
-      {/* <Header opponent={opponent} /> */}
       <MessageArea
         roomId={roomId}
         messages={messages}
