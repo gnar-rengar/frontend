@@ -335,16 +335,16 @@ function OnBoarding() {
                 <Asking title="어떤 채널을 주로 사용하시나요?" paragraph>
                   <ChipContainer>
                     {voiceChannel.map((channel) => (
-                      <React.Fragment key={channel[1]}>
+                      <React.Fragment key={channel}>
                         <CheckBoxChip
                           color="primary"
-                          key={channel[1]}
-                          htmlFor={channel[1]}
-                          value={channel[1]}
+                          key={channel}
+                          htmlFor={channel}
+                          value={channel}
                           register={register('voiceChannel')}
                           watch={watch('voiceChannel')}
                         >
-                          {channel[0]}
+                          {channel}
                         </CheckBoxChip>
                       </React.Fragment>
                     ))}

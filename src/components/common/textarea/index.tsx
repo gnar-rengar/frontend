@@ -15,7 +15,7 @@ interface TextAreaProps {
 }
 
 function TextArea(props: TextAreaProps) {
-  const { id, name, width, maxLength, minHeight, register } = props;
+  const { id, name, width, maxLength, minHeight, register, placeholder } = props;
 
   const [text, setText] = useState('');
 
@@ -38,7 +38,15 @@ function TextArea(props: TextAreaProps) {
 
   return (
     <TextAreaContainer width={width}>
-      <textarea id={id} name={name} {...other} value={text} onChange={handleChange} ref={ref} />
+      <textarea
+        id={id}
+        name={name}
+        {...other}
+        value={text}
+        onChange={handleChange}
+        ref={ref}
+        placeholder={placeholder}
+      />
       <Typography variant="captionRegular" align="right">
         {`${text.length}/${maxLength}자`}
       </Typography>

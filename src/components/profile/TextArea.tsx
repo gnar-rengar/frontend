@@ -58,7 +58,7 @@ function TextArea(props: TextAreaProps) {
           </Typography>
         </KDA>
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-          <div>X</div>
+          <Typography variant="captionBold">CS</Typography>
           <Typography variant="captionRegular">{`${totalMinionsKilled}(${minionPerMinute})`}</Typography>
         </div>
       </KDAAndMinionKilled>

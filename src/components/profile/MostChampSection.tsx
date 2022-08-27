@@ -35,7 +35,7 @@ function MostChampSection({ mostChamps }: MostChampSectionProps) {
                 </li>
               ))}
             </MostChamps>
-            {' 고요'}
+            {' 에요'}
           </Typography>
         </>
       ) : (
