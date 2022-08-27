@@ -35,6 +35,7 @@ const onBoardingErrorMessage = {
   positionMax: '최대 두 포지션을 선택할 수 있어요',
   useVoice: '음성채팅을 사용하시는지 알려주세요',
   voiceAndCommunication: '하나 이상 선택해주셔야 해요',
+  choicePlayStyle: '플레이스타일 테스트 여부를 선택해주세요',
 };
 
 const goodReviewOptions = [

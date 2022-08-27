@@ -29,6 +29,7 @@ export interface OnBoardingInput<T> {
   communication: string;
   useVoice: boolean;
   voiceChannel?: string[];
+  choicePlayStyle: boolean;
   playStyle: T;
 }
 

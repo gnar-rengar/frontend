@@ -1,17 +1,20 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { onBoardingState } from '../../atom';
 import { tendencyImage, tendencyResult } from '../../constant';
+import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { Kakao } from '../../types/kakao.type';
-import { Button, Chip, Typography } from '../common';
+import { Button, Chip, StickyBottom, Typography } from '../common';
 import {
-  ResultContainer,
+  EndButtonContainer,
   EndContainer,
   PlayStyleContainer,
-  StartEndButtonContainer,
-  ShareContainer,
-  ShareButton,
+  ResultContainer,
   Share,
+  ShareButton,
+  ShareContainer,
 } from './style';
 
 declare global {
@@ -27,8 +30,11 @@ interface EndProps {
 }
 
 function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
-  const [result, setResult] = useState([]);
   const router = useRouter();
+  const { type } = router.query;
+  const [result, setResult] = useState([]);
+  const onBoardingData = useRecoilValue(onBoardingState);
+  const submitMutation = useOnBoardingMutation();
 
   useEffect(() => {
     const resultArray = testAnswer.map(
@@ -46,9 +52,29 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
     );
   }, []);
 
+  useEffect(() => {
+    if (type) {
+      localStorage.setItem('isDirect', 'true');
+    } else {
+      localStorage.setItem('isDirect', 'false');
+    }
+  }, []);
+
   const onClickTestReset = () => {
     setTestNumber(-1);
     setTestAnswer([]);
+  };
+
+  const onClickTestEnd = () => {
+    if (type === 'direct') {
+      router.push('/login');
+    } else {
+      const values = {
+        ...onBoardingData,
+        playStyle: result,
+      };
+      submitMutation.mutate(values);
+    }
   };
 
   const onClickKakao = () => {
@@ -63,7 +89,7 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
           description: '듀오해듀오에서 플레이 스타일 테스트하고, 맞춤 듀오 추천받자!',
           imageUrl: 'https://duoplz.s3.ap-northeast-2.amazonaws.com/kakaoShare.png',
           link: {
-            mobileWebUrl: 'https://duoduo.lol/tendency-test',
+            mobileWebUrl: 'https://duoduo.lol/tendency-test?type=direct',
           },
         },
       });
@@ -76,7 +102,7 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
         .share({
           title: '나의 롤 플레이 스타일은?',
           text: '듀오해듀오에서 플레이 스타일 테스트하고, 맞춤 듀오 추천받자!',
-          url: window.location.href,
+          url: `${window.location.href}?type=direct`,
         })
         // eslint-disable-next-line no-console
         .catch((error) => console.log('공유 실패', error));
@@ -130,19 +156,16 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
           </Share>
         </ShareContainer>
       </EndContainer>
-      <StartEndButtonContainer>
-        <Button onClick={onClickTestReset} size="md" variant="text" color="primaryVariant">
-          테스트 다시 하기
-        </Button>
-        <Button
-          onClick={() => router.push('/login')}
-          size="lg"
-          variant="contained"
-          color="primaryVariant"
-        >
-          가입하고 찰떡 듀오 매칭하기
-        </Button>
-      </StartEndButtonContainer>
+      <StickyBottom>
+        <EndButtonContainer>
+          <Button onClick={onClickTestReset} size="md" variant="text" color="primaryVariant">
+            테스트 다시 하기
+          </Button>
+          <Button onClick={onClickTestEnd} size="lg" variant="contained" color="primaryVariant">
+            {type === 'direct' ? '가입하고 찰떡 듀오 매칭하기' : '내 듀오 찾으러 가기'}
+          </Button>
+        </EndButtonContainer>
+      </StickyBottom>
     </>
   );
 }

@@ -80,7 +80,7 @@ export const ChipContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-export const VoiceButtonContainer = styled.div`
+export const CustomButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
@@ -90,6 +90,7 @@ export const PlayStyleContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding-top: 8px;
 `;
 
 export const PlayStyleRadio = styled.div`
