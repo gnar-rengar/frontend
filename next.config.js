@@ -1,3 +1,7 @@
+const { execSync } = require('child_process');
+
+const lastCommitCommand = 'git rev-parse HEAD';
+
 module.exports = {
   excludeFile: (str) => /\*.{spec,test}.js/.test(str),
   outDir: '.next',
@@ -20,5 +24,8 @@ module.exports = {
       mode: 'production',
       devtool: 'hidden-source-map',
     };
+  },
+  async generateBuildId() {
+    return execSync(lastCommitCommand).toString().trim();
   },
 };
