@@ -25,7 +25,5 @@ module.exports = {
       devtool: 'hidden-source-map',
     };
   },
-  async generateBuildId() {
-    return execSync(lastCommitCommand).toString().trim();
-  },
+  generateBuildId: async () => execSync(lastCommitCommand).toString().trim(),
 };
