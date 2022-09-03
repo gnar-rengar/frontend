@@ -11,6 +11,7 @@ import { onBoardingState } from '../../atom';
 import { axios } from '../../axios';
 import { communication, onBoardingErrorMessage, position, voiceChannel } from '../../constant';
 import useGetOnBoarding from '../../hooks/useGetOnBoarding';
+import useGTagOnMount from '../../hooks/useGTagOnMount';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { NicknameCheckDTO, OnBoardingInput, PlayStyleType } from '../../types/api.type';
 import { Asking, Button, Radio, StickyBottom, TextField, Typography } from '../common';
@@ -212,6 +213,8 @@ function OnBoarding() {
     const value = innerText === '직접 선택할게요';
     setValue('choicePlayStyle', value, { shouldValidate: true });
   };
+
+  useGTagOnMount('onboarding', { testType: type === 'notTest' });
 
   return (
     <>

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import useGetNewSummonerList from '../../hooks/useGetNewSummonerList';
+import useGTagOnMount from '../../hooks/useGTagOnMount';
 import { FilterTierType } from '../../types/api.type';
 import { SmallCard } from '../common';
 import Filter from './Filter';
@@ -18,6 +19,7 @@ function New() {
     hasNextPage,
     refetch,
   } = useGetNewSummonerList(filterState, 1, 'filter');
+  useGTagOnMount('menu_new');
 
   useEffect(() => {
     if (inView && !isLoading) {

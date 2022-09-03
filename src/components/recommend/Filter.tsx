@@ -11,7 +11,9 @@ import {
   ArrowButtonContainer,
 } from './style';
 import { filterTier, tierEng } from '../../constant';
-import { FilterRequestDTO } from '../../types/api.type';
+import { emit } from '../../gtag';
+
+import type { FilterRequestDTO } from '../../types/api.type';
 
 interface FilterProps {
   setFilterState: React.Dispatch<React.SetStateAction<string[]>>;
@@ -38,6 +40,7 @@ function Filter({ setFilterState }: FilterProps) {
     const selectTier = data.tier ? data.tier.map((item) => tierEng[item]) : [];
     setFilterState([...selectTier]);
     setOpen(false);
+    emit('filtering');
   };
 
   return (

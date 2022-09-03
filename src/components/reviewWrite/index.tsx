@@ -13,7 +13,10 @@ import { Asking, BaseContainer, Button, StickyBottom } from '../common';
 import { ButtonContainer, Form } from './style';
 
 import { reviewWriteErrorMessage } from '../../constant';
+import { emit } from '../../gtag';
+
 import type { ReviewWriteDTO } from '../../types/api.type';
+import useGetAuth from '../../hooks/useGetAuth';
 
 const reviewWriteSchema = yup.object().shape({
   isGood: yup.boolean(),
@@ -38,6 +41,8 @@ function ReviewWrite(props: ReviewWriteProps) {
 
   const [isGood, setIsGood] = useState(true);
   const router = useRouter();
+
+  const me = useGetAuth();
 
   const {
     register,
@@ -76,6 +81,7 @@ function ReviewWrite(props: ReviewWriteProps) {
 
   const onSubmit: SubmitHandler<ReviewWriteDTO> = (payload) => {
     mutate({ userId, payload });
+    emit('review_write', { userName: me.lolNickname });
   };
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {

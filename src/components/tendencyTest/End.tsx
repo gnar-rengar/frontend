@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { onBoardingState } from '../../atom';
 import { tendencyImage, tendencyResult } from '../../constant';
+import { emit } from '../../gtag';
 import useOnBoardingMutation from '../../hooks/useOnBoardingMutation';
 import { Kakao } from '../../types/kakao.type';
 import { Button, Chip, StickyBottom, Typography } from '../common';
@@ -74,6 +75,7 @@ function End({ testAnswer, setTestNumber, setTestAnswer }: EndProps) {
         playStyle: result,
       };
       submitMutation.mutate(values);
+      emit('sign_up', { userName: onBoardingData.lolNickname });
     }
   };
 

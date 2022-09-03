@@ -12,6 +12,7 @@ import RecommendSwiper from './RecommendSwiper';
 import { Container, HomeContainer, MoreContainer, TitleAndMoreContainer } from './style';
 
 import useGetAuth from '../../hooks/useGetAuth';
+import useGTagOnMount from '../../hooks/useGTagOnMount';
 
 function Home({ isAuth }: { isAuth: boolean }) {
   const userData = isAuth && useGetAuth();
@@ -40,6 +41,8 @@ function Home({ isAuth }: { isAuth: boolean }) {
 
     return pages[0].data.newList;
   };
+
+  useGTagOnMount('home');
 
   return (
     <HomeContainer>

@@ -23,6 +23,7 @@ function Position(props: PositionProps) {
     <PositionContainer>
       {positions.map((position) => (
         <Image
+          layout="fixed"
           key={position}
           src={`/icons/${positionImgMap[position]}`}
           width={lg}

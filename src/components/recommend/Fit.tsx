@@ -6,10 +6,12 @@ import { Typography } from '../common';
 import LargeCard from '../common/card/LargeCard';
 import Footer from '../common/footer/Footer';
 import { FitContainer, FitRecommend } from './style';
+import useGTagOnMount from '../../hooks/useGTagOnMount';
 
 function Fit() {
   const userData = useGetAuth();
   const { data } = useGetFitSummonerList();
+  useGTagOnMount('menu_fit');
 
   return (
     <>

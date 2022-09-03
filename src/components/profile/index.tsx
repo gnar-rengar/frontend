@@ -13,6 +13,7 @@ import PlayStyleSection from './PlayStyleSection';
 import ProfileImg from './ProfileImg';
 import Blur from './Blur';
 import { BaseContainer } from '../common';
+import useGTagOnMount from '../../hooks/useGTagOnMount';
 
 const MatchSection = dynamic(() => import('./MatchSection'), {
   ssr: false,
@@ -48,6 +49,8 @@ function UserProfile(props: UserProfileProps) {
     mostChampion,
     goodReview,
   } = useGetProfile(userId as string);
+
+  useGTagOnMount('user_profile', { userName: lolNickname });
 
   return (
     <>

@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react';
+import { emit } from '../../gtag';
 import useGetRoomId from '../../hooks/useGetRoomId';
 import { Button, StickyBottom } from '../common';
 
@@ -25,6 +26,7 @@ function ButtonArea(props: ButtonAreaProps) {
     } = await refetch();
 
     router.push(`/chats/${roomId}`);
+    emit('chatting', { userName: lolNickname });
   };
 
   const handleClickEditButton = () => {

@@ -9,6 +9,7 @@ import { ChatContainer } from './style';
 
 import type { Room } from '../../types/api.type';
 import useGetAuth from '../../hooks/useGetAuth';
+import useGTagOnMount from '../../hooks/useGTagOnMount';
 
 function Chats() {
   const { userId } = useGetAuth();
@@ -41,6 +42,8 @@ function Chats() {
     socket.on('onGetChatRooms', handleGetChatRooms);
     return () => socket.off('onGetChatRooms', handleGetChatRooms);
   }, [socket]);
+
+  useGTagOnMount('menu_chats');
 
   if (rooms.length === 0) {
     return (
