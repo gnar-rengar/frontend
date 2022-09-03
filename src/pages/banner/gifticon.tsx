@@ -8,7 +8,7 @@ function GifticonPage() {
       src="/banner/gifticonDetail.png"
       height={1103}
       buttonColor="eventYellow"
-      buttonText="환상의 짝궁 찾으러 가기"
+      buttonText="환상의 짝꿍 찾으러 가기"
     />
   );
 }
