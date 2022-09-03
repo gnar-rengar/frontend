@@ -1,6 +1,5 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import Script from 'next/script';
 
 export default class MyDocument extends Document {
   render() {
@@ -9,28 +8,21 @@ export default class MyDocument extends Document {
         <Head>
           <script src="https://developers.kakao.com/sdk/js/kakao.js" />
           <script async src="https://tally.so/widgets/embed.js" />
-          <Script
-            dangerouslySetInnerHTML={{
-              __html: `window.smartlook||(function(d) {
-                var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
-                var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
-                c.charset='utf-8';c.src='https://web-sdk.smartlook.com/recorder.js';h.appendChild(c);
-                })(document);
-                smartlook('init', '4257bcee6edac11202e8c6cc038575b88a131090', { region: 'eu' });`,
-            }}
-          />
           <script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4220281451052822"
             crossOrigin="anonymous"
           />
           <script async src="https://www.googletagmanager.com/gtag/js?id=G-MFWV002LGZ" />
-          <Script
+          <script
+            // eslint-disable-next-line
             dangerouslySetInnerHTML={{
               __html: `window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-MFWV002LGZ');`,
+              gtag('config', 'G-MFWV002LGZ', {
+                page_path: window.location.pathname,
+              });`,
             }}
           />
           <meta charSet="utf-8" />
