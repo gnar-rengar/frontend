@@ -16,6 +16,8 @@ import {
 import { withdrawalErrorMessage } from '../../constant';
 import useWithdrawalMutation from '../../hooks/useWithdrawalMutation';
 import { WithdrawalDTO } from '../../types/api.type';
+import { emit } from '../../gtag';
+import useGetAuth from '../../hooks/useGetAuth';
 
 const withdrawalSchema = yup.object().shape({
   agree: yup.boolean().oneOf([true], withdrawalErrorMessage.agree),
@@ -34,9 +36,13 @@ function Withdrawal() {
   const reasonRegister = register('reason');
   const submitMutation = useWithdrawalMutation();
 
+  const { lolNickname } = useGetAuth();
+
   const onSubmit = async (data: WithdrawalDTO) => {
     submitMutation.mutate(data);
+    emit('withdrawal', { userName: lolNickname });
   };
+
   return (
     <>
       <ImageContainer>

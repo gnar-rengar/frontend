@@ -4,7 +4,7 @@ import 'dayjs/locale/ko';
 import { NextPage } from 'next';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import React, { ReactElement, useEffect, useRef } from 'react';
+import React, { ReactElement, useRef } from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { RecoilRoot } from 'recoil';
@@ -13,7 +13,6 @@ import SocketProvider from '../contexts/socket';
 import { darkTheme } from '../theme';
 import GlobalStyle from '../theme/globalStyle';
 import ErrorBoundary from '../components/ErrorBoundary';
-import * as gtag from '../gtag';
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => React.ReactNode;
@@ -40,10 +39,6 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
       },
     })
   );
-
-  useEffect(() => {
-    gtag.pageview(window.location.pathname);
-  }, []);
 
   return (
     <>

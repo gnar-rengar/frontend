@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import useGetAuth from '../../hooks/useGetAuth';
 import useGetMyPage from '../../hooks/useGetMyPage';
+import useGTagOnMount from '../../hooks/useGTagOnMount';
 import useLogoutMutation from '../../hooks/useLogoutMutation';
 
 import { Asking, BaseContainer, Button, Card, Divider, Review, Typography } from '../common';
@@ -19,6 +20,8 @@ function MyPage() {
   const onClickLogout = () => {
     logoutMutation.mutate();
   };
+
+  useGTagOnMount('menu_my');
 
   return (
     <BaseContainer>
