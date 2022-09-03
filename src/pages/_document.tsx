@@ -24,6 +24,15 @@ export default class MyDocument extends Document {
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4220281451052822"
             crossOrigin="anonymous"
           />
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-MFWV002LGZ" />
+          <Script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-MFWV002LGZ');`,
+            }}
+          />
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="author" content="duohaeduo" />

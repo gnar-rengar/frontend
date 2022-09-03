@@ -56,14 +56,14 @@ const reviewWriteErrorMessage = {
 
 const tendencyQuestion = [
   '어두컴컴한 적 정글..당신은',
-  '당신의 라인에 빅웨이브가 있을 때',
+  '내 상대가 라인을 밀고 로밍을 간다',
   '하고 싶었던 모스트 챔피언의\n카운터 픽이 나왔을 때, 당신은',
   '2:1로 쫓기던 중,\n같은 팀이 백업을 왔다.',
 ];
 
 const tendencyAnswer = [
-  ['욕심내서 적 정글을 훔쳐 먹는다', '와드만 하고 간다'],
-  ['우리 팀 빨리와! 핑을 찍는다', '내가 갈게! 로밍을 간다'],
+  ['욕심내서 훔쳐 먹는다', '와드만 하고 간다'],
+  ['조금만 버텨! 이것만 밀고 따라갈게', '내 라인이 좋지 않지만, 바로 뒤따라간다'],
   ['숙련도로 승부한다. 그대로 모스트 픽', '다른 챔프도 괜찮아. 아쉽지만 다른 챔피언을 픽한다.'],
   ['도망가! 얘네 스킬 다 있어 백핑을 찍는다.', '2:2야 이거 쌉가능! 가고 있음 핑을 찍는다.'],
 ];
@@ -79,7 +79,7 @@ const tendencyImage = {
   start: '/expression/cupcake.png',
   answer: [
     '/expression/cemetery.png',
-    '/expression/zed.png',
+    '/expression/rabbit.png',
     '/expression/conflict.png',
     '/expression/cookie.png',
   ],
