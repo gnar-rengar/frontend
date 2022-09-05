@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-one-expression-per-line */
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -35,18 +34,25 @@ function Login() {
           3초 간편 로그인/회원가입
         </Typography>
         <ButtonContainer>
-          <Link href={process.env.NEXT_PUBLIC_DISCORD_URL ?? ''}>
-            <a>
-              <LoginButton color="discord">
-                <IconAndTextContainer color="discord">
-                  <Image src="/icons/discord.svg" width="24px" height="24px" alt="discord login" />
-                  <Typography variant="body1" color="onBackground">
-                    디스코드 로그인
-                  </Typography>
-                </IconAndTextContainer>
-              </LoginButton>
-            </a>
-          </Link>
+          {process.env.NODE_ENV === 'development' && (
+            <Link href={process.env.NEXT_PUBLIC_DISCORD_URL ?? ''}>
+              <a>
+                <LoginButton color="discord">
+                  <IconAndTextContainer color="discord">
+                    <Image
+                      src="/icons/discord.svg"
+                      width="24px"
+                      height="24px"
+                      alt="discord login"
+                    />
+                    <Typography variant="body1" color="onBackground">
+                      디스코드 로그인
+                    </Typography>
+                  </IconAndTextContainer>
+                </LoginButton>
+              </a>
+            </Link>
+          )}
           <Link href={process.env.NEXT_PUBLIC_KAKAO_URL ?? ''}>
             <a>
               <LoginButton color="kakao">
