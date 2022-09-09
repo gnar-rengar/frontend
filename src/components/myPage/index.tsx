@@ -1,11 +1,12 @@
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import useGetAuth from '../../hooks/useGetAuth';
 import useGetMyPage from '../../hooks/useGetMyPage';
 import useGTagOnMount from '../../hooks/useGTagOnMount';
 import useLogoutMutation from '../../hooks/useLogoutMutation';
 
 import { Asking, BaseContainer, Button, Card, Divider, Review, Typography } from '../common';
+import Toggle from '../common/toggle';
 
 import { AreaButton, ProfileCardContainer } from './style';
 
@@ -22,6 +23,8 @@ function MyPage() {
   };
 
   useGTagOnMount('menu_my');
+
+  const [on, setOn] = useState(false);
 
   return (
     <BaseContainer>
@@ -67,10 +70,15 @@ function MyPage() {
           </Typography>
         </AreaButton>
         <Divider />
-        <AreaButton type="button" onClick={onClickLogout}>
+        <AreaButton
+          style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+          type="button"
+          onClick={() => setOn((p) => !p)}
+        >
           <Typography variant="body1" color="onBackground">
             채팅 알림
           </Typography>
+          <Toggle on={on} />
         </AreaButton>
         <Divider />
         <AreaButton type="button" onClick={onClickLogout}>
