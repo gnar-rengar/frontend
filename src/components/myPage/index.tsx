@@ -62,6 +62,18 @@ function MyPage() {
       <div>
         <Divider />
         <AreaButton type="button" onClick={onClickLogout}>
+          <Typography variant="body1" color="onBackground">
+            연락처 수정하기
+          </Typography>
+        </AreaButton>
+        <Divider />
+        <AreaButton type="button" onClick={onClickLogout}>
+          <Typography variant="body1" color="onBackground">
+            채팅 알림
+          </Typography>
+        </AreaButton>
+        <Divider />
+        <AreaButton type="button" onClick={onClickLogout}>
           <Typography variant="body1">로그아웃</Typography>
         </AreaButton>
         <Divider />
