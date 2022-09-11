@@ -5,7 +5,7 @@ export type AddMessage = (message: ReceivedMessage) => void;
 
 function useMessages(defaultMessages: Messages[]): [Messages, AddMessage] {
   const [messages, setMessages] = useState<Messages>(setDefaultMessages(defaultMessages));
-
+  console.log(defaultMessages, messages);
   const addMessage: AddMessage = (message) => {
     const { userId, date, text, createdAt } = message;
     const newMessage = { userId, createdAt, text };
@@ -24,7 +24,12 @@ function useMessages(defaultMessages: Messages[]): [Messages, AddMessage] {
 export default useMessages;
 
 const setDefaultMessages = (msgs: Messages[]) => {
-  msgs.sort((a, b) => Object.keys(a)[0].localeCompare(Object.keys(b)[0]));
+  msgs.sort(
+    (a, b) =>
+      new Date(...(Object.keys(a)[0].match(/\d+/g) as [])).getTime() -
+      new Date(...(Object.keys(b)[0].match(/\d+/g) as [])).getTime()
+  );
+
   return msgs.reduce((prev, crnt) => {
     const [date, message] = Object.entries(crnt)[0];
     // eslint-disable-next-line no-param-reassign
