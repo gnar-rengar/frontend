@@ -22,6 +22,7 @@ interface MessageProps {
   setInput: React.Dispatch<React.SetStateAction<string>>;
   myId: string;
   lolNickname: string;
+  sendMessage: (message: string) => void;
 }
 
 function MessageArea(props: MessageProps) {
@@ -35,6 +36,7 @@ function MessageArea(props: MessageProps) {
     setInput,
     myId,
     lolNickname,
+    sendMessage,
   } = props;
 
   const [isNewMsgNoticeShown, setIsNewMsgNoticeShown] = useState(false);
@@ -44,7 +46,6 @@ function MessageArea(props: MessageProps) {
 
   const scrollToBottom = useCallback(() => scrollRef.current.scrollIntoView(), [scrollRef.current]);
 
-  //! 헤더 수정 후 업데이트 필요
   const isNewMsgOutOfSight =
     containerRef.current &&
     typeof window === 'object' &&
@@ -74,14 +75,10 @@ function MessageArea(props: MessageProps) {
     return () => window.removeEventListener('scroll', hideNewMsgNotice);
   }, []);
 
-  //! 메시지 업데이트마다 정렬하지 않아도 순서가 유지되는지 검증 필요.
-  //! 유지되지 않는다면 여기서 정렬해야 함.
-  // const sortedMessages = useMemo(() => sortByKey(messages), [messages]);
-
   return (
     <MessageAreaContainer ref={containerRef}>
       {Object.keys(messages).length === 0 && !hasBadWord ? (
-        <QuickChat roomId={roomId} myId={myId} lolNickname={lolNickname} />
+        <QuickChat roomId={roomId} lolNickname={lolNickname} sendMessage={sendMessage} />
       ) : (
         Object.entries(messages as Messages).map(([date, msgs]) => (
           <React.Fragment key={date}>
@@ -94,11 +91,10 @@ function MessageArea(props: MessageProps) {
       )}
       {hasBadWord && (
         <BadWordAlert
-          roomId={roomId}
           setHasBadWord={setHasBadWord}
           input={input}
           setInput={setInput}
-          myId={myId}
+          sendMessage={sendMessage}
         />
       )}
       <div ref={scrollRef} />

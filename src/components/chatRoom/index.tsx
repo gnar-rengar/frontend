@@ -2,6 +2,8 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 import useGetMessages from '../../hooks/useGetMessages';
 import useMessages from '../../hooks/useMessages';
 import useGetAuth from '../../hooks/useGetAuth';
+import usePostSMS from '../../hooks/usePostSMS';
+import useGetOpponent from '../../hooks/useGetOpponent';
 
 import { SocketContext } from '../../contexts/socket';
 
@@ -57,6 +59,16 @@ function ChatRoom(props: ChatRoomProps) {
     setIsOpponentTypingTyping(false);
   }, []);
 
+  const { mutate } = usePostSMS();
+  const { opponent } = useGetOpponent(roomId);
+
+  const sendMessage = (message: string) => {
+    if (Object.keys(messages).length === 0) {
+      mutate(opponent.userId);
+    }
+    socket.emit('sendMessage', roomId, myId, message);
+  };
+
   useEffect(() => {
     socket.emit('enterChatRoom', roomId, myId);
     socket.on('receiveMessage', handleReceiveMessage);
@@ -82,14 +94,15 @@ function ChatRoom(props: ChatRoomProps) {
         setInput={setInput}
         myId={myId}
         lolNickname={lolNickname}
+        sendMessage={sendMessage}
       />
       <InputArea
         roomId={roomId}
         setHasBadWord={setHasBadWord}
         input={input}
         setInput={setInput}
-        myId={myId}
         isOpponentTyping={isOpponentTyping}
+        sendMessage={sendMessage}
       />
     </ChatRoomContainer>
   );

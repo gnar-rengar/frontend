@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import { axios } from '../axios';
 
 import type { ProfileDTO } from '../types/api.type';
-import { queryKeys } from './queryKeys';
+import { queryKeys } from '../constant/queryKeys';
 
 const fetchUserProfile = async (userId: string) => {
   const { data } = await axios.get<ProfileDTO>(`user/userInfo/${userId}`);

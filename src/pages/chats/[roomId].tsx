@@ -5,7 +5,7 @@ import InValid from '../../components/chats/InValid';
 import LoadingSuspense from '../../components/common/loadingSuspense';
 import WithAuth from '../../components/WithAuth';
 import { preFetchIfLoggedIn } from '../../hooks/preFetchFns';
-import { queryKeys } from '../../hooks/queryKeys';
+import { queryKeys } from '../../constant/queryKeys';
 import { authUserGetAPI } from '../../hooks/useGetAuth';
 import { fetchMessages } from '../../hooks/useGetMessages';
 

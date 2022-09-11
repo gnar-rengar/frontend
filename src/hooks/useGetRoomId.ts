@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { queryKeys } from './queryKeys';
+import { queryKeys } from '../constant/queryKeys';
 import { axios } from '../axios';
 
 const fetchRoomId = async (userId: string) => {

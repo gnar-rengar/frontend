@@ -9,10 +9,12 @@ interface TextFieldProps {
   active?: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
+  value?: string | number;
 }
 
-const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => (
-  <Input type="text" {...props} ref={ref} />
-));
+const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
+  const { value, ...other } = props;
+  return <Input type="text" ref={ref} value={value} {...other} />;
+});
 
 export default TextField;

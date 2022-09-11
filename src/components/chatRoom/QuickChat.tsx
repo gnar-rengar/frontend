@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { SocketContext } from '../../contexts/socket';
+import React from 'react';
 import useGetOpponent from '../../hooks/useGetOpponent';
 import { Typography } from '../common';
 import {
@@ -12,14 +11,12 @@ import {
 
 interface QuickChatProps {
   roomId: string;
-  myId: string;
   lolNickname: string;
+  sendMessage: (message: string) => void;
 }
 
 function QuickChat(props: QuickChatProps) {
-  const { roomId, myId, lolNickname } = props;
-
-  const socket = useContext(SocketContext);
+  const { roomId, lolNickname, sendMessage } = props;
 
   const {
     opponent: { lolNickname: opponentNickname },
@@ -27,7 +24,7 @@ function QuickChat(props: QuickChatProps) {
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     const text = (e.target as HTMLElement).innerText;
-    socket.emit('sendMessage', roomId, myId, text);
+    sendMessage(text);
   };
 
   return (

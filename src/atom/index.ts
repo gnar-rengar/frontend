@@ -15,3 +15,8 @@ export const onBoardingState = atom<OnBoardingInput<PlayStyleType | string[]>>({
     communication: '',
   },
 });
+
+export const modalState = atom<boolean>({
+  key: 'modal',
+  default: false,
+});

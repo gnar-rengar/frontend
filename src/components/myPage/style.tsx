@@ -9,7 +9,7 @@ export const ProfileCardContainer = styled.div`
 `;
 
 export const AreaButton = styled.button`
-  padding: 16px 0;
+  padding: 16px 8px;
   width: 100%;
   background: inherit;
   border: none;

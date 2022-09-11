@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import { axios } from '../axios';
-import { queryKeys } from './queryKeys';
+import { queryKeys } from '../constant/queryKeys';
 
 import type { Opponent } from '../types/api.type';
 

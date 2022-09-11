@@ -18,6 +18,7 @@ const publicTheme = {
       md: '20px',
       lg: '24px',
       xl: '32px',
+      xxl: '48px',
     },
   },
   mq: {

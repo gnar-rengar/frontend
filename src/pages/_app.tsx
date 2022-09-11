@@ -13,6 +13,7 @@ import SocketProvider from '../contexts/socket';
 import { darkTheme } from '../theme';
 import GlobalStyle from '../theme/globalStyle';
 import ErrorBoundary from '../components/ErrorBoundary';
+import Portal from '../components/Portal';
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => React.ReactNode;
@@ -55,7 +56,9 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
           <QueryClientProvider client={queryClient.current}>
             <Hydrate state={pageProps.dehydratedState}>
               <RecoilRoot>
-                <SocketProvider>{getLayout(<Component {...pageProps} />)}</SocketProvider>
+                <Portal>
+                  <SocketProvider>{getLayout(<Component {...pageProps} />)}</SocketProvider>
+                </Portal>
               </RecoilRoot>
             </Hydrate>
             <ReactQueryDevtools position="bottom-right" />
