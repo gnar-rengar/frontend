@@ -5,7 +5,7 @@ export type AddMessage = (message: ReceivedMessage) => void;
 
 function useMessages(defaultMessages: Messages[]): [Messages, AddMessage] {
   const [messages, setMessages] = useState<Messages>(setDefaultMessages(defaultMessages));
-  console.log(defaultMessages, messages);
+
   const addMessage: AddMessage = (message) => {
     const { userId, date, text, createdAt } = message;
     const newMessage = { userId, createdAt, text };
