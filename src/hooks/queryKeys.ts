@@ -10,4 +10,5 @@ export const queryKeys = {
   message: (roomId: string) => ['message', roomId] as const,
   newSummonerList: (type: 'home' | 'filter') => ['newSummonerList', type] as const,
   opponent: ['opponent'] as const,
+  phoneNumber: ['phoneNumber'] as const,
 };

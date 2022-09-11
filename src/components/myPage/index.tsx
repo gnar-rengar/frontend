@@ -1,17 +1,23 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { modalState } from '../../atom';
 import useGetAuth from '../../hooks/useGetAuth';
 import useGetMyPage from '../../hooks/useGetMyPage';
+import useGetPhoneNumber from '../../hooks/useGetPhoneNumber';
 import useGTagOnMount from '../../hooks/useGTagOnMount';
 import useLogoutMutation from '../../hooks/useLogoutMutation';
+import usePatchSMSAgree from '../../hooks/usePatchSMSAgree';
 
 import { Asking, BaseContainer, Button, Card, Divider, Review, Typography } from '../common';
+import Modal from '../common/modal';
 import Toggle from '../common/toggle';
 
 import { AreaButton, ProfileCardContainer } from './style';
 
 function MyPage() {
   const me = useGetAuth();
+  const { phoneNumber } = useGetPhoneNumber();
   const {
     data: { goodReview, badReview, ...other },
   } = useGetMyPage();
@@ -24,10 +30,31 @@ function MyPage() {
 
   useGTagOnMount('menu_my');
 
-  const [on, setOn] = useState(false);
+  const [modalType, setModalType] = useState<'contact' | 'notification'>('contact');
+  const [toggleOn, setToggleOn] = useState(false);
+
+  const [portalState, setPortalState] = useRecoilState(modalState);
+
+  const handleClickContactButton = () => {
+    setPortalState(true);
+    setModalType('contact');
+  };
+
+  const { mutate } = usePatchSMSAgree();
+
+  const handleClickNotiToggle = () => {
+    if (toggleOn) {
+      setModalType('notification');
+    } else {
+      mutate(true);
+    }
+    setPortalState((p) => !p);
+    setToggleOn((p) => !p);
+  };
 
   return (
     <BaseContainer>
+      {portalState && <Modal type={modalType} />}
       <ProfileCardContainer>
         <div>
           <Typography variant="h3">많고 많은 소환사 중에</Typography>
@@ -63,23 +90,36 @@ function MyPage() {
         <Review reviews={badReview} />
       </Asking>
       <div>
-        <Divider />
-        <AreaButton type="button" onClick={onClickLogout}>
-          <Typography variant="body1" color="onBackground">
-            연락처 수정하기
-          </Typography>
-        </AreaButton>
-        <Divider />
-        <AreaButton
-          style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-          type="button"
-          onClick={() => setOn((p) => !p)}
-        >
-          <Typography variant="body1" color="onBackground">
-            채팅 알림
-          </Typography>
-          <Toggle on={on} />
-        </AreaButton>
+        {phoneNumber ? (
+          <>
+            <Divider />
+            <AreaButton type="button" onClick={handleClickContactButton}>
+              <Typography variant="body1" color="onBackground">
+                연락처 수정하기
+              </Typography>
+            </AreaButton>
+            <Divider />
+            <AreaButton
+              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+              type="button"
+              onClick={handleClickNotiToggle}
+            >
+              <Typography variant="body1" color="onBackground">
+                채팅 알림
+              </Typography>
+              <Toggle on={toggleOn} />
+            </AreaButton>
+          </>
+        ) : (
+          <>
+            <Divider />
+            <AreaButton type="button">
+              <Typography variant="body1" color="primary">
+                연락처 등록하고 채팅 알림 받아보기
+              </Typography>
+            </AreaButton>
+          </>
+        )}
         <Divider />
         <AreaButton type="button" onClick={onClickLogout}>
           <Typography variant="body1">로그아웃</Typography>

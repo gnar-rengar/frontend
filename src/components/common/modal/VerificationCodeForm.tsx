@@ -7,13 +7,15 @@ import usePostVerificationCode from '../../../hooks/usePostVerificationCode';
 
 interface VerificationCodeFormProps {
   phoneNumber: string;
+  setPortalState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const codeSchema = yup.object().shape({
   code: yup.string().matches(/^\d{6}$/),
 });
 
-function VerificationCodeForm({ phoneNumber }: VerificationCodeFormProps) {
+function VerificationCodeForm(props: VerificationCodeFormProps) {
+  const { phoneNumber, setPortalState } = props;
   const {
     register,
     handleSubmit,
@@ -23,7 +25,7 @@ function VerificationCodeForm({ phoneNumber }: VerificationCodeFormProps) {
     mode: 'onChange',
   });
 
-  const { mutate } = usePostVerificationCode();
+  const { mutate } = usePostVerificationCode({ onSuccess: () => setPortalState(false) });
 
   const handleSubmitVerificationCode = ({ code }: { code: string }) => {
     mutate({ phoneNumber, code });

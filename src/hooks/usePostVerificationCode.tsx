@@ -12,6 +12,7 @@ const fetchVerificationCode = async ({
   return data;
 };
 
-const usePostVerificationCode = () => useMutation(fetchVerificationCode);
+const usePostVerificationCode = ({ onSuccess }: { onSuccess?: () => void }) =>
+  useMutation(fetchVerificationCode, { onSuccess });
 
 export default usePostVerificationCode;

@@ -35,7 +35,7 @@ function PhoneNumberForm(props: PhoneNumberFormProps) {
   }, [isSuccess]);
 
   const handleSubmitContact = ({ contact }: { contact: string }) => {
-    mutate(contact);
+    mutate(contact.replace(/-/g, ''));
   };
 
   const { onChange } = register('contact');

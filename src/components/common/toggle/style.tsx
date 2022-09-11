@@ -1,15 +1,15 @@
 import styled from '@emotion/styled';
 
-export const ToggleContainer = styled.div<{ on: boolean }>`
+export const ToggleContainer = styled.div<{ $on: boolean }>`
   display: flex;
   width: 44px;
   height: 26px;
   padding: 2px;
   border-radius: 20px;
   ${(props) => {
-    const { on, theme } = props;
+    const { $on, theme } = props;
 
-    if (on) {
+    if ($on) {
       return `
         justify-content: right;
         background: ${theme.color.primaryVariant};

@@ -45,7 +45,7 @@ function Home({ isAuth }: { isAuth: boolean }) {
   };
 
   useGTagOnMount('home');
-  console.log(userData);
+
   return (
     <HomeContainer>
       {/* <Modal /> */}

@@ -1,31 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import { createElement, useEffect, useState } from 'react';
 import ReactDom from 'react-dom';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { modalState } from '../../../atom';
 import ContactVerificationModal from './ContactVerificationModal';
+import NotificationModal from './NotificationModal';
 
-import { ModalContainer } from './style';
+const modalTypes = {
+  contact: ContactVerificationModal,
+  notification: NotificationModal,
+};
 
-function Modal() {
-  const [isOpen, setIsOpen] = useState(true);
+function Modal({ type }: { type: 'contact' | 'notification' }) {
   const [isMounted, setIsMounted] = useState(false);
+  const [portalState, setPortalState] = useRecoilState(modalState);
+  // const setPortalState = useSetRecoilState(modalState);
 
   useEffect(() => {
     setIsMounted(true);
-    const portal = document.createElement('div');
-    portal.setAttribute('id', 'portal');
-    const root = document.querySelector('#__next');
-    document.body.insertBefore(portal, root);
-
-    return () => {
-      document.body.removeChild(portal);
-    };
   }, []);
 
   return (
+    portalState &&
     isMounted &&
     ReactDom.createPortal(
-      <ModalContainer>
-        <ContactVerificationModal />
-      </ModalContainer>,
+      createElement(modalTypes[type], { setPortalState }),
       document?.querySelector('#portal')
     )
   );

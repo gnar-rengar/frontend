@@ -159,6 +159,7 @@ export interface AuthUserDTO {
   profileURL: string;
   isOnBoarded: boolean;
   playStyle: string[];
+  firstLogin: boolean;
 }
 
 export interface FilterRequestDTO {
@@ -176,4 +177,8 @@ export interface SummonerNewRecommendDTO {
 export interface WithdrawalDTO {
   agree: boolean;
   reason?: string;
+}
+
+export interface PhoneNumberDTO {
+  phoneNumber: string;
 }
