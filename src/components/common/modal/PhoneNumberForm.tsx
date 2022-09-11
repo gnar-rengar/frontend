@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import usePostPhoneNumber from '../../../hooks/usePostPhoneNumber';
 import { Button, TextField } from '..';
+import { Form } from './style';
 
 interface PhoneNumberFormProps {
   phoneNumber: string;
@@ -35,7 +36,7 @@ function PhoneNumberForm(props: PhoneNumberFormProps) {
   const { onChange } = register('contact');
 
   return (
-    <form style={{ display: 'flex', gap: '6px' }} onSubmit={handleSubmit(handleSubmitContact)}>
+    <Form onSubmit={handleSubmit(handleSubmitContact)}>
       <TextField
         placeholder="핸드폰 번호"
         {...register('contact')}
@@ -49,7 +50,7 @@ function PhoneNumberForm(props: PhoneNumberFormProps) {
       <Button size="lg" width="80px" color={isValid ? 'primary' : 'disable'}>
         {phoneNumber.length === 0 ? '전송' : '재전송'}
       </Button>
-    </form>
+    </Form>
   );
 }
 

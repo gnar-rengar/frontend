@@ -6,6 +6,7 @@ import { QueryClient } from 'react-query';
 import { Button, TextField } from '..';
 import usePostVerificationCode from '../../../hooks/usePostVerificationCode';
 import { queryKeys } from '../../../constant/queryKeys';
+import { Form } from './style';
 
 interface VerificationCodeFormProps {
   phoneNumber: string;
@@ -41,15 +42,12 @@ function VerificationCodeForm(props: VerificationCodeFormProps) {
   };
 
   return (
-    <form
-      style={{ display: 'flex', gap: '6px' }}
-      onSubmit={handleSubmit(handleSubmitVerificationCode)}
-    >
+    <Form onSubmit={handleSubmit(handleSubmitVerificationCode)}>
       <TextField placeholder="인증코드 6자리" {...register('code')} error={errors.code} />
       <Button size="lg" width="80px" color={isValid ? 'primary' : 'disable'}>
         인증
       </Button>
-    </form>
+    </Form>
   );
 }
 

@@ -58,3 +58,8 @@ export const ButtonContainer = styled.div`
     width: auto;
   }
 `;
+
+export const Form = styled.form`
+  display: flex;
+  gap: 6px;
+`;
