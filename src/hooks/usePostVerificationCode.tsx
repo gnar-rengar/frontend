@@ -1,7 +1,7 @@
 import { useMutation } from 'react-query';
 import { axios } from '../axios';
 
-const fetchVerificationCode = async ({
+const postVerificationCode = async ({
   phoneNumber,
   code,
 }: {
@@ -13,6 +13,6 @@ const fetchVerificationCode = async ({
 };
 
 const usePostVerificationCode = ({ onSuccess }: { onSuccess?: () => void }) =>
-  useMutation(fetchVerificationCode, { onSuccess });
+  useMutation(postVerificationCode, { onSuccess });
 
 export default usePostVerificationCode;

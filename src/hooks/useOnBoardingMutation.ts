@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useMutation, useQueryClient } from 'react-query';
 import { axios } from '../axios';
-import { queryKeys } from './queryKeys';
+import { queryKeys } from '../constant/queryKeys';
 
 import type { NicknameCheckDTO, OnBoardingInput } from '../types/api.type';
 

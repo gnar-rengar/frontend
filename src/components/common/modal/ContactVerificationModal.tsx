@@ -5,13 +5,15 @@ import { Typography } from '..';
 import PhoneNumberForm from './PhoneNumberForm';
 import VerificationCodeForm from './VerificationCodeForm';
 import { FormContainer, IconConatiner, IconsAndText, ModalContainer, TextContainer } from './style';
+import useGetPhoneNumber from '../../../hooks/useGetPhoneNumber';
 
 interface ContactVerificationModalProps {
   setPortalState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function ContactVerificationModal({ setPortalState }: ContactVerificationModalProps) {
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const { phoneNumber: initialPhoneNumber } = useGetPhoneNumber();
+  const [phoneNumber, setPhoneNumber] = useState(initialPhoneNumber);
 
   const {
     icon: {

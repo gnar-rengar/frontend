@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -17,8 +17,6 @@ const contactSchema = yup.object().shape({
 function PhoneNumberForm(props: PhoneNumberFormProps) {
   const { phoneNumber, setPhoneNumber } = props;
 
-  const inputValue = useRef<string>();
-
   const {
     register,
     handleSubmit,
@@ -28,11 +26,7 @@ function PhoneNumberForm(props: PhoneNumberFormProps) {
     mode: 'onChange',
   });
 
-  const { isSuccess, mutate } = usePostPhoneNumber();
-
-  useEffect(() => {
-    if (isSuccess) setPhoneNumber(inputValue.current);
-  }, [isSuccess]);
+  const { mutate } = usePostPhoneNumber();
 
   const handleSubmitContact = ({ contact }: { contact: string }) => {
     mutate(contact.replace(/-/g, ''));
@@ -47,9 +41,10 @@ function PhoneNumberForm(props: PhoneNumberFormProps) {
         {...register('contact')}
         error={errors.contact}
         onChange={(e) => {
-          inputValue.current = e.target.value;
+          setPhoneNumber(e.target.value);
           onChange(e);
         }}
+        value={phoneNumber}
       />
       <Button size="lg" width="80px" color={isValid ? 'primary' : 'disable'}>
         {phoneNumber.length === 0 ? '전송' : '재전송'}

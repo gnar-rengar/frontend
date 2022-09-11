@@ -1,6 +1,6 @@
 import { createElement, useEffect, useState } from 'react';
 import ReactDom from 'react-dom';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { modalState } from '../../../atom';
 import ContactVerificationModal from './ContactVerificationModal';
 import NotificationModal from './NotificationModal';
@@ -13,7 +13,6 @@ const modalTypes = {
 function Modal({ type }: { type: 'contact' | 'notification' }) {
   const [isMounted, setIsMounted] = useState(false);
   const [portalState, setPortalState] = useRecoilState(modalState);
-  // const setPortalState = useSetRecoilState(modalState);
 
   useEffect(() => {
     setIsMounted(true);

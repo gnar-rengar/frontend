@@ -2,9 +2,9 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../../atom';
+
 import useGetAuth from '../../hooks/useGetAuth';
 import useGetMyPage from '../../hooks/useGetMyPage';
-import useGetPhoneNumber from '../../hooks/useGetPhoneNumber';
 import useGTagOnMount from '../../hooks/useGTagOnMount';
 import useLogoutMutation from '../../hooks/useLogoutMutation';
 import usePatchSMSAgree from '../../hooks/usePatchSMSAgree';
@@ -17,9 +17,8 @@ import { AreaButton, ProfileCardContainer } from './style';
 
 function MyPage() {
   const me = useGetAuth();
-  const { phoneNumber } = useGetPhoneNumber();
   const {
-    data: { goodReview, badReview, ...other },
+    data: { goodReview, badReview, registerPhone, agreeSMS, ...other },
   } = useGetMyPage();
   const logoutMutation = useLogoutMutation();
   const router = useRouter();
@@ -31,7 +30,7 @@ function MyPage() {
   useGTagOnMount('menu_my');
 
   const [modalType, setModalType] = useState<'contact' | 'notification'>('contact');
-  const [toggleOn, setToggleOn] = useState(false);
+  const [toggleOn, setToggleOn] = useState(agreeSMS);
 
   const [portalState, setPortalState] = useRecoilState(modalState);
 
@@ -45,10 +44,11 @@ function MyPage() {
   const handleClickNotiToggle = () => {
     if (toggleOn) {
       setModalType('notification');
+      setPortalState(true);
     } else {
       mutate(true);
+      setPortalState(false);
     }
-    setPortalState((p) => !p);
     setToggleOn((p) => !p);
   };
 
@@ -90,7 +90,7 @@ function MyPage() {
         <Review reviews={badReview} />
       </Asking>
       <div>
-        {phoneNumber ? (
+        {registerPhone ? (
           <>
             <Divider />
             <AreaButton type="button" onClick={handleClickContactButton}>
@@ -113,7 +113,7 @@ function MyPage() {
         ) : (
           <>
             <Divider />
-            <AreaButton type="button">
+            <AreaButton type="button" onClick={handleClickContactButton}>
               <Typography variant="body1" color="primary">
                 연락처 등록하고 채팅 알림 받아보기
               </Typography>

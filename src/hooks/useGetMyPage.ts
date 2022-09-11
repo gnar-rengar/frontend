@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import { axios } from '../axios';
 
 import type { MyPageDTO } from '../types/api.type';
-import { queryKeys } from './queryKeys';
+import { queryKeys } from '../constant/queryKeys';
 
 export const fetchMyPage = async () => {
   const { data } = await axios.get<MyPageDTO>('/user/mypage');

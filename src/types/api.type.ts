@@ -71,6 +71,8 @@ export interface MyPageDTO {
   useVoice: boolean;
   goodReview: Review[];
   badReview: Review[];
+  registerPhone: boolean;
+  agreeSMS: boolean;
 }
 
 export interface Review {

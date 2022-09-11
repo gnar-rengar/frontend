@@ -2,10 +2,12 @@ import { useTheme } from '@emotion/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 import useGetFitSummonerList from '../../hooks/useGetFitSummonerList';
 import useGetNewSummonerList from '../../hooks/useGetNewSummonerList';
 import useGetAuth from '../../hooks/useGetAuth';
 import useGTagOnMount from '../../hooks/useGTagOnMount';
+import { modalState } from '../../atom';
 
 import { SmallCard, Typography } from '../common';
 import Footer from '../common/footer/Footer';
@@ -15,6 +17,7 @@ import Modal from '../common/modal';
 
 import RecommendSwiper from './RecommendSwiper';
 import { Container, HomeContainer, MoreContainer, TitleAndMoreContainer } from './style';
+import usePatchFirstLogin from '../../hooks/usePatchFirstLogin';
 
 function Home({ isAuth }: { isAuth: boolean }) {
   const userData = isAuth && useGetAuth();
@@ -30,9 +33,15 @@ function Home({ isAuth }: { isAuth: boolean }) {
     },
   } = useTheme();
 
+  const { mutate } = usePatchFirstLogin();
+
   useEffect(() => {
     if (userData?.isOnBoarded) {
       setCustomList(true);
+      if (userData.firstLogin) {
+        setPortalState(true);
+        mutate();
+      }
     }
   }, [userData]);
 
@@ -46,9 +55,11 @@ function Home({ isAuth }: { isAuth: boolean }) {
 
   useGTagOnMount('home');
 
+  const [portalState, setPortalState] = useRecoilState(modalState);
+
   return (
     <HomeContainer>
-      {/* <Modal /> */}
+      {portalState && <Modal type="contact" />}
       <Banner />
       <Container>
         {isAuth ? userData?.isOnBoarded || <Blur type="onBoarding" /> : <Blur type="login" />}

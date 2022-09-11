@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { modalState } from '../atom';
 
 const usePortal = () => {
-  // const [isOpen, setIsOpen] = useState(true);
   const modalAtom = useRecoilValue(modalState);
 
   useEffect(() => {

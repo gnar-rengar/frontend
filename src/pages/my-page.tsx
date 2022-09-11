@@ -3,7 +3,7 @@ import LoadingSuspense from '../components/common/loadingSuspense';
 import MyPageComponent from '../components/myPage';
 import { preFetchIfLoggedIn } from '../hooks/preFetchFns';
 import { fetchMyPage } from '../hooks/useGetMyPage';
-import { queryKeys } from '../hooks/queryKeys';
+import { queryKeys } from '../constant/queryKeys';
 import { authUserGetAPI } from '../hooks/useGetAuth';
 import OnBoardGuard from '../components/WithAuth';
 

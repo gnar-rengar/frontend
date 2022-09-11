@@ -16,12 +16,12 @@ interface InputAreaProps {
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
   roomId: string;
-  myId: string;
   isOpponentTyping: boolean;
+  sendMessage: (message: string) => void;
 }
 
 function InputArea(props: InputAreaProps) {
-  const { setHasBadWord, input, setInput, roomId, myId, isOpponentTyping } = props;
+  const { setHasBadWord, input, setInput, roomId, isOpponentTyping, sendMessage } = props;
 
   const socket = useContext(SocketContext);
   const {
@@ -43,7 +43,7 @@ function InputArea(props: InputAreaProps) {
     if (hasBadWord) {
       setHasBadWord(true);
     } else {
-      socket.emit('sendMessage', roomId, myId, text);
+      sendMessage(text);
       setInput('');
     }
   };

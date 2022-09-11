@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from 'react-query';
 import { axios } from '../axios';
 import { FilterTierType, SummonerNewRecommendDTO } from '../types/api.type';
-import { queryKeys } from './queryKeys';
+import { queryKeys } from '../constant/queryKeys';
 
 const newSummonerListGetAPI = async (page: number, tier: FilterTierType[]) => {
   let tierString = '';

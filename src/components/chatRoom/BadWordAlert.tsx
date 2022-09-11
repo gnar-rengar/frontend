@@ -1,20 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Button, Typography } from '../common';
-import { SocketContext } from '../../contexts/socket';
 import { ButtonContainer, Notice, WarningMessageContainer } from './style';
 
 interface BadWordAlertProps {
-  roomId: string;
   setHasBadWord: React.Dispatch<React.SetStateAction<boolean>>;
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
-  myId: string;
+  sendMessage: (message: string) => void;
 }
 
 function BadWordAlert(props: BadWordAlertProps) {
-  const { roomId, setHasBadWord, input, setInput, myId } = props;
-
-  const socket = useContext(SocketContext);
+  const { setHasBadWord, input, setInput, sendMessage } = props;
 
   const handleClick = () => {
     setInput('');
@@ -22,7 +18,7 @@ function BadWordAlert(props: BadWordAlertProps) {
   };
 
   const handleClickIgnore = () => {
-    socket.emit('sendMessage', roomId, myId, input);
+    sendMessage(input);
     handleClick();
   };
 

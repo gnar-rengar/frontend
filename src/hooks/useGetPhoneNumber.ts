@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query';
 import { axios } from '../axios';
 
+import { queryKeys } from '../constant/queryKeys';
 import type { PhoneNumberDTO } from '../types/api.type';
-import { queryKeys } from './queryKeys';
 
 const fetchPhoneNumber = async () => {
   const { data } = await axios.get<PhoneNumberDTO>('user/phoneNumber');

@@ -2,8 +2,10 @@ import React from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import { QueryClient } from 'react-query';
 import { Button, TextField } from '..';
 import usePostVerificationCode from '../../../hooks/usePostVerificationCode';
+import { queryKeys } from '../../../constant/queryKeys';
 
 interface VerificationCodeFormProps {
   phoneNumber: string;
@@ -25,7 +27,14 @@ function VerificationCodeForm(props: VerificationCodeFormProps) {
     mode: 'onChange',
   });
 
-  const { mutate } = usePostVerificationCode({ onSuccess: () => setPortalState(false) });
+  const queryClient = new QueryClient();
+
+  const { mutate } = usePostVerificationCode({
+    onSuccess: () => {
+      setPortalState(false);
+      queryClient.invalidateQueries(queryKeys.myPage);
+    },
+  });
 
   const handleSubmitVerificationCode = ({ code }: { code: string }) => {
     mutate({ phoneNumber, code });

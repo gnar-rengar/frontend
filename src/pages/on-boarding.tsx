@@ -3,7 +3,7 @@ import LoadingSuspense from '../components/common/loadingSuspense';
 import Layout from '../components/layout/Layout';
 import OnBoarding from '../components/onBoarding';
 import { preFetchIfLoggedIn } from '../hooks/preFetchFns';
-import { queryKeys } from '../hooks/queryKeys';
+import { queryKeys } from '../constant/queryKeys';
 import { onBoardingGetAPI } from '../hooks/useGetOnBoarding';
 
 function OnBoardingPage() {
