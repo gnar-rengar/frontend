@@ -1,8 +1,9 @@
 import { atom } from 'recoil';
+import { v1 } from 'uuid';
 import { OnBoardingInput, PlayStyleType } from '../types/api.type';
 
 export const onBoardingState = atom<OnBoardingInput<PlayStyleType | string[]>>({
-  key: 'onBoarding',
+  key: `onBoarding/${v1()}`,
   default: {
     lolNickname: '',
     profileUrl: '',
@@ -17,6 +18,6 @@ export const onBoardingState = atom<OnBoardingInput<PlayStyleType | string[]>>({
 });
 
 export const modalState = atom<boolean>({
-  key: 'modal',
+  key: `modal/${v1()}`,
   default: false,
 });
