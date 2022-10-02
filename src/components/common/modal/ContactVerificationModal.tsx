@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useTheme } from '@emotion/react';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { Typography } from '..';
 import PhoneNumberForm from './PhoneNumberForm';
 import VerificationCodeForm from './VerificationCodeForm';
 import { FormContainer, IconConatiner, IconsAndText, ModalContainer, TextContainer } from './style';
 import useGetPhoneNumber from '../../../hooks/useGetPhoneNumber';
+import useRecaptchaMutation from '../../../hooks/useRecaptchaMutation';
 
 interface ContactVerificationModalProps {
   setPortalState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function ContactVerificationModal({ setPortalState }: ContactVerificationModalProps) {
+  const verifyRecaptchaMutation = useRecaptchaMutation();
   const { phoneNumber: initialPhoneNumber } = useGetPhoneNumber();
   const [phoneNumber, setPhoneNumber] = useState(initialPhoneNumber);
 
@@ -20,6 +23,10 @@ function ContactVerificationModal({ setPortalState }: ContactVerificationModalPr
       size: { lg, xxl },
     },
   } = useTheme();
+
+  const onChangeCheckRecaptcha = (token: string) => {
+    verifyRecaptchaMutation.mutate(token);
+  };
 
   return (
     <ModalContainer>
@@ -57,6 +64,10 @@ function ContactVerificationModal({ setPortalState }: ContactVerificationModalPr
       </IconsAndText>
       <FormContainer>
         <PhoneNumberForm phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} />
+        <ReCAPTCHA
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+          onChange={onChangeCheckRecaptcha}
+        />
         <VerificationCodeForm phoneNumber={phoneNumber} setPortalState={setPortalState} />
       </FormContainer>
     </ModalContainer>
