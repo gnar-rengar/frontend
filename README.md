@@ -18,9 +18,13 @@
 
 ## 1️⃣ 프로젝트 기간
 
-2022.07 ~ 2022.08 (6주)
+<time datetime="2022-06">2022. 06</time> - <time datetime="2022-09">2022. 09</time>
 
 ## 2️⃣ 서비스 화면
+
+### 온보딩 및 롤비티아이(플레이스타일 검사)
+
+![duo-tendency_test](https://user-images.githubusercontent.com/78065948/219393510-2e815669-17a1-4508-ad47-735b3d3c42d4.gif)
 
 ### 홈
 
@@ -65,18 +69,11 @@
 
 ![duo-login](https://user-images.githubusercontent.com/78065948/219358224-f78fd02e-eea9-41d2-b824-e62b004e568a.jpg)
 
-### 회원가입 및 성향검사
-
-![duo-tendency_test](https://user-images.githubusercontent.com/78065948/219393510-2e815669-17a1-4508-ad47-735b3d3c42d4.gif)
-
 ### 비로그인 화면
 
-- 홈
-  ![duo-home_blured](https://user-images.githubusercontent.com/78065948/219356714-fe0740ad-e473-4365-82fa-8a42033b8ecb.jpg)
-- 유저 프로필
-  ![duo-profile_blured](https://user-images.githubusercontent.com/78065948/219358384-ba758fc4-c933-47da-8c16-b81f21d49607.jpg)
-- 채팅
-  ![image](https://user-images.githubusercontent.com/78065948/219359026-8b99cc03-34df-4597-872b-b6b2dcf0bd4d.png)
+![duo-home_blured](https://user-images.githubusercontent.com/78065948/219356714-fe0740ad-e473-4365-82fa-8a42033b8ecb.jpg)
+![duo-profile_blured](https://user-images.githubusercontent.com/78065948/219358384-ba758fc4-c933-47da-8c16-b81f21d49607.jpg)
+![image](https://user-images.githubusercontent.com/78065948/219359026-8b99cc03-34df-4597-872b-b6b2dcf0bd4d.png)
 
 ### 404
 
