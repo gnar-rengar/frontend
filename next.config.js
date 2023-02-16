@@ -26,4 +26,7 @@ module.exports = {
     };
   },
   generateBuildId: async () => execSync(lastCommitCommand).toString().trim(),
+  devIndicators: {
+    buildActivity: false,
+  },
 };

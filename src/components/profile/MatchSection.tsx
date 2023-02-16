@@ -26,7 +26,7 @@ function MatchSection({ userId }: MatchSectionProps) {
 
   return (
     <Section>
-      {recentRecord.length ? (
+      {recentRecord?.length ? (
         <>
           <MatchSectionTitle>
             <Typography variant="h3">최근 전적을 확인해보세요</Typography>

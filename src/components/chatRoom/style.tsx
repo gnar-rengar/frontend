@@ -179,7 +179,7 @@ export const TypingContainer = styled.div`
 
 export const NewMessageNoticeWrapper = styled.div`
   position: sticky;
-  bottom: 64px;
+  bottom: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;

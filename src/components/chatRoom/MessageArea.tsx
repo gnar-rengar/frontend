@@ -49,8 +49,7 @@ function MessageArea(props: MessageProps) {
   const isNewMsgOutOfSight =
     containerRef.current &&
     typeof window === 'object' &&
-    containerRef.current.clientHeight - (window.innerHeight - INPUT_AREA_HEIGHT) * 2 >=
-      window.scrollY - INPUT_AREA_HEIGHT;
+    window.scrollY - INPUT_AREA_HEIGHT < containerRef.current.clientHeight - window.innerHeight;
 
   useEffect(() => {
     if (isNewMsgOutOfSight) return;
